@@ -1,9 +1,7 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleScene.h"
-#include "SDL\include\SDL_opengl.h"
-
-
+#include "Libraries/SDL\include\SDL_opengl.h"
 
 ModuleScene::ModuleScene(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
