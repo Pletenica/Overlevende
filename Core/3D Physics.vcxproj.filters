@@ -10,14 +10,14 @@
     <Filter Include="Sources\Containers">
       <UniqueIdentifier>{afc36133-f401-499a-aa33-0da1e500fb52}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sources\Tools">
-      <UniqueIdentifier>{7e4dfaf7-022c-4f7d-92aa-f3b3fa9d6248}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Sources\Helpers">
       <UniqueIdentifier>{121f8e6b-df36-4ab0-be0d-601ddfc9e503}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sources\Modules\Game">
-      <UniqueIdentifier>{83f46af7-e02f-40c0-9e56-41d76082527b}</UniqueIdentifier>
+    <Filter Include="Sources\Modules\Esencials">
+      <UniqueIdentifier>{58d07468-cee9-4a96-bfcf-7d972c779528}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Modules\Tools">
+      <UniqueIdentifier>{7e4dfaf7-022c-4f7d-92aa-f3b3fa9d6248}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -51,38 +51,20 @@
     <ClInclude Include="glmath.h">
       <Filter>Sources\Containers</Filter>
     </ClInclude>
-    <ClInclude Include="Application.h">
-      <Filter>Sources</Filter>
-    </ClInclude>
-    <ClInclude Include="Globals.h">
-      <Filter>Sources</Filter>
-    </ClInclude>
-    <ClInclude Include="Primitive.h">
-      <Filter>Sources\Helpers</Filter>
-    </ClInclude>
     <ClInclude Include="Color.h">
       <Filter>Sources\Containers</Filter>
     </ClInclude>
     <ClInclude Include="Light.h">
       <Filter>Sources\Helpers</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleSceneIntro.h">
-      <Filter>Sources\Modules\Game</Filter>
-    </ClInclude>
     <ClInclude Include="Timer.h">
-      <Filter>Sources\Tools</Filter>
+      <Filter>Sources\Modules\Tools</Filter>
     </ClInclude>
-    <ClInclude Include="ModulePhysics3D.h">
-      <Filter>Sources\Modules</Filter>
+    <ClInclude Include="Application.h">
+      <Filter>Sources\Modules\Esencials</Filter>
     </ClInclude>
-    <ClInclude Include="PhysBody3D.h">
-      <Filter>Sources\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="PhysVehicle3D.h">
-      <Filter>Sources\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="ModulePlayer.h">
-      <Filter>Sources\Modules\Game</Filter>
+    <ClInclude Include="Globals.h">
+      <Filter>Sources\Modules\Esencials</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -102,22 +84,13 @@
       <Filter>Sources\Modules</Filter>
     </ClCompile>
     <ClCompile Include="log.cpp">
-      <Filter>Sources\Tools</Filter>
+      <Filter>Sources\Modules\Tools</Filter>
     </ClCompile>
     <ClCompile Include="Timer.cpp">
-      <Filter>Sources\Tools</Filter>
-    </ClCompile>
-    <ClCompile Include="Application.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="Main.cpp">
-      <Filter>Sources</Filter>
+      <Filter>Sources\Modules\Tools</Filter>
     </ClCompile>
     <ClCompile Include="glmath.cpp">
       <Filter>Sources\Containers</Filter>
-    </ClCompile>
-    <ClCompile Include="Primitive.cpp">
-      <Filter>Sources\Helpers</Filter>
     </ClCompile>
     <ClCompile Include="Color.cpp">
       <Filter>Sources\Containers</Filter>
@@ -125,20 +98,11 @@
     <ClCompile Include="Light.cpp">
       <Filter>Sources\Helpers</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleSceneIntro.cpp">
-      <Filter>Sources\Modules\Game</Filter>
+    <ClCompile Include="Application.cpp">
+      <Filter>Sources\Modules\Esencials</Filter>
     </ClCompile>
-    <ClCompile Include="ModulePhysics3D.cpp">
-      <Filter>Sources\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="PhysBody3D.cpp">
-      <Filter>Sources\Helpers</Filter>
-    </ClCompile>
-    <ClCompile Include="PhysVehicle3D.cpp">
-      <Filter>Sources\Helpers</Filter>
-    </ClCompile>
-    <ClCompile Include="ModulePlayer.cpp">
-      <Filter>Sources\Modules\Game</Filter>
+    <ClCompile Include="Main.cpp">
+      <Filter>Sources\Modules\Esencials</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
