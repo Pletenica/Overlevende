@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="ModuleAudio.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleInput.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleWindow.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Application.cpp">
+      <Filter>Core\Esencials</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Core\Esencials</Filter>
+    </ClCompile>
+    <ClCompile Include="glmath.cpp">
+      <Filter>Core\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="log.cpp">
+      <Filter>Core\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>Core\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleCamera3D.cpp">
+      <Filter>Core\Others</Filter>
+    </ClCompile>
+    <ClCompile Include="Light.cpp">
+      <Filter>Core\Others</Filter>
+    </ClCompile>
+    <ClCompile Include="Color.cpp">
+      <Filter>Core\Others</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleRenderer3D.cpp">
+      <Filter>Core\Others</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ModuleAudio.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleInput.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleWindow.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Application.h">
+      <Filter>Core\Esencials</Filter>
+    </ClInclude>
+    <ClInclude Include="Globals.h">
+      <Filter>Core\Esencials</Filter>
+    </ClInclude>
+    <ClInclude Include="Module.h">
+      <Filter>Core\Esencials</Filter>
+    </ClInclude>
+    <ClInclude Include="glmath.h">
+      <Filter>Core\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="p2DynArray.h">
+      <Filter>Core\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="p2List.h">
+      <Filter>Core\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="p2Point.h">
+      <Filter>Core\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>Core\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleCamera3D.h">
+      <Filter>Core\Others</Filter>
+    </ClInclude>
+    <ClInclude Include="Light.h">
+      <Filter>Core\Others</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>Core\Others</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleRenderer3D.h">
+      <Filter>Core\Others</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Core">
+      <UniqueIdentifier>{0a16c25a-62f3-4a08-b7f1-59b812c57da3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Esencials">
+      <UniqueIdentifier>{b7fcc118-cf0e-4d59-b3eb-00279492e375}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Tools">
+      <UniqueIdentifier>{5ceff8eb-760f-4574-ad12-86bf9f999c50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Others">
+      <UniqueIdentifier>{5dc245d8-b9bf-4b20-a723-544ccc2327fa}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
