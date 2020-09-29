@@ -14,7 +14,7 @@
     <ProjectGuid>{746CC4C3-787F-4B0E-AA66-E388FE3FF4F6}</ProjectGuid>
     <RootNamespace>SDLGame</RootNamespace>
     <ProjectName>Overlevende</ProjectName>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -78,6 +78,11 @@
     <ClInclude Include="Color.h" />
     <ClInclude Include="glmath.h" />
     <ClInclude Include="Globals.h" />
+    <ClInclude Include="Libraries\Glew\include\eglew.h" />
+    <ClInclude Include="Libraries\Glew\include\glew.h" />
+    <ClInclude Include="Libraries\Glew\include\glxew.h" />
+    <ClInclude Include="Libraries\Glew\include\wglew.h" />
+    <ClInclude Include="Libraries\glut\glut.h" />
     <ClInclude Include="Libraries\ImGui\imconfig.h" />
     <ClInclude Include="Libraries\ImGui\imgui.h" />
     <ClInclude Include="Libraries\ImGui\imgui_impl_opengl3.h" />
@@ -119,6 +124,24 @@
     <ClCompile Include="ModuleScene.cpp" />
     <ClCompile Include="ModuleWindow.cpp" />
     <ClCompile Include="Timer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Game\glut32.dll" />
+    <None Include="Game\libmikmod-2.dll" />
+    <None Include="Game\libmodplug-1.dll" />
+    <None Include="Game\libogg-0.dll" />
+    <None Include="Game\libvorbis-0.dll" />
+    <None Include="Game\libvorbisfile-3.dll" />
+    <None Include="Game\SDL2.dll" />
+    <None Include="Game\SDL2_image.dll" />
+    <None Include="Game\SDL2_mixer.dll" />
+    <None Include="Game\zlib1.dll" />
+    <None Include="Libraries\Glew\libx86\glew32.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="Libraries\Glew\libx86\glew32.lib" />
+    <Library Include="Libraries\Glew\libx86\glew32s.lib" />
+    <Library Include="Libraries\glut\glut32.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

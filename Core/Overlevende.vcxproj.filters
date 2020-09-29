@@ -16,15 +16,6 @@
     <ClCompile Include="Main.cpp">
       <Filter>Core\Esencials</Filter>
     </ClCompile>
-    <ClCompile Include="glmath.cpp">
-      <Filter>Core\Tools</Filter>
-    </ClCompile>
-    <ClCompile Include="log.cpp">
-      <Filter>Core\Tools</Filter>
-    </ClCompile>
-    <ClCompile Include="Timer.cpp">
-      <Filter>Core\Tools</Filter>
-    </ClCompile>
     <ClCompile Include="ModuleCamera3D.cpp">
       <Filter>Core\Others</Filter>
     </ClCompile>
@@ -49,13 +40,22 @@
     <ClCompile Include="Libraries\ImGui\imgui_draw.cpp">
       <Filter>Core\Tools\ImGui</Filter>
     </ClCompile>
+    <ClCompile Include="Libraries\ImGui\imgui_widgets.cpp">
+      <Filter>Core\Tools\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="glmath.cpp">
+      <Filter>Core\Tools\Others</Filter>
+    </ClCompile>
+    <ClCompile Include="log.cpp">
+      <Filter>Core\Tools\Others</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>Core\Tools\Others</Filter>
+    </ClCompile>
     <ClCompile Include="Libraries\ImGui\imgui_impl_opengl3.cpp">
       <Filter>Core\Tools\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="Libraries\ImGui\imgui_impl_sdl.cpp">
-      <Filter>Core\Tools\ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="Libraries\ImGui\imgui_widgets.cpp">
       <Filter>Core\Tools\ImGui</Filter>
     </ClCompile>
   </ItemGroup>
@@ -78,21 +78,6 @@
     <ClInclude Include="Module.h">
       <Filter>Core\Esencials</Filter>
     </ClInclude>
-    <ClInclude Include="glmath.h">
-      <Filter>Core\Tools</Filter>
-    </ClInclude>
-    <ClInclude Include="p2DynArray.h">
-      <Filter>Core\Tools</Filter>
-    </ClInclude>
-    <ClInclude Include="p2List.h">
-      <Filter>Core\Tools</Filter>
-    </ClInclude>
-    <ClInclude Include="p2Point.h">
-      <Filter>Core\Tools</Filter>
-    </ClInclude>
-    <ClInclude Include="Timer.h">
-      <Filter>Core\Tools</Filter>
-    </ClInclude>
     <ClInclude Include="ModuleCamera3D.h">
       <Filter>Core\Others</Filter>
     </ClInclude>
@@ -114,12 +99,6 @@
     <ClInclude Include="Libraries\ImGui\imgui.h">
       <Filter>Core\Tools\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="Libraries\ImGui\imgui_impl_opengl3.h">
-      <Filter>Core\Tools\ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\ImGui\imgui_impl_sdl.h">
-      <Filter>Core\Tools\ImGui</Filter>
-    </ClInclude>
     <ClInclude Include="Libraries\ImGui\imgui_internal.h">
       <Filter>Core\Tools\ImGui</Filter>
     </ClInclude>
@@ -130,6 +109,42 @@
       <Filter>Core\Tools\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="Libraries\ImGui\imstb_truetype.h">
+      <Filter>Core\Tools\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="glmath.h">
+      <Filter>Core\Tools\Others</Filter>
+    </ClInclude>
+    <ClInclude Include="p2DynArray.h">
+      <Filter>Core\Tools\Others</Filter>
+    </ClInclude>
+    <ClInclude Include="p2List.h">
+      <Filter>Core\Tools\Others</Filter>
+    </ClInclude>
+    <ClInclude Include="p2Point.h">
+      <Filter>Core\Tools\Others</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>Core\Tools\Others</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\Glew\include\eglew.h">
+      <Filter>Core\Tools\Glew</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\Glew\include\glew.h">
+      <Filter>Core\Tools\Glew</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\Glew\include\glxew.h">
+      <Filter>Core\Tools\Glew</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\Glew\include\wglew.h">
+      <Filter>Core\Tools\Glew</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\glut\glut.h">
+      <Filter>Core\Tools\Glut</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\ImGui\imgui_impl_opengl3.h">
+      <Filter>Core\Tools\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\ImGui\imgui_impl_sdl.h">
       <Filter>Core\Tools\ImGui</Filter>
     </ClInclude>
   </ItemGroup>
@@ -149,5 +164,63 @@
     <Filter Include="Core\Tools\ImGui">
       <UniqueIdentifier>{25dcfc70-aa8a-4a2a-b8ab-ca4207ce7c77}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Tools\Others">
+      <UniqueIdentifier>{f174f51b-2352-4453-9e99-cfccbaca82cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Tools\Glew">
+      <UniqueIdentifier>{f0f9ab37-2d88-41d0-9286-bccf4f2072cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Tools\SDL">
+      <UniqueIdentifier>{cfe654d1-26ba-46d1-8e59-88ecd4ad9c52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Tools\Glut">
+      <UniqueIdentifier>{4f48815f-467d-4a82-ada9-41eda4c6ca28}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Libraries\Glew\libx86\glew32.dll">
+      <Filter>Core\Tools\Glew</Filter>
+    </None>
+    <None Include="Game\libmikmod-2.dll">
+      <Filter>Core\Tools\SDL</Filter>
+    </None>
+    <None Include="Game\libmodplug-1.dll">
+      <Filter>Core\Tools\SDL</Filter>
+    </None>
+    <None Include="Game\libogg-0.dll">
+      <Filter>Core\Tools\SDL</Filter>
+    </None>
+    <None Include="Game\libvorbis-0.dll">
+      <Filter>Core\Tools\SDL</Filter>
+    </None>
+    <None Include="Game\libvorbisfile-3.dll">
+      <Filter>Core\Tools\SDL</Filter>
+    </None>
+    <None Include="Game\SDL2.dll">
+      <Filter>Core\Tools\SDL</Filter>
+    </None>
+    <None Include="Game\SDL2_image.dll">
+      <Filter>Core\Tools\SDL</Filter>
+    </None>
+    <None Include="Game\SDL2_mixer.dll">
+      <Filter>Core\Tools\SDL</Filter>
+    </None>
+    <None Include="Game\zlib1.dll">
+      <Filter>Core\Tools\SDL</Filter>
+    </None>
+    <None Include="Game\glut32.dll">
+      <Filter>Core\Tools\Glut</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="Libraries\Glew\libx86\glew32.lib">
+      <Filter>Core\Tools\Glew</Filter>
+    </Library>
+    <Library Include="Libraries\Glew\libx86\glew32s.lib">
+      <Filter>Core\Tools\Glew</Filter>
+    </Library>
+    <Library Include="Libraries\glut\glut32.lib">
+      <Filter>Core\Tools\Glut</Filter>
+    </Library>
   </ItemGroup>
 </Project>
