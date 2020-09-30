@@ -40,6 +40,24 @@
     <ClCompile Include="Base Code\Primitive.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="Base Code\lib\ImGui\imgui.cpp">
+      <Filter>Core\Tools\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Base Code\lib\ImGui\imgui_demo.cpp">
+      <Filter>Core\Tools\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Base Code\lib\ImGui\imgui_draw.cpp">
+      <Filter>Core\Tools\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Base Code\lib\ImGui\imgui_impl_opengl3.cpp">
+      <Filter>Core\Tools\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Base Code\lib\ImGui\imgui_impl_sdl.cpp">
+      <Filter>Core\Tools\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Base Code\lib\ImGui\imgui_widgets.cpp">
+      <Filter>Core\Tools\ImGui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Base Code\Application.h">
@@ -90,6 +108,30 @@
     <ClInclude Include="Base Code\Primitive.h">
       <Filter>Core</Filter>
     </ClInclude>
+    <ClInclude Include="Base Code\lib\ImGui\imconfig.h">
+      <Filter>Core\Tools\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Base Code\lib\ImGui\imgui.h">
+      <Filter>Core\Tools\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Base Code\lib\ImGui\imgui_impl_opengl3.h">
+      <Filter>Core\Tools\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Base Code\lib\ImGui\imgui_impl_sdl.h">
+      <Filter>Core\Tools\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Base Code\lib\ImGui\imgui_internal.h">
+      <Filter>Core\Tools\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Base Code\lib\ImGui\imstb_rectpack.h">
+      <Filter>Core\Tools\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Base Code\lib\ImGui\imstb_textedit.h">
+      <Filter>Core\Tools\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Base Code\lib\ImGui\imstb_truetype.h">
+      <Filter>Core\Tools\ImGui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -109,6 +151,9 @@
     </Filter>
     <Filter Include="Core\Tools\Others">
       <UniqueIdentifier>{2ba3865b-ea83-48d0-bf2d-aafcddcc652b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Tools\ImGui">
+      <UniqueIdentifier>{50a66d17-1c71-4f64-b48f-b6e6cbd1fb4a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -1,4 +1,4 @@
-
+/*
 #pragma once
 #include "Color.h"
 #include "glmath.h"
@@ -19,3 +19,4 @@ struct Light
 	int ref;
 	bool on;
 };
+*/

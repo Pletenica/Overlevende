@@ -82,6 +82,14 @@
     <ClInclude Include="Base Code\Color.h" />
     <ClInclude Include="Base Code\glmath.h" />
     <ClInclude Include="Base Code\Globals.h" />
+    <ClInclude Include="Base Code\lib\ImGui\imconfig.h" />
+    <ClInclude Include="Base Code\lib\ImGui\imgui.h" />
+    <ClInclude Include="Base Code\lib\ImGui\imgui_impl_opengl3.h" />
+    <ClInclude Include="Base Code\lib\ImGui\imgui_impl_sdl.h" />
+    <ClInclude Include="Base Code\lib\ImGui\imgui_internal.h" />
+    <ClInclude Include="Base Code\lib\ImGui\imstb_rectpack.h" />
+    <ClInclude Include="Base Code\lib\ImGui\imstb_textedit.h" />
+    <ClInclude Include="Base Code\lib\ImGui\imstb_truetype.h" />
     <ClInclude Include="Base Code\Light.h" />
     <ClInclude Include="Base Code\Module.h" />
     <ClInclude Include="Base Code\ModuleCamera3D.h" />
@@ -99,6 +107,12 @@
     <ClCompile Include="Base Code\Application.cpp" />
     <ClCompile Include="Base Code\Color.cpp" />
     <ClCompile Include="Base Code\glmath.cpp" />
+    <ClCompile Include="Base Code\lib\ImGui\imgui.cpp" />
+    <ClCompile Include="Base Code\lib\ImGui\imgui_demo.cpp" />
+    <ClCompile Include="Base Code\lib\ImGui\imgui_draw.cpp" />
+    <ClCompile Include="Base Code\lib\ImGui\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="Base Code\lib\ImGui\imgui_impl_sdl.cpp" />
+    <ClCompile Include="Base Code\lib\ImGui\imgui_widgets.cpp" />
     <ClCompile Include="Base Code\Light.cpp" />
     <ClCompile Include="Base Code\log.cpp" />
     <ClCompile Include="Base Code\Main.cpp" />
