@@ -26,6 +26,9 @@ bool ModuleRenderer3D::Init()
 	
 	//Create context
 	context = SDL_GL_CreateContext(App->window->window);
+
+
+
 	if(context == NULL)
 	{
 		LOG("OpenGL context could not be created! SDL_Error: %s\n", SDL_GetError());
@@ -115,6 +118,11 @@ bool ModuleRenderer3D::Init()
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 
+	ImGuiIO& io = ImGui::GetIO(); (void)io;
+	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+	io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
+
 	ImGui_ImplSDL2_InitForOpenGL(App->window->window, App->renderer3D->context);
 	ImGui_ImplOpenGL3_Init();
 
@@ -153,6 +161,10 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 	if (ImGui::Button("pene", ImVec2(50,50))) {
 		quit = true;
 	}
+	ImGui::End();
+
+	ImGui::Begin("Test2", NULL);
+	ImGui::Text("hola que tal mochuletes.");
 	ImGui::End();
 
 	ImGui::Render();
