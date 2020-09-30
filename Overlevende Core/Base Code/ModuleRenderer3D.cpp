@@ -143,10 +143,17 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 // PostUpdate present buffer to screen
 update_status ModuleRenderer3D::PostUpdate(float dt)
 {
+	bool quit = false;
 	ImGui_ImplOpenGL3_NewFrame();
 	ImGui_ImplSDL2_NewFrame(App->window->window);
 	ImGui::NewFrame();
 
+	ImGui::Begin("Test", NULL);
+	ImGui::Text("hola que tal mochuletes.");
+	if (ImGui::Button("pene", ImVec2(50,50))) {
+		quit = true;
+	}
+	ImGui::End();
 
 	ImGui::Render();
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
@@ -161,7 +168,12 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 	}
 
 	SDL_GL_SwapWindow(App->window->window);
-	return UPDATE_CONTINUE;
+	if (quit == true) {
+		return UPDATE_STOP;
+	}
+	else {
+		return UPDATE_CONTINUE;
+	}
 }
 
 // Called before quitting
