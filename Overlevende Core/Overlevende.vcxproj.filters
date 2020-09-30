@@ -1,99 +1,93 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Application.cpp">
+    <ClCompile Include="Base Code\Application.cpp">
       <Filter>Core\Esencials</Filter>
     </ClCompile>
-    <ClCompile Include="Main.cpp">
+    <ClCompile Include="Base Code\Main.cpp">
       <Filter>Core\Esencials</Filter>
     </ClCompile>
-    <ClCompile Include="Color.cpp">
+    <ClCompile Include="Base Code\ModuleCamera3D.cpp">
+      <Filter>Core\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Base Code\ModuleInput.cpp">
+      <Filter>Core\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Base Code\ModuleRenderer3D.cpp">
+      <Filter>Core\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Base Code\ModuleSceneIntro.cpp">
+      <Filter>Core\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Base Code\ModuleWindow.cpp">
+      <Filter>Core\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Base Code\Color.cpp">
       <Filter>Core\Others</Filter>
     </ClCompile>
-    <ClCompile Include="glmath.cpp">
+    <ClCompile Include="Base Code\glmath.cpp">
       <Filter>Core\Others</Filter>
     </ClCompile>
-    <ClCompile Include="Light.cpp">
+    <ClCompile Include="Base Code\Light.cpp">
       <Filter>Core\Others</Filter>
     </ClCompile>
-    <ClCompile Include="log.cpp">
+    <ClCompile Include="Base Code\Timer.cpp">
       <Filter>Core\Tools\Others</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleAudio.cpp">
-      <Filter>Core\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleCamera3D.cpp">
-      <Filter>Core\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleInput.cpp">
-      <Filter>Core\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleRenderer3D.cpp">
-      <Filter>Core\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleSceneIntro.cpp">
-      <Filter>Core\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleWindow.cpp">
-      <Filter>Core\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="Timer.cpp">
+    <ClCompile Include="Base Code\log.cpp">
       <Filter>Core\Tools\Others</Filter>
     </ClCompile>
-    <ClCompile Include="Primitive.cpp">
+    <ClCompile Include="Base Code\Primitive.cpp">
       <Filter>Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Application.h">
+    <ClInclude Include="Base Code\Application.h">
       <Filter>Core\Esencials</Filter>
     </ClInclude>
-    <ClInclude Include="Globals.h">
+    <ClInclude Include="Base Code\Module.h">
       <Filter>Core\Esencials</Filter>
     </ClInclude>
-    <ClInclude Include="Module.h">
+    <ClInclude Include="Base Code\Globals.h">
       <Filter>Core\Esencials</Filter>
     </ClInclude>
-    <ClInclude Include="Color.h">
+    <ClInclude Include="Base Code\ModuleCamera3D.h">
+      <Filter>Core\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Base Code\ModuleInput.h">
+      <Filter>Core\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Base Code\ModuleRenderer3D.h">
+      <Filter>Core\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Base Code\ModuleSceneIntro.h">
+      <Filter>Core\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Base Code\ModuleWindow.h">
+      <Filter>Core\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Base Code\Color.h">
       <Filter>Core\Others</Filter>
     </ClInclude>
-    <ClInclude Include="glmath.h">
+    <ClInclude Include="Base Code\glmath.h">
       <Filter>Core\Others</Filter>
     </ClInclude>
-    <ClInclude Include="Light.h">
+    <ClInclude Include="Base Code\Light.h">
       <Filter>Core\Others</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleAudio.h">
-      <Filter>Core\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleCamera3D.h">
-      <Filter>Core\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleInput.h">
-      <Filter>Core\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleRenderer3D.h">
-      <Filter>Core\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleSceneIntro.h">
-      <Filter>Core\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleWindow.h">
-      <Filter>Core\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="Timer.h">
+    <ClInclude Include="Base Code\p2DynArray.h">
       <Filter>Core\Tools\Others</Filter>
     </ClInclude>
-    <ClInclude Include="p2Point.h">
+    <ClInclude Include="Base Code\p2List.h">
       <Filter>Core\Tools\Others</Filter>
     </ClInclude>
-    <ClInclude Include="p2List.h">
+    <ClInclude Include="Base Code\p2Point.h">
       <Filter>Core\Tools\Others</Filter>
     </ClInclude>
-    <ClInclude Include="p2DynArray.h">
+    <ClInclude Include="Base Code\Timer.h">
       <Filter>Core\Tools\Others</Filter>
     </ClInclude>
-    <ClInclude Include="Primitive.h">
+    <ClInclude Include="Base Code\Primitive.h">
       <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>
