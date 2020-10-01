@@ -28,15 +28,15 @@ bool ModuleBaseMotor::Init()
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 
-	ImGuiIO& io = ImGui::GetIO(); (void)io;
-	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
-	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
-	io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
+ImGuiIO& io = ImGui::GetIO(); (void)io;
+io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
 
-	ImGui_ImplSDL2_InitForOpenGL(App->window->window, App->renderer3D->context);
-	ImGui_ImplOpenGL3_Init();
+ImGui_ImplSDL2_InitForOpenGL(App->window->window, App->renderer3D->context);
+ImGui_ImplOpenGL3_Init();
 
-	return ret;
+return ret;
 }
 
 // Load assets
@@ -58,6 +58,7 @@ update_status ModuleBaseMotor::PostUpdate(float dt)
 	//ImGui Windows
 	CreateMainBar();
 	CreateTestWindow();
+	if(booleditinterface==true)CreateEditInterfaceMenu();
 
 	ImGui::Render();
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
@@ -92,7 +93,7 @@ void ModuleBaseMotor::CreateMainBar() {
 
 			}
 			if (ImGui::MenuItem("Interface colors")) {
-
+				booleditinterface = true;
 			}
 			if (ImGui::MenuItem("Exit")) {
 				quit = true;
@@ -104,29 +105,51 @@ void ModuleBaseMotor::CreateMainBar() {
 
 			}
 			if (ImGui::MenuItem("Github Repository: Overlevende")) {
-
+				ShellExecuteA(NULL, "open", "https://github.com/Pletenica/Overlevende", NULL, NULL, SW_SHOWNORMAL);
 			}
 			if (ImGui::MenuItem("Github Pletenica")) {
-
+				ShellExecuteA(NULL, "open", "https://github.com/Pletenica", NULL, NULL, SW_SHOWNORMAL);
 			}
-		
+			if (ImGui::MenuItem("Between Worlds(Soon)")) {
+				ShellExecuteA(NULL, "open", "https://github.com/Pletenica/Between-Worlds", NULL, NULL, SW_SHOWNORMAL);
+			}
+
 			ImGui::EndMenu();
 		}
 		ImGui::EndMainMenuBar();
 	}
-	
+
 
 }
 
 void ModuleBaseMotor::CreateTestWindow() {
-	ImGui::Begin("Test", NULL);
-	ImGui::Text("hola que tal mochuletes.");
-	if (ImGui::Button("pene", ImVec2(50, 50))) {
-		quit = true;
+	ImGui::ShowDemoWindow();
+
+
+
+	
+}
+
+void ModuleBaseMotor::CreateEditInterfaceMenu() {
+	ImGui::Begin("Edit Interface", NULL);
+	ImGui::Text("Choose your favourite interface mode.");
+	if (ImGui::Button("Night Mode", ImVec2(100, 25))) {
+		
+	}
+	ImGui::SameLine();
+	if (ImGui::Button("Day Mode", ImVec2(100, 25))) {
+		
+	}
+	ImGui::SameLine();
+	if (ImGui::Button("Light Mode", ImVec2(100, 25))) {
+		
+	}
+	if (ImGui::Button("Close Window", ImVec2(100, 25))) {
+		booleditinterface = false;
 	}
 	ImGui::End();
 
-	ImGui::Begin("Test2", NULL);
-	ImGui::Text("hola que tal mochuletes.");
-	ImGui::End();
+
+
+
 }

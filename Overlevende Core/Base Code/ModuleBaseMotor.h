@@ -25,7 +25,9 @@ public:
 
 private:
 	bool quit = false;
+	bool booleditinterface = false;
 
 	void CreateMainBar();
 	void CreateTestWindow();
+	void CreateEditInterfaceMenu();
 };
