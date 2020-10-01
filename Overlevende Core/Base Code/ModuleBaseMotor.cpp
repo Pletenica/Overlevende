@@ -80,6 +80,41 @@ update_status ModuleBaseMotor::PostUpdate(float dt)
 }
 
 void ModuleBaseMotor::CreateMainBar() {
+	if (ImGui::BeginMainMenuBar()) {
+		if (ImGui::BeginMenu("Edit", true)) {
+			if (ImGui::MenuItem("New Project")) {
+
+			}
+			if (ImGui::MenuItem("Open Project")) {
+
+			}
+			if (ImGui::MenuItem("Save Project")) {
+
+			}
+			if (ImGui::MenuItem("Interface colors")) {
+
+			}
+			if (ImGui::MenuItem("Exit")) {
+				quit = true;
+			}
+			ImGui::EndMenu();
+		}
+		if (ImGui::BeginMenu("Github", true)) {
+			if (ImGui::MenuItem("Github Web")) {
+
+			}
+			if (ImGui::MenuItem("Github Repository: Overlevende")) {
+
+			}
+			if (ImGui::MenuItem("Github Pletenica")) {
+
+			}
+		
+			ImGui::EndMenu();
+		}
+		ImGui::EndMainMenuBar();
+	}
+	
 
 }
 
