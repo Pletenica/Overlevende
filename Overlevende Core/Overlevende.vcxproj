@@ -48,13 +48,13 @@
       <SDLCheck>false</SDLCheck>
       <ExceptionHandling>false</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>C:\Users\josepsa9\Documents\GitHub\Overlevende\Overlevende Core\Base Code\lib;C:\Users\josepsa9\Documents\GitHub\Overlevende\Overlevende Core\Base Code\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Documents\GitHub\Overlevende\Overlevende Core\Base Code\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <AdditionalLibraryDirectories>C:\Users\josepsa9\Documents\GitHub\Overlevende\Overlevende Core\Base Code\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\Documents\GitHub\Overlevende\Overlevende Core\Base Code\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -66,7 +66,7 @@
       <SDLCheck>false</SDLCheck>
       <ExceptionHandling>false</ExceptionHandling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>C:\Users\josepsa9\Documents\GitHub\Overlevende\Overlevende Core\Base Code\lib;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Documents\GitHub\Overlevende\Overlevende Core\Base Code\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -74,7 +74,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <SubSystem>Windows</SubSystem>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <AdditionalLibraryDirectories>C:\Users\josepsa9\Documents\GitHub\Overlevende\Overlevende Core\Base Code\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\Documents\GitHub\Overlevende\Overlevende Core\Base Code\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -92,6 +92,7 @@
     <ClInclude Include="Base Code\lib\ImGui\imstb_truetype.h" />
     <ClInclude Include="Base Code\Light.h" />
     <ClInclude Include="Base Code\Module.h" />
+    <ClInclude Include="Base Code\ModuleBaseMotor.h" />
     <ClInclude Include="Base Code\ModuleCamera3D.h" />
     <ClInclude Include="Base Code\ModuleInput.h" />
     <ClInclude Include="Base Code\ModuleRenderer3D.h" />
@@ -116,6 +117,7 @@
     <ClCompile Include="Base Code\Light.cpp" />
     <ClCompile Include="Base Code\log.cpp" />
     <ClCompile Include="Base Code\Main.cpp" />
+    <ClCompile Include="Base Code\ModuleBaseMotor.cpp" />
     <ClCompile Include="Base Code\ModuleCamera3D.cpp" />
     <ClCompile Include="Base Code\ModuleInput.cpp" />
     <ClCompile Include="Base Code\ModuleRenderer3D.cpp" />

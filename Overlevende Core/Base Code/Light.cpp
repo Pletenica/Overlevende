@@ -1,4 +1,4 @@
-/*
+
 #include "Globals.h"
 #include "Light.h"
 #include <gl/GL.h>
@@ -41,4 +41,3 @@ void Light::Active(bool active)
 			glDisable(ref);
 	}
 }
-*/

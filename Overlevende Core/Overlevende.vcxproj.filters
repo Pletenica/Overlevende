@@ -58,6 +58,9 @@
     <ClCompile Include="Base Code\lib\ImGui\imgui_widgets.cpp">
       <Filter>Core\Tools\ImGui</Filter>
     </ClCompile>
+    <ClCompile Include="Base Code\ModuleBaseMotor.cpp">
+      <Filter>Core\Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Base Code\Application.h">
@@ -131,6 +134,9 @@
     </ClInclude>
     <ClInclude Include="Base Code\lib\ImGui\imstb_truetype.h">
       <Filter>Core\Tools\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Base Code\ModuleBaseMotor.h">
+      <Filter>Core\Modules</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

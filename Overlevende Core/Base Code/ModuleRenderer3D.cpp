@@ -23,11 +23,9 @@ bool ModuleRenderer3D::Init()
 {
 	LOG("Creating 3D Renderer context");
 	bool ret = true;
-	
+
 	//Create context
 	context = SDL_GL_CreateContext(App->window->window);
-
-
 
 	if(context == NULL)
 	{
@@ -43,7 +41,6 @@ bool ModuleRenderer3D::Init()
 	else {
 		LOG("Using Glew %s", glewGetString(GLEW_VERSION));
 	}
-
 	
 	if(ret == true)
 	{
@@ -79,7 +76,7 @@ bool ModuleRenderer3D::Init()
 		glClearDepth(1.0f);
 		
 		//Initialize clear color
-		glClearColor(0.3f, 0.3f, 0.3f, 1.f);
+		glClearColor(0.05f, 0.05f, 0.1f, 1.f);
 
 		//Check for error
 		error = glGetError();
@@ -92,11 +89,11 @@ bool ModuleRenderer3D::Init()
 		GLfloat LightModelAmbient[] = {0.0f, 0.0f, 0.0f, 1.0f};
 		glLightModelfv(GL_LIGHT_MODEL_AMBIENT, LightModelAmbient);
 		
-		//lights[0].ref = GL_LIGHT0;
-		//lights[0].ambient.Set(0.25f, 0.25f, 0.25f, 1.0f);
-		//lights[0].diffuse.Set(0.75f, 0.75f, 0.75f, 1.0f);
-		//lights[0].SetPos(0.0f, 0.0f, 2.5f);
-		//lights[0].Init();
+		lights[0].ref = GL_LIGHT0;
+		lights[0].ambient.Set(0.25f, 0.25f, 0.25f, 1.0f);
+		lights[0].diffuse.Set(0.75f, 0.75f, 0.75f, 1.0f);
+		lights[0].SetPos(0.0f, 0.0f, 2.5f);
+		lights[0].Init();
 		
 		GLfloat MaterialAmbient[] = {1.0f, 1.0f, 1.0f, 1.0f};
 		glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, MaterialAmbient);
@@ -106,27 +103,13 @@ bool ModuleRenderer3D::Init()
 		
 		glEnable(GL_DEPTH_TEST);
 		glEnable(GL_CULL_FACE);
-		//lights[0].Active(true);
+		lights[0].Active(true);
 		glEnable(GL_LIGHTING);
 		glEnable(GL_COLOR_MATERIAL);
 	}
 
 	// Projection matrix for
 	OnResize(SCREEN_WIDTH, SCREEN_HEIGHT);
-
-	//ImGui (to do new module in future)
-	IMGUI_CHECKVERSION();
-	ImGui::CreateContext();
-
-	ImGuiIO& io = ImGui::GetIO(); (void)io;
-	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
-	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
-	io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
-
-	ImGui_ImplSDL2_InitForOpenGL(App->window->window, App->renderer3D->context);
-	ImGui_ImplOpenGL3_Init();
-
-
 	return ret;
 }
 
@@ -140,10 +123,10 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 	glLoadMatrixf(App->camera->GetViewMatrix());
 
 	// light 0 on cam pos
-	//lights[0].SetPos(App->camera->Position.x, App->camera->Position.y, App->camera->Position.z);
+	lights[0].SetPos(App->camera->Position.x, App->camera->Position.y, App->camera->Position.z);
 
 	for(uint i = 0; i < MAX_LIGHTS; ++i)
-		//lights[i].Render();
+		lights[i].Render();
 
 	return UPDATE_CONTINUE;
 }
@@ -151,41 +134,9 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 // PostUpdate present buffer to screen
 update_status ModuleRenderer3D::PostUpdate(float dt)
 {
-	bool quit = false;
-	ImGui_ImplOpenGL3_NewFrame();
-	ImGui_ImplSDL2_NewFrame(App->window->window);
-	ImGui::NewFrame();
-
-	ImGui::Begin("Test", NULL);
-	ImGui::Text("hola que tal mochuletes.");
-	if (ImGui::Button("pene", ImVec2(50,50))) {
-		quit = true;
-	}
-	ImGui::End();
-
-	ImGui::Begin("Test2", NULL);
-	ImGui::Text("hola que tal mochuletes.");
-	ImGui::End();
-
-	ImGui::Render();
-	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-
-	ImGuiIO& io = ImGui::GetIO(); (void)io;
-	if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable) {
-		SDL_Window* backup_current_window = SDL_GL_GetCurrentWindow();
-		SDL_GLContext backup_current_context = SDL_GL_GetCurrentContext();
-		ImGui::UpdatePlatformWindows();
-		ImGui::RenderPlatformWindowsDefault();
-		SDL_GL_MakeCurrent(backup_current_window, backup_current_context);
-	}
 
 	SDL_GL_SwapWindow(App->window->window);
-	if (quit == true) {
-		return UPDATE_STOP;
-	}
-	else {
-		return UPDATE_CONTINUE;
-	}
+	return UPDATE_CONTINUE;
 }
 
 // Called before quitting

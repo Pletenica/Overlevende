@@ -10,26 +10,22 @@
 #include "ImGui/imgui_impl_sdl.h"
 #include "ImGui/imgui_impl_opengl3.h"
 
-
-#define MAX_LIGHTS 8
-
-class ModuleRenderer3D : public Module
+class ModuleBaseMotor : public Module
 {
 public:
-	ModuleRenderer3D(Application* app, bool start_enabled = true);
-	~ModuleRenderer3D();
+	ModuleBaseMotor(Application* app, bool start_enabled = true);
+	~ModuleBaseMotor();
 
 	bool Init();
-	update_status PreUpdate(float dt);
 	update_status PostUpdate(float dt);
 	bool CleanUp();
 
-	void OnResize(int width, int height);
-
 public:
-
-	Light lights[MAX_LIGHTS];
 	SDL_GLContext context;
-	mat3x3 NormalMatrix;
-	mat4x4 ModelMatrix, ViewMatrix, ProjectionMatrix;
+
+private:
+	bool quit = false;
+
+	void CreateMainBar();
+	void CreateTestWindow();
 };
