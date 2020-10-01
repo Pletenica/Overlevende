@@ -36,6 +36,10 @@ io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
 ImGui_ImplSDL2_InitForOpenGL(App->window->window, App->renderer3D->context);
 ImGui_ImplOpenGL3_Init();
 
+//InitMotorTheme
+interfacemenu.NightModeSelected();
+interfacemenu.PutGreenColor();
+
 return ret;
 }
 
