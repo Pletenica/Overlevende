@@ -3,6 +3,7 @@
 #include "Globals.h"
 #include "glmath.h"
 #include "Light.h"
+#include "EditInterfaceMenu.h"
 
 //Include ImGui
 #include "ImGui/imgui.h"
@@ -25,12 +26,8 @@ public:
 
 private:
 	bool quit = false;
-	bool booleditinterface = false;
+	EditInterfaceMenu interfacemenu;
 
 	void CreateMainBar();
 	void CreateTestWindow();
-	void CreateEditInterfaceMenu();
-	void LightModeSelected();
-	void NightModeSelected();
-	void DayModeSelected();
 };

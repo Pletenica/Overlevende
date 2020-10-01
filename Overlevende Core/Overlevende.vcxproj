@@ -48,13 +48,13 @@
       <SDLCheck>false</SDLCheck>
       <ExceptionHandling>false</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>C:\Users\roger\OneDrive\Documentos\GitHub\Overlevende\Overlevende Core\Base Code\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Documents\GitHub\Overlevende\Overlevende Core\Base Code\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <AdditionalLibraryDirectories>C:\Users\roger\OneDrive\Documentos\GitHub\Overlevende\Overlevende Core\Base Code\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\Documents\GitHub\Overlevende\Overlevende Core\Base Code\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -66,7 +66,7 @@
       <SDLCheck>false</SDLCheck>
       <ExceptionHandling>false</ExceptionHandling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>C:\Users\roger\OneDrive\Documentos\GitHub\Overlevende\Overlevende Core\Base Code\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Documents\GitHub\Overlevende\Overlevende Core\Base Code\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -74,12 +74,13 @@
       <OptimizeReferences>true</OptimizeReferences>
       <SubSystem>Windows</SubSystem>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <AdditionalLibraryDirectories>C:\Users\roger\OneDrive\Documentos\GitHub\Overlevende\Overlevende Core\Base Code\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\Documents\GitHub\Overlevende\Overlevende Core\Base Code\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Base Code\Application.h" />
     <ClInclude Include="Base Code\Color.h" />
+    <ClInclude Include="Base Code\EditInterfaceMenu.h" />
     <ClInclude Include="Base Code\glmath.h" />
     <ClInclude Include="Base Code\Globals.h" />
     <ClInclude Include="Base Code\lib\ImGui\imconfig.h" />
@@ -107,6 +108,7 @@
   <ItemGroup>
     <ClCompile Include="Base Code\Application.cpp" />
     <ClCompile Include="Base Code\Color.cpp" />
+    <ClCompile Include="Base Code\EditInterfaceMenu.cpp" />
     <ClCompile Include="Base Code\glmath.cpp" />
     <ClCompile Include="Base Code\lib\ImGui\imgui.cpp" />
     <ClCompile Include="Base Code\lib\ImGui\imgui_demo.cpp" />
