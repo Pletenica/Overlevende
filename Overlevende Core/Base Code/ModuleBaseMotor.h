@@ -30,4 +30,7 @@ private:
 	void CreateMainBar();
 	void CreateTestWindow();
 	void CreateEditInterfaceMenu();
+	void LightModeSelected();
+	void NightModeSelected();
+	void DayModeSelected();
 };

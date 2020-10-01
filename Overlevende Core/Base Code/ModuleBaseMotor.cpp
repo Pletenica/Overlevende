@@ -134,15 +134,15 @@ void ModuleBaseMotor::CreateEditInterfaceMenu() {
 	ImGui::Begin("Edit Interface", NULL);
 	ImGui::Text("Choose your favourite interface mode.");
 	if (ImGui::Button("Night Mode", ImVec2(100, 25))) {
-		
+		NightModeSelected();
 	}
 	ImGui::SameLine();
 	if (ImGui::Button("Day Mode", ImVec2(100, 25))) {
-		
+		DayModeSelected();
 	}
 	ImGui::SameLine();
 	if (ImGui::Button("Light Mode", ImVec2(100, 25))) {
-		
+		LightModeSelected();
 	}
 	if (ImGui::Button("Close Window", ImVec2(100, 25))) {
 		booleditinterface = false;
@@ -150,6 +150,67 @@ void ModuleBaseMotor::CreateEditInterfaceMenu() {
 	ImGui::End();
 
 
+
+
+}
+
+void ModuleBaseMotor::LightModeSelected() {
+	
+	ImGuiStyle& style = ImGui::GetStyle();
+	style.WindowRounding = 5.3f;
+	style.FrameRounding = 2.3f;
+	style.ScrollbarRounding = 0;
+
+	style.Colors[ImGuiCol_Text] = ImVec4(0.0f, 0.0f, 0.0f, 1.0f);
+	style.Colors[ImGuiCol_WindowBg] = ImVec4(0.5f, 0.5f, 0.5f, 1.0f);
+	style.Colors[ImGuiCol_Border] = ImVec4(0.3f, 0.3f, 0.3f, 1.0f);
+	style.Colors[ImGuiCol_TitleBg] = ImVec4(0.35f, 0.35f, 0.35f, 1.0f);
+	style.Colors[ImGuiCol_TitleBgCollapsed] = ImVec4(0.3f, 0.3f, 0.3f, 1.0f);
+	style.Colors[ImGuiCol_MenuBarBg] = ImVec4(0.4f, 0.4f, 0.4f, 1.0f);
+	style.Colors[ImGuiCol_Button] = ImVec4(0.35f, 0.35f, 0.35f, 1.0f);
+	style.Colors[ImGuiCol_ButtonHovered] = ImVec4(0.4f, 0.4f, 0.4f, 1.0f);
+	style.Colors[ImGuiCol_PopupBg] = ImVec4(0.35f, 0.35f, 0.35f, 1.0f);
+	style.Colors[ImGuiCol_Header] = ImVec4(0.35f, 0.35f, 0.35f, 1.0f);
+	style.Colors[ImGuiCol_HeaderHovered] = ImVec4(0.4f, 0.4f, 0.4f, 1.0f);
+	style.Colors[ImGuiCol_ResizeGrip] = ImVec4(0.35f, 0.35f, 0.35f, 1.0f);
+	style.Colors[ImGuiCol_ResizeGripHovered] = ImVec4(0.4f, 0.4f, 0.4f, 1.0f);
+
+	
+	//color
+	style.Colors[ImGuiCol_TitleBgActive] = ImVec4(0.521f, 0.898f, 0.545f, 1.0f);
+	style.Colors[ImGuiCol_ButtonActive] = ImVec4(0.521f, 0.898f, 0.545f, 1.0f);
+	style.Colors[ImGuiCol_HeaderActive] = ImVec4(0.521f, 0.898f, 0.545f, 1.0f);
+	style.Colors[ImGuiCol_ResizeGripActive] = ImVec4(0.521f, 0.898f, 0.545f, 1.0f);
+	//style.Colors[ImGuiCol_TooltipBg] = ImVec4(0.521f, 0.898f, 0.545f, 1.0f);
+	
+
+
+}
+
+void ModuleBaseMotor::DayModeSelected() {
+
+	ImGuiStyle& style = ImGui::GetStyle();
+	style.WindowRounding = 5.3f;
+	style.FrameRounding = 2.3f;
+	style.ScrollbarRounding = 0;
+
+	style.Colors[ImGuiCol_Text] = ImVec4(0.0f, 0.0f, 0.0f, 1.0f);
+	style.Colors[ImGuiCol_WindowBg] = ImVec4(0.5f, 0.5f, 0.5f, 1.0f);
+	style.Colors[ImGuiCol_Border] = ImVec4(0.3f, 0.3f, 0.3f, 1.0f);
+
+
+}
+
+void ModuleBaseMotor::NightModeSelected() {
+
+	ImGuiStyle& style = ImGui::GetStyle();
+	style.WindowRounding = 5.3f;
+	style.FrameRounding = 2.3f;
+	style.ScrollbarRounding = 0;
+
+	style.Colors[ImGuiCol_Text] = ImVec4(0.0f, 0.0f, 0.0f, 1.0f);
+	style.Colors[ImGuiCol_WindowBg] = ImVec4(0.5f, 0.5f, 0.5f, 1.0f);
+	style.Colors[ImGuiCol_Border] = ImVec4(0.3f, 0.3f, 0.3f, 1.0f);
 
 
 }
