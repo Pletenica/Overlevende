@@ -104,6 +104,27 @@ void ModuleBaseMotor::CreateMainBar() {
 			}
 			ImGui::EndMenu();
 		}
+
+		if (ImGui::BeginMenu("Help", true)) {
+			if (ImGui::MenuItem("Documentation")) {
+				ShellExecuteA(NULL, "open", "https://github.com/Pletenica/Overlevende/wiki", NULL, NULL, SW_SHOWNORMAL);
+			}
+			if (ImGui::MenuItem("Download Latest")) {
+				ShellExecuteA(NULL, "open", "https://github.com/Pletenica/Overlevende/releases", NULL, NULL, SW_SHOWNORMAL);
+			}
+			if (ImGui::MenuItem("Report a bug")) {
+				ShellExecuteA(NULL, "open", "https://github.com/Pletenica/Overlevende/issues", NULL, NULL, SW_SHOWNORMAL);
+			}
+			if (ImGui::MenuItem("Report a bug")) {
+				
+			}
+
+			if (ImGui::MenuItem("About")) {
+				
+			}
+			ImGui::EndMenu();
+		}
+
 		if (ImGui::BeginMenu("Github", true)) {
 			if (ImGui::MenuItem("Github Web")) {
 
