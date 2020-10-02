@@ -28,23 +28,15 @@ void EditInterfaceMenu::CreateEditInterfaceMenu() {
 	}
 	*/
 	if (ImGui::Checkbox("Night Mode", &isNightModeSelected)) {
-		isDayModeSelected = false;
-		isNightModeSelected = true;
-		isLightModeSelected = false;
 		NightModeSelected();
 	}
 	ImGui::SameLine();
 	if (ImGui::Checkbox("Day Mode", &isDayModeSelected)) {
-		isDayModeSelected = true;
-		isNightModeSelected = false;
-		isLightModeSelected = false;
 		DayModeSelected();
 	}
 	ImGui::SameLine();
 	if (ImGui::Checkbox("Light Mode", &isLightModeSelected)) {
-		isDayModeSelected = false;
-		isNightModeSelected = false;
-		isLightModeSelected = true;
+
 		LightModeSelected();
 	}
 
@@ -70,6 +62,9 @@ void EditInterfaceMenu::CreateEditInterfaceMenu() {
 }
 
 void EditInterfaceMenu::LightModeSelected() {
+	isDayModeSelected = false;
+	isNightModeSelected = false;
+	isLightModeSelected = true;
 
 	ImGuiStyle& style = ImGui::GetStyle();
 	style.WindowRounding = 6.0f;
@@ -77,17 +72,17 @@ void EditInterfaceMenu::LightModeSelected() {
 	style.ScrollbarRounding = 0;
 
 	style.Colors[ImGuiCol_Text] = ImVec4(0.0f, 0.0f, 0.0f, 1.0f);
-	style.Colors[ImGuiCol_WindowBg] = ImVec4(0.5f, 0.5f, 0.5f, 1.0f);
+	style.Colors[ImGuiCol_WindowBg] = ImVec4(0.75f, 0.75f, 0.75f, 1.0f);
 	style.Colors[ImGuiCol_Border] = ImVec4(0.3f, 0.3f, 0.3f, 1.0f);
-	style.Colors[ImGuiCol_TitleBg] = ImVec4(0.35f, 0.35f, 0.35f, 1.0f);
+	style.Colors[ImGuiCol_TitleBg] = ImVec4(0.5f, 0.5f, 0.5f, 1.0f);
 	style.Colors[ImGuiCol_TitleBgCollapsed] = ImVec4(0.3f, 0.3f, 0.3f, 1.0f);
 	style.Colors[ImGuiCol_MenuBarBg] = ImVec4(0.4f, 0.4f, 0.4f, 1.0f);
-	style.Colors[ImGuiCol_Button] = ImVec4(0.35f, 0.35f, 0.35f, 1.0f);
+	style.Colors[ImGuiCol_Button] = ImVec4(0.5f, 0.5f, 0.5f, 1.0f);
 	style.Colors[ImGuiCol_ButtonHovered] = ImVec4(0.4f, 0.4f, 0.4f, 1.0f);
-	style.Colors[ImGuiCol_PopupBg] = ImVec4(0.35f, 0.35f, 0.35f, 1.0f);
-	style.Colors[ImGuiCol_Header] = ImVec4(0.35f, 0.35f, 0.35f, 1.0f);
+	style.Colors[ImGuiCol_PopupBg] = ImVec4(0.5f, 0.5f, 0.5f, 1.0f);
+	style.Colors[ImGuiCol_Header] = ImVec4(0.5f, 0.5f, 0.5f, 1.0f);
 	style.Colors[ImGuiCol_HeaderHovered] = ImVec4(0.4f, 0.4f, 0.4f, 1.0f);
-	style.Colors[ImGuiCol_ResizeGrip] = ImVec4(0.35f, 0.35f, 0.35f, 1.0f);
+	style.Colors[ImGuiCol_ResizeGrip] = ImVec4(0.5f, 0.5f, 0.5f, 1.0f);
 	style.Colors[ImGuiCol_ResizeGripHovered] = ImVec4(0.4f, 0.4f, 0.4f, 1.0f);
 	style.Colors[ImGuiCol_CheckMark] = ImVec4(0.4f, 0.4f, 0.4f, 1.0f);
 
@@ -163,6 +158,9 @@ void EditInterfaceMenu::PutOrangeColor() {
 }
 
 void EditInterfaceMenu::DayModeSelected() {
+	isDayModeSelected = true;
+	isNightModeSelected = false;
+	isLightModeSelected = false;
 
 	ImGuiStyle& style = ImGui::GetStyle();
 	style.WindowRounding = 6.0f;
@@ -170,19 +168,19 @@ void EditInterfaceMenu::DayModeSelected() {
 	style.ScrollbarRounding = 0;
 
 	style.Colors[ImGuiCol_Text] = ImVec4(0.0f, 0.0f, 0.0f, 1.0f);
-	style.Colors[ImGuiCol_WindowBg] = ImVec4(0.9f, 0.9f, 0.9f, 1.0f);
+	style.Colors[ImGuiCol_WindowBg] = ImVec4(1.0f, 1.0f, 1.0f, 1.0f);
 	style.Colors[ImGuiCol_Border] = ImVec4(0.3f, 0.3f, 0.3f, 1.0f);
-	style.Colors[ImGuiCol_TitleBg] = ImVec4(0.7f, 0.7f, 0.7f, 1.0f);
-	style.Colors[ImGuiCol_TitleBgCollapsed] = ImVec4(0.6f, 0.6f, 0.6f, 1.0f);
-	style.Colors[ImGuiCol_MenuBarBg] = ImVec4(0.65f, 0.65f, 0.65f, 1.0f);
-	style.Colors[ImGuiCol_Button] = ImVec4(0.8f, 0.8f, 0.8f, 1.0f);
-	style.Colors[ImGuiCol_ButtonHovered] = ImVec4(0.85f, 0.85f, 0.85f, 1.0f);
-	style.Colors[ImGuiCol_PopupBg] = ImVec4(0.8f, 0.8f, 0.8f, 1.0f);
-	style.Colors[ImGuiCol_Header] = ImVec4(0.8f, 0.8f, 0.8f, 1.0f);
+	style.Colors[ImGuiCol_TitleBg] = ImVec4(0.65f, 0.65f, 0.65f, 1.0f);
+	style.Colors[ImGuiCol_TitleBgCollapsed] = ImVec4(0.7f, 0.7f, 0.7f, 1.0f);
+	style.Colors[ImGuiCol_MenuBarBg] = ImVec4(0.8f, 0.8f, 0.8f, 1.0f);
+	style.Colors[ImGuiCol_Button] = ImVec4(0.9f, 0.9f, 0.9f, 1.0f);
+	style.Colors[ImGuiCol_ButtonHovered] = ImVec4(0.95f, 0.95f, 0.95f, 1.0f);
+	style.Colors[ImGuiCol_PopupBg] = ImVec4(0.9f, 0.9f, 0.9f, 1.0f);
+	style.Colors[ImGuiCol_Header] = ImVec4(0.9f, 0.9f, 0.9f, 1.0f);
 	style.Colors[ImGuiCol_HeaderHovered] = ImVec4(0.75f, 0.75f, 0.75f, 1.0f);
 	style.Colors[ImGuiCol_ResizeGrip] = ImVec4(0.75f, 0.75f, 0.75f, 1.0f);
-	style.Colors[ImGuiCol_ResizeGripHovered] = ImVec4(0.8f, 0.8f, 0.8f, 1.0f);
-	style.Colors[ImGuiCol_CheckMark] = ImVec4(0.8f, 0.8f, 0.8f, 1.0f);
+	style.Colors[ImGuiCol_ResizeGripHovered] = ImVec4(0.9f, 0.9f, 0.9f, 1.0f);
+	style.Colors[ImGuiCol_CheckMark] = ImVec4(0.9f, 0.9f, 0.9f, 1.0f);
 
 	style.Colors[ImGuiCol_Tab] = ImVec4(0.1f, 0.1f, 0.1f, 0.5f);  //La pestanya que no esta seleccionada, color
 	style.Colors[ImGuiCol_TabHovered] = ImVec4(0.29f, 0.29f, 0.29f, 1.00f); //Suda de eso
@@ -192,6 +190,9 @@ void EditInterfaceMenu::DayModeSelected() {
 }
 
 void EditInterfaceMenu::NightModeSelected() {
+	isDayModeSelected = false;
+	isNightModeSelected = true;
+	isLightModeSelected = false;
 
 	ImGuiStyle& style = ImGui::GetStyle();
 	style.WindowRounding = 6.0f;
