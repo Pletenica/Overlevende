@@ -124,15 +124,15 @@ void EditInterfaceMenu::PutBlueColor() {
 	isYellowColor = false;
 
 	ImGuiStyle& style = ImGui::GetStyle();
-	style.Colors[ImGuiCol_TitleBgActive] = ImVec4(0.556f, 0.756f, 0.925f, 1.0f);
-	style.Colors[ImGuiCol_ButtonActive] = ImVec4(0.556f, 0.756f, 0.925f, 1.0f);
-	style.Colors[ImGuiCol_HeaderActive] = ImVec4(0.556f, 0.756f, 0.925f, 1.0f);
-	style.Colors[ImGuiCol_ResizeGripActive] = ImVec4(0.556f, 0.756f, 0.925f, 1.0f);
-	style.Colors[ImGuiCol_SliderGrabActive] = ImVec4(0.556f, 0.756f, 0.925f, 1.0f);
-	style.Colors[ImGuiCol_FrameBgActive] = ImVec4(0.556f, 0.756f, 0.925f, 1.0f);
+	style.Colors[ImGuiCol_TitleBgActive] = ImVec4(0.0f, 0.402f, 0.708f, 1.0f);
+	style.Colors[ImGuiCol_ButtonActive] = ImVec4(0.0f, 0.402f, 0.708f, 1.0f);
+	style.Colors[ImGuiCol_HeaderActive] = ImVec4(0.0f, 0.402f, 0.708f, 1.0f);
+	style.Colors[ImGuiCol_ResizeGripActive] = ImVec4(0.0f, 0.402f, 0.708f, 1.0f);
+	style.Colors[ImGuiCol_SliderGrabActive] = ImVec4(0.0f, 0.402f, 0.708f, 1.0f);
+	style.Colors[ImGuiCol_FrameBgActive] = ImVec4(0.0f, 0.402f, 0.708f, 1.0f);
 
-	style.Colors[ImGuiCol_DockingPreview] = ImVec4(0.250f, 0.415f, 0.529f, 1.0f); // Color que es veu quan vas a juntar finestres (quadres)
-	style.Colors[ImGuiCol_DockingEmptyBg] = ImVec4(0.250f, 0.415f, 0.529f, 1.0f);// Color que es veu quan vas a juntar finestres en gran(ficar el mateix que a dalt)
+	style.Colors[ImGuiCol_DockingPreview] = ImVec4(0.0f, 0.402f, 0.708f, 1.0f); // Color que es veu quan vas a juntar finestres (quadres)
+	style.Colors[ImGuiCol_DockingEmptyBg] = ImVec4(0.0f, 0.402f, 0.708f, 1.0f);// Color que es veu quan vas a juntar finestres en gran(ficar el mateix que a dalt)
 
 }
 
@@ -162,6 +162,8 @@ void EditInterfaceMenu::DayModeSelected() {
 	isNightModeSelected = false;
 	isLightModeSelected = false;
 
+
+
 	ImGuiStyle& style = ImGui::GetStyle();
 	style.WindowRounding = 6.0f;
 	style.FrameRounding = 3.0f;
@@ -180,7 +182,7 @@ void EditInterfaceMenu::DayModeSelected() {
 	style.Colors[ImGuiCol_HeaderHovered] = ImVec4(0.75f, 0.75f, 0.75f, 1.0f);
 	style.Colors[ImGuiCol_ResizeGrip] = ImVec4(0.75f, 0.75f, 0.75f, 1.0f);
 	style.Colors[ImGuiCol_ResizeGripHovered] = ImVec4(0.9f, 0.9f, 0.9f, 1.0f);
-	style.Colors[ImGuiCol_CheckMark] = ImVec4(0.9f, 0.9f, 0.9f, 1.0f);
+	style.Colors[ImGuiCol_CheckMark] = ImVec4(1.0f, 1.0f, 1.0f, 1.0f);
 
 	style.Colors[ImGuiCol_Tab] = ImVec4(0.1f, 0.1f, 0.1f, 0.5f);  //La pestanya que no esta seleccionada, color
 	style.Colors[ImGuiCol_TabHovered] = ImVec4(0.29f, 0.29f, 0.29f, 1.00f); //Suda de eso
@@ -212,7 +214,7 @@ void EditInterfaceMenu::NightModeSelected() {
 	style.Colors[ImGuiCol_HeaderHovered] = ImVec4(0.3f, 0.3f, 0.3f, 1.0f);
 	style.Colors[ImGuiCol_ResizeGrip] = ImVec4(0.35f, 0.35f, 0.35f, 1.0f);
 	style.Colors[ImGuiCol_ResizeGripHovered] = ImVec4(0.4f, 0.4f, 0.4f, 1.0f);
-	style.Colors[ImGuiCol_CheckMark] = ImVec4(0.4f, 0.4f, 0.4f, 1.0f);
+	style.Colors[ImGuiCol_CheckMark] = ImVec4(1.0f, 1.0f, 1.0f, 1.0f);
 
 	style.Colors[ImGuiCol_Tab] = ImVec4(0.1f, 0.1f, 0.1f, 0.5f);  //La pestanya que no esta seleccionada, color
 	style.Colors[ImGuiCol_TabHovered] = ImVec4(0.29f, 0.29f, 0.29f, 1.00f); //Suda de eso

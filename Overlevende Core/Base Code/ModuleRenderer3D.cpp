@@ -1,6 +1,7 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleRenderer3D.h"
+#include "EditInterfaceMenu.h"
 #include "Glew/include/glew.h"
 #include "SDL\include\SDL_opengl.h"
 #include <gl/GL.h>
@@ -76,7 +77,10 @@ bool ModuleRenderer3D::Init()
 		glClearDepth(1.0f);
 		
 		//Initialize clear color
-		glClearColor(0.05f, 0.05f, 0.1f, 1.f);
+		
+		glClearColor(0.1f, 0.1f, 0.1f, 1.f);
+		
+		
 
 		//Check for error
 		error = glGetError();
