@@ -64,6 +64,12 @@
     <ClCompile Include="Base Code\EditInterfaceMenu.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="Base Code\AboutWindow.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Base Code\ConfigurationMenu.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Base Code\Application.h">
@@ -142,6 +148,12 @@
       <Filter>Core\Modules</Filter>
     </ClInclude>
     <ClInclude Include="Base Code\EditInterfaceMenu.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Base Code\AboutWindow.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Base Code\ConfigurationMenu.h">
       <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>

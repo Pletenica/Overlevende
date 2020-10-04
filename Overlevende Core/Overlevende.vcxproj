@@ -83,8 +83,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Base Code\AboutWindow.h" />
     <ClInclude Include="Base Code\Application.h" />
     <ClInclude Include="Base Code\Color.h" />
+    <ClInclude Include="Base Code\ConfigurationMenu.h" />
     <ClInclude Include="Base Code\EditInterfaceMenu.h" />
     <ClInclude Include="Base Code\glmath.h" />
     <ClInclude Include="Base Code\Globals.h" />
@@ -111,8 +113,10 @@
     <ClInclude Include="Base Code\Timer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Base Code\AboutWindow.cpp" />
     <ClCompile Include="Base Code\Application.cpp" />
     <ClCompile Include="Base Code\Color.cpp" />
+    <ClCompile Include="Base Code\ConfigurationMenu.cpp" />
     <ClCompile Include="Base Code\EditInterfaceMenu.cpp" />
     <ClCompile Include="Base Code\glmath.cpp" />
     <ClCompile Include="Base Code\lib\ImGui\imgui.cpp" />

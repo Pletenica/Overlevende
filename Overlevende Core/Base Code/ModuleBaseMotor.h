@@ -4,6 +4,7 @@
 #include "glmath.h"
 #include "Light.h"
 #include "EditInterfaceMenu.h"
+#include "AboutWindow.h"
 
 //Include ImGui
 #include "ImGui/imgui.h"
@@ -27,7 +28,8 @@ public:
 private:
 	bool quit = false;
 	EditInterfaceMenu interfacemenu;
-
+	AboutWindow aboutwindow;
 	void CreateMainBar();
 	void CreateTestWindow();
+	
 };

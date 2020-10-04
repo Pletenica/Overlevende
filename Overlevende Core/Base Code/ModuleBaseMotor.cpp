@@ -1,6 +1,7 @@
 #include "Globals.h"
 #include "Application.h"
 #include "EditInterfaceMenu.h"
+#include "AboutWindow.h"
 #include "Glew/include/glew.h"
 #include "SDL\include\SDL_opengl.h"
 #include <gl/GL.h>
@@ -63,6 +64,7 @@ update_status ModuleBaseMotor::PostUpdate(float dt)
 	CreateMainBar();
 	CreateTestWindow();
 	if(interfacemenu.booleditinterface==true)interfacemenu.CreateEditInterfaceMenu();
+	if (aboutwindow.boolaboutwindow == true)aboutwindow.CreateAboutWindow();
 
 	ImGui::Render();
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
@@ -99,6 +101,9 @@ void ModuleBaseMotor::CreateMainBar() {
 			if (ImGui::MenuItem("Interface colors")) {
 				interfacemenu.booleditinterface = true;
 			}
+			if (ImGui::MenuItem("Configuration")) {
+
+			}
 			if (ImGui::MenuItem("Exit")) {
 				quit = true;
 			}
@@ -115,12 +120,8 @@ void ModuleBaseMotor::CreateMainBar() {
 			if (ImGui::MenuItem("Report a bug")) {
 				ShellExecuteA(NULL, "open", "https://github.com/Pletenica/Overlevende/issues", NULL, NULL, SW_SHOWNORMAL);
 			}
-			if (ImGui::MenuItem("Report a bug")) {
-				
-			}
-
 			if (ImGui::MenuItem("About")) {
-				
+				aboutwindow.boolaboutwindow = true;
 			}
 			ImGui::EndMenu();
 		}
@@ -141,6 +142,8 @@ void ModuleBaseMotor::CreateMainBar() {
 
 			ImGui::EndMenu();
 		}
+
+		
 		ImGui::EndMainMenuBar();
 	}
 }
@@ -148,3 +151,4 @@ void ModuleBaseMotor::CreateMainBar() {
 void ModuleBaseMotor::CreateTestWindow() {
 	ImGui::ShowDemoWindow();
 }
+
