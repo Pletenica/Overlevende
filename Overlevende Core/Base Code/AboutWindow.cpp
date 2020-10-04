@@ -8,8 +8,7 @@
 #pragma comment (lib, "opengl32.lib") /* link Microsoft OpenGL lib   */
 #pragma comment (lib, "Glew/libx86/glew32.lib") /* link Microsoft OpenGL lib   */
 
-AboutWindow::AboutWindow()
-{
+AboutWindow::AboutWindow(){
 
 }
 

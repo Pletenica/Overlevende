@@ -2,6 +2,7 @@
 #include "Application.h"
 #include "EditInterfaceMenu.h"
 #include "AboutWindow.h"
+#include "ConfigurationMenu.h"
 #include "Glew/include/glew.h"
 #include "SDL\include\SDL_opengl.h"
 #include <gl/GL.h>
@@ -65,6 +66,7 @@ update_status ModuleBaseMotor::PostUpdate(float dt)
 	CreateTestWindow();
 	if(interfacemenu.booleditinterface==true)interfacemenu.CreateEditInterfaceMenu();
 	if (aboutwindow.boolaboutwindow == true)aboutwindow.CreateAboutWindow();
+	if (configurationmenu.boolconfigurationmenu == true)configurationmenu.CreateConfigurationMenu();
 
 	ImGui::Render();
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
@@ -102,7 +104,7 @@ void ModuleBaseMotor::CreateMainBar() {
 				interfacemenu.booleditinterface = true;
 			}
 			if (ImGui::MenuItem("Configuration")) {
-
+				configurationmenu.boolconfigurationmenu = true;
 			}
 			if (ImGui::MenuItem("Exit")) {
 				quit = true;

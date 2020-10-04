@@ -18,15 +18,6 @@ public:
 
 	bool boolaboutwindow = false;
 
-
-
-
-
-	
-	void CreateTestWindow();
 	void CreateAboutWindow();
 
-	
-
-	
 }; 
