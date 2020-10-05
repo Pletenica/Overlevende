@@ -1,16 +1,16 @@
+#include "Globals.h"
+#include "Application.h"
 #include "ConfigurationMenu.h"
 #include "Glew/include/glew.h"
 #include "SDL\include\SDL_opengl.h"
 #include <gl/GL.h>
 #include <gl/GLU.h>
 
-#pragma comment (lib, "glu32.lib")    /* link OpenGL Utility lib     */
-#pragma comment (lib, "opengl32.lib") /* link Microsoft OpenGL lib   */
-#pragma comment (lib, "Glew/libx86/glew32.lib") /* link Microsoft OpenGL lib   */
+
 
 ConfigurationMenu::ConfigurationMenu()
 {
-
+	
 }
 
 ConfigurationMenu::~ConfigurationMenu()
@@ -27,9 +27,19 @@ void ConfigurationMenu::CreateConfigurationMenu() {
 
 	}
 	*/
-	
+	if (ImGui::CollapsingHeader("Application")) {
+		/*char name[25];
+		sprintf_s(name, 25, "Framerate %.1f", fps_log[fps_log.size() - 1]);
+		ImGui::PlotHistogram("##Framerate", &fps_log.size(), 0, name, 0.0f, 100.0f, ImVec2(310, 100));
+		sprintf_s(name, 25, "Milliseconds %.1f", ms_log[ms_log.size() - 1]);
+		ImGui::PlotHistogram("##Milliseconds", &ms_log.size(), 0, name, 0.0f, 100.0f, ImVec2(310, 100));
+		*/
+	}
 	if (ImGui::CollapsingHeader("General Settings")) {
-		ImGui::Text("Window Size");
+		ImGui::Text("Window Size:"); 
+		/*if (ImGui::Checkbox("Fullscreen", &fullscreen)) {
+			
+		}*/
 		ImGui::Text("Brightness");
 		
 	}

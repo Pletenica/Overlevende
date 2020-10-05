@@ -10,8 +10,7 @@
 
 class ConfigurationMenu
 {
-private:
-	ImTextureID iconprovingtex;
+
 public:
 	ConfigurationMenu();
 	~ConfigurationMenu();
@@ -20,4 +19,6 @@ public:
 
 	void CreateConfigurationMenu();
 
+private:
+	ImTextureID iconprovingtex;
 };
