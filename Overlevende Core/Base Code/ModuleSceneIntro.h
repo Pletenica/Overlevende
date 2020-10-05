@@ -21,7 +21,9 @@ public:
 
 public:
 	Primitive primitive;
+	Sphere _sphere;
 
 private:
 	bool showaxis = true;
+	bool wireSphere = true;
 };

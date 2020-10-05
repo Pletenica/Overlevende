@@ -23,6 +23,11 @@ bool ModuleSceneIntro::Start()
 
 	showaxis = true;
 
+	_sphere.radius = 2.5f;
+	_sphere.SetPos(0,2.5f,0);
+	_sphere.SetRotation(90, vec3(1, 0, 0));
+	_sphere.wire = false;
+
 	return ret;
 }
 
@@ -40,6 +45,17 @@ update_status ModuleSceneIntro::Update(float dt)
 	Plane p(0, 1, 0, 0);
 	p.axis = true;
 
+	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) {
+		if (wireSphere == true) {
+			wireSphere = false;
+			_sphere.wire = true;
+		}
+		else {
+			wireSphere = true;
+			_sphere.wire = false;
+		}
+	}
+
 	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
 		if (showaxis == true) {
 			showaxis = false;
@@ -52,5 +68,8 @@ update_status ModuleSceneIntro::Update(float dt)
 	if (showaxis == true) {
 		p.Render();
 	}
+
+	_sphere.Render();
+
 	return UPDATE_CONTINUE;
 }

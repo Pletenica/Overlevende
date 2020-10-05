@@ -22,7 +22,9 @@ bool ModuleCamera3D::Start()
 {
 	LOG("Setting up the camera");
 	bool ret = true;
-
+	vec3 AxisLocation = { 0, 0, 0 };
+	vec3 CameraLocation = { 10, 10, 10 };
+	Look((CameraLocation), AxisLocation, false);
 	return ret;
 }
 
@@ -46,9 +48,7 @@ update_status ModuleCamera3D::PreUpdate(float dt)
 // -----------------------------------------------------------------
 update_status ModuleCamera3D::Update(float dt)
 {
-	vec3 AxisLocation = { 0, 0, 0};
-	vec3 CameraLocation = { 10, 10, 10};
-	Look((CameraLocation), AxisLocation, false);
+
 		
 
 	return UPDATE_CONTINUE;
