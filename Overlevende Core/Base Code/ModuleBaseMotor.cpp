@@ -39,8 +39,8 @@ ImGui_ImplSDL2_InitForOpenGL(App->window->window, App->renderer3D->context);
 ImGui_ImplOpenGL3_Init();
 
 //InitMotorTheme
-interfacemenu.DayModeSelected();
-interfacemenu.PutGreenColor();
+interfacemenu.NightModeSelected();
+interfacemenu.PutBlueColor();
 
 return ret;
 }

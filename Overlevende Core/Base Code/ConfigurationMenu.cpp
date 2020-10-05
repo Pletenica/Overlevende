@@ -27,7 +27,29 @@ void ConfigurationMenu::CreateConfigurationMenu() {
 
 	}
 	*/
+	
+	if (ImGui::CollapsingHeader("General Settings")) {
+		ImGui::Text("Window Size");
+		ImGui::Text("Brightness");
+		
+	}
+	if (ImGui::CollapsingHeader("Render Sync")) {
+		ImGui::Text("Coming Soon.");
 
+	}
+	if (ImGui::CollapsingHeader("Input Readings")) {
+		ImGui::Text("Mouse");
+		ImGui::Text("F1				Show/Hide Grid");
+
+	}
+	if (ImGui::CollapsingHeader("Audio")) {
+		ImGui::Text("No audio so far.");
+
+	}
+	if (ImGui::CollapsingHeader("Textures")) {
+		ImGui::Text("Estandar Textures.");
+
+	}
 
 	
 	
