@@ -1,6 +1,7 @@
 #pragma once
 #include "Globals.h"
 #include "glmath.h"
+#include <vector>
 
 //Include ImGui
 #include "ImGui/imgui.h"
@@ -17,8 +18,12 @@ public:
 
 	bool boolconfigurationmenu = false;
 
-	void CreateConfigurationMenu();
+	void CreateConfigurationMenu(float dt);
 
 private:
 	ImTextureID iconprovingtex;
+	std::vector<float> fps;
+	std::vector<float> ms;
+	bool wireSphere;
+	void AddToVector(std::vector<float>& vec, float value);
 };

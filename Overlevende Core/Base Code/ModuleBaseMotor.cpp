@@ -41,6 +41,7 @@ ImGui_ImplOpenGL3_Init();
 //InitMotorTheme
 interfacemenu.NightModeSelected();
 interfacemenu.PutBlueColor();
+io.IniFilename = "WindowSaving";
 
 return ret;
 }
@@ -66,7 +67,7 @@ update_status ModuleBaseMotor::PostUpdate(float dt)
 	CreateTestWindow();
 	if(interfacemenu.booleditinterface==true)interfacemenu.CreateEditInterfaceMenu();
 	if (aboutwindow.boolaboutwindow == true)aboutwindow.CreateAboutWindow();
-	if (configurationmenu.boolconfigurationmenu == true)configurationmenu.CreateConfigurationMenu();
+	if (configurationmenu.boolconfigurationmenu == true)configurationmenu.CreateConfigurationMenu(dt);
 
 	ImGui::Render();
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());

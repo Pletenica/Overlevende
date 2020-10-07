@@ -3,6 +3,7 @@
 #include "ModuleSceneIntro.h"
 #include "Primitive.h"
 //#include "PhysBody3D.h"
+#include <gl/GL.h>
 
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
@@ -44,17 +45,6 @@ update_status ModuleSceneIntro::Update(float dt)
 {
 	Plane p(0, 1, 0, 0);
 	p.axis = true;
-
-	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) {
-		if (wireSphere == true) {
-			wireSphere = false;
-			_sphere.wire = true;
-		}
-		else {
-			wireSphere = true;
-			_sphere.wire = false;
-		}
-	}
 
 	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
 		if (showaxis == true) {
