@@ -16,7 +16,7 @@ public:
 	ConfigurationMenu();
 	~ConfigurationMenu();
 
-	bool boolconfigurationmenu = false;
+	bool boolconfigurationmenu = true;
 
 	void CreateConfigurationMenu(float dt);
 

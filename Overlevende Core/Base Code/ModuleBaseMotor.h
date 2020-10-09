@@ -27,6 +27,7 @@ public:
 	SDL_GLContext context;
 
 private:
+	bool wireSphere = false;
 	bool quit = false;
 	EditInterfaceMenu interfacemenu;
 	AboutWindow aboutwindow;

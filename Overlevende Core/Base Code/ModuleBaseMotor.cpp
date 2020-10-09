@@ -43,6 +43,7 @@ interfacemenu.NightModeSelected();
 interfacemenu.PutBlueColor();
 io.IniFilename = "WindowSaving";
 
+
 return ret;
 }
 
@@ -61,6 +62,10 @@ update_status ModuleBaseMotor::PostUpdate(float dt)
 	ImGui_ImplOpenGL3_NewFrame();
 	ImGui_ImplSDL2_NewFrame(App->window->window);
 	ImGui::NewFrame();
+
+	//Docking Principal
+	//ImGuiViewport* viewport = ImGui::GetMainViewport();
+	//ImGui::DockSpaceOverViewport(viewport,ImGuiDockNodeFlags_::ImGuiDockNodeFlags_PassthruCentralNode);
 
 	//ImGui Windows
 	CreateMainBar();
@@ -90,6 +95,20 @@ update_status ModuleBaseMotor::PostUpdate(float dt)
 }
 
 void ModuleBaseMotor::CreateMainBar() {
+
+	ImGui::Begin("WireFrame", NULL);
+
+	if (ImGui::Checkbox("WireFrame Mode", &wireSphere)) {
+		//(wireSphere) ? glPolygonMode(GL_FRONT_AND_BACK, GL_LINE) : glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	}
+
+	if (wireSphere == true) {
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	}
+
+	ImGui::End();
+
+
 	if (ImGui::BeginMainMenuBar()) {
 		if (ImGui::BeginMenu("Edit", true)) {
 			if (ImGui::MenuItem("New Project")) {

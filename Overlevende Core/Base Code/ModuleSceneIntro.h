@@ -15,9 +15,11 @@ public:
 	ModuleSceneIntro(Application* app, bool start_enabled = true);
 	~ModuleSceneIntro();
 
+	bool Init();
 	bool Start();
 	update_status Update(float dt);
 	bool CleanUp();
+	void DoCube(int size);
 
 public:
 	Primitive primitive;
@@ -26,4 +28,6 @@ public:
 private:
 	bool showaxis = true;
 	bool wireSphere = true;
+
+	//const float CubeArray[];
 };

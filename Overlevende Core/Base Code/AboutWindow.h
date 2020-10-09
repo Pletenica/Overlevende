@@ -16,7 +16,7 @@ public:
 	AboutWindow();
 	~AboutWindow();
 
-	bool boolaboutwindow = false;
+	bool boolaboutwindow = true;
 
 	void CreateAboutWindow();
 

@@ -25,13 +25,7 @@ void ConfigurationMenu::CreateConfigurationMenu(float dt) {
 	AddToVector(fps, actualFPS);
 	AddToVector(ms, actualMS);
 
-	ImGui::Begin("WireFrame", NULL);
-	
-	if (ImGui::Checkbox("WireFrame Mode", &wireSphere)) {
-		(wireSphere) ? glPolygonMode(GL_FRONT_AND_BACK, GL_LINE) : glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-	}
-	
-	ImGui::End();
+
 
 
 	ImGui::Begin("Configuration", NULL);

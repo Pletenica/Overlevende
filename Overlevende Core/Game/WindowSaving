@@ -4,18 +4,23 @@ Size=400,400
 Collapsed=0
 
 [Window][Dear ImGui Demo]
-Pos=1150,72
-Size=550,680
+Pos=1225,19
+Size=473,562
 Collapsed=0
 
 [Window][Configuration]
-Pos=242,25
-Size=405,764
+Pos=1,20
+Size=358,561
 Collapsed=0
 
 [Window][WireFrame]
 Pos=60,60
 Size=137,54
+Collapsed=0
+
+[Window][About]
+Pos=2,582
+Size=1696,315
 Collapsed=0
 
 [Docking][Data]
