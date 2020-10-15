@@ -64,8 +64,8 @@ update_status ModuleBaseMotor::PostUpdate(float dt)
 	ImGui::NewFrame();
 
 	//Docking Principal
-	//ImGuiViewport* viewport = ImGui::GetMainViewport();
-	//ImGui::DockSpaceOverViewport(viewport,ImGuiDockNodeFlags_::ImGuiDockNodeFlags_PassthruCentralNode);
+	ImGuiViewport* viewport = ImGui::GetMainViewport();
+	ImGui::DockSpaceOverViewport(viewport,ImGuiDockNodeFlags_::ImGuiDockNodeFlags_PassthruCentralNode);
 
 	//ImGui Windows
 	CreateMainBar();
