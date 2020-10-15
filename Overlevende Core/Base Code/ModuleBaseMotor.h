@@ -3,9 +3,6 @@
 #include "Globals.h"
 #include "glmath.h"
 #include "Light.h"
-#include "EditInterfaceMenu.h"
-#include "AboutWindow.h"
-#include "ConfigurationMenu.h"
 
 //Include ImGui
 #include "ImGui/imgui.h"
@@ -20,8 +17,10 @@ public:
 	~ModuleBaseMotor();
 
 	bool Init();
-	update_status PostUpdate(float dt);
+	update_status Draw(float dt);
 	bool CleanUp();
+
+	void CreateAllWindows();
 
 public:
 	SDL_GLContext context;
@@ -29,10 +28,5 @@ public:
 private:
 	bool wireSphere = false;
 	bool quit = false;
-	EditInterfaceMenu interfacemenu;
-	AboutWindow aboutwindow;
-	ConfigurationMenu configurationmenu;
-	void CreateMainBar();
-	void CreateTestWindow();
-	
+	void CreateMainBar();	
 };

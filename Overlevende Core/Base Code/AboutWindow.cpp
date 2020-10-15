@@ -1,21 +1,28 @@
+#include "Globals.h"
+#include "Application.h"
 #include "AboutWindow.h"
 #include "Glew/include/glew.h"
-#include "SDL\include\SDL_opengl.h"
-#include <gl/GL.h>
-#include <gl/GLU.h>
 
-#pragma comment (lib, "glu32.lib")    /* link OpenGL Utility lib     */
-#pragma comment (lib, "opengl32.lib") /* link Microsoft OpenGL lib   */
-#pragma comment (lib, "Glew/libx86/glew32.lib") /* link Microsoft OpenGL lib   */
-
-AboutWindow::AboutWindow(){
-
+AboutWindow::AboutWindow() :Window()
+{
+	active = false;
 }
 
+// Destructor
 AboutWindow::~AboutWindow()
-{}
+{
+}
 
-void AboutWindow::CreateAboutWindow() {
+// Called before render is available
+bool AboutWindow::Init()
+{
+	bool ret = true;
+
+	return ret;
+}
+
+bool AboutWindow::Draw(float dt)
+{
 	ImGui::Begin("About", NULL);
 
 	///////////////// Readme ///////////////////////
@@ -35,18 +42,17 @@ void AboutWindow::CreateAboutWindow() {
 	ImGui::Text("FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION");
 	ImGui::Text("WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.");
 
-	/*
-	PER A FER ELS BOTONS EN IMATGES (En un futur)
-	if (ImGui::ImageButton(iconprovingtex, ImVec2(100, 40))) {
-
-	}
-	*/
-
-	
-
 	if (ImGui::Button("Close Window", ImVec2(100, 25))) {
-		boolaboutwindow = false;
+		active = false;
 	}
 	ImGui::End();
 
+	return true;
+}
+
+// Called before quitting
+bool AboutWindow::CleanUp()
+{
+
+	return true;
 }

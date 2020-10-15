@@ -8,6 +8,7 @@ Application::Application()
 	renderer3D = new ModuleRenderer3D(this);
 	camera = new ModuleCamera3D(this);
 	base_motor = new ModuleBaseMotor(this);
+	window_manager = new WindowManager(this);
 
 	// The order of calls is very important!
 	// Modules will Init() Start() and Update in this order
@@ -24,7 +25,7 @@ Application::Application()
 
 
 	AddModule(base_motor);
-
+	AddModule(window_manager);
 	// Renderer last!
 	AddModule(renderer3D);
 

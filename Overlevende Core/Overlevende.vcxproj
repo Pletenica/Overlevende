@@ -86,10 +86,10 @@
     <ClInclude Include="Base Code\AboutWindow.h" />
     <ClInclude Include="Base Code\Application.h" />
     <ClInclude Include="Base Code\Color.h" />
-    <ClInclude Include="Base Code\ConfigurationMenu.h" />
-    <ClInclude Include="Base Code\EditInterfaceMenu.h" />
+    <ClInclude Include="Base Code\ConfigurationWindow.h" />
     <ClInclude Include="Base Code\glmath.h" />
     <ClInclude Include="Base Code\Globals.h" />
+    <ClInclude Include="Base Code\InspectorWindow.h" />
     <ClInclude Include="Base Code\lib\ImGui\imconfig.h" />
     <ClInclude Include="Base Code\lib\ImGui\imgui.h" />
     <ClInclude Include="Base Code\lib\ImGui\imgui_impl_opengl3.h" />
@@ -165,6 +165,8 @@
     <ClInclude Include="Base Code\Module.h" />
     <ClInclude Include="Base Code\ModuleBaseMotor.h" />
     <ClInclude Include="Base Code\ModuleCamera3D.h" />
+    <ClInclude Include="Base Code\ResourcesWindow.h" />
+    <ClInclude Include="Base Code\WindowManager.h" />
     <ClInclude Include="Base Code\ModuleInput.h" />
     <ClInclude Include="Base Code\ModuleRenderer3D.h" />
     <ClInclude Include="Base Code\ModuleSceneIntro.h" />
@@ -179,9 +181,9 @@
     <ClCompile Include="Base Code\AboutWindow.cpp" />
     <ClCompile Include="Base Code\Application.cpp" />
     <ClCompile Include="Base Code\Color.cpp" />
-    <ClCompile Include="Base Code\ConfigurationMenu.cpp" />
-    <ClCompile Include="Base Code\EditInterfaceMenu.cpp" />
+    <ClCompile Include="Base Code\ConfigurationWindow.cpp" />
     <ClCompile Include="Base Code\glmath.cpp" />
+    <ClCompile Include="Base Code\InspectorWindow.cpp" />
     <ClCompile Include="Base Code\lib\ImGui\imgui.cpp" />
     <ClCompile Include="Base Code\lib\ImGui\imgui_demo.cpp" />
     <ClCompile Include="Base Code\lib\ImGui\imgui_draw.cpp" />
@@ -227,6 +229,8 @@
     <ClCompile Include="Base Code\Main.cpp" />
     <ClCompile Include="Base Code\ModuleBaseMotor.cpp" />
     <ClCompile Include="Base Code\ModuleCamera3D.cpp" />
+    <ClCompile Include="Base Code\ResourcesWindow.cpp" />
+    <ClCompile Include="Base Code\WindowManager.cpp" />
     <ClCompile Include="Base Code\ModuleInput.cpp" />
     <ClCompile Include="Base Code\ModuleRenderer3D.cpp" />
     <ClCompile Include="Base Code\ModuleSceneIntro.cpp" />

@@ -1,22 +1,31 @@
-#pragma once
+#ifndef __ConfigurationWindow_H__
+#define __ConfigurationWindow_H__
+
+#include "Module.h"
 #include "Globals.h"
 #include "glmath.h"
+#include "WindowManager.h"
+#include "SDL/include/SDL.h"
 
-//Include ImGui
-#include "ImGui/imgui.h"
-#include "ImGui/imgui_internal.h"
-#include "ImGui/imgui_impl_sdl.h"
-#include "ImGui/imgui_impl_opengl3.h"
-
-class EditInterfaceMenu
+class ConfigurationWindow : public Window
 {
+public:
+
+	ConfigurationWindow();
+
+	// Destructor
+	virtual ~ConfigurationWindow();
+
+	bool Init();
+	bool Draw(float dt);
+	bool CleanUp();
+
+	void AddToVector(std::vector<float>& vec, float value);
+
 private:
 	ImTextureID iconprovingtex;
-public:
-	EditInterfaceMenu();
-	~EditInterfaceMenu();
-
-	bool booleditinterface = false;
+	std::vector<float> fps;
+	std::vector<float> ms;
 
 	bool isNightModeSelected = true;
 	bool isDayModeSelected = false;
@@ -43,4 +52,7 @@ public:
 	void PutPurpleColor();
 	void PutPinkColor();
 	void PutYellowColor();
+
 };
+
+#endif // __ConfigurationWindow_H__

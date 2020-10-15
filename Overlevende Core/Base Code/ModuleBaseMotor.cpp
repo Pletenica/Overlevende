@@ -1,10 +1,8 @@
 #include "Globals.h"
 #include "Application.h"
-#include "EditInterfaceMenu.h"
-#include "AboutWindow.h"
-#include "ConfigurationMenu.h"
 #include "Glew/include/glew.h"
 #include "SDL\include\SDL_opengl.h"
+#include "WindowManager.h"
 #include <gl/GL.h>
 #include <gl/GLU.h>
 
@@ -39,11 +37,11 @@ ImGui_ImplSDL2_InitForOpenGL(App->window->window, App->renderer3D->context);
 ImGui_ImplOpenGL3_Init();
 
 //InitMotorTheme
-interfacemenu.NightModeSelected();
-interfacemenu.PutBlueColor();
+//interfacemenu.NightModeSelected();
+//interfacemenu.PutBlueColor();
 io.IniFilename = "WindowSaving";
 
-
+CreateAllWindows();
 return ret;
 }
 
@@ -56,7 +54,7 @@ bool ModuleBaseMotor::CleanUp()
 }
 
 // Update
-update_status ModuleBaseMotor::PostUpdate(float dt)
+update_status ModuleBaseMotor::Draw(float dt)
 {
 	quit = false;
 	ImGui_ImplOpenGL3_NewFrame();
@@ -69,10 +67,13 @@ update_status ModuleBaseMotor::PostUpdate(float dt)
 
 	//ImGui Windows
 	CreateMainBar();
-	CreateTestWindow();
-	if(interfacemenu.booleditinterface==true)interfacemenu.CreateEditInterfaceMenu();
-	if (aboutwindow.boolaboutwindow == true)aboutwindow.CreateAboutWindow();
-	if (configurationmenu.boolconfigurationmenu == true)configurationmenu.CreateConfigurationMenu(dt);
+	
+	for (int i = 0; i < App->window_manager->windows.size(); i++)
+	{
+		if (App->window_manager->windows[i]->active == true) {
+			App->window_manager->windows[i]->Draw(dt);
+		}
+	}
 
 	ImGui::Render();
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
@@ -95,20 +96,6 @@ update_status ModuleBaseMotor::PostUpdate(float dt)
 }
 
 void ModuleBaseMotor::CreateMainBar() {
-
-	ImGui::Begin("WireFrame", NULL);
-
-	if (ImGui::Checkbox("WireFrame Mode", &wireSphere)) {
-		//(wireSphere) ? glPolygonMode(GL_FRONT_AND_BACK, GL_LINE) : glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-	}
-
-	if (wireSphere == true) {
-		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	}
-
-	ImGui::End();
-
-
 	if (ImGui::BeginMainMenuBar()) {
 		if (ImGui::BeginMenu("Edit", true)) {
 			if (ImGui::MenuItem("New Project")) {
@@ -120,11 +107,8 @@ void ModuleBaseMotor::CreateMainBar() {
 			if (ImGui::MenuItem("Save Project")) {
 
 			}
-			if (ImGui::MenuItem("Interface colors")) {
-				interfacemenu.booleditinterface = true;
-			}
 			if (ImGui::MenuItem("Configuration")) {
-				configurationmenu.boolconfigurationmenu = true;
+				App->window_manager->windows[1]->active = true;
 			}
 			if (ImGui::MenuItem("Exit")) {
 				quit = true;
@@ -143,7 +127,7 @@ void ModuleBaseMotor::CreateMainBar() {
 				ShellExecuteA(NULL, "open", "https://github.com/Pletenica/Overlevende/issues", NULL, NULL, SW_SHOWNORMAL);
 			}
 			if (ImGui::MenuItem("About")) {
-				aboutwindow.boolaboutwindow = true;
+				App->window_manager->windows[2]->active = true;
 			}
 			ImGui::EndMenu();
 		}
@@ -164,13 +148,13 @@ void ModuleBaseMotor::CreateMainBar() {
 
 			ImGui::EndMenu();
 		}
-
-		
 		ImGui::EndMainMenuBar();
 	}
 }
 
-void ModuleBaseMotor::CreateTestWindow() {
-	ImGui::ShowDemoWindow();
+void ModuleBaseMotor::CreateAllWindows() {
+	App->window_manager->CreateWin(WindowType::Inspector);
+	App->window_manager->CreateWin(WindowType::Configuration);
+	App->window_manager->CreateWin(WindowType::About);
+	App->window_manager->CreateWin(WindowType::Resources);
 }
-

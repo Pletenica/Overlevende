@@ -61,15 +61,6 @@
     <ClCompile Include="Base Code\ModuleBaseMotor.cpp">
       <Filter>Core\Modules</Filter>
     </ClCompile>
-    <ClCompile Include="Base Code\EditInterfaceMenu.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Base Code\AboutWindow.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Base Code\ConfigurationMenu.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
     <ClCompile Include="Base Code\lib\Parson\parson.c">
       <Filter>Core\Tools\Parson</Filter>
     </ClCompile>
@@ -172,6 +163,21 @@
     <ClCompile Include="Base Code\lib\mmgr\mmgr.cpp">
       <Filter>Core\Tools\mmgr</Filter>
     </ClCompile>
+    <ClCompile Include="Base Code\InspectorWindow.cpp">
+      <Filter>Core\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Base Code\WindowManager.cpp">
+      <Filter>Core\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Base Code\ConfigurationWindow.cpp">
+      <Filter>Core\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Base Code\AboutWindow.cpp">
+      <Filter>Core\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Base Code\ResourcesWindow.cpp">
+      <Filter>Core\Windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Base Code\Application.h">
@@ -248,15 +254,6 @@
     </ClInclude>
     <ClInclude Include="Base Code\ModuleBaseMotor.h">
       <Filter>Core\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="Base Code\EditInterfaceMenu.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Base Code\AboutWindow.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Base Code\ConfigurationMenu.h">
-      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Base Code\lib\Parson\parson.h">
       <Filter>Core\Tools\Parson</Filter>
@@ -447,6 +444,21 @@
     <ClInclude Include="Base Code\lib\mmgr\nommgr.h">
       <Filter>Core\Tools\mmgr</Filter>
     </ClInclude>
+    <ClInclude Include="Base Code\InspectorWindow.h">
+      <Filter>Core\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Base Code\WindowManager.h">
+      <Filter>Core\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Base Code\ConfigurationWindow.h">
+      <Filter>Core\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Base Code\AboutWindow.h">
+      <Filter>Core\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Base Code\ResourcesWindow.h">
+      <Filter>Core\Windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -493,6 +505,9 @@
     </Filter>
     <Filter Include="Core\Tools\MathGeoLib\Algortihm\Random">
       <UniqueIdentifier>{1ed1fc98-a8a9-49df-be98-b27cbc1473ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Windows">
+      <UniqueIdentifier>{04184a75-6b05-4711-9275-cfc633093641}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

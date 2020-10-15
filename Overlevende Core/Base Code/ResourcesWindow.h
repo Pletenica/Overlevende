@@ -1,5 +1,5 @@
-#ifndef __AboutWindow_H__
-#define __AboutWindow_H__
+#ifndef __ResourcesWindow_H__
+#define __ResourcesWindow_H__
 
 #include "Module.h"
 #include "Globals.h"
@@ -7,18 +7,18 @@
 #include "WindowManager.h"
 #include "SDL/include/SDL.h"
 
-class AboutWindow : public Window
+class ResourcesWindow : public Window
 {
 public:
 
-	AboutWindow();
+	ResourcesWindow();
 
 	// Destructor
-	virtual ~AboutWindow();
+	virtual ~ResourcesWindow();
 
 	bool Init();
 	bool Draw(float dt);
 	bool CleanUp();
 };
 
-#endif // __AboutWindow_H__
+#endif // __ResourcesWindow_H__

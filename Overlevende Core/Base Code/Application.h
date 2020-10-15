@@ -5,6 +5,7 @@
 #include "Timer.h"
 #include "Module.h"
 #include "ModuleWindow.h"
+#include "WindowManager.h"
 #include "ModuleInput.h"
 #include "ModuleSceneIntro.h"
 #include "ModuleRenderer3D.h"
@@ -15,6 +16,7 @@ class Application
 {
 public:
 	ModuleWindow* window;
+	WindowManager* window_manager;
 	ModuleInput* input;
 	ModuleSceneIntro* scene_intro;
 	ModuleRenderer3D* renderer3D;
