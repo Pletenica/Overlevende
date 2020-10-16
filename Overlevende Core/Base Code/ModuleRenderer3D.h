@@ -32,4 +32,16 @@ public:
 	SDL_GLContext context;
 	mat3x3 NormalMatrix;
 	mat4x4 ModelMatrix, ViewMatrix, ProjectionMatrix;
+
+public:
+
+	uint id_indices = 0; // index in VRAM
+	uint num_indices = 0;
+	uint* indices = nullptr;
+
+
+	uint id_vertices = 0; // unique vertex in VRAM
+	uint num_vertices = 0;
+	float* vertices = nullptr;
+
 };

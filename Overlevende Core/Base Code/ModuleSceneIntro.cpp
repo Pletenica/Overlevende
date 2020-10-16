@@ -56,7 +56,7 @@ update_status ModuleSceneIntro::Update(float dt)
 	Plane p(0, 1, 0, 0);
 	p.axis = true;
 
-	DoCube(1);
+	//DoCube(1);
 
 	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
 		if (showaxis == true) {

@@ -18,6 +18,14 @@ ModuleRenderer3D::ModuleRenderer3D(Application* app, bool start_enabled) : Modul
 ModuleRenderer3D::~ModuleRenderer3D()
 {}
 
+static float Piramid[] = {
+	0,0,0,1,0,0,0,0,1,1,0,1,0.5f,1,0.5f,
+};
+
+static int PiramidIndices[] = {
+	0,1,3,0,3,2,3,1,4,1,0,4,0,2,4,2,3,4,
+};
+
 // Called before render is available
 bool ModuleRenderer3D::Init()
 {
@@ -113,6 +121,23 @@ bool ModuleRenderer3D::Init()
 
 	// Projection matrix for
 	OnResize(SCREEN_WIDTH, SCREEN_HEIGHT);
+
+	//glGenBuffers(1, (GLuint*)&(id_vertices));
+	//glBindBuffer(GL_ARRAY_BUFFER, id_vertices);
+	//glBufferData(GL_ARRAY_BUFFER, sizeof(float) * num_vertices * 3, &vertices[0], GL_STATIC_DRAW);
+
+	//glGenBuffers(1, (GLuint*)&(id_indices));
+	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id_indices);
+	//glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint) * num_indices, &indices[0], GL_STATIC_DRAW);
+
+	glGenBuffers(1, (GLuint*)&(id_vertices));
+	glBindBuffer(GL_ARRAY_BUFFER, id_vertices);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(Piramid), Piramid, GL_STATIC_DRAW);
+
+	glGenBuffers(1, (GLuint*)&(id_indices));
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id_indices);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(PiramidIndices), PiramidIndices, GL_STATIC_DRAW);
+
 	return ret;
 }
 
@@ -138,6 +163,17 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 update_status ModuleRenderer3D::PostUpdate(float dt)
 {
 	//ANTES
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glBindBuffer(GL_ARRAY_BUFFER, id_vertices);
+
+	glVertexPointer(3, GL_FLOAT, 0, NULL);
+
+	// … bind and use other buffers
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id_indices);
+	glDrawElements(GL_TRIANGLES, sizeof(PiramidIndices) / sizeof(int), GL_UNSIGNED_INT, NULL);
+
+	glDisableClientState(GL_VERTEX_ARRAY);
+
 	App->base_motor->Draw(dt);
 	SDL_GL_SwapWindow(App->window->window);
 
