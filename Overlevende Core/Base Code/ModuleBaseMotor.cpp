@@ -40,8 +40,8 @@ ImGui_ImplOpenGL3_Init();
 //interfacemenu.NightModeSelected();
 //interfacemenu.PutBlueColor();
 io.IniFilename = "WindowSaving";
+	CreateAllWindows();
 
-CreateAllWindows();
 return ret;
 }
 

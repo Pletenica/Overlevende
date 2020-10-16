@@ -219,6 +219,13 @@ Mesh::Mesh()
 
 Mesh::~Mesh()
 {
+
+
+	glDeleteBuffers(1, &id_indices);
+	glDeleteBuffers(1, &id_vertices);
+
+	delete[] vertices;
+	delete[] indices;
 }
 
 void Mesh::GenBuffers()

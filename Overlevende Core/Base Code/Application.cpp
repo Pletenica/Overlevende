@@ -1,5 +1,6 @@
 #include "Application.h"
 
+extern Application* ExternalApp = nullptr;
 Application::Application()
 {
 	window = new ModuleWindow(this);
@@ -66,6 +67,9 @@ bool Application::Init()
 	}
 	
 	ms_timer.Start();
+
+
+	ExternalApp = this;
 	return ret;
 }
 
@@ -117,6 +121,8 @@ update_status Application::Update()
 
 bool Application::CleanUp()
 {
+
+	ExternalApp = nullptr;
 	bool ret = true;
 	p2List_item<Module*>* item = list_modules.getLast();
 
@@ -125,6 +131,7 @@ bool Application::CleanUp()
 		ret = item->data->CleanUp();
 		item = item->prev;
 	}
+
 	return ret;
 }
 

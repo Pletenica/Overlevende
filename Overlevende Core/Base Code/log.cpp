@@ -15,7 +15,8 @@ void log(const char file[], int line, const char* format, ...)
 	sprintf_s(tmp_string2, 4096, "\n%s(%d) : %s", file, line, tmp_string);
 	OutputDebugString(tmp_string2);
 
-	if (App != nullptr) {
-		App->base_motor->console_window->AddConsoleLog(tmp_string);
+	if (ExternalApp != nullptr && ExternalApp->base_motor->console_window != nullptr) 
+	{
+		ExternalApp->base_motor->console_window->AddConsoleLog(tmp_string);
 	}
 }
