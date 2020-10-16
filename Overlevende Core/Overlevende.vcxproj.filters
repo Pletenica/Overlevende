@@ -181,6 +181,9 @@
     <ClCompile Include="Base Code\ConsoleWindow.cpp">
       <Filter>Core\Windows</Filter>
     </ClCompile>
+    <ClCompile Include="Base Code\FBXManager.cpp">
+      <Filter>Core\Tools\FBXImporter</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Base Code\Application.h">
@@ -465,6 +468,9 @@
     <ClInclude Include="Base Code\ConsoleWindow.h">
       <Filter>Core\Windows</Filter>
     </ClInclude>
+    <ClInclude Include="Base Code\FBXManager.h">
+      <Filter>Core\Tools\FBXImporter</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -514,6 +520,9 @@
     </Filter>
     <Filter Include="Core\Windows">
       <UniqueIdentifier>{04184a75-6b05-4711-9275-cfc633093641}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Tools\FBXImporter">
+      <UniqueIdentifier>{6c1afb82-96ba-49fa-ad32-3be2531ea33a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

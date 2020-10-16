@@ -6,6 +6,8 @@
 #include <gl/GL.h>
 #include <gl/GLU.h>
 
+#include"FBXManager.h"
+
 #pragma comment (lib, "glu32.lib")    /* link OpenGL Utility lib     */
 #pragma comment (lib, "opengl32.lib") /* link Microsoft OpenGL lib   */
 #pragma comment (lib, "Glew/libx86/glew32.lib") /* link Microsoft OpenGL lib   */
@@ -138,6 +140,9 @@ bool ModuleRenderer3D::Init()
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id_indices);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(PiramidIndices), PiramidIndices, GL_STATIC_DRAW);
 
+	FBXLoader::ImportFBX("Assets/warrior/warrior.FBX", evangelion);
+	evangelion.GenBuffers();
+
 	return ret;
 }
 
@@ -163,16 +168,20 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 update_status ModuleRenderer3D::PostUpdate(float dt)
 {
 	//ANTES
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glBindBuffer(GL_ARRAY_BUFFER, id_vertices);
+	//glEnableClientState(GL_VERTEX_ARRAY);
+	//glBindBuffer(GL_ARRAY_BUFFER, id_vertices);
 
-	glVertexPointer(3, GL_FLOAT, 0, NULL);
+	//glVertexPointer(3, GL_FLOAT, 0, NULL);
 
-	// … bind and use other buffers
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id_indices);
-	glDrawElements(GL_TRIANGLES, sizeof(PiramidIndices) / sizeof(int), GL_UNSIGNED_INT, NULL);
+	//// … bind and use other buffers
+	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id_indices);
+	//glDrawElements(GL_TRIANGLES, sizeof(PiramidIndices) / sizeof(int), GL_UNSIGNED_INT, NULL);
 
-	glDisableClientState(GL_VERTEX_ARRAY);
+	//glDisableClientState(GL_VERTEX_ARRAY);
+
+	glScaled(0.01f, 0.01f, 0.01f);
+	glRotated(-90, 1, 0, 0);
+	evangelion.Render();
 
 	App->base_motor->Draw(dt);
 	SDL_GL_SwapWindow(App->window->window);
@@ -202,4 +211,39 @@ void ModuleRenderer3D::OnResize(int width, int height)
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
+}
+
+Mesh::Mesh()
+{
+}
+
+Mesh::~Mesh()
+{
+}
+
+void Mesh::GenBuffers()
+{
+	glGenBuffers(1, (GLuint*)&(id_vertices));
+	glBindBuffer(GL_ARRAY_BUFFER, id_vertices);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * num_vertices * 3, vertices, GL_STATIC_DRAW);
+
+	glGenBuffers(1, (GLuint*)&(id_indices));
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id_indices);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int) * num_indices, indices, GL_STATIC_DRAW);
+}
+
+void Mesh::Render()
+{
+
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glBindBuffer(GL_ARRAY_BUFFER, id_vertices);
+
+	glVertexPointer(3, GL_FLOAT, 0, NULL);
+
+	// … bind and use other buffers
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id_indices);
+	glDrawElements(GL_TRIANGLES, num_indices, GL_UNSIGNED_INT, NULL);
+
+	glDisableClientState(GL_VERTEX_ARRAY);
+
 }

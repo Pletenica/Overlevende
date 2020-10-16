@@ -88,6 +88,7 @@
     <ClInclude Include="Base Code\Color.h" />
     <ClInclude Include="Base Code\ConfigurationWindow.h" />
     <ClInclude Include="Base Code\ConsoleWindow.h" />
+    <ClInclude Include="Base Code\FBXManager.h" />
     <ClInclude Include="Base Code\glmath.h" />
     <ClInclude Include="Base Code\Globals.h" />
     <ClInclude Include="Base Code\InspectorWindow.h" />
@@ -184,6 +185,7 @@
     <ClCompile Include="Base Code\Color.cpp" />
     <ClCompile Include="Base Code\ConfigurationWindow.cpp" />
     <ClCompile Include="Base Code\ConsoleWindow.cpp" />
+    <ClCompile Include="Base Code\FBXManager.cpp" />
     <ClCompile Include="Base Code\glmath.cpp" />
     <ClCompile Include="Base Code\InspectorWindow.cpp" />
     <ClCompile Include="Base Code\lib\ImGui\imgui.cpp" />
