@@ -178,6 +178,9 @@
     <ClCompile Include="Base Code\ResourcesWindow.cpp">
       <Filter>Core\Windows</Filter>
     </ClCompile>
+    <ClCompile Include="Base Code\ConsoleWindow.cpp">
+      <Filter>Core\Windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Base Code\Application.h">
@@ -457,6 +460,9 @@
       <Filter>Core\Windows</Filter>
     </ClInclude>
     <ClInclude Include="Base Code\ResourcesWindow.h">
+      <Filter>Core\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Base Code\ConsoleWindow.h">
       <Filter>Core\Windows</Filter>
     </ClInclude>
   </ItemGroup>

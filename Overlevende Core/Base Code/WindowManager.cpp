@@ -4,12 +4,12 @@
 #include "AboutWindow.h"
 #include "ResourcesWindow.h"
 #include "ConfigurationWindow.h"
+#include "ConsoleWindow.h"
 #include "WindowManager.h"
 
 
 WindowManager::WindowManager(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
-
 }
 
 // Destructor
@@ -69,8 +69,17 @@ Window* WindowManager::CreateWin(WindowType w_type) {
 	case(WindowType::Configuration):
 		win = new ConfigurationWindow();
 		break;
-	case(WindowType::ThingsOnScene):
-		//win = new ThingsOnSceneWindow();
+	case(WindowType::Hierarchy):
+		//win = new HierarchyWindow();
+		break;
+	case(WindowType::Console):
+		win = new ConsoleWindow();
+		break;
+	case(WindowType::Scene):
+		//win = new SceneWindow();
+		break;
+	case(WindowType::Play):
+		//win = new PlayWindow();
 		break;
 	}
 

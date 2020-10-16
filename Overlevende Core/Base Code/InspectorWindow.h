@@ -21,7 +21,7 @@ public:
 	bool CleanUp();
 
 private:
-	bool wireframe_bool;
+	bool wireframe_bool = false;
 };
 
 #endif // __InspectorWindow_H__

@@ -25,10 +25,15 @@ bool InspectorWindow::Draw(float dt)
 {
 	ImGui::Begin("Inspector");
 	ImGui::Text("This is the Inspector.");
-	if (ImGui::Checkbox("WireFrame Mode", &wireframe_bool)) {
-		(wireframe_bool) ? glPolygonMode(GL_FRONT_AND_BACK, GL_LINE) : glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-	}
+	ImGui::Checkbox("WireFrame Mode", &wireframe_bool);
 	ImGui::End();
+
+	if (wireframe_bool == true) {
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	}
+	else {
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	}
 	return true;
 }
 

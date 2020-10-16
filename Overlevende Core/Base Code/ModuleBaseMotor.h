@@ -4,6 +4,8 @@
 #include "glmath.h"
 #include "Light.h"
 
+#include "ConsoleWindow.h"
+
 //Include ImGui
 #include "ImGui/imgui.h"
 #include "ImGui/imgui_internal.h"
@@ -24,7 +26,7 @@ public:
 
 public:
 	SDL_GLContext context;
-
+	ConsoleWindow* console_window;
 private:
 	bool wireSphere = false;
 	bool quit = false;

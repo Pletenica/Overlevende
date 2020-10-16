@@ -20,7 +20,10 @@ enum WindowType {
 	Configuration,
 	Inspector,
 	Resources,
-	ThingsOnScene
+	Hierarchy,
+	Console,
+	Play,
+	Scene
 };
 
 

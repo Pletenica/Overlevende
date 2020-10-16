@@ -157,4 +157,5 @@ void ModuleBaseMotor::CreateAllWindows() {
 	App->window_manager->CreateWin(WindowType::Configuration);
 	App->window_manager->CreateWin(WindowType::About);
 	App->window_manager->CreateWin(WindowType::Resources);
+	console_window = (ConsoleWindow*)App->window_manager->CreateWin(WindowType::Console);
 }

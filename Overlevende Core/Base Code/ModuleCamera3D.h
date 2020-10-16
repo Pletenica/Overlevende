@@ -27,8 +27,11 @@ private:
 public:
 	
 	vec3 X, Y, Z, Position, Reference;
+	float move_speed;
+	float drag_speed;
+	float zoom_speed;
+	float sensitivity;
 
 private:
-	bool viewback = true;
 	mat4x4 ViewMatrix, ViewMatrixInverse;
 };
