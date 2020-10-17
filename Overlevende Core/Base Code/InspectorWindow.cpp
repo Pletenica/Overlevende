@@ -28,12 +28,6 @@ bool InspectorWindow::Draw(float dt)
 	ImGui::Checkbox("WireFrame Mode", &wireframe_bool);
 	ImGui::End();
 
-	if (wireframe_bool == true) {
-		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	}
-	else {
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-	}
 	return true;
 }
 
@@ -41,5 +35,17 @@ bool InspectorWindow::Draw(float dt)
 bool InspectorWindow::CleanUp()
 {
 
+	return true;
+}
+
+// Called before quitting
+bool InspectorWindow::PreUpdate(float dt)
+{
+	if (wireframe_bool == true) {
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	}
+	else {
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	}
 	return true;
 }

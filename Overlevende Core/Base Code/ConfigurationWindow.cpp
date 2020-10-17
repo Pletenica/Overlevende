@@ -308,3 +308,10 @@ void ConfigurationWindow::NightModeSelected() {
 	style.Colors[ImGuiCol_TabUnfocused] = ImVec4(0.01f, 0.01f, 0.01f, 1.00f); //Quan la ventana no està seleccionada, com es veu la pestanya activa, color
 	style.Colors[ImGuiCol_TabUnfocusedActive] = ImVec4(0.25f, 0.25f, 0.25f, 1.00f); //Quan la ventana no està seleccionada, com es veu les pestanyes no actives, color
 }
+
+// Called before quitting
+bool ConfigurationWindow::PreUpdate(float dt)
+{
+
+	return true;
+}

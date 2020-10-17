@@ -40,3 +40,10 @@ bool ResourcesWindow::CleanUp()
 
 	return true;
 }
+
+// Called before quitting
+bool ResourcesWindow::PreUpdate(float dt)
+{
+
+	return true;
+}

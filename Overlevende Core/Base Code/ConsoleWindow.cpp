@@ -44,3 +44,10 @@ void ConsoleWindow::AddConsoleLog(const char* log)
 	std::string message = log;
 	console_log.push_back(message);
 }
+
+// Called before quitting
+bool ConsoleWindow::PreUpdate(float dt)
+{
+
+	return true;
+}

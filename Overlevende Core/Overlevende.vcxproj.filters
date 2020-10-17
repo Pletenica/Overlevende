@@ -184,6 +184,9 @@
     <ClCompile Include="Base Code\FBXManager.cpp">
       <Filter>Core\Tools\FBXImporter</Filter>
     </ClCompile>
+    <ClCompile Include="Base Code\Mesh.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Base Code\Application.h">
@@ -470,6 +473,12 @@
     </ClInclude>
     <ClInclude Include="Base Code\FBXManager.h">
       <Filter>Core\Tools\FBXImporter</Filter>
+    </ClInclude>
+    <ClInclude Include="Base Code\Mesh.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Base Code\MeshesArray.h">
+      <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

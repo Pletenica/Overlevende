@@ -164,6 +164,8 @@
     <ClInclude Include="Base Code\lib\mmgr\nommgr.h" />
     <ClInclude Include="Base Code\lib\Parson\parson.h" />
     <ClInclude Include="Base Code\Light.h" />
+    <ClInclude Include="Base Code\Mesh.h" />
+    <ClInclude Include="Base Code\MeshesArray.h" />
     <ClInclude Include="Base Code\Module.h" />
     <ClInclude Include="Base Code\ModuleBaseMotor.h" />
     <ClInclude Include="Base Code\ModuleCamera3D.h" />
@@ -231,6 +233,7 @@
     <ClCompile Include="Base Code\Light.cpp" />
     <ClCompile Include="Base Code\log.cpp" />
     <ClCompile Include="Base Code\Main.cpp" />
+    <ClCompile Include="Base Code\Mesh.cpp" />
     <ClCompile Include="Base Code\ModuleBaseMotor.cpp" />
     <ClCompile Include="Base Code\ModuleCamera3D.cpp" />
     <ClCompile Include="Base Code\ResourcesWindow.cpp" />

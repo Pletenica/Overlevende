@@ -30,6 +30,16 @@ bool WindowManager::Init()
 	return ret;
 }
 
+update_status WindowManager::PreUpdate(float dt)
+{
+	for ( int i = 0; i < windows.size(); i++)
+	{
+		windows[i]->PreUpdate(dt);
+	}
+
+	return UPDATE_CONTINUE;
+}
+
 update_status WindowManager::PostUpdate(float dt)
 {
 	//for ( int i = 0; i < windows.size(); i++)
@@ -115,6 +125,13 @@ bool Window::Draw(float dt)
 
 // Called before quitting
 bool Window::CleanUp()
+{
+
+	return true;
+}
+
+// Called before quitting
+bool Window::PreUpdate(float dt)
 {
 
 	return true;

@@ -37,6 +37,7 @@ public:
 	virtual ~Window();
 
 	virtual bool Init();
+	virtual bool PreUpdate(float dt);
 	virtual bool Draw(float dt);
 	virtual bool CleanUp();
 
@@ -54,6 +55,7 @@ public:
 	virtual ~WindowManager();
 
 	bool Init();
+	update_status PreUpdate(float dt);
 	update_status PostUpdate(float dt);
 	bool CleanUp();
 

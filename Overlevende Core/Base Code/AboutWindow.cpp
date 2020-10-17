@@ -56,3 +56,10 @@ bool AboutWindow::CleanUp()
 
 	return true;
 }
+
+// Called before quitting
+bool AboutWindow::PreUpdate(float dt)
+{
+
+	return true;
+}

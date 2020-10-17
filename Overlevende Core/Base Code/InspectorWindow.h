@@ -18,6 +18,7 @@ public:
 
 	bool Init();
 	bool Draw(float dt);
+	bool PreUpdate(float dt);
 	bool CleanUp();
 
 private:
