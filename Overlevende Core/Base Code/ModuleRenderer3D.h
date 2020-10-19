@@ -15,6 +15,9 @@
 
 #define MAX_LIGHTS 8
 
+#define SQUARE_TEXTURE_W 128
+#define SQUARE_TEXTURE_H 128
+
 class ModuleRenderer3D : public Module
 {
 public:
@@ -43,5 +46,8 @@ public:
 	uint frameBuffer = 0;
 	uint depthBuffer = 0;
 	uint renderTexture = 0;
+
+	GLubyte checkerImage[SQUARE_TEXTURE_W][SQUARE_TEXTURE_H][4];
+	uint imgID;
 
 };

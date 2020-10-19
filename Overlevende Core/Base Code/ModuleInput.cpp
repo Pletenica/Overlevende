@@ -114,7 +114,7 @@ update_status ModuleInput::PreUpdate(float dt)
 			{      
 				char* dropped_filedir = e.drop.file;
 				// Shows directory of dropped file
-				FBXLoader::ImportFBX(dropped_filedir, App->renderer3D->evangelion);
+				FBXLoader::ImportFBX(dropped_filedir, App->renderer3D->evangelion, App->renderer3D->imgID);
 
 				SDL_free(dropped_filedir);    // Free dropped_filedir memory
 				break;

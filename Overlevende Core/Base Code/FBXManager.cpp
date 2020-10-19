@@ -26,7 +26,7 @@ void FBXLoader::DisableDebug()
 	aiDetachAllLogStreams();
 }
 
-void FBXLoader::ImportFBX(const char* full_path, Mesh& _meshes)
+void FBXLoader::ImportFBX(const char* full_path, Mesh& _meshes, int _idTexturesTemporal)
 {
 	const aiScene* scene = aiImportFile(full_path, aiProcessPreset_TargetRealtime_MaxQuality);
 
@@ -53,6 +53,21 @@ void FBXLoader::ImportFBX(const char* full_path, Mesh& _meshes)
 				_mesh->normals = new float[_mesh->num_normals * 3];
 				memcpy(_mesh->normals, new_mesh->mNormals, sizeof(float) * _mesh->num_normals * 3);
 				LOG("New mesh with %d normals", _mesh->num_normals);
+			}
+
+			if (new_mesh->HasTextureCoords(0))
+			{
+				_mesh->num_textures = new_mesh->mNumVertices;
+				_mesh->textures = new float[new_mesh->mNumVertices * 2];
+
+				for (unsigned int i = 0; i < _mesh->num_textures; i++)
+				{
+					_mesh->textures[i * 2] = new_mesh->mTextureCoords[0][i].x;
+					_mesh->textures[i * 2 + 1] = new_mesh->mTextureCoords[0][i].y;
+				}
+				_mesh->textureID = _idTexturesTemporal;
+
+				LOG("New mesh with %d texture coords", _mesh->num_textures);
 			}
 
 			// copy faces

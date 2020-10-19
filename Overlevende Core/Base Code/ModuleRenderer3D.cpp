@@ -110,12 +110,36 @@ bool ModuleRenderer3D::Init()
 		lights[0].Active(true);
 		glEnable(GL_LIGHTING);
 		glEnable(GL_COLOR_MATERIAL);
+		glEnable(GL_TEXTURE_2D);
 	}
 
 	// Projection matrix for
-	OnResize(SCREEN_WIDTH, SCREEN_HEIGHT);
-	GenerateSceneBuffers();
 
+	//Generate texture
+	for (int i = 0; i < SQUARE_TEXTURE_W; i++) {
+		for (int j = 0; j < SQUARE_TEXTURE_H; j++) {
+			int c = ((((i & 0x8) == 0) ^ (((j & 0x8)) == 0))) * 255;
+			checkerImage[i][j][0] = (GLubyte)c;
+			checkerImage[i][j][1] = (GLubyte)c;
+			checkerImage[i][j][2] = (GLubyte)c;
+			checkerImage[i][j][3] = (GLubyte)255;
+		}
+	}
+
+
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+	glGenTextures(1, &imgID);
+	glBindTexture(GL_TEXTURE_2D, imgID);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, SQUARE_TEXTURE_W, SQUARE_TEXTURE_H, 0, GL_RGBA, GL_UNSIGNED_BYTE, checkerImage);
+
+	glBindTexture(GL_TEXTURE_2D, 0);
+
+	GenerateSceneBuffers();
+	OnResize(SCREEN_WIDTH, SCREEN_HEIGHT);
 	//glGenBuffers(1, (GLuint*)&(id_vertices));
 	//glBindBuffer(GL_ARRAY_BUFFER, id_vertices);
 	//glBufferData(GL_ARRAY_BUFFER, sizeof(float) * num_vertices * 3, &vertices[0], GL_STATIC_DRAW);
@@ -194,13 +218,16 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 	//glScaled(0.01f, 0.01f, 0.01f);
 	//glRotated(-90, 1, 0, 0);
 
+	glEnable(GL_TEXTURE_2D);
 	if(evangelion.id_vertices > 0)
 		evangelion.Render();
 
+	//AQUI PETA
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	glClearColor(0.278f, 0.278f, 0.278f, 0.278f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+	//AQUI PETA
 	App->base_motor->Draw(dt);
 	SDL_GL_SwapWindow(App->window->window);
 

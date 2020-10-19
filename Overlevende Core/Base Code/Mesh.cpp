@@ -19,9 +19,14 @@ Mesh::~Mesh()
 {
 	glDeleteBuffers(1, &id_indices);
 	glDeleteBuffers(1, &id_vertices);
+	glDeleteBuffers(1, &id_normals);
+	glDeleteBuffers(1, &id_textures);
+	glDeleteTextures(1, &textureID);
 
 	delete[] vertices;
 	delete[] indices;
+	delete[] normals;
+	delete[] textures;
 }
 void Mesh::GenBuffers(MeshType _type)
 {
@@ -48,6 +53,11 @@ void Mesh::GenBuffers(MeshType _type)
 		glGenBuffers(1, (GLuint*)&(id_normals));
 		glBindBuffer(GL_ARRAY_BUFFER, id_normals);
 		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * num_normals * 3, normals, GL_STATIC_DRAW);
+
+
+		glGenBuffers(1, (GLuint*)&(id_textures));
+		glBindBuffer(GL_ARRAY_BUFFER, id_textures);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * num_textures * 2, &textures[0], GL_STATIC_DRAW);
 		break;
 	default:
 		glBufferData(GL_ARRAY_BUFFER, sizeof(PyramidVertices), PyramidVertices, GL_STATIC_DRAW);
@@ -57,13 +67,21 @@ void Mesh::GenBuffers(MeshType _type)
 
 void Mesh::Render()
 {
+	glBindTexture(GL_TEXTURE_2D, textureID);
+
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glBindBuffer(GL_ARRAY_BUFFER, id_vertices);
 	glVertexPointer(3, GL_FLOAT, 0, NULL);
 
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+	glBindBuffer(GL_ARRAY_BUFFER, id_textures);
+	glTexCoordPointer(2, GL_FLOAT, 0, NULL);
+
+
 	glEnableClientState(GL_NORMAL_ARRAY);
 	glBindBuffer(GL_ARRAY_BUFFER, id_normals);
 	glNormalPointer(GL_FLOAT, 0, NULL);
+
 
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id_indices);
@@ -79,8 +97,13 @@ void Mesh::Render()
 		break;
 	}
 
+	glBindTexture(GL_TEXTURE_2D, 0);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glDisableClientState(GL_VERTEX_ARRAY);
-	glDisableClientState(GL_NORMAL_ARRAY);
+
+	if (num_normals != 0)
+		glDisableClientState(GL_NORMAL_ARRAY);
+	if (num_textures != 0)
+		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 }
