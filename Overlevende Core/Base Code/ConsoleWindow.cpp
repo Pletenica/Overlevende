@@ -25,7 +25,7 @@ bool ConsoleWindow::Draw(float dt)
 	ImGui::Begin("Console", NULL);
 	for (int i = 0; i < console_log.size(); i++)
 	{
-		ImGui::TextColored(ImVec4(1.0f, 1.0f, 1.0f, 1.0f), console_log[i].c_str());
+		ImGui::Text(console_log[i].c_str());
 	}
 	ImGui::End();
 

@@ -5,6 +5,8 @@
 #include "ResourcesWindow.h"
 #include "ConfigurationWindow.h"
 #include "ConsoleWindow.h"
+#include "OptionsWindow.h"
+#include "SceneWindow.h"
 #include "WindowManager.h"
 
 
@@ -86,10 +88,10 @@ Window* WindowManager::CreateWin(WindowType w_type) {
 		win = new ConsoleWindow();
 		break;
 	case(WindowType::Scene):
-		//win = new SceneWindow();
+		win = new SceneWindow();
 		break;
-	case(WindowType::Play):
-		//win = new PlayWindow();
+	case(WindowType::Options):
+		win = new OptionsWindow();
 		break;
 	}
 

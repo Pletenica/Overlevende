@@ -187,6 +187,12 @@
     <ClCompile Include="Base Code\Mesh.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="Base Code\OptionsWindow.cpp">
+      <Filter>Core\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Base Code\SceneWindow.cpp">
+      <Filter>Core\Windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Base Code\Application.h">
@@ -479,6 +485,12 @@
     </ClInclude>
     <ClInclude Include="Base Code\MeshesArray.h">
       <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Base Code\OptionsWindow.h">
+      <Filter>Core\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Base Code\SceneWindow.h">
+      <Filter>Core\Windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

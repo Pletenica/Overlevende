@@ -27,6 +27,7 @@ public:
 	bool CleanUp();
 
 	void OnResize(int width, int height);
+	void GenerateSceneBuffers();
 
 public:
 
@@ -38,4 +39,9 @@ public:
 public:
 	Mesh PyramidMesh;
 	Mesh evangelion;
+
+	uint frameBuffer = 0;
+	uint depthBuffer = 0;
+	uint renderTexture = 0;
+
 };

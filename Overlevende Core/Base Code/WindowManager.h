@@ -22,7 +22,7 @@ enum WindowType {
 	Resources,
 	Hierarchy,
 	Console,
-	Play,
+	Options,
 	Scene
 };
 
