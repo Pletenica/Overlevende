@@ -67,7 +67,7 @@ void FBXLoader::ImportFBX(const char* full_path, Mesh& _meshes)
 			}
 		}
 
-
+		_meshes.GenBuffers(MeshType::FBXNone);
 		aiReleaseImport(scene);
 	}
 	else

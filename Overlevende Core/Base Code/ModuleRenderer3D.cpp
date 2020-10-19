@@ -124,9 +124,9 @@ bool ModuleRenderer3D::Init()
 	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id_indices);
 	//glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint) * num_indices, &indices[0], GL_STATIC_DRAW);
 
-	FBXLoader::ImportFBX("Assets/warrior/warrior.FBX", evangelion);
-	evangelion.GenBuffers(MeshType::FBXNone);
-	PyramidMesh.GenBuffers(MeshType::Pyramid);
+	//FBXLoader::ImportFBX("Assets/warrior/warrior.FBX", evangelion);
+	//evangelion.GenBuffers(MeshType::FBXNone);
+	//PyramidMesh.GenBuffers(MeshType::Pyramid);
 
 	return ret;
 }

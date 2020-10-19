@@ -1,6 +1,7 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleInput.h"
+#include "FBXManager.h"
 
 #define MAX_KEYS 300
 
@@ -29,6 +30,8 @@ bool ModuleInput::Init()
 		LOG("SDL_EVENTS could not initialize! SDL_Error: %s\n", SDL_GetError());
 		ret = false;
 	}
+
+	SDL_EventState(SDL_DROPFILE, SDL_ENABLE);
 
 	return ret;
 }
@@ -106,6 +109,16 @@ update_status ModuleInput::PreUpdate(float dt)
 			case SDL_QUIT:
 			quit = true;
 			break;
+
+			case (SDL_DROPFILE): 
+			{      
+				char* dropped_filedir = e.drop.file;
+				// Shows directory of dropped file
+				FBXLoader::ImportFBX(dropped_filedir, App->renderer3D->evangelion);
+
+				SDL_free(dropped_filedir);    // Free dropped_filedir memory
+				break;
+			}
 
 			case SDL_WINDOWEVENT:
 			{
