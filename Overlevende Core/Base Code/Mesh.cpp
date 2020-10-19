@@ -27,11 +27,6 @@ void Mesh::GenBuffers(MeshType _type)
 {
 	_meshType = _type;
 
-	glGenBuffers(1, (GLuint*)&(id_vertices));
-	glBindBuffer(GL_ARRAY_BUFFER, id_vertices);
-	glGenBuffers(1, (GLuint*)&(id_indices));
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id_indices);
-
 	switch (_type) {
 	case(MeshType::Pyramid):
 		glBufferData(GL_ARRAY_BUFFER, sizeof(PyramidVertices), PyramidVertices, GL_STATIC_DRAW);
@@ -42,8 +37,17 @@ void Mesh::GenBuffers(MeshType _type)
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(CubeIndices)*36, CubeIndices, GL_STATIC_DRAW);
 		break;
 	case(MeshType::FBXNone):
+		glGenBuffers(1, (GLuint*)&(id_vertices));
+		glBindBuffer(GL_ARRAY_BUFFER, id_vertices);
 		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * num_vertices * 3, vertices, GL_STATIC_DRAW);
+
+		glGenBuffers(1, (GLuint*)&(id_indices));
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id_indices);
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int) * num_indices, indices, GL_STATIC_DRAW);
+
+		glGenBuffers(1, (GLuint*)&(id_normals));
+		glBindBuffer(GL_ARRAY_BUFFER, id_normals);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * num_normals * 3, normals, GL_STATIC_DRAW);
 		break;
 	default:
 		glBufferData(GL_ARRAY_BUFFER, sizeof(PyramidVertices), PyramidVertices, GL_STATIC_DRAW);
@@ -56,6 +60,12 @@ void Mesh::Render()
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glBindBuffer(GL_ARRAY_BUFFER, id_vertices);
 	glVertexPointer(3, GL_FLOAT, 0, NULL);
+
+	glEnableClientState(GL_NORMAL_ARRAY);
+	glBindBuffer(GL_ARRAY_BUFFER, id_normals);
+	glNormalPointer(GL_FLOAT, 0, NULL);
+
+
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id_indices);
 
 	switch (_meshType) {
@@ -69,5 +79,8 @@ void Mesh::Render()
 		break;
 	}
 
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glDisableClientState(GL_VERTEX_ARRAY);
+	glDisableClientState(GL_NORMAL_ARRAY);
 }

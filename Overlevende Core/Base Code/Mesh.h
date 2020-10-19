@@ -28,6 +28,10 @@ public:
 	uint num_vertices = 0;
 	float* vertices = nullptr;
 
+	uint id_normals = 0; // unique vertex in VRAM
+	uint num_normals = 0;
+	float* normals = nullptr;
+
 private:
 
 	MeshType _meshType;

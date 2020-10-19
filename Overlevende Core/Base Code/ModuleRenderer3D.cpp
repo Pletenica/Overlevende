@@ -191,9 +191,11 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 {
 	//PyramidMesh.Render();
 
-	glScaled(0.01f, 0.01f, 0.01f);
-	glRotated(-90, 1, 0, 0);
-	evangelion.Render();
+	//glScaled(0.01f, 0.01f, 0.01f);
+	//glRotated(-90, 1, 0, 0);
+
+	if(evangelion.id_vertices > 0)
+		evangelion.Render();
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	glClearColor(0.278f, 0.278f, 0.278f, 0.278f);

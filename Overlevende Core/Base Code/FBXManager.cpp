@@ -47,6 +47,13 @@ void FBXLoader::ImportFBX(const char* full_path, Mesh& _meshes)
 			memcpy(_mesh->vertices, new_mesh->mVertices, sizeof(float) * _mesh->num_vertices * 3);
 			LOG("New mesh with %d vertices", _mesh->num_vertices);
 
+			if (new_mesh->HasNormals()) 
+			{
+				_mesh->num_normals = new_mesh->mNumVertices;
+				_mesh->normals = new float[_mesh->num_normals * 3];
+				memcpy(_mesh->normals, new_mesh->mNormals, sizeof(float) * _mesh->num_normals * 3);
+				LOG("New mesh with %d normals", _mesh->num_normals);
+			}
 
 			// copy faces
 			if (new_mesh->HasFaces())
