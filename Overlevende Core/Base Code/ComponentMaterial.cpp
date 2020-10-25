@@ -1,3 +1,5 @@
+#include "Globals.h"
+#include "Application.h"
 #include "ModuleGameObject.h"
 #include "ComponentMaterial.h"
 

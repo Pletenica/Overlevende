@@ -27,9 +27,6 @@ public:
 	virtual bool Update(float dt);
 	virtual bool Disable();
 
-public:
-	ComponentType type;
-	bool active = true;
 };
 
 class GameObject
@@ -39,9 +36,9 @@ public:
 	GameObject();
 	virtual ~GameObject();
 
-	bool Init();
-	update_status Update(float dt);
-	bool CleanUp();
+	virtual bool Init();
+	virtual update_status Update(float dt);
+	virtual bool CleanUp();
 
 	Component* CreateComponent(ComponentType w_type);
 

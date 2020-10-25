@@ -12,9 +12,9 @@ public:
 	ComponentMesh();
 	virtual ~ComponentMesh();
 
-	virtual bool Enable();
-	virtual bool Update(float dt);
-	virtual bool Disable();
+	bool Enable();
+	bool Update(float dt);
+	bool Disable();
 
 };
 

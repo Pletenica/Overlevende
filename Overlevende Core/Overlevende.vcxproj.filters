@@ -199,10 +199,10 @@
     <ClCompile Include="Base Code\ComponentTransform.cpp">
       <Filter>Core\GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="Base Code\ComponentMesh.cpp">
+    <ClCompile Include="Base Code\ComponentMaterial.cpp">
       <Filter>Core\GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="Base Code\ComponentMaterial.cpp">
+    <ClCompile Include="Base Code\ComponentMesh.cpp">
       <Filter>Core\GameObject</Filter>
     </ClCompile>
   </ItemGroup>
@@ -510,10 +510,10 @@
     <ClInclude Include="Base Code\ComponentTransform.h">
       <Filter>Core\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="Base Code\ComponentMesh.h">
+    <ClInclude Include="Base Code\ComponentMaterial.h">
       <Filter>Core\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="Base Code\ComponentMaterial.h">
+    <ClInclude Include="Base Code\ComponentMesh.h">
       <Filter>Core\GameObject</Filter>
     </ClInclude>
   </ItemGroup>
