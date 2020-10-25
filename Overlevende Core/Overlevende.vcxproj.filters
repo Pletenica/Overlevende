@@ -193,6 +193,18 @@
     <ClCompile Include="Base Code\SceneWindow.cpp">
       <Filter>Core\Windows</Filter>
     </ClCompile>
+    <ClCompile Include="Base Code\ModuleGameObject.cpp">
+      <Filter>Core\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Base Code\ComponentTransform.cpp">
+      <Filter>Core\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Base Code\ComponentMesh.cpp">
+      <Filter>Core\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Base Code\ComponentMaterial.cpp">
+      <Filter>Core\GameObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Base Code\Application.h">
@@ -492,6 +504,18 @@
     <ClInclude Include="Base Code\SceneWindow.h">
       <Filter>Core\Windows</Filter>
     </ClInclude>
+    <ClInclude Include="Base Code\ModuleGameObject.h">
+      <Filter>Core\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Base Code\ComponentTransform.h">
+      <Filter>Core\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Base Code\ComponentMesh.h">
+      <Filter>Core\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Base Code\ComponentMaterial.h">
+      <Filter>Core\GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -544,6 +568,9 @@
     </Filter>
     <Filter Include="Core\Tools\FBXImporter">
       <UniqueIdentifier>{6c1afb82-96ba-49fa-ad32-3be2531ea33a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GameObject">
+      <UniqueIdentifier>{3d5fe9ff-900b-4be1-bb94-0eda16b320fd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

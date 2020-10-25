@@ -15,11 +15,11 @@ ModuleSceneIntro::~ModuleSceneIntro()
 {}
 
 bool ModuleSceneIntro::Init() {
-
-	//uint my_id = 0;
-	//glGenBuffers(1, (GLuint*)&(my_id));
-	//glBindBuffer(GL_ARRAY_BUFFER, my_id);
-	//glBufferData(GL_ARRAY_BUFFER, sizeof(float) * num_vertices * 3, vertices, GL_STATIC_DRAW);
+	CreateGameObject("Prova GameObject");
+	for (int i = 0; i < game_objects.size(); i++)
+	{
+		game_objects[i]->Init();
+	}
 	return true;
 }
 
@@ -34,11 +34,6 @@ bool ModuleSceneIntro::Start()
 
 	showaxis = true;
 
-	_sphere.radius = 2.5f;
-	_sphere.SetPos(0,2.5f,0);
-	_sphere.SetRotation(90, vec3(1, 0, 0));
-	_sphere.wire = false;
-
 	return ret;
 }
 
@@ -46,7 +41,10 @@ bool ModuleSceneIntro::Start()
 bool ModuleSceneIntro::CleanUp()
 {
 	LOG("Unloading Intro scene");
-
+	for (int i = 0; i < game_objects.size(); i++)
+	{
+		game_objects[i]->CleanUp();
+	}
 	return true;
 }
 
@@ -55,8 +53,6 @@ update_status ModuleSceneIntro::Update(float dt)
 {
 	Plane p(0, 1, 0, 0);
 	p.axis = true;
-
-	//DoCube(1);
 
 	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
 		if (showaxis == true) {
@@ -71,7 +67,10 @@ update_status ModuleSceneIntro::Update(float dt)
 		p.Render();
 	}
 
-	//_sphere.Render();
+	for (int i = 0; i < game_objects.size(); i++)
+	{
+		game_objects[i]->Update(dt);
+	}
 
 	return UPDATE_CONTINUE;
 }
@@ -131,4 +130,15 @@ void ModuleSceneIntro::DoCube(int size) {
 	glEnd();
 
 	glLineWidth(1.0f);
+}
+
+
+GameObject* ModuleSceneIntro::CreateGameObject(std::string _name) {
+	GameObject* go = nullptr;
+
+	go = new GameObject();
+	go->name = _name;
+
+	game_objects.push_back(go);
+	return go;
 }

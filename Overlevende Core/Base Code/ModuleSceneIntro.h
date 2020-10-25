@@ -3,6 +3,7 @@
 #include "p2DynArray.h"
 #include "Globals.h"
 #include "Primitive.h"
+#include "ModuleGameObject.h"
 
 #define MAX_SNAKE 2
 
@@ -20,14 +21,13 @@ public:
 	update_status Update(float dt);
 	bool CleanUp();
 	void DoCube(int size);
+	GameObject* CreateGameObject(std::string _name);
 
 public:
 	Primitive primitive;
-	Sphere _sphere;
+	std::vector<GameObject*> game_objects;
 
 private:
 	bool showaxis = true;
 	bool wireSphere = true;
-
-	//const float CubeArray[];
 };
