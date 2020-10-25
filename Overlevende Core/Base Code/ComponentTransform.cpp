@@ -6,7 +6,7 @@
 ///WINDOW NOW
 ComponentTransform::ComponentTransform() :Component()
 {
-
+	type = ComponentType::C_Transform;
 }
 
 // Destructor

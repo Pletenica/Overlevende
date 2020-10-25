@@ -7,6 +7,8 @@
 #include "WindowManager.h"
 #include "SDL/include/SDL.h"
 
+class GameObject;
+
 class InspectorWindow : public Window
 {
 public:
@@ -20,9 +22,17 @@ public:
 	bool Draw(float dt);
 	bool PreUpdate(float dt);
 	bool CleanUp();
+	void PutNewSelectedGameObject(GameObject* _go);
+	void DeleteSelectedGameObject();
+
+public:
+	GameObject* _selectedGO = nullptr;
 
 private:
-	bool wireframe_bool = false;
+	void CreateInitTab();
+	void CreateTransformTab(int i);
+	void CreateMeshTab(int i);
+	void CreateMaterialTab(int i);
 };
 
 #endif // __InspectorWindow_H__

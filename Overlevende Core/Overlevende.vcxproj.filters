@@ -205,6 +205,9 @@
     <ClCompile Include="Base Code\ComponentMesh.cpp">
       <Filter>Core\GameObject</Filter>
     </ClCompile>
+    <ClCompile Include="Base Code\HierarchyWindow.cpp">
+      <Filter>Core\Windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Base Code\Application.h">
@@ -515,6 +518,9 @@
     </ClInclude>
     <ClInclude Include="Base Code\ComponentMesh.h">
       <Filter>Core\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Base Code\HierarchyWindow.h">
+      <Filter>Core\Windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

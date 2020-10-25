@@ -9,6 +9,7 @@
 
 struct PhysBody3D;
 struct PhysMotor3D;
+class GameObject;
 
 class ModuleSceneIntro : public Module
 {
@@ -26,7 +27,7 @@ public:
 public:
 	Primitive primitive;
 	std::vector<GameObject*> game_objects;
-
+	GameObject* prova_gameobject;
 private:
 	bool showaxis = true;
 	bool wireSphere = true;

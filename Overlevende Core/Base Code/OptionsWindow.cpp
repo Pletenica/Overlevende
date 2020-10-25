@@ -24,8 +24,17 @@ bool OptionsWindow::Init()
 bool OptionsWindow::Draw(float dt)
 {
 	ImGui::Begin("Options");
+	if(ImGui::Button("Add a cube", ImVec2(100, 40))) {
 
-	ImGui::Text("This is the Options Menu.");
+	}
+	ImGui::SameLine();
+	if(ImGui::Button("Add a pyramid", ImVec2(100, 40))) {
+
+	}
+	ImGui::SameLine();
+	if(ImGui::Button("Add a mesh", ImVec2(100, 40))) {
+
+	}
 	ImGui::SameLine();
 	ImGui::Checkbox("WireFrame Mode", &wireframe_bool);
 	ImGui::End();

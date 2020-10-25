@@ -10,6 +10,9 @@
 #pragma comment (lib, "opengl32.lib") /* link Microsoft OpenGL lib   */
 #pragma comment (lib, "Glew/libx86/glew32.lib") /* link Microsoft OpenGL lib   */
 
+#include "ConsoleWindow.h"
+#include "InspectorWindow.h"
+
 ModuleBaseMotor::ModuleBaseMotor(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
 
@@ -153,11 +156,12 @@ void ModuleBaseMotor::CreateMainBar() {
 }
 
 void ModuleBaseMotor::CreateAllWindows() {
-	App->window_manager->CreateWin(WindowType::Inspector);
+	inspector_window=(InspectorWindow*)App->window_manager->CreateWin(WindowType::Inspector);
 	App->window_manager->CreateWin(WindowType::Configuration);
 	App->window_manager->CreateWin(WindowType::About);
-	App->window_manager->CreateWin(WindowType::Resources);
+	//App->window_manager->CreateWin(WindowType::Resources);
 	console_window = (ConsoleWindow*)App->window_manager->CreateWin(WindowType::Console);
 	App->window_manager->CreateWin(WindowType::Scene);
 	App->window_manager->CreateWin(WindowType::Options);
+	App->window_manager->CreateWin(WindowType::Hierarchy);
 }

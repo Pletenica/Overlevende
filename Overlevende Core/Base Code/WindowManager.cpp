@@ -5,6 +5,7 @@
 #include "ResourcesWindow.h"
 #include "ConfigurationWindow.h"
 #include "ConsoleWindow.h"
+#include "HierarchyWindow.h"
 #include "OptionsWindow.h"
 #include "SceneWindow.h"
 #include "WindowManager.h"
@@ -82,7 +83,7 @@ Window* WindowManager::CreateWin(WindowType w_type) {
 		win = new ConfigurationWindow();
 		break;
 	case(WindowType::Hierarchy):
-		//win = new HierarchyWindow();
+		win = new HierarchyWindow();
 		break;
 	case(WindowType::Console):
 		win = new ConsoleWindow();

@@ -6,7 +6,7 @@
 ///WINDOW NOW
 ComponentMaterial::ComponentMaterial() :Component()
 {
-
+	type = ComponentType::C_Material;
 }
 
 // Destructor

@@ -6,7 +6,7 @@
 ///WINDOW NOW
 ComponentMesh::ComponentMesh() :Component()
 {
-
+	type = ComponentType::C_Mesh;
 }
 
 // Destructor

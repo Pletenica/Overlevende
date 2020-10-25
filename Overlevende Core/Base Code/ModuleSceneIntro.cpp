@@ -15,7 +15,7 @@ ModuleSceneIntro::~ModuleSceneIntro()
 {}
 
 bool ModuleSceneIntro::Init() {
-	CreateGameObject("Prova GameObject");
+
 	for (int i = 0; i < game_objects.size(); i++)
 	{
 		game_objects[i]->Init();
@@ -33,7 +33,8 @@ bool ModuleSceneIntro::Start()
 	App->camera->LookAt(vec3(0, 0, 0));
 
 	showaxis = true;
-
+	prova_gameobject = CreateGameObject("Prova GameObject");
+	App->base_motor->inspector_window->PutNewSelectedGameObject(prova_gameobject);
 	return ret;
 }
 

@@ -94,6 +94,7 @@
     <ClInclude Include="Base Code\FBXManager.h" />
     <ClInclude Include="Base Code\glmath.h" />
     <ClInclude Include="Base Code\Globals.h" />
+    <ClInclude Include="Base Code\HierarchyWindow.h" />
     <ClInclude Include="Base Code\InspectorWindow.h" />
     <ClInclude Include="Base Code\lib\ImGui\imconfig.h" />
     <ClInclude Include="Base Code\lib\ImGui\imgui.h" />
@@ -198,6 +199,7 @@
     <ClCompile Include="Base Code\ConsoleWindow.cpp" />
     <ClCompile Include="Base Code\FBXManager.cpp" />
     <ClCompile Include="Base Code\glmath.cpp" />
+    <ClCompile Include="Base Code\HierarchyWindow.cpp" />
     <ClCompile Include="Base Code\InspectorWindow.cpp" />
     <ClCompile Include="Base Code\lib\ImGui\imgui.cpp" />
     <ClCompile Include="Base Code\lib\ImGui\imgui_demo.cpp" />

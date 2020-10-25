@@ -5,6 +5,7 @@
 
 ConfigurationWindow::ConfigurationWindow() :Window()
 {
+	active = false;
 	ms.reserve(50);
 	fps.reserve(50);
 	NightModeSelected();

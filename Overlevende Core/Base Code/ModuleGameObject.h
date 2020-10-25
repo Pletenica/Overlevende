@@ -27,6 +27,8 @@ public:
 	virtual bool Update(float dt);
 	virtual bool Disable();
 
+public:
+	ComponentType type;
 };
 
 class GameObject
