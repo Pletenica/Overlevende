@@ -18,7 +18,7 @@ bool ModuleSceneIntro::Init() {
 
 	for (int i = 0; i < game_objects.size(); i++)
 	{
-		game_objects[i]->Init();
+		if (game_objects[i] != nullptr) game_objects[i]->Init();
 	}
 	return true;
 }
@@ -44,7 +44,7 @@ bool ModuleSceneIntro::CleanUp()
 	LOG("Unloading Intro scene");
 	for (int i = 0; i < game_objects.size(); i++)
 	{
-		game_objects[i]->CleanUp();
+		if (game_objects[i] != nullptr) game_objects[i]->CleanUp();
 	}
 	return true;
 }
@@ -70,7 +70,7 @@ update_status ModuleSceneIntro::Update(float dt)
 
 	for (int i = 0; i < game_objects.size(); i++)
 	{
-		game_objects[i]->Update(dt);
+		if(game_objects[i]!=nullptr) game_objects[i]->Update(dt);
 	}
 
 	return UPDATE_CONTINUE;
@@ -142,4 +142,12 @@ GameObject* ModuleSceneIntro::CreateGameObject(std::string _name) {
 
 	game_objects.push_back(go);
 	return go;
+}
+
+void ModuleSceneIntro::DeleteGameObject(GameObject* _go) {
+	for (int i = 0; i < game_objects.size(); i++) {
+		if (game_objects[i] == _go) {
+			(game_objects.erase(game_objects.begin() + i));
+		}
+	}
 }

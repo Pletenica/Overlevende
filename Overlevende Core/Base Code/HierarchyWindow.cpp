@@ -24,7 +24,7 @@ bool HierarchyWindow::Init()
 bool HierarchyWindow::Draw(float dt)
 {
 	ImGui::Begin("Hierarchy", NULL);
-
+	ImGui::TreeNodeEx("Scene");
 	ImGui::End();
 
 	return true;

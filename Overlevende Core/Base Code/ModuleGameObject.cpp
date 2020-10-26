@@ -24,6 +24,7 @@ GameObject::GameObject()
 // Destructor
 GameObject::~GameObject()
 {
+	CleanUp();
 }
 
 // Called before render is available
@@ -33,7 +34,7 @@ bool GameObject::Init()
 
 	for (int i = 0; i < components.size(); i++)
 	{
-		components[i]->Enable();
+		if (components[i] != nullptr) components[i]->Enable();
 	}
 
 	return ret;
@@ -43,7 +44,7 @@ update_status GameObject::Update(float dt)
 {
 	for (int i = 0; i < components.size(); i++)
 	{
-		components[i]->Update(dt);
+		if(components[i]!=nullptr) components[i]->Update(dt);
 	}
 
 	return UPDATE_CONTINUE;
@@ -54,7 +55,7 @@ bool GameObject::CleanUp()
 {
 	for (int i = 0; i < components.size(); i++)
 	{
-		components[i]->Disable();
+		if (components[i] != nullptr) components[i]->Disable();
 		delete components[i];
 	}
 
@@ -80,6 +81,15 @@ Component* GameObject::CreateComponent(ComponentType w_type) {
 	components.push_back(comp);
 	return comp;
 }
+
+void GameObject::DeleteComponent(Component* comp) {
+	for (int i = 0; i < components.size(); i++) {
+		if (components[i] == comp) {
+			(components.erase(components.begin() + i));
+		}
+	}
+}
+
 
 ///WINDOW NOW
 Component::Component()
