@@ -22,7 +22,9 @@ public:
 	update_status Update(float dt);
 	bool CleanUp();
 	void DoCube(int size);
+
 	GameObject* CreateGameObject(std::string _name);
+	void DeleteGameObject(GameObject* _go);
 
 public:
 	Primitive primitive;

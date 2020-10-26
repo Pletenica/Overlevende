@@ -28,6 +28,7 @@ public:
 	virtual bool Disable();
 
 public:
+	bool active;
 	ComponentType type;
 };
 
@@ -43,6 +44,7 @@ public:
 	virtual bool CleanUp();
 
 	Component* CreateComponent(ComponentType w_type);
+	void DeleteComponent(Component* comp);
 
 public:
 	bool active = true;

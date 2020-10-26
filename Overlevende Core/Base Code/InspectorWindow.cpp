@@ -34,15 +34,19 @@ bool InspectorWindow::Draw(float dt)
 	if (_selectedGO != nullptr) {
 		CreateInitTab();
 		
-		for (int i = 0; i < _selectedGO->components.size(); i++) {
-			if (_selectedGO->components[i]->type == ComponentType::C_Transform) {
-				CreateTransformTab(i);
-			}
-			if (_selectedGO->components[i]->type == ComponentType::C_Mesh) {
-				CreateMeshTab(i);
-			}
-			if (_selectedGO->components[i]->type == ComponentType::C_Material) {
-				CreateMaterialTab(i);
+		if (_selectedGO != nullptr) {
+			for (int i = 0; i < _selectedGO->components.size(); i++) {
+				if (_selectedGO->components[i] != nullptr) {
+					if (_selectedGO->components[i]->type == ComponentType::C_Transform) {
+						CreateTransformTab(i);
+					}
+					if (_selectedGO->components[i]->type == ComponentType::C_Mesh) {
+						CreateMeshTab(i);
+					}
+					if (_selectedGO->components[i]->type == ComponentType::C_Material) {
+						CreateMaterialTab(i);
+					}
+				}
 			}
 		}
 	}
@@ -71,17 +75,27 @@ void InspectorWindow::CreateInitTab()
 {
 	static char name_chars[20] = {};
 	ImGui::Text("Options");
-	ImGui::Checkbox(" ", &_selectedGO->active);
+	ImGui::Checkbox(" Name:", &_selectedGO->active);
 	ImGui::SameLine();
-	ImGui::InputText(" ", name_chars, sizeof(name_chars));
-	ImGui::Spacing();
+	const char* string_name = _selectedGO->name.c_str();
+	ImGui::InputText("", name_chars, sizeof(name_chars));
+	if (ImGui::Button("Delete GameObject", ImVec2(130, 20))) {
+		//Delete GameObject from list into scene
+		ExternalApp->scene_intro->DeleteGameObject(_selectedGO);
+		//Put null the gameobject inspector properties (clean)
+		_selectedGO = nullptr;
+	}
 }
 
 void InspectorWindow::CreateMaterialTab(int i)
 {
 	ComponentMaterial* _compMat = (ComponentMaterial*)_selectedGO->components[i];
 	if (ImGui::CollapsingHeader("Material")) {
-		ImGui::Text("Hola.");
+		ImGui::Checkbox(" ", &_selectedGO->components[i]->active);
+		ImGui::SameLine();
+		if (ImGui::Button("Delete Component", ImVec2(120, 20))) {
+			_selectedGO->DeleteComponent(_compMat);
+		}
 	}
 }
 
@@ -89,7 +103,11 @@ void InspectorWindow::CreateMeshTab(int i)
 {
 	ComponentMesh* _compMesh = (ComponentMesh*)_selectedGO->components[i];
 	if (ImGui::CollapsingHeader("Mesh Renderer")) {
-		ImGui::Text("","",20);
+		ImGui::Checkbox(" ", &_selectedGO->components[i]->active);
+		ImGui::SameLine();
+		if (ImGui::Button("Delete Component", ImVec2(120,20))) {
+			_selectedGO->DeleteComponent(_compMesh);
+		}
 	}
 }
 
@@ -97,8 +115,12 @@ void InspectorWindow::CreateTransformTab(int i)
 {
 	ComponentTransform *_compTrans = (ComponentTransform*)_selectedGO->components[i];
 	if (ImGui::CollapsingHeader("Transform")) {
-		ImGui::Text("Position:");
+		ImGui::Checkbox(" ", &_selectedGO->components[i]->active);
 		ImGui::SameLine();
+		if (ImGui::Button("Delete Component", ImVec2(120, 20))) {
+			_selectedGO->DeleteComponent(_compTrans);
+		}
+		ImGui::Text("Position:");
 	}
 }
 

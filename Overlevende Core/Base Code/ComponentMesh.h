@@ -5,6 +5,8 @@
 #include "ModuleGameObject.h"
 #include "SDL/include/SDL.h"
 
+class Mesh;
+
 class ComponentMesh : public Component
 {
 public:
@@ -16,6 +18,8 @@ public:
 	bool Update(float dt);
 	bool Disable();
 
+public:
+	Mesh mesh;
 };
 
 #endif // __ComponentMesh_H__

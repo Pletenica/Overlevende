@@ -3,6 +3,9 @@
 #include "OptionsWindow.h"
 #include "Glew/include/glew.h"
 
+#include "Mesh.h"
+#include "FBXManager.h"
+
 OptionsWindow::OptionsWindow() :Window()
 {
 
@@ -25,15 +28,15 @@ bool OptionsWindow::Draw(float dt)
 {
 	ImGui::Begin("Options");
 	if(ImGui::Button("Add a cube", ImVec2(100, 40))) {
-
+		FBXLoader::ImportFBX("/Game/Assets/Basic Shapes/Cube.fbx", ExternalApp->renderer3D->evangelion, ExternalApp->renderer3D->imgID);
 	}
 	ImGui::SameLine();
-	if(ImGui::Button("Add a pyramid", ImVec2(100, 40))) {
-
+	if(ImGui::Button("Add a sphere", ImVec2(100, 40))) {
+		FBXLoader::ImportFBX("/Game/Assets/Basic Shapes/Sphere.fbx", ExternalApp->renderer3D->evangelion, ExternalApp->renderer3D->imgID);
 	}
 	ImGui::SameLine();
-	if(ImGui::Button("Add a mesh", ImVec2(100, 40))) {
-
+	if(ImGui::Button("Add a cylinder", ImVec2(100, 40))) {
+		FBXLoader::ImportFBX("/Game/Assets/Basic Shapes/Cylinder.fbx", ExternalApp->renderer3D->evangelion, ExternalApp->renderer3D->imgID);
 	}
 	ImGui::SameLine();
 	ImGui::Checkbox("WireFrame Mode", &wireframe_bool);
