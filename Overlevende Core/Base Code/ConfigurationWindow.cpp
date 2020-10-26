@@ -8,7 +8,7 @@ ConfigurationWindow::ConfigurationWindow() :Window()
 	active = false;
 	ms.reserve(50);
 	fps.reserve(50);
-	NightModeSelected();
+	DayModeSelected();
 	PutGreenColor();
 }
 
@@ -172,6 +172,7 @@ void ConfigurationWindow::LightModeSelected() {
 	style.Colors[ImGuiCol_ResizeGrip] = ImVec4(0.5f, 0.5f, 0.5f, 1.0f);
 	style.Colors[ImGuiCol_ResizeGripHovered] = ImVec4(0.4f, 0.4f, 0.4f, 1.0f);
 	style.Colors[ImGuiCol_CheckMark] = ImVec4(0.4f, 0.4f, 0.4f, 1.0f);
+	style.Colors[ImGuiCol_FrameBg] = ImVec4(0.5f, 0.5f, 0.5f, 1.0f);
 
 	style.Colors[ImGuiCol_Tab] = ImVec4(0.1f, 0.1f, 0.1f, 0.5f);  //La pestanya que no esta seleccionada, color
 	style.Colors[ImGuiCol_TabHovered] = ImVec4(0.29f, 0.29f, 0.29f, 1.00f); //Suda de eso
@@ -189,16 +190,16 @@ void ConfigurationWindow::PutGreenColor() {
 	isYellowColor = false;
 
 	ImGuiStyle& style = ImGui::GetStyle();
-	style.Colors[ImGuiCol_TitleBgActive] = ImVec4(0.521f, 0.898f, 0.545f, 1.0f);
-	style.Colors[ImGuiCol_ButtonActive] = ImVec4(0.521f, 0.898f, 0.545f, 1.0f);
-	style.Colors[ImGuiCol_HeaderActive] = ImVec4(0.521f, 0.898f, 0.545f, 1.0f);
-	style.Colors[ImGuiCol_ResizeGripActive] = ImVec4(0.521f, 0.898f, 0.545f, 1.0f);
-	style.Colors[ImGuiCol_SliderGrabActive] = ImVec4(0.521f, 0.898f, 0.545f, 1.0f);
+	style.Colors[ImGuiCol_TitleBgActive] = ImVec4(0.321f, 0.698f, 0.345f, 1.0f);
+	style.Colors[ImGuiCol_ButtonActive] = ImVec4(0.321f, 0.698f, 0.345f, 1.0f);
+	style.Colors[ImGuiCol_HeaderActive] = ImVec4(0.321f, 0.698f, 0.345f, 1.0f);
+	style.Colors[ImGuiCol_ResizeGripActive] = ImVec4(0.321f, 0.698f, 0.345f, 1.0f);
+	style.Colors[ImGuiCol_SliderGrabActive] = ImVec4(0.321f, 0.698f, 0.345f, 1.0f);
 	//style.Colors[ImGuiCol_TooltipBg] = ImVec4(0.521f, 0.898f, 0.545f, 1.0f);
-	style.Colors[ImGuiCol_FrameBgActive] = ImVec4(0.521f, 0.898f, 0.545f, 1.0f);
+	style.Colors[ImGuiCol_FrameBgActive] = ImVec4(0.321f, 0.698f, 0.345f, 1.0f);
 
-	style.Colors[ImGuiCol_DockingPreview] = ImVec4(0.388f, 0.592f, 0.4f, 1.0f); // Color que es veu quan vas a juntar finestres (quadres)
-	style.Colors[ImGuiCol_DockingEmptyBg] = ImVec4(0.388f, 0.592f, 0.4f, 1.0f);// Color que es veu quan vas a juntar finestres en gran(ficar el mateix que a dalt)
+	style.Colors[ImGuiCol_DockingPreview] = ImVec4(0.321f, 0.698f, 0.345f, 1.0f); // Color que es veu quan vas a juntar finestres (quadres)
+	style.Colors[ImGuiCol_DockingEmptyBg] = ImVec4(0.321f, 0.698f, 0.345f, 1.0f);// Color que es veu quan vas a juntar finestres en gran(ficar el mateix que a dalt)
 
 }
 
@@ -211,15 +212,15 @@ void ConfigurationWindow::PutBlueColor() {
 	isYellowColor = false;
 
 	ImGuiStyle& style = ImGui::GetStyle();
-	style.Colors[ImGuiCol_TitleBgActive] = ImVec4(0.0f, 0.402f, 0.708f, 1.0f);
-	style.Colors[ImGuiCol_ButtonActive] = ImVec4(0.0f, 0.402f, 0.708f, 1.0f);
-	style.Colors[ImGuiCol_HeaderActive] = ImVec4(0.0f, 0.402f, 0.708f, 1.0f);
-	style.Colors[ImGuiCol_ResizeGripActive] = ImVec4(0.0f, 0.402f, 0.708f, 1.0f);
-	style.Colors[ImGuiCol_SliderGrabActive] = ImVec4(0.0f, 0.402f, 0.708f, 1.0f);
-	style.Colors[ImGuiCol_FrameBgActive] = ImVec4(0.0f, 0.402f, 0.708f, 1.0f);
+	style.Colors[ImGuiCol_TitleBgActive] = ImVec4(0.1f, 0.502f, 0.808f, 1.0f);
+	style.Colors[ImGuiCol_ButtonActive] = ImVec4(0.1f, 0.502f, 0.808f, 1.0f);
+	style.Colors[ImGuiCol_HeaderActive] = ImVec4(0.1f, 0.502f, 0.808f, 1.0f);
+	style.Colors[ImGuiCol_ResizeGripActive] = ImVec4(0.1f, 0.502f, 0.808f, 1.0f);
+	style.Colors[ImGuiCol_SliderGrabActive] = ImVec4(0.1f, 0.502f, 0.808f, 1.0f);
+	style.Colors[ImGuiCol_FrameBgActive] = ImVec4(0.1f, 0.502f, 0.808f, 1.0f);
 
-	style.Colors[ImGuiCol_DockingPreview] = ImVec4(0.0f, 0.402f, 0.708f, 1.0f); // Color que es veu quan vas a juntar finestres (quadres)
-	style.Colors[ImGuiCol_DockingEmptyBg] = ImVec4(0.0f, 0.402f, 0.708f, 1.0f);// Color que es veu quan vas a juntar finestres en gran(ficar el mateix que a dalt)
+	style.Colors[ImGuiCol_DockingPreview] = ImVec4(0.1f, 0.502f, 0.808f, 1.0f); // Color que es veu quan vas a juntar finestres (quadres)
+	style.Colors[ImGuiCol_DockingEmptyBg] = ImVec4(0.1f, 0.502f, 0.808f, 1.0f);// Color que es veu quan vas a juntar finestres en gran(ficar el mateix que a dalt)
 
 }
 
@@ -232,15 +233,14 @@ void ConfigurationWindow::PutOrangeColor() {
 	isYellowColor = false;
 
 	ImGuiStyle& style = ImGui::GetStyle();
-	style.Colors[ImGuiCol_TitleBgActive] = ImVec4(0.925f, 0.733f, 0.556f, 1.0f);
-	style.Colors[ImGuiCol_ButtonActive] = ImVec4(0.925f, 0.733f, 0.556f, 1.0f);
-	style.Colors[ImGuiCol_HeaderActive] = ImVec4(0.925f, 0.733f, 0.556f, 1.0f);
-	style.Colors[ImGuiCol_ResizeGripActive] = ImVec4(0.925f, 0.733f, 0.556f, 1.0f);
-	style.Colors[ImGuiCol_SliderGrabActive] = ImVec4(0.925f, 0.733f, 0.556f, 1.0f);
-	style.Colors[ImGuiCol_FrameBgActive] = ImVec4(0.925f, 0.733f, 0.556f, 1.0f);
+	style.Colors[ImGuiCol_TitleBgActive] = ImVec4(0.925f, 0.533f, 0.356f, 1.0f);
+	style.Colors[ImGuiCol_ButtonActive] = ImVec4(0.925f, 0.533f, 0.356f, 1.0f);
+	style.Colors[ImGuiCol_HeaderActive] = ImVec4(0.925f, 0.533f, 0.356f, 1.0f);
+	style.Colors[ImGuiCol_ResizeGripActive] = ImVec4(0.925f, 0.533f, 0.356f, 1.0f);
+	style.Colors[ImGuiCol_SliderGrabActive] = ImVec4(0.925f, 0.533f, 0.356f, 1.0f);
 
-	style.Colors[ImGuiCol_DockingPreview] = ImVec4(0.745f, 0.533f, 0.254f, 1.0f); // Color que es veu quan vas a juntar finestres (quadres)
-	style.Colors[ImGuiCol_DockingEmptyBg] = ImVec4(0.745f, 0.533f, 0.254f, 1.0f);// Color que es veu quan vas a juntar finestres en gran(ficar el mateix que a dalt)
+	style.Colors[ImGuiCol_DockingPreview] = ImVec4(0.925f, 0.533f, 0.356f, 1.0f); // Color que es veu quan vas a juntar finestres (quadres)
+	style.Colors[ImGuiCol_DockingEmptyBg] = ImVec4(0.925f, 0.533f, 0.356f, 1.0f);// Color que es veu quan vas a juntar finestres en gran(ficar el mateix que a dalt)
 
 }
 
@@ -262,20 +262,24 @@ void ConfigurationWindow::DayModeSelected() {
 	style.Colors[ImGuiCol_TitleBg] = ImVec4(0.65f, 0.65f, 0.65f, 1.0f);
 	style.Colors[ImGuiCol_TitleBgCollapsed] = ImVec4(0.7f, 0.7f, 0.7f, 1.0f);
 	style.Colors[ImGuiCol_MenuBarBg] = ImVec4(0.8f, 0.8f, 0.8f, 1.0f);
-	style.Colors[ImGuiCol_Button] = ImVec4(0.9f, 0.9f, 0.9f, 1.0f);
-	style.Colors[ImGuiCol_ButtonHovered] = ImVec4(0.95f, 0.95f, 0.95f, 1.0f);
+	style.Colors[ImGuiCol_Button] = ImVec4(0.8f, 0.8f, 0.8f, 1.0f);
+	style.Colors[ImGuiCol_ButtonHovered] = ImVec4(0.8f, 0.8f, 0.8f, 1.0f);
 	style.Colors[ImGuiCol_PopupBg] = ImVec4(0.9f, 0.9f, 0.9f, 1.0f);
 	style.Colors[ImGuiCol_Header] = ImVec4(0.9f, 0.9f, 0.9f, 1.0f);
 	style.Colors[ImGuiCol_HeaderHovered] = ImVec4(0.75f, 0.75f, 0.75f, 1.0f);
 	style.Colors[ImGuiCol_ResizeGrip] = ImVec4(0.75f, 0.75f, 0.75f, 1.0f);
 	style.Colors[ImGuiCol_ResizeGripHovered] = ImVec4(0.9f, 0.9f, 0.9f, 1.0f);
-	style.Colors[ImGuiCol_CheckMark] = ImVec4(1.0f, 1.0f, 1.0f, 1.0f);
+	style.Colors[ImGuiCol_CheckMark] = ImVec4(0.2f, 0.2f, 0.2f, 1.0f);
+	style.Colors[ImGuiCol_FrameBg] = ImVec4(0.8f, 0.8f, 0.8f, 1.0f);
 
-	style.Colors[ImGuiCol_Tab] = ImVec4(0.1f, 0.1f, 0.1f, 0.5f);  //La pestanya que no esta seleccionada, color
-	style.Colors[ImGuiCol_TabHovered] = ImVec4(0.29f, 0.29f, 0.29f, 1.00f); //Suda de eso
-	style.Colors[ImGuiCol_TabActive] = ImVec4(0.4f, 0.4f, 0.4f, 1.0f); //La pestanya que esta seleccionada, color
-	style.Colors[ImGuiCol_TabUnfocused] = ImVec4(0.25f, 0.25f, 0.25f, 1.00f); //Quan la ventana no està seleccionada, com es veu la pestanya activa, color
-	style.Colors[ImGuiCol_TabUnfocusedActive] = ImVec4(0.35f, 0.35f, 0.35f, 1.00f); //Quan la ventana no està seleccionada, com es veu les pestanyes no actives, color
+	
+	
+
+	style.Colors[ImGuiCol_Tab] = ImVec4(0.5f, 0.5f, 0.5f, 0.1f);  //La pestanya que no esta seleccionada, color
+	style.Colors[ImGuiCol_TabHovered] = ImVec4(0.8f, 0.8f, 0.8f, 1.00f); //Suda de eso
+	style.Colors[ImGuiCol_TabActive] = ImVec4(0.8f, 0.8f, 0.8f, 1.0f); //La pestanya que esta seleccionada, color
+	style.Colors[ImGuiCol_TabUnfocused] = ImVec4(0.8f, 0.8f, 0.8f, 1.00f); //Quan la ventana no està seleccionada, com es veu la pestanya activa, color
+	style.Colors[ImGuiCol_TabUnfocusedActive] = ImVec4(0.8f, 0.8f, 0.8f, 1.00f); //Quan la ventana no està seleccionada, com es veu les pestanyes no actives, color
 }
 
 void ConfigurationWindow::NightModeSelected() {
@@ -302,6 +306,7 @@ void ConfigurationWindow::NightModeSelected() {
 	style.Colors[ImGuiCol_ResizeGrip] = ImVec4(0.35f, 0.35f, 0.35f, 1.0f);
 	style.Colors[ImGuiCol_ResizeGripHovered] = ImVec4(0.4f, 0.4f, 0.4f, 1.0f);
 	style.Colors[ImGuiCol_CheckMark] = ImVec4(1.0f, 1.0f, 1.0f, 1.0f);
+	style.Colors[ImGuiCol_FrameBg] = ImVec4(0.3f, 0.3f, 0.3f, 1.0f);
 
 	style.Colors[ImGuiCol_Tab] = ImVec4(0.1f, 0.1f, 0.1f, 0.5f);  //La pestanya que no esta seleccionada, color
 	style.Colors[ImGuiCol_TabHovered] = ImVec4(0.29f, 0.29f, 0.29f, 1.00f); //Suda de eso

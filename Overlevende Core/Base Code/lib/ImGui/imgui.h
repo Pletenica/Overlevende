@@ -1223,6 +1223,7 @@ enum ImGuiCol_
     ImGuiCol_FrameBg,               // Background of checkbox, radio button, plot, slider, text input
     ImGuiCol_FrameBgHovered,
     ImGuiCol_FrameBgActive,
+    ImGuiCol_FrameBgSelected,
     ImGuiCol_TitleBg,
     ImGuiCol_TitleBgActive,
     ImGuiCol_TitleBgCollapsed,
@@ -1247,6 +1248,7 @@ enum ImGuiCol_
     ImGuiCol_ResizeGripHovered,
     ImGuiCol_ResizeGripActive,
     ImGuiCol_Tab,
+    ImGuiCol_TabSelected,
     ImGuiCol_TabHovered,
     ImGuiCol_TabActive,
     ImGuiCol_TabUnfocused,
