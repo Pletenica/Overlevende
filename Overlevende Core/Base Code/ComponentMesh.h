@@ -19,7 +19,7 @@ public:
 	bool Disable();
 
 public:
-	Mesh mesh;
+	Mesh* mesh = nullptr;
 };
 
 #endif // __ComponentMesh_H__

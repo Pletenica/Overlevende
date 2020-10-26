@@ -24,7 +24,10 @@ bool HierarchyWindow::Init()
 bool HierarchyWindow::Draw(float dt)
 {
 	ImGui::Begin("Hierarchy", NULL);
-	ImGui::TreeNodeEx("Scene");
+
+	if(ExternalApp->scene_intro->rootGO != nullptr)
+		RecursiveDraw(ExternalApp->scene_intro->rootGO);
+
 	ImGui::End();
 
 	return true;
@@ -35,6 +38,32 @@ bool HierarchyWindow::CleanUp()
 {
 
 	return true;
+}
+
+void HierarchyWindow::RecursiveDraw(GameObject* node)
+{
+
+	ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_OpenOnArrow;
+	if (node->children.size() == 0) 
+	{
+		flags |= ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen;
+	}
+
+	bool nodeIsOpened = ImGui::TreeNodeEx(node, flags, node->name.c_str());
+	if (ImGui::IsItemClicked()) {
+		ExternalApp->base_motor->inspector_window->_selectedGO = node;
+	}
+
+	bool showChildren = (node->children.size() == 0) ? false : nodeIsOpened;
+
+	if (showChildren == true)
+	{
+		for (size_t i = 0; i < node->children.size(); ++i)
+		{
+			RecursiveDraw(node->children[i]);
+		}
+		ImGui::TreePop();
+	}
 }
 
 // Called before quitting

@@ -28,7 +28,7 @@ public:
 	virtual bool Disable();
 
 public:
-	bool active;
+	bool active = true;
 	ComponentType type;
 };
 
@@ -44,12 +44,16 @@ public:
 	virtual bool CleanUp();
 
 	Component* CreateComponent(ComponentType w_type);
+	Component* GetComponent(ComponentType w_type);
 	void DeleteComponent(Component* comp);
 
 public:
 	bool active = true;
 	std::string name;
 	std::vector<Component*> components;
+
+	GameObject* parent = nullptr;
+	std::vector<GameObject*> children;
 };
 
 #endif // __ModuleGameObject_H__

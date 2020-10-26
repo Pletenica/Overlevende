@@ -3,12 +3,14 @@
 extern Application* ExternalApp = nullptr;
 Application::Application()
 {
+	file_system = new ModuleFileSystem(this);
 	window = new ModuleWindow(this);
 	input = new ModuleInput(this);
 	scene_intro = new ModuleSceneIntro(this);
 	renderer3D = new ModuleRenderer3D(this);
 	camera = new ModuleCamera3D(this);
 	base_motor = new ModuleBaseMotor(this);
+
 	window_manager = new WindowManager(this);
 
 	// The order of calls is very important!
@@ -16,6 +18,7 @@ Application::Application()
 	// They will CleanUp() in reverse order
 
 	// Main Modules
+	AddModule(file_system);
 	AddModule(window);
 
 	AddModule(input);

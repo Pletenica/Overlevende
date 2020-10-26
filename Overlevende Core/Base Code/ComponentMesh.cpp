@@ -32,5 +32,8 @@ bool ComponentMesh::Disable()
 bool ComponentMesh::Update(float dt)
 {
 
+	if(mesh != nullptr)
+		mesh->Render();
+
 	return true;
 }

@@ -12,14 +12,17 @@ ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Modul
 }
 
 ModuleSceneIntro::~ModuleSceneIntro()
-{}
+{
+	delete rootGO;
+}
 
 bool ModuleSceneIntro::Init() {
 
-	for (int i = 0; i < game_objects.size(); i++)
-	{
-		if (game_objects[i] != nullptr) game_objects[i]->Init();
-	}
+	//for (int i = 0; i < game_objects.size(); i++)
+	//{
+	//	if (game_objects[i] != nullptr)
+	//		game_objects[i]->Init();
+	//}
 	return true;
 }
 
@@ -33,8 +36,8 @@ bool ModuleSceneIntro::Start()
 	App->camera->LookAt(vec3(0, 0, 0));
 
 	showaxis = true;
-	prova_gameobject = CreateGameObject("Prova GameObject");
-	App->base_motor->inspector_window->PutNewSelectedGameObject(prova_gameobject);
+	rootGO = CreateGameObject("Prova GameObject", nullptr);
+	App->base_motor->inspector_window->PutNewSelectedGameObject(rootGO);
 	return ret;
 }
 
@@ -42,10 +45,7 @@ bool ModuleSceneIntro::Start()
 bool ModuleSceneIntro::CleanUp()
 {
 	LOG("Unloading Intro scene");
-	for (int i = 0; i < game_objects.size(); i++)
-	{
-		if (game_objects[i] != nullptr) game_objects[i]->CleanUp();
-	}
+
 	return true;
 }
 
@@ -54,6 +54,10 @@ update_status ModuleSceneIntro::Update(float dt)
 {
 	Plane p(0, 1, 0, 0);
 	p.axis = true;
+
+	if (App->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN) {
+		CreateGameObject("Children", rootGO);
+	}
 
 	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
 		if (showaxis == true) {
@@ -68,10 +72,11 @@ update_status ModuleSceneIntro::Update(float dt)
 		p.Render();
 	}
 
-	for (int i = 0; i < game_objects.size(); i++)
-	{
-		if(game_objects[i]!=nullptr) game_objects[i]->Update(dt);
-	}
+	//for (int i = 0; i < game_objects.size(); i++)
+	//{
+	//	if(game_objects[i]!=nullptr) 
+	//		game_objects[i]->Update(dt);
+	//}
 
 	return UPDATE_CONTINUE;
 }
@@ -134,20 +139,32 @@ void ModuleSceneIntro::DoCube(int size) {
 }
 
 
-GameObject* ModuleSceneIntro::CreateGameObject(std::string _name) {
+GameObject* ModuleSceneIntro::CreateGameObject(std::string _name, GameObject* parent) {
 	GameObject* go = nullptr;
 
 	go = new GameObject();
 	go->name = _name;
+	go->parent = parent;
 
-	game_objects.push_back(go);
+	if(parent != nullptr)
+		parent->children.push_back(go);
+
 	return go;
 }
 
-void ModuleSceneIntro::DeleteGameObject(GameObject* _go) {
-	for (int i = 0; i < game_objects.size(); i++) {
-		if (game_objects[i] == _go) {
-			(game_objects.erase(game_objects.begin() + i));
-		}
+void ModuleSceneIntro::DeleteGameObject(GameObject* _go) 
+{
+	if(_go->parent != nullptr)
+		delete _go;
+}
+
+void ModuleSceneIntro::RecursiveUpdate(GameObject* node)
+{
+	node->Update(0.f);
+
+	for (size_t i = 0; i < node->children.size(); i++)
+	{
+		RecursiveUpdate(node->children[i]);
 	}
+
 }

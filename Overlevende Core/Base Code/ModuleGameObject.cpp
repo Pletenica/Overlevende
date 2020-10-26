@@ -34,7 +34,8 @@ bool GameObject::Init()
 
 	for (int i = 0; i < components.size(); i++)
 	{
-		if (components[i] != nullptr) components[i]->Enable();
+		if (components[i] != nullptr) 
+			components[i]->Enable();
 	}
 
 	return ret;
@@ -44,7 +45,8 @@ update_status GameObject::Update(float dt)
 {
 	for (int i = 0; i < components.size(); i++)
 	{
-		if(components[i]!=nullptr) components[i]->Update(dt);
+		if(components[i]!=nullptr) 
+			components[i]->Update(dt);
 	}
 
 	return UPDATE_CONTINUE;
@@ -55,9 +57,19 @@ bool GameObject::CleanUp()
 {
 	for (int i = 0; i < components.size(); i++)
 	{
-		if (components[i] != nullptr) components[i]->Disable();
+		//if (components[i] != nullptr) 
+		//	components[i]->Disable();
 		delete components[i];
+		components[i] = nullptr;
 	}
+	components.clear();
+
+	for (size_t i = 0; i < children.size(); i++)
+	{
+		delete children[i];
+		children[i] = nullptr;
+	}
+	children.clear();
 
 	return true;
 }
@@ -80,6 +92,17 @@ Component* GameObject::CreateComponent(ComponentType w_type) {
 
 	components.push_back(comp);
 	return comp;
+}
+
+Component* GameObject::GetComponent(ComponentType w_type)
+{
+	for (size_t i = 0; i < components.size(); i++)
+	{
+		if (components[i]->type == w_type)
+			return components[i];
+	}
+
+	return nullptr;
 }
 
 void GameObject::DeleteComponent(Component* comp) {

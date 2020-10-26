@@ -27,16 +27,16 @@ bool OptionsWindow::Init()
 bool OptionsWindow::Draw(float dt)
 {
 	ImGui::Begin("Options");
-	if(ImGui::Button("Add a cube", ImVec2(100, 40))) {
-		FBXLoader::ImportFBX("/Game/Assets/Basic Shapes/Cube.fbx", ExternalApp->renderer3D->evangelion, ExternalApp->renderer3D->imgID);
+	if(ImGui::Button("Add a cube", ImVec2(110, 40))) {
+		FBXLoader::ImportFBX("/Game/Assets/Basic Shapes/Cube.fbx", ExternalApp->renderer3D->imgID);
 	}
 	ImGui::SameLine();
-	if(ImGui::Button("Add a sphere", ImVec2(100, 40))) {
-		FBXLoader::ImportFBX("/Game/Assets/Basic Shapes/Sphere.fbx", ExternalApp->renderer3D->evangelion, ExternalApp->renderer3D->imgID);
+	if(ImGui::Button("Add a sphere", ImVec2(110, 40))) {
+		FBXLoader::ImportFBX("/Game/Assets/Basic Shapes/Sphere.fbx", ExternalApp->renderer3D->imgID);
 	}
 	ImGui::SameLine();
-	if(ImGui::Button("Add a cylinder", ImVec2(100, 40))) {
-		FBXLoader::ImportFBX("/Game/Assets/Basic Shapes/Cylinder.fbx", ExternalApp->renderer3D->evangelion, ExternalApp->renderer3D->imgID);
+	if(ImGui::Button("Add a cylinder", ImVec2(110, 40))) {
+		FBXLoader::ImportFBX("/Game/Assets/Basic Shapes/Cylinder.fbx", ExternalApp->renderer3D->imgID);
 	}
 	ImGui::SameLine();
 	ImGui::Checkbox("WireFrame Mode", &wireframe_bool);

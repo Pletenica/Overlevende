@@ -20,6 +20,8 @@ public:
 	bool Draw(float dt);
 	bool PreUpdate(float dt);
 	bool CleanUp();
+
+	void RecursiveDraw(GameObject* node);
 };
 
 #endif // __HierarchyWindow_H__

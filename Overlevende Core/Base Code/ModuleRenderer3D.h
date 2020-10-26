@@ -40,14 +40,12 @@ public:
 	mat4x4 ModelMatrix, ViewMatrix, ProjectionMatrix;
 
 public:
-	Mesh PyramidMesh;
-	Mesh evangelion;
-
 	uint frameBuffer = 0;
 	uint depthBuffer = 0;
 	uint renderTexture = 0;
 
-	GLubyte checkerImage[SQUARE_TEXTURE_W][SQUARE_TEXTURE_H][4];
+	//GLubyte checkerImage[SQUARE_TEXTURE_W][SQUARE_TEXTURE_H][4];
 	uint imgID;
+	std::vector<Mesh*> cleanUpMeshes;
 
 };

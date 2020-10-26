@@ -23,13 +23,13 @@ public:
 	bool CleanUp();
 	void DoCube(int size);
 
-	GameObject* CreateGameObject(std::string _name);
+	GameObject* CreateGameObject(std::string _name, GameObject* parent);
 	void DeleteGameObject(GameObject* _go);
+	void RecursiveUpdate(GameObject* node);
 
 public:
 	Primitive primitive;
-	std::vector<GameObject*> game_objects;
-	GameObject* prova_gameobject;
+	GameObject* rootGO = nullptr;
 private:
 	bool showaxis = true;
 	bool wireSphere = true;

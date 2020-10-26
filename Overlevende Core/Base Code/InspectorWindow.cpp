@@ -13,6 +13,7 @@
 InspectorWindow::InspectorWindow():Window()
 {
 	_selectedGO = new GameObject;
+	_selectedGO = nullptr;
 }
 
 // Destructor
@@ -58,7 +59,7 @@ bool InspectorWindow::Draw(float dt)
 // Called before quitting
 bool InspectorWindow::CleanUp()
 {
-
+	/*delete(_selectedGO);*/
 	return true;
 }
 
@@ -76,6 +77,7 @@ void InspectorWindow::CreateInitTab()
 	static char name_chars[20] = {};
 	ImGui::Text("Options");
 	ImGui::Checkbox(" Name:", &_selectedGO->active);
+	ImGui::Text("Name %s", _selectedGO->name.c_str());
 	ImGui::SameLine();
 	const char* string_name = _selectedGO->name.c_str();
 	ImGui::InputText("", name_chars, sizeof(name_chars));
@@ -116,16 +118,13 @@ void InspectorWindow::CreateTransformTab(int i)
 	ComponentTransform *_compTrans = (ComponentTransform*)_selectedGO->components[i];
 	if (ImGui::CollapsingHeader("Transform")) {
 		ImGui::Checkbox(" ", &_selectedGO->components[i]->active);
-		ImGui::SameLine();
-		if (ImGui::Button("Delete Component", ImVec2(120, 20))) {
-			_selectedGO->DeleteComponent(_compTrans);
-		}
 		ImGui::Text("Position:");
 	}
 }
 
 void InspectorWindow::PutNewSelectedGameObject(GameObject* _go)
 {
+	_selectedGO = nullptr;
 	_selectedGO = _go;
 }
 

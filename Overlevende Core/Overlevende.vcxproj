@@ -53,13 +53,13 @@
       <SDLCheck>false</SDLCheck>
       <ExceptionHandling>false</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>C:\Users\roger\OneDrive\Documentos\GitHub\Overlevende\Overlevende Core\Base Code\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Documents\GitHub\Overlevende\Overlevende Core\Base Code\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <AdditionalLibraryDirectories>C:\Users\roger\OneDrive\Documentos\GitHub\Overlevende\Overlevende Core\Base Code\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\Documents\GitHub\Overlevende\Overlevende Core\Base Code\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -71,7 +71,7 @@
       <SDLCheck>false</SDLCheck>
       <ExceptionHandling>false</ExceptionHandling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>C:\Users\roger\OneDrive\Documentos\GitHub\Overlevende\Overlevende Core\Base Code\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Documents\GitHub\Overlevende\Overlevende Core\Base Code\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -79,7 +79,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <SubSystem>Windows</SubSystem>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <AdditionalLibraryDirectories>C:\Users\roger\OneDrive\Documentos\GitHub\Overlevende\Overlevende Core\Base Code\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\Documents\GitHub\Overlevende\Overlevende Core\Base Code\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -96,6 +96,14 @@
     <ClInclude Include="Base Code\Globals.h" />
     <ClInclude Include="Base Code\HierarchyWindow.h" />
     <ClInclude Include="Base Code\InspectorWindow.h" />
+    <ClInclude Include="Base Code\lib\Devil\include\config.h" />
+    <ClInclude Include="Base Code\lib\Devil\include\devil_internal_exports.h" />
+    <ClInclude Include="Base Code\lib\Devil\include\il.h" />
+    <ClInclude Include="Base Code\lib\Devil\include\ilu.h" />
+    <ClInclude Include="Base Code\lib\Devil\include\ilut.h" />
+    <ClInclude Include="Base Code\lib\Devil\include\ilut_config.h" />
+    <ClInclude Include="Base Code\lib\Devil\include\ilu_region.h" />
+    <ClInclude Include="Base Code\lib\Devil\include\il_wrap.h" />
     <ClInclude Include="Base Code\lib\ImGui\imconfig.h" />
     <ClInclude Include="Base Code\lib\ImGui\imgui.h" />
     <ClInclude Include="Base Code\lib\ImGui\imgui_impl_opengl3.h" />
@@ -167,12 +175,14 @@
     <ClInclude Include="Base Code\lib\mmgr\mmgr.h" />
     <ClInclude Include="Base Code\lib\mmgr\nommgr.h" />
     <ClInclude Include="Base Code\lib\Parson\parson.h" />
+    <ClInclude Include="Base Code\lib\PhysFS\include\physfs.h" />
     <ClInclude Include="Base Code\Light.h" />
     <ClInclude Include="Base Code\Mesh.h" />
     <ClInclude Include="Base Code\MeshesArray.h" />
     <ClInclude Include="Base Code\Module.h" />
     <ClInclude Include="Base Code\ModuleBaseMotor.h" />
     <ClInclude Include="Base Code\ModuleCamera3D.h" />
+    <ClInclude Include="Base Code\ModuleFileSystem.h" />
     <ClInclude Include="Base Code\ModuleGameObject.h" />
     <ClInclude Include="Base Code\OptionsWindow.h" />
     <ClInclude Include="Base Code\ResourcesWindow.h" />
@@ -247,6 +257,7 @@
     <ClCompile Include="Base Code\Mesh.cpp" />
     <ClCompile Include="Base Code\ModuleBaseMotor.cpp" />
     <ClCompile Include="Base Code\ModuleCamera3D.cpp" />
+    <ClCompile Include="Base Code\ModuleFileSystem.cpp" />
     <ClCompile Include="Base Code\ModuleGameObject.cpp" />
     <ClCompile Include="Base Code\OptionsWindow.cpp" />
     <ClCompile Include="Base Code\ResourcesWindow.cpp" />

@@ -208,6 +208,9 @@
     <ClCompile Include="Base Code\HierarchyWindow.cpp">
       <Filter>Core\Windows</Filter>
     </ClCompile>
+    <ClCompile Include="Base Code\ModuleFileSystem.cpp">
+      <Filter>Core\Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Base Code\Application.h">
@@ -522,6 +525,36 @@
     <ClInclude Include="Base Code\HierarchyWindow.h">
       <Filter>Core\Windows</Filter>
     </ClInclude>
+    <ClInclude Include="Base Code\ModuleFileSystem.h">
+      <Filter>Core\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Base Code\lib\PhysFS\include\physfs.h">
+      <Filter>Core\Tools\PhysFS</Filter>
+    </ClInclude>
+    <ClInclude Include="Base Code\lib\Devil\include\devil_internal_exports.h">
+      <Filter>Core\Tools\Devil</Filter>
+    </ClInclude>
+    <ClInclude Include="Base Code\lib\Devil\include\il.h">
+      <Filter>Core\Tools\Devil</Filter>
+    </ClInclude>
+    <ClInclude Include="Base Code\lib\Devil\include\il_wrap.h">
+      <Filter>Core\Tools\Devil</Filter>
+    </ClInclude>
+    <ClInclude Include="Base Code\lib\Devil\include\ilu.h">
+      <Filter>Core\Tools\Devil</Filter>
+    </ClInclude>
+    <ClInclude Include="Base Code\lib\Devil\include\ilu_region.h">
+      <Filter>Core\Tools\Devil</Filter>
+    </ClInclude>
+    <ClInclude Include="Base Code\lib\Devil\include\ilut.h">
+      <Filter>Core\Tools\Devil</Filter>
+    </ClInclude>
+    <ClInclude Include="Base Code\lib\Devil\include\ilut_config.h">
+      <Filter>Core\Tools\Devil</Filter>
+    </ClInclude>
+    <ClInclude Include="Base Code\lib\Devil\include\config.h">
+      <Filter>Core\Tools\Devil</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -577,6 +610,12 @@
     </Filter>
     <Filter Include="Core\GameObject">
       <UniqueIdentifier>{3d5fe9ff-900b-4be1-bb94-0eda16b320fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Tools\PhysFS">
+      <UniqueIdentifier>{415234b2-3b3a-4c0c-b240-6e75d955cac7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Tools\Devil">
+      <UniqueIdentifier>{dc84bcc3-2b41-450d-b522-b6eca7f6099e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

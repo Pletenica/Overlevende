@@ -12,6 +12,7 @@
 #include "ModuleRenderer3D.h"
 #include "ModuleCamera3D.h"
 #include "ModuleBaseMotor.h"
+#include "ModuleFileSystem.h"
 
 class Application
 {
@@ -21,6 +22,7 @@ public:
 	ModuleInput* input;
 	ModuleSceneIntro* scene_intro;
 	ModuleRenderer3D* renderer3D;
+	ModuleFileSystem* file_system;
 	ModuleCamera3D* camera;
 	ModuleBaseMotor* base_motor;
 
