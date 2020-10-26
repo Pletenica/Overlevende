@@ -31,9 +31,9 @@ bool ComponentMesh::Disable()
 // Called before quitting
 bool ComponentMesh::Update(float dt)
 {
-
-	if(mesh != nullptr)
-		mesh->Render();
-
+	if (active == true) {
+		if (mesh != nullptr)
+			mesh->Render();
+	}
 	return true;
 }

@@ -33,6 +33,8 @@ private:
 	void CreateTransformTab(int i);
 	void CreateMeshTab(int i);
 	void CreateMaterialTab(int i);
+
+	char name[50];
 };
 
 #endif // __InspectorWindow_H__

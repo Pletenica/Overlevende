@@ -259,6 +259,12 @@ bool ModuleRenderer3D::CleanUp()
 	}
 	cleanUpMeshes.clear();
 
+	for (size_t i = 0; i < cleanUpTextures.size(); ++i)
+	{
+		glDeleteTextures(1, &cleanUpTextures[i]);
+	}
+	cleanUpTextures.clear();
+
 	SDL_GL_DeleteContext(context);
 
 	return true;

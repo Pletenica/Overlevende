@@ -17,8 +17,8 @@
 GameObject::GameObject()
 {
 	CreateComponent(ComponentType::C_Transform);
-	CreateComponent(ComponentType::C_Mesh);
-	CreateComponent(ComponentType::C_Material);
+	//CreateComponent(ComponentType::C_Mesh);
+	//CreateComponent(ComponentType::C_Material);
 }
 
 // Destructor

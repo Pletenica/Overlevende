@@ -38,13 +38,13 @@ bool InspectorWindow::Draw(float dt)
 		if (_selectedGO != nullptr) {
 			for (int i = 0; i < _selectedGO->components.size(); i++) {
 				if (_selectedGO->components[i] != nullptr) {
-					if (_selectedGO->components[i]->type == ComponentType::C_Transform) {
+					if (_selectedGO->components[i]!=nullptr && _selectedGO->components[i]->type == ComponentType::C_Transform) {
 						CreateTransformTab(i);
 					}
-					if (_selectedGO->components[i]->type == ComponentType::C_Mesh) {
+					if (_selectedGO->components[i] != nullptr && _selectedGO->components[i]->type == ComponentType::C_Mesh) {
 						CreateMeshTab(i);
 					}
-					if (_selectedGO->components[i]->type == ComponentType::C_Material) {
+					if (_selectedGO->components[i] != nullptr && _selectedGO->components[i]->type == ComponentType::C_Material) {
 						CreateMaterialTab(i);
 					}
 				}
@@ -74,13 +74,11 @@ bool InspectorWindow::PreUpdate(float dt)
 
 void InspectorWindow::CreateInitTab()
 {
-	static char name_chars[20] = {};
 	ImGui::Text("Options");
 	ImGui::Checkbox(" Name:", &_selectedGO->active);
-	ImGui::Text("Name %s", _selectedGO->name.c_str());
 	ImGui::SameLine();
-	const char* string_name = _selectedGO->name.c_str();
-	ImGui::InputText("", name_chars, sizeof(name_chars));
+	ImGui::TextColored(ImVec4(0.5f,0.5f,1,1),_selectedGO->name.c_str());
+
 	if (ImGui::Button("Delete GameObject", ImVec2(130, 20))) {
 		//Delete GameObject from list into scene
 		ExternalApp->scene_intro->DeleteGameObject(_selectedGO);

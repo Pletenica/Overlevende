@@ -47,5 +47,6 @@ public:
 	//GLubyte checkerImage[SQUARE_TEXTURE_W][SQUARE_TEXTURE_H][4];
 	uint imgID;
 	std::vector<Mesh*> cleanUpMeshes;
+	std::vector<GLuint> cleanUpTextures;
 
 };

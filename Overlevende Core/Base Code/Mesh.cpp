@@ -67,7 +67,7 @@ void Mesh::GenBuffers(MeshType _type)
 
 void Mesh::Render()
 {
-	//glBindTexture(GL_TEXTURE_2D, textureID);
+	glBindTexture(GL_TEXTURE_2D, textureID);
 
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glBindBuffer(GL_ARRAY_BUFFER, id_vertices);

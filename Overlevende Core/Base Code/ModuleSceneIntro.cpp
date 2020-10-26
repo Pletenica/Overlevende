@@ -154,6 +154,9 @@ GameObject* ModuleSceneIntro::CreateGameObject(std::string _name, GameObject* pa
 
 void ModuleSceneIntro::DeleteGameObject(GameObject* _go) 
 {
+	if (App->base_motor->inspector_window->_selectedGO == _go) {
+		App->base_motor->inspector_window->_selectedGO = nullptr;
+	}
 	if(_go->parent != nullptr)
 		delete _go;
 }
