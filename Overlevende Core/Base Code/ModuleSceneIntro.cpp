@@ -2,9 +2,7 @@
 #include "Application.h"
 #include "ModuleSceneIntro.h"
 #include "Primitive.h"
-//#include "PhysBody3D.h"
 #include <gl/GL.h>
-//#include <Glew/include/glew.h>
 
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
@@ -157,7 +155,7 @@ void ModuleSceneIntro::DeleteGameObject(GameObject* _go)
 	if (App->base_motor->inspector_window->_selectedGO == _go) {
 		App->base_motor->inspector_window->_selectedGO = nullptr;
 	}
-	if(_go->parent != nullptr)
+	if(_go!=nullptr)
 		delete _go;
 }
 

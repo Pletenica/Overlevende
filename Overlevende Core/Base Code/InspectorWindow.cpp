@@ -83,9 +83,10 @@ void InspectorWindow::CreateInitTab()
 
 	if (ImGui::Button("Delete GameObject", ImVec2(130, 20))) {
 		//Delete GameObject from list into scene
+		_selectedGO = nullptr;
 		ExternalApp->scene_intro->DeleteGameObject(_selectedGO);
 		//Put null the gameobject inspector properties (clean)
-		_selectedGO = nullptr;
+
 	}
 }
 
@@ -118,7 +119,7 @@ void InspectorWindow::CreateTransformTab(int i)
 	ComponentTransform *_compTrans = (ComponentTransform*)_selectedGO->components[i];
 	if (ImGui::CollapsingHeader("Transform")) {
 		ImGui::Checkbox(" ", &_selectedGO->components[i]->active);
-		ImGui::Text("Position:");
+		ImGui::Text("Position: %i  %i  %i", 1,2,3);
 		
 	}
 }

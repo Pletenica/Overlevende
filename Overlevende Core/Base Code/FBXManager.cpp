@@ -174,7 +174,7 @@ void FBXLoader::aiMeshToMesh(const aiScene* scene, std::vector<Mesh*>& meshVecto
 void FBXLoader::NodeToGameObject(const aiScene* scene, aiNode* node, GameObject* parent, std::vector<Mesh*>& meshVector)
 {
 	GameObject* go = new GameObject();
-	go->transform->node = node;
+	//go->transform->node = node;
 	go->name = node->mName.C_Str();
 	go->parent = parent;
 	parent->children.push_back(go);

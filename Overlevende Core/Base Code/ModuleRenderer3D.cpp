@@ -232,6 +232,7 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 
 	glEnable(GL_TEXTURE_2D);
 
+	App->base_motor->options_window->DoCheckers();
 	App->scene_intro->RecursiveUpdate(App->scene_intro->rootGO);
 
 	//AQUI PETA

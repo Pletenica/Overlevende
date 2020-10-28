@@ -331,3 +331,61 @@ std::string ModuleFileSystem::GetUniqueName(const char* path, const char* name) 
 	}
 	return finalName;
 }
+
+unsigned int ModuleFileSystem::Load(const char* path, const char* file, char** buffer) const
+{
+	std::string full_path(path);
+	full_path += file;
+	return Load(full_path.c_str(), buffer);
+}
+
+// Read a whole file and put it in a new buffer
+uint ModuleFileSystem::Load(const char* file, char** buffer) const
+{
+	uint ret = 0;
+
+	PHYSFS_file* fs_file = PHYSFS_openRead(file);
+
+	if (fs_file != nullptr)
+	{
+		PHYSFS_sint32 size = (PHYSFS_sint32)PHYSFS_fileLength(fs_file);
+
+		if (size > 0)
+		{
+			*buffer = new char[size + 1];
+			uint readed = (uint)PHYSFS_read(fs_file, *buffer, 1, size);
+			if (readed != size)
+			{
+				LOG("File System error while reading from file %s: %s\n", file, PHYSFS_getLastError());
+				delete(buffer);
+			}
+			else
+			{
+				ret = readed;
+				//Adding end of file at the end of the buffer. Loading a shader file does not add this for some reason
+				(*buffer)[size] = '\0';
+			}
+		}
+
+		if (PHYSFS_close(fs_file) == 0)
+			LOG("File System error while closing file %s: %s\n", file, PHYSFS_getLastError());
+	}
+	else
+		LOG("File System error while opening file %s: %s\n", file, PHYSFS_getLastError());
+
+	return ret;
+}
+
+void ModuleFileSystem::LoadFileFromPath(const char* _path)
+{
+	std::string path = _path;
+	NormalizePath(path.c_str());
+
+	// Shows directory of dropped file
+	if (path.substr(path.find_last_of(".") + 1) == "fbx" || path.substr(path.find_last_of(".") + 1) == "FBX") {
+
+	}
+	if (path.substr(path.find_last_of(".") + 1) == "png" || path.substr(path.find_last_of(".") + 1) == "PNG") {
+
+	}
+}

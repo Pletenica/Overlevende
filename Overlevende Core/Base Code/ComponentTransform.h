@@ -8,6 +8,7 @@
 class aiNode;
 #include "lib/Assimp/include/vector3.h"
 #include "lib/Assimp/include/quaternion.h"
+#include "lib/MathGeoLib/Math/float4x4.h"
 
 class ComponentTransform : public Component
 {
@@ -21,6 +22,8 @@ public:
 	bool Disable();
 
 public:
+	float4x4 local_transform;
+	float4x4 global_transform;
 	aiNode* node;
 	//aiVector3D translation;
 	//aiVector3D scaling;
