@@ -9,6 +9,7 @@
 #include <string>
 
 class Application;
+class ComponentTransform;
 
 enum ComponentType {
 	C_Transform,
@@ -51,6 +52,7 @@ public:
 	bool active = true;
 	std::string name;
 	std::vector<Component*> components;
+	ComponentTransform* transform;
 
 	GameObject* parent = nullptr;
 	std::vector<GameObject*> children;

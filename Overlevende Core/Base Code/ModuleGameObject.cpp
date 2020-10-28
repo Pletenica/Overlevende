@@ -16,7 +16,7 @@
 
 GameObject::GameObject()
 {
-	CreateComponent(ComponentType::C_Transform);
+	transform = (ComponentTransform*)CreateComponent(ComponentType::C_Transform);
 	//CreateComponent(ComponentType::C_Mesh);
 	//CreateComponent(ComponentType::C_Material);
 }

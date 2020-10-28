@@ -2,6 +2,13 @@
 #include "Application.h"
 #include "ModuleGameObject.h"
 #include "ComponentTransform.h"
+#include "MathGeoLib/Math/float3.h"
+#include "MathGeoLib/Math/Quat.h"
+
+
+#include "Assimp/include/cimport.h"
+#include "Assimp/include/scene.h"
+#include "Assimp/include/postprocess.h"
 
 ///WINDOW NOW
 ComponentTransform::ComponentTransform() :Component()
@@ -31,6 +38,11 @@ bool ComponentTransform::Disable()
 // Called before quitting
 bool ComponentTransform::Update(float dt)
 {
+	//node->mTransformation.Decompose(scaling, rotation, translation);
+	//
+	//float3 pos(translation.x, translation.y, translation.z);
+	//float3 scale(scaling.x, scaling.y, scaling.z);
+	//Quat rot(rotation.x, rotation.y, rotation.z, rotation.w);
 
 	return true;
 }

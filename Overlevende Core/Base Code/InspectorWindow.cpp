@@ -3,6 +3,7 @@
 #include "Application.h"
 #include "ModuleInput.h"
 
+#include "Assimp/include/scene.h"
 #include "Glew/include/glew.h"
 #include "ModuleGameObject.h"
 
@@ -37,7 +38,7 @@ bool InspectorWindow::Draw(float dt)
 		
 		if (_selectedGO != nullptr) {
 			for (int i = 0; i < _selectedGO->components.size(); i++) {
-				if (_selectedGO->components[i] != nullptr) {
+				if (_selectedGO != nullptr && _selectedGO->components[i] != nullptr) {
 					if (_selectedGO->components[i]!=nullptr && _selectedGO->components[i]->type == ComponentType::C_Transform) {
 						CreateTransformTab(i);
 					}
@@ -74,10 +75,11 @@ bool InspectorWindow::PreUpdate(float dt)
 
 void InspectorWindow::CreateInitTab()
 {
+	static char name_chars[20] = {};
 	ImGui::Text("Options");
 	ImGui::Checkbox(" Name:", &_selectedGO->active);
 	ImGui::SameLine();
-	ImGui::TextColored(ImVec4(0.5f,0.5f,1,1),_selectedGO->name.c_str());
+	ImGui::InputText("/", name_chars, sizeof(name_chars));
 
 	if (ImGui::Button("Delete GameObject", ImVec2(130, 20))) {
 		//Delete GameObject from list into scene
@@ -103,7 +105,7 @@ void InspectorWindow::CreateMeshTab(int i)
 {
 	ComponentMesh* _compMesh = (ComponentMesh*)_selectedGO->components[i];
 	if (ImGui::CollapsingHeader("Mesh Renderer")) {
-		ImGui::Checkbox(" ", &_selectedGO->components[i]->active);
+		ImGui::Checkbox("Active", &_selectedGO->components[i]->active);
 		ImGui::SameLine();
 		if (ImGui::Button("Delete Component", ImVec2(120,20))) {
 			_selectedGO->DeleteComponent(_compMesh);
@@ -117,6 +119,7 @@ void InspectorWindow::CreateTransformTab(int i)
 	if (ImGui::CollapsingHeader("Transform")) {
 		ImGui::Checkbox(" ", &_selectedGO->components[i]->active);
 		ImGui::Text("Position:");
+		
 	}
 }
 

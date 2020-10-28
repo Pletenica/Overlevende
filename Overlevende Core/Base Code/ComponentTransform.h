@@ -5,6 +5,10 @@
 #include "ModuleGameObject.h"
 #include "SDL/include/SDL.h"
 
+class aiNode;
+#include "lib/Assimp/include/vector3.h"
+#include "lib/Assimp/include/quaternion.h"
+
 class ComponentTransform : public Component
 {
 public:
@@ -17,17 +21,10 @@ public:
 	bool Disable();
 
 public:
-	float position_x;
-	float position_y;
-	float position_z;
-
-	float rotation_x;
-	float rotation_y;
-	float rotation_z;
-
-	float scale_x;
-	float scale_y;
-	float scale_z;
+	aiNode* node;
+	//aiVector3D translation;
+	//aiVector3D scaling;
+	//aiQuaternion rotation;
 };
 
 #endif // __ComponentTransform_H__

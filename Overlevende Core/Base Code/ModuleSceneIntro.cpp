@@ -36,8 +36,8 @@ bool ModuleSceneIntro::Start()
 	App->camera->LookAt(vec3(0, 0, 0));
 
 	showaxis = true;
-	rootGO = CreateGameObject("Prova GameObject", nullptr);
-	App->base_motor->inspector_window->PutNewSelectedGameObject(rootGO);
+	rootGO = CreateGameObject("Scene", nullptr);
+	//App->base_motor->inspector_window->PutNewSelectedGameObject(rootGO);
 	return ret;
 }
 

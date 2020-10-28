@@ -10,11 +10,13 @@
 #include"ModuleGameObject.h"
 
 #include"ComponentMesh.h"
+#include"ComponentTransform.h"
 
 #include"Devil/include/ilu.h"
 #include"Devil/include/ilut.h"
 
 #pragma comment (lib, "Assimp/libx86/assimp.lib")
+#include<string>
 
 void myFunction(const char* message, char* user)
 {
@@ -38,8 +40,19 @@ void FBXLoader::ImportFBX(const char* full_path, int _idTexturesTemporal)
 {
 	const aiScene* scene = aiImportFile(ExternalApp->file_system->NormalizePath(full_path).c_str(), aiProcessPreset_TargetRealtime_MaxQuality);
 
+	//char* GameObjectName = full_path;
+	//std::string _gameObjectName = GameObjectName.c_str();
+	//_gameObjectName = _gameObjectName.substr(0, _gameObjectName.find_last_of("/\\") + 1);
+
+
+
 	if (scene != nullptr && scene->HasMeshes())
 	{
+		std::string g = full_path;
+		int size = g.size() - 4;
+		g = g.substr(g.find_last_of("/\\") + 1, size);
+		scene->mRootNode->mName = g;
+
 		// Use scene->mNumMeshes to iterate on scene->mMeshes array
 		aiMesh* new_mesh = nullptr;
 
@@ -149,7 +162,9 @@ void FBXLoader::aiMeshToMesh(const aiScene* scene, std::vector<Mesh*>& meshVecto
 			}
 		}
 
-		_mesh->textureID = textureVector[new_mesh->mMaterialIndex];
+		if (new_mesh->mMaterialIndex < textureVector.size()) {
+			_mesh->textureID = textureVector[new_mesh->mMaterialIndex];
+		}
 		_mesh->GenBuffers(MeshType::FBXNone);
 		meshVector.push_back(_mesh);
 	}
@@ -159,6 +174,7 @@ void FBXLoader::aiMeshToMesh(const aiScene* scene, std::vector<Mesh*>& meshVecto
 void FBXLoader::NodeToGameObject(const aiScene* scene, aiNode* node, GameObject* parent, std::vector<Mesh*>& meshVector)
 {
 	GameObject* go = new GameObject();
+	go->transform->node = node;
 	go->name = node->mName.C_Str();
 	go->parent = parent;
 	parent->children.push_back(go);
@@ -166,7 +182,8 @@ void FBXLoader::NodeToGameObject(const aiScene* scene, aiNode* node, GameObject*
 	for (size_t i = 0; i < node->mNumMeshes; i++)
 	{
 		GameObject* childGO = new GameObject();
-		childGO->name = scene->mMeshes[node->mMeshes[i]]->mName.C_Str();
+
+		childGO->name = "Model";
 		childGO->parent = go;
 
 		//Load mesh here
@@ -176,7 +193,7 @@ void FBXLoader::NodeToGameObject(const aiScene* scene, aiNode* node, GameObject*
 		go->children.push_back(childGO);
 	}
 
-	for (size_t i = 0; i < node->mNumChildren; ++i)
+	for (size_t i = 0; i < node->mNumChildren; i++)
 	{
 		NodeToGameObject(scene, node->mChildren[i], go, meshVector);
 	}

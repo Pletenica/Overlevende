@@ -20,9 +20,15 @@ public:
 	bool Draw(float dt);
 	bool PreUpdate(float dt);
 	bool CleanUp();
+	void DoCheckers();
 
 private:
+	bool depth_bool = false;
 	bool wireframe_bool = false;
+	bool cullface_bool = false;
+	bool light_bool = false;
+	bool texture_bool = true;
+	bool normals_bool = false;
 };
 
 #endif // __OptionsWindow_H__

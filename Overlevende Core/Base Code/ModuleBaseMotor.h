@@ -6,6 +6,7 @@
 
 #include "ConsoleWindow.h"
 #include "InspectorWindow.h"
+#include "OptionsWindow.h"
 
 //Include ImGui
 #include "ImGui/imgui.h"
@@ -29,6 +30,7 @@ public:
 	SDL_GLContext context;
 	ConsoleWindow* console_window;
 	InspectorWindow* inspector_window;
+	OptionsWindow* options_window;
 
 private:
 	bool wireSphere = false;
