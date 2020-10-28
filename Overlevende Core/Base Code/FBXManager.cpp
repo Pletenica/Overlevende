@@ -36,22 +36,16 @@ void FBXLoader::DisableDebug()
 	aiDetachAllLogStreams();
 }
 
-void FBXLoader::ImportFBX(const char* full_path, int _idTexturesTemporal)
+void FBXLoader::ImportFBX(char* _buffer, int _size, int _idTexturesTemporal)
 {
-	const aiScene* scene = aiImportFile(ExternalApp->file_system->NormalizePath(full_path).c_str(), aiProcessPreset_TargetRealtime_MaxQuality);
-
-	//char* GameObjectName = full_path;
-	//std::string _gameObjectName = GameObjectName.c_str();
-	//_gameObjectName = _gameObjectName.substr(0, _gameObjectName.find_last_of("/\\") + 1);
-
-
+	const aiScene* scene = aiImportFileFromMemory(_buffer, _size, aiProcessPreset_TargetRealtime_MaxQuality,nullptr);
 
 	if (scene != nullptr && scene->HasMeshes())
 	{
-		std::string g = full_path;
-		int size = g.size() - 4;
-		g = g.substr(g.find_last_of("/\\") + 1, size);
-		scene->mRootNode->mName = g;
+		//std::string g = full_path;
+		//int size = g.size() - 4;
+		//g = g.substr(g.find_last_of("/\\") + 1, size);
+		//scene->mRootNode->mName = g;
 
 		// Use scene->mNumMeshes to iterate on scene->mMeshes array
 		aiMesh* new_mesh = nullptr;
@@ -62,17 +56,16 @@ void FBXLoader::ImportFBX(const char* full_path, int _idTexturesTemporal)
 		if (scene->HasMaterials())
 		{
 			aiMaterial* material = scene->mMaterials[0];
-
+		
 			aiString texName;
 			material->GetTexture(aiTextureType_DIFFUSE, 0, &texName);
-
-			std::string texturePath(full_path);
-			texturePath = texturePath.substr(0, texturePath.find_last_of("/\\") + 1);
-			texturePath += texName.C_Str();
-
-			texturesVector.push_back(LoadTexture(texturePath.c_str()));
-
-			texturePath.clear();
+		
+			char* buffer = nullptr;
+			std::string _localpath = "Assets/FBXs/" + (std::string)texName.C_Str();
+			int size = ExternalApp->file_system->Load(_localpath.c_str(), &buffer);
+			
+			texturesVector.push_back(FBXLoader::LoadTexture(buffer, size));
+			delete[] buffer;
 		}
 
 		ExternalApp->renderer3D->cleanUpTextures = texturesVector;
@@ -85,17 +78,17 @@ void FBXLoader::ImportFBX(const char* full_path, int _idTexturesTemporal)
 
 		aiReleaseImport(scene);
 	}
-	else
-		LOG("Error loading scene % s", full_path);
+	//else
+	//	LOG("Error loading scene % s", full_path);
 }
 
-int FBXLoader::LoadTexture(const char* path)
+int FBXLoader::LoadTexture(char* buffer, int _size)
 {
 	ILuint imageID;
 	ilGenImages(1, &imageID);
 	ilBindImage(imageID);
 	
-	if (!ilLoadImage(path)) 
+	if (!ilLoadL(IL_TYPE_UNKNOWN,buffer, _size))
 	{
 		LOG("Error loading texture");
 	}

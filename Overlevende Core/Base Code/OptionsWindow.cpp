@@ -28,15 +28,15 @@ bool OptionsWindow::Draw(float dt)
 {
 	ImGui::Begin("Options");
 	if(ImGui::Button("Add a cube", ImVec2(110, 40))) {
-		FBXLoader::ImportFBX("D:\\Documents\\GitHub\\Overlevende\\Overlevende Core\\Game\\Assets\\Basic Shapes\\Cube.fbx", ExternalApp->renderer3D->imgID);
+		//FBXLoader::ImportFBX("D:\\Documents\\GitHub\\Overlevende\\Overlevende Core\\Game\\Assets\\Basic Shapes\\Cube.fbx", ExternalApp->renderer3D->imgID);
 	}
 	ImGui::SameLine();
 	if(ImGui::Button("Add a sphere", ImVec2(110, 40))) {
-		FBXLoader::ImportFBX("D:\\Documents\\GitHub\\Overlevende\\Overlevende Core\\Game\\Assets\\Basic Shapes\\Sphere.fbx", ExternalApp->renderer3D->imgID);
+		//FBXLoader::ImportFBX("D:\\Documents\\GitHub\\Overlevende\\Overlevende Core\\Game\\Assets\\Basic Shapes\\Sphere.fbx", ExternalApp->renderer3D->imgID);
 	}
 	ImGui::SameLine();
 	if(ImGui::Button("Add a cylinder", ImVec2(110, 40))) {
-		FBXLoader::ImportFBX("D:\\Documents\\GitHub\\Overlevende\\Overlevende Core\\Game\\Assets\\Basic Shapes\\Cylinder.fbx", ExternalApp->renderer3D->imgID);
+		//FBXLoader::ImportFBX("D:\\Documents\\GitHub\\Overlevende\\Overlevende Core\\Game\\Assets\\Basic Shapes\\Cylinder.fbx", ExternalApp->renderer3D->imgID);
 	}
 	ImGui::Checkbox("Depth Test", &depth_bool);
 	ImGui::SameLine();
