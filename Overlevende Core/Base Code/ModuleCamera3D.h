@@ -19,6 +19,7 @@ public:
 	void LookAt(const vec3 &Spot);
 	void Move(const vec3 &Movement);
 	float* GetViewMatrix();
+	void SetBackgroundColor(float r, float g, float b, float w);
 
 private:
 
@@ -31,6 +32,7 @@ public:
 	float drag_speed;
 	float zoom_speed;
 	float sensitivity;
+	Color background;
 
 private:
 	mat4x4 ViewMatrix, ViewMatrixInverse;

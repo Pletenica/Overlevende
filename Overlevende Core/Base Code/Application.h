@@ -14,6 +14,26 @@
 #include "ModuleBaseMotor.h"
 #include "ModuleFileSystem.h"
 
+struct HardwareInfo
+{
+	int GPUs;
+	int CACHE;
+	float RAM;
+	const char* GPU;
+	const char* GPU_brand;
+	bool RDTSC = false;
+	bool MMX = false;
+	bool SSE = false;
+	bool SSE2 = false;
+	bool SSE3 = false;
+	bool SSE41 = false;
+	bool SSE42 = false;
+	bool AVX = false;
+	bool AVX2 = false;
+	bool AltiVec = false;
+	std::string caps;
+};
+
 class Application
 {
 public:
@@ -41,11 +61,14 @@ public:
 	update_status Update();
 	bool CleanUp();
 
+	HardwareInfo GetHardware();
+	const char* GetEngineVersion();
 private:
 
 	void AddModule(Module* mod);
 	void PrepareUpdate();
 	void FinishUpdate();
+	const char* version;
 };
 
 extern Application* ExternalApp;

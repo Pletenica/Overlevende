@@ -165,7 +165,8 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 {
 
 	glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
-	glClearColor(0.278f, 0.278f, 0.278f, 0.278f);
+	Color c = App->camera->background;
+	glClearColor(c.r, c.g, c.b, c.a);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 

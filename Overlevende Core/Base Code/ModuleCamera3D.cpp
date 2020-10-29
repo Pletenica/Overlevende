@@ -12,6 +12,8 @@ ModuleCamera3D::ModuleCamera3D(Application* app, bool start_enabled) : Module(ap
 
 	Position = vec3(0.0f, 0.0f, 5.0f);
 	Reference = vec3(0.0f, 0.0f, 0.0f);
+
+	background = { 0.1f, 0.1f, 0.1f, 1.0f };
 }
 
 ModuleCamera3D::~ModuleCamera3D()
@@ -211,6 +213,11 @@ void ModuleCamera3D::Move(const vec3 &Movement)
 float* ModuleCamera3D::GetViewMatrix()
 {
 	return &ViewMatrix;
+}
+
+void ModuleCamera3D::SetBackgroundColor(float r, float g, float b, float w)
+{
+	background = { r,g,b,w };
 }
 
 // -----------------------------------------------------------------

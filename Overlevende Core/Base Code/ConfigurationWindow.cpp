@@ -53,40 +53,59 @@ bool ConfigurationWindow::Draw(float dt)
 		ImGui::PlotHistogram("##milliseconds", &ms[0], ms.size(), 0, "Milliseconds", 0.0f, 100.0f, ImVec2(310, 100));
 
 	}
-	if (ImGui::CollapsingHeader("General Settings")) {
-		ImGui::Text("Window Size:");
-		/*if (ImGui::Checkbox("Fullscreen", &fullscreen)) {
+	if (ImGui::CollapsingHeader("Hardware Performance")) {
+		
+		static HardwareInfo specs = ExternalApp->GetHardware();
 
-		}*/
-		ImGui::Text("Brightness");
+		ImGui::TextColored(ImVec4(0.5, 0.5, 1.0, 1.0f), "GPUs:");
+		ImGui::SameLine();
+		ImGui::Text( "%s", specs.GPU);
+
+		ImGui::TextColored(ImVec4(0.5, 0.5, 1.0, 1.0f), "Brand:");
+		ImGui::SameLine();
+		ImGui::Text("%s", specs.GPU_brand);
+
+		ImGui::TextColored(ImVec4(0.5, 0.5, 1.0, 1.0f), "CPUs:");
+		ImGui::SameLine();
+		ImGui::Text("%d (Cache: %dkb)", specs.GPUs, specs.CACHE);
+
+		ImGui::TextColored(ImVec4(0.5, 0.5, 1.0, 1.0f), "RAM:");
+		ImGui::SameLine();
+		ImGui::Text("%.1f Gb", specs.RAM);
+
+		ImGui::TextColored(ImVec4(0.5, 0.5, 1.0, 1.0f), "Caps:");
+		ImGui::SameLine();
+		ImGui::Text("%s", specs.caps.c_str());
 
 	}
-	if (ImGui::CollapsingHeader("Render Sync")) {
-		ImGui::Text("Coming Soon.");
+	if (ImGui::CollapsingHeader("Libraries Information")) {
+
+		SDL_version version;
+		SDL_GetVersion(&version);
+		ImGui::Text("SDL Version:");
+		ImGui::SameLine();
+		ImGui::Text("%d.%d.%d", version.major, version.minor, version.patch);
 
 	}
-	if (ImGui::CollapsingHeader("Input Readings")) {
+	if (ImGui::CollapsingHeader("Main Controls")) {
 		ImGui::Text("Mouse");
-		ImGui::Text("F1				Show/Hide Grid");
-
-	}
-	if (ImGui::CollapsingHeader("Audio")) {
-		ImGui::Text("No audio so far.");
-
-	}
-	if (ImGui::CollapsingHeader("Textures")) {
-		ImGui::Text("Estandar Textures.");
+		ImGui::Text("You can use F1 to disable the grid in the scene window.");
+		ImGui::Text("While Right clicking, “WASD” fps-like movement and free look around is enabled.");
+		ImGui::Text("Shift will double the speed of movement.");
+		ImGui::Text("You can use 0 to deselect the gameobject from the inspector.");
+		ImGui::Text("You can use 2 to create empty objects children of the general scene.");
 
 	}
 	if (ImGui::CollapsingHeader("Choose Theme")) {
 		///////////////// MODES ///////////////////////
-		ImGui::Text("Choose your favourite interface mode.");
-		/*
-		PER A FER ELS BOTONS EN IMATGES (En un futur)
-		if (ImGui::ImageButton(iconprovingtex, ImVec2(100, 40))) {
+		static ImVec4 color = ImVec4(ExternalApp->camera->background.r, ExternalApp->camera->background.g, ExternalApp->camera->background.b, ExternalApp->camera->background.a);
 
+		ImGui::Text("Choose your favourite interface mode.");
+		
+
+		if (ImGui::ColorEdit3("Background Color##1", (float*)&color)) {
+			ExternalApp->camera->SetBackgroundColor(color.x, color.y, color.z, color.w);
 		}
-		*/
 		if (ImGui::Checkbox("Night Mode", &isNightModeSelected)) {
 			NightModeSelected();
 		}
