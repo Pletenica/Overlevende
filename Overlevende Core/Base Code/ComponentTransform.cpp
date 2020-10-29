@@ -50,7 +50,14 @@ bool ComponentTransform::Update(float dt)
 void ComponentTransform::OnEditor()
 {
 	if (ImGui::CollapsingHeader("Transform")) {
-		ImGui::Checkbox(" ", &this->active);
+		char* position = "";
+		//ImGui::Text("X:");
+		//ImGui::SameLine();
+		//ImGui::InputTextEx("Y:", "hola", position, 5,ImVec2(60,20),0);
+		//ImGui::SameLine();
+		//ImGui::InputTextEx("Z:", "hola", position, 5, ImVec2(60, 20), 0);
+		//ImGui::SameLine();
+		//ImGui::InputTextEx("Position", "hola", position, 5, ImVec2(60, 20), 0);
 		ImGui::Text("Position: %i  %i  %i", 1, 2, 3);
 		ImGui::Text("Rotation: %i  %i  %i", 1, 2, 3);
 		ImGui::Text("Scale: %i  %i  %i", 1, 2, 3);

@@ -397,7 +397,7 @@ void ModuleFileSystem::LoadFileFromPath(const char* _path)
 	}
 
 	////////////// IF IS PNG ////////////////////
-	if (path.substr(path.find_last_of(".") + 1) == "png" || path.substr(path.find_last_of(".") + 1) == "PNG") {
+	if (path.substr(path.find_last_of(".") + 1) == "png" || path.substr(path.find_last_of(".") + 1) == "PNG" || path.substr(path.find_last_of(".") + 1) == "DDS" || path.substr(path.find_last_of(".") + 1) == "dds") {
 		char* buffer = nullptr;
 		std::string _p = path.substr(path.find_last_of("/"));
 		std::string _localpath = "Assets/FBXs" + _p;

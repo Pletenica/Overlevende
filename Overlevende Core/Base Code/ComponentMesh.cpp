@@ -43,9 +43,5 @@ void ComponentMesh::OnEditor()
 {
 	if (ImGui::CollapsingHeader("Mesh Renderer")) {
 		ImGui::Checkbox("Active", &this->active);
-		ImGui::SameLine();
-		if (ImGui::Button("Delete Component", ImVec2(120, 20))) {
-			ExternalApp->base_motor->inspector_window->_selectedGO->DeleteComponent(this);
-		}
 	}
 }

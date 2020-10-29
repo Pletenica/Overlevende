@@ -34,7 +34,7 @@ bool GameObject::Init()
 
 	for (int i = 0; i < components.size(); i++)
 	{
-		if (components[i] != nullptr) 
+		if (components[i] != nullptr)
 			components[i]->Enable();
 	}
 
@@ -45,7 +45,7 @@ update_status GameObject::Update(float dt)
 {
 	for (int i = 0; i < components.size(); i++)
 	{
-		if(components[i]!=nullptr) 
+		if (components[i] != nullptr)
 			components[i]->Update(dt);
 	}
 

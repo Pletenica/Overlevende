@@ -4,6 +4,9 @@
 #include "ComponentMaterial.h"
 #include "ComponentMesh.h"
 
+#include"Devil/include/ilu.h"
+#include"Devil/include/ilut.h"
+
 ///WINDOW NOW
 ComponentMaterial::ComponentMaterial() :Component()
 {
@@ -48,11 +51,6 @@ void ComponentMaterial::ChangeTexture(GLuint _id, ComponentMesh* _mesh)
 void ComponentMaterial::OnEditor()
 {
 	if (ImGui::CollapsingHeader("Material")) {
-		ImGui::Checkbox(" ", &this->active);
-		ImGui::SameLine();
-		if (ImGui::Button("Delete Component", ImVec2(120, 20))) {
-			ExternalApp->base_motor->inspector_window->_selectedGO->DeleteComponent(this);
-		}
 		if (ImGui::Checkbox("Checker Material", &putCheckMaterial)) {
 			ChangeTex();
 		}
@@ -61,6 +59,7 @@ void ComponentMaterial::OnEditor()
 		if (texturePath != "") {
 			ImGui::TextColored(ImVec4(0.5f, 0.5f, 1, 1), texturePath.c_str());
 		}
+		//ilGetInteger()
 	}
 }
 

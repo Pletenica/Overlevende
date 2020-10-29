@@ -64,14 +64,7 @@ void InspectorWindow::CreateInitTab()
 	ImGui::Text("Options");
 	ImGui::Checkbox(" Name:", &_selectedGO->active);
 	ImGui::SameLine();
-	ImGui::InputText("/", name_chars, sizeof(name_chars));
-
-	if (ImGui::Button("Delete GameObject", ImVec2(130, 20))) {
-		//Delete GameObject from list into scene
-		_selectedGO = nullptr;
-		ExternalApp->scene_intro->DeleteGameObject(_selectedGO);
-		//Put null the gameobject inspector properties (clean)
-	}
+	ImGui::TextColored(ImVec4(0.5f,0.5f,1,1), _selectedGO->name.c_str());
 }
 
 void InspectorWindow::PutNewSelectedGameObject(GameObject* _go)

@@ -163,9 +163,10 @@ void ModuleSceneIntro::RecursiveUpdate(GameObject* node)
 {
 	node->Update(0.f);
 
-	for (size_t i = 0; i < node->children.size(); i++)
-	{
-		RecursiveUpdate(node->children[i]);
+	if (node->active == true) {
+		for (size_t i = 0; i < node->children.size(); i++)
+		{
+			RecursiveUpdate(node->children[i]);
+		}
 	}
-
 }

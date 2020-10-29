@@ -5,6 +5,7 @@
 class Mesh;
 class aiMesh;
 class aiScene;
+class aiString;
 class GameObject;
 class aiNode;
 typedef unsigned int GLuint;
@@ -18,6 +19,6 @@ namespace FBXLoader
 
 	void aiMeshToMesh(const aiScene* scene, std::vector<Mesh*>& meshVector, std::vector<GLuint>& textureVector);
 
-	void NodeToGameObject(const aiScene* scene, aiNode* node, GameObject* parent, std::vector<Mesh*>& meshVector);
+	void NodeToGameObject(const aiScene* scene, aiNode* node, GameObject* parent, std::vector<Mesh*>& meshVector, aiString _name);
 
 };
