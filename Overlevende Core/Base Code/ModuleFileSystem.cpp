@@ -3,6 +3,7 @@
 #include "ModuleFileSystem.h"
 #include "FBXManager.h"
 #include "ComponentMesh.h"
+#include "ComponentMaterial.h"
 //#include "PathNode.h"
 
 #include "PhysFS/include/physfs.h"
@@ -383,25 +384,29 @@ void ModuleFileSystem::LoadFileFromPath(const char* _path)
 	std::string path = _path;
 	path = NormalizePath(path.c_str());
 
-	// Shows directory of dropped file
+	////////////// IF IS FBX ////////////////////
 	if (path.substr(path.find_last_of(".") + 1) == "fbx" || path.substr(path.find_last_of(".") + 1) == "FBX") {
 		char* buffer = nullptr;
-		std::string _p = path.substr(path.find_last_of("/"));
+		std::string _p = path.substr(path.find_last_of("/")+1);
 		std::string _localpath = "Assets/FBXs/" + _p;
 		int size = Load(_localpath.c_str(), &buffer);
 		if (buffer != nullptr) {
-			FBXLoader::ImportFBX(buffer, size, App->renderer3D->imgID);
+			FBXLoader::ImportFBX(buffer, size, App->renderer3D->imgID, _p.c_str());
 		}
 		delete[] buffer;
 	}
+
+	////////////// IF IS PNG ////////////////////
 	if (path.substr(path.find_last_of(".") + 1) == "png" || path.substr(path.find_last_of(".") + 1) == "PNG") {
 		char* buffer = nullptr;
 		std::string _p = path.substr(path.find_last_of("/"));
 		std::string _localpath = "Assets/FBXs/" + _p;
 		int size = Load(_localpath.c_str(), &buffer);
 		ComponentMesh* c_mesh = (ComponentMesh*)App->base_motor->inspector_window->_selectedGO->GetComponent(ComponentType::C_Mesh);
-		if (c_mesh != nullptr) {
+		ComponentMaterial* c_mat = (ComponentMaterial*)App->base_motor->inspector_window->_selectedGO->GetComponent(ComponentType::C_Material);
+		if (c_mesh != nullptr && c_mat !=nullptr) {
 			c_mesh->mesh->textureID = FBXLoader::LoadTexture(buffer, size);
+			c_mat->textureID = c_mesh->mesh->textureID;
 		}
 		delete[] buffer;
 	}

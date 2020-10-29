@@ -8,6 +8,10 @@
 #include "SDL/include/SDL.h"
 
 class GameObject;
+class ComponentMaterial;
+class ComponentMesh;
+class ComponentTransform;
+typedef unsigned int GLuint;
 
 class InspectorWindow : public Window
 {
@@ -25,6 +29,9 @@ public:
 	void PutNewSelectedGameObject(GameObject* _go);
 	void DeleteSelectedGameObject();
 
+private:
+	void ChangeTex();
+
 public:
 	GameObject* _selectedGO = nullptr;
 
@@ -34,7 +41,13 @@ private:
 	void CreateMeshTab(int i);
 	void CreateMaterialTab(int i);
 
+	bool putCheckMaterial = false;
+	GLuint mainMeshTextureID;
 	char name[50];
+
+	ComponentMaterial* c_mat;
+	ComponentTransform* c_transform;
+	ComponentMesh* c_mesh;
 };
 
 #endif // __InspectorWindow_H__

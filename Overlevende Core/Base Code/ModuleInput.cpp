@@ -118,19 +118,7 @@ update_status ModuleInput::PreUpdate(float dt)
 
 				App->file_system->LoadFileFromPath(dropped_filedir);
 
-				//std::string path = dropped_filedir;
-				//// Shows directory of dropped file
-				//if (path.substr(path.find_last_of(".") + 1) == "fbx" || path.substr(path.find_last_of(".") + 1) == "FBX") {
-				//	FBXLoader::ImportFBX(dropped_filedir, App->renderer3D->imgID);
-				//}
-				//if (path.substr(path.find_last_of(".") + 1) == "png") {
-				//	ComponentMesh* c_mesh = (ComponentMesh*)App->base_motor->inspector_window->_selectedGO->GetComponent(ComponentType::C_Mesh);
-				//	if (c_mesh!=nullptr) {
-				//		c_mesh->mesh->textureID = FBXLoader::LoadTexture(dropped_filedir);
-				//	}
-				//}
-
-				SDL_free(dropped_filedir);    // Free dropped_filedir memory
+				SDL_free(dropped_filedir);
 				break;
 			}
 

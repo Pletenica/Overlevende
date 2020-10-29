@@ -9,6 +9,7 @@
 #include"ModuleRenderer3D.h"
 #include"ModuleGameObject.h"
 
+#include"ComponentMaterial.h"
 #include"ComponentMesh.h"
 #include"ComponentTransform.h"
 
@@ -36,18 +37,16 @@ void FBXLoader::DisableDebug()
 	aiDetachAllLogStreams();
 }
 
-void FBXLoader::ImportFBX(char* _buffer, int _size, int _idTexturesTemporal)
+void FBXLoader::ImportFBX(char* _buffer, int _size, int _idTexturesTemporal, const char* _name)
 {
 	const aiScene* scene = aiImportFileFromMemory(_buffer, _size, aiProcessPreset_TargetRealtime_MaxQuality,nullptr);
 
 	if (scene != nullptr && scene->HasMeshes())
 	{
-		//std::string g = full_path;
-		//int size = g.size() - 4;
-		//g = g.substr(g.find_last_of("/\\") + 1, size);
-		//scene->mRootNode->mName = g;
+		std::string _p = _name;
+		_p = _p.substr(0, _p.find_last_of("."));
+		scene->mRootNode->mName = _p;
 
-		// Use scene->mNumMeshes to iterate on scene->mMeshes array
 		aiMesh* new_mesh = nullptr;
 
 		std::vector<Mesh*> meshVector;
@@ -93,12 +92,12 @@ int FBXLoader::LoadTexture(char* buffer, int _size)
 		LOG("Error loading texture");
 	}
 	GLuint glID = ilutGLBindTexImage();
-
 	glBindTexture(GL_TEXTURE_2D, glID);
 	ilDeleteImages(1, &imageID);
 
 	return glID;
 }
+
 
 void FBXLoader::aiMeshToMesh(const aiScene* scene, std::vector<Mesh*>& meshVector, std::vector<GLuint>& textureVector)
 {
@@ -180,8 +179,11 @@ void FBXLoader::NodeToGameObject(const aiScene* scene, aiNode* node, GameObject*
 		childGO->parent = go;
 
 		//Load mesh here
-		ComponentMesh* meshRenderer = dynamic_cast<ComponentMesh*>(childGO->CreateComponent(ComponentType::C_Mesh));
+		ComponentMesh* meshRenderer = (ComponentMesh*)(childGO->CreateComponent(ComponentType::C_Mesh));
 		meshRenderer->mesh = meshVector[node->mMeshes[i]];
+
+		ComponentMaterial* materialRenderer = (ComponentMaterial*)(childGO->CreateComponent(ComponentType::C_Material));
+		materialRenderer->textureID = meshRenderer->mesh->textureID;
 
 		go->children.push_back(childGO);
 	}

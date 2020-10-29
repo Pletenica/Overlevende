@@ -129,36 +129,29 @@ bool ModuleRenderer3D::Init()
 	// Projection matrix for
 
 	//Generate texture
-	//for (int i = 0; i < SQUARE_TEXTURE_W; i++) {
-	//	for (int j = 0; j < SQUARE_TEXTURE_H; j++) {
-	//		int c = ((((i & 0x8) == 0) ^ (((j & 0x8)) == 0))) * 255;
-	//		checkerImage[i][j][0] = (GLubyte)c;
-	//		checkerImage[i][j][1] = (GLubyte)c;
-	//		checkerImage[i][j][2] = (GLubyte)c;
-	//		checkerImage[i][j][3] = (GLubyte)255;
-	//	}
-	//}
+	for (int i = 0; i < SQUARE_TEXTURE_W; i++) {
+		for (int j = 0; j < SQUARE_TEXTURE_H; j++) {
+			int c = ((((i & 0x8) == 0) ^ (((j & 0x8)) == 0))) * 255;
+			checkerImage[i][j][0] = (GLubyte)c;
+			checkerImage[i][j][1] = (GLubyte)c;
+			checkerImage[i][j][2] = (GLubyte)c;
+			checkerImage[i][j][3] = (GLubyte)255;
+		}
+	}
 
-	//glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-	//glGenTextures(1, &imgID);
-	//glBindTexture(GL_TEXTURE_2D, imgID);
-	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	//glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, SQUARE_TEXTURE_W, SQUARE_TEXTURE_H, 0, GL_RGBA, GL_UNSIGNED_BYTE, checkerImage);
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+	glGenTextures(1, &imgID);
+	glBindTexture(GL_TEXTURE_2D, imgID);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, SQUARE_TEXTURE_W, SQUARE_TEXTURE_H, 0, GL_RGBA, GL_UNSIGNED_BYTE, checkerImage);
 
-	//glBindTexture(GL_TEXTURE_2D, 0);
+	glBindTexture(GL_TEXTURE_2D, 0);
 
 	GenerateSceneBuffers();
 	OnResize(SCREEN_WIDTH, SCREEN_HEIGHT);
-	//glGenBuffers(1, (GLuint*)&(id_vertices));
-	//glBindBuffer(GL_ARRAY_BUFFER, id_vertices);
-	//glBufferData(GL_ARRAY_BUFFER, sizeof(float) * num_vertices * 3, &vertices[0], GL_STATIC_DRAW);
-
-	//glGenBuffers(1, (GLuint*)&(id_indices));
-	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id_indices);
-	//glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint) * num_indices, &indices[0], GL_STATIC_DRAW);
 
 	//FBXLoader::ImportFBX("Assets/warrior/warrior.FBX", evangelion);
 	//evangelion.GenBuffers(MeshType::FBXNone);
@@ -241,10 +234,10 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	//AQUI PETA
-	App->base_motor->Draw(dt);
+	update_status up = App->base_motor->Draw(dt);
 	SDL_GL_SwapWindow(App->window->window);
 
-	return UPDATE_CONTINUE;
+	return up;
 }
 
 // Called before quitting

@@ -51,7 +51,7 @@ void HierarchyWindow::RecursiveDraw(GameObject* node)
 
 	bool nodeIsOpened = ImGui::TreeNodeEx(node, flags, node->name.c_str());
 	if (ImGui::IsItemClicked()) {
-		ExternalApp->base_motor->inspector_window->_selectedGO = node;
+		ExternalApp->base_motor->inspector_window->PutNewSelectedGameObject(node);
 	}
 
 	bool showChildren = (node->children.size() == 0) ? false : nodeIsOpened;

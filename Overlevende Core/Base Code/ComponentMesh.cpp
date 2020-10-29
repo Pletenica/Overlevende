@@ -2,6 +2,7 @@
 #include "Application.h"
 #include "ModuleGameObject.h"
 #include "ComponentMesh.h"
+#include "Mesh.h"
 
 ///WINDOW NOW
 ComponentMesh::ComponentMesh() :Component()

@@ -5,6 +5,8 @@
 #include "ModuleGameObject.h"
 #include "SDL/include/SDL.h"
 
+class ComponentMesh;
+
 class ComponentMaterial : public Component
 {
 public:
@@ -15,7 +17,10 @@ public:
 	bool Enable();
 	bool Update(float dt);
 	bool Disable();
+	void ChangeTexture(GLuint _id, ComponentMesh* _mesh);
 
+public:
+	GLuint textureID;
 };
 
 #endif // __ComponentMaterial_H__

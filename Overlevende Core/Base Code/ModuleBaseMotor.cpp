@@ -111,7 +111,7 @@ void ModuleBaseMotor::CreateMainBar() {
 
 			}
 			if (ImGui::MenuItem("Configuration")) {
-				App->window_manager->windows[1]->active = true;
+				configuration_window->active = true;
 			}
 			if (ImGui::MenuItem("Exit")) {
 				quit = true;
@@ -130,7 +130,7 @@ void ModuleBaseMotor::CreateMainBar() {
 				ShellExecuteA(NULL, "open", "https://github.com/Pletenica/Overlevende/issues", NULL, NULL, SW_SHOWNORMAL);
 			}
 			if (ImGui::MenuItem("About")) {
-				App->window_manager->windows[2]->active = true;
+				about_window->active = true;
 			}
 			ImGui::EndMenu();
 		}
@@ -157,11 +157,11 @@ void ModuleBaseMotor::CreateMainBar() {
 
 void ModuleBaseMotor::CreateAllWindows() {
 	inspector_window=(InspectorWindow*)App->window_manager->CreateWin(WindowType::Inspector);
-	App->window_manager->CreateWin(WindowType::Configuration);
-	App->window_manager->CreateWin(WindowType::About);
+	configuration_window = (ConfigurationWindow*)App->window_manager->CreateWin(WindowType::Configuration);
+	about_window = (AboutWindow*)App->window_manager->CreateWin(WindowType::About);
 	//App->window_manager->CreateWin(WindowType::Resources);
-	console_window = (ConsoleWindow*)App->window_manager->CreateWin(WindowType::Console);
-	App->window_manager->CreateWin(WindowType::Scene);
-	options_window = (OptionsWindow*)App->window_manager->CreateWin(WindowType::Options);
-	App->window_manager->CreateWin(WindowType::Hierarchy);
+	console_window = (ConsoleWindow*)console_window = (ConsoleWindow*)App->window_manager->CreateWin(WindowType::Console);
+	scene_window = (SceneWindow*)App->window_manager->CreateWin(WindowType::Scene);
+	options_window = (OptionsWindow*)options_window = (OptionsWindow*)App->window_manager->CreateWin(WindowType::Options);
+	hierarchy_window = (HierarchyWindow*)App->window_manager->CreateWin(WindowType::Hierarchy);
 }

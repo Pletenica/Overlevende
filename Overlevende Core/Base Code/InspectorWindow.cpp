@@ -53,7 +53,6 @@ bool InspectorWindow::Draw(float dt)
 		}
 	}
 	ImGui::End();
-
 	return true;
 }
 
@@ -99,6 +98,14 @@ void InspectorWindow::CreateMaterialTab(int i)
 		if (ImGui::Button("Delete Component", ImVec2(120, 20))) {
 			_selectedGO->DeleteComponent(_compMat);
 		}
+		if(ImGui::Checkbox("Checker Material", &putCheckMaterial)) {
+			ChangeTex();
+		}
+		ImTextureID id = (ImTextureID)c_mat->textureID;
+		ImGui::Image(id, ImVec2(100, 100));
+		ImGui::SameLine();
+		//std::string _imagePath = "Assets/FBXs/" + c_mesh->mesh.
+		//ImGui::Text();
 	}
 }
 
@@ -120,7 +127,8 @@ void InspectorWindow::CreateTransformTab(int i)
 	if (ImGui::CollapsingHeader("Transform")) {
 		ImGui::Checkbox(" ", &_selectedGO->components[i]->active);
 		ImGui::Text("Position: %i  %i  %i", 1,2,3);
-		
+		ImGui::Text("Rotation: %i  %i  %i", 1, 2, 3);
+		ImGui::Text("Scale: %i  %i  %i", 1, 2, 3);
 	}
 }
 
@@ -128,9 +136,31 @@ void InspectorWindow::PutNewSelectedGameObject(GameObject* _go)
 {
 	_selectedGO = nullptr;
 	_selectedGO = _go;
+	c_mat = (ComponentMaterial*)_selectedGO->GetComponent(ComponentType::C_Material);
+	c_mesh = (ComponentMesh*)_selectedGO->GetComponent(ComponentType::C_Mesh);
+	c_transform = (ComponentTransform*)_selectedGO->GetComponent(ComponentType::C_Transform);
+	if (c_mat != nullptr) {
+		mainMeshTextureID = c_mat->textureID;
+	}
 }
 
 void InspectorWindow::DeleteSelectedGameObject()
 {
 	_selectedGO = nullptr;
+	mainMeshTextureID = NULL;
+}
+
+void InspectorWindow::ChangeTex()
+{
+	if (_selectedGO != nullptr) {
+		if (putCheckMaterial == true) {
+			if (c_mat != nullptr && c_mesh !=nullptr) {
+				c_mat->ChangeTexture((GLuint)ExternalApp->renderer3D->checkerImage, c_mesh);
+			}
+		}
+		else {
+			c_mat = (ComponentMaterial*)_selectedGO->GetComponent(ComponentType::C_Material);
+			c_mat->ChangeTexture(mainMeshTextureID, c_mesh);
+		}
+	}
 }
