@@ -27,6 +27,7 @@ public:
 	virtual bool Enable();
 	virtual bool Update(float dt);
 	virtual bool Disable();
+	virtual void OnEditor();
 
 public:
 	bool active = true;

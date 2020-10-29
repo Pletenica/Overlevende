@@ -146,3 +146,8 @@ bool Component::Update(float dt)
 
 	return true;
 }
+
+void Component::OnEditor()
+{
+
+}

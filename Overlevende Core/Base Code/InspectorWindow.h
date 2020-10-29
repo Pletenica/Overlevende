@@ -29,25 +29,13 @@ public:
 	void PutNewSelectedGameObject(GameObject* _go);
 	void DeleteSelectedGameObject();
 
-private:
-	void ChangeTex();
-
 public:
 	GameObject* _selectedGO = nullptr;
+	GLuint mainMeshTextureID;
 
 private:
 	void CreateInitTab();
-	void CreateTransformTab(int i);
-	void CreateMeshTab(int i);
-	void CreateMaterialTab(int i);
-
-	bool putCheckMaterial = false;
-	GLuint mainMeshTextureID;
 	char name[50];
-
-	ComponentMaterial* c_mat;
-	ComponentTransform* c_transform;
-	ComponentMesh* c_mesh;
 };
 
 #endif // __InspectorWindow_H__

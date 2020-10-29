@@ -46,3 +46,13 @@ bool ComponentTransform::Update(float dt)
 
 	return true;
 }
+
+void ComponentTransform::OnEditor()
+{
+	if (ImGui::CollapsingHeader("Transform")) {
+		ImGui::Checkbox(" ", &this->active);
+		ImGui::Text("Position: %i  %i  %i", 1, 2, 3);
+		ImGui::Text("Rotation: %i  %i  %i", 1, 2, 3);
+		ImGui::Text("Scale: %i  %i  %i", 1, 2, 3);
+	}
+}

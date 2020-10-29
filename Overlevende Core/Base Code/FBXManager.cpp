@@ -51,12 +51,11 @@ void FBXLoader::ImportFBX(char* _buffer, int _size, int _idTexturesTemporal, con
 
 		std::vector<Mesh*> meshVector;
 		std::vector<GLuint> texturesVector;
+		aiString texName;
 
 		if (scene->HasMaterials())
 		{
 			aiMaterial* material = scene->mMaterials[0];
-		
-			aiString texName;
 			material->GetTexture(aiTextureType_DIFFUSE, 0, &texName);
 		
 			char* buffer = nullptr;
@@ -171,6 +170,7 @@ void FBXLoader::NodeToGameObject(const aiScene* scene, aiNode* node, GameObject*
 	go->parent = parent;
 	parent->children.push_back(go);
 
+
 	for (size_t i = 0; i < node->mNumMeshes; i++)
 	{
 		GameObject* childGO = new GameObject();
@@ -181,12 +181,12 @@ void FBXLoader::NodeToGameObject(const aiScene* scene, aiNode* node, GameObject*
 		//Load mesh here
 		ComponentMesh* meshRenderer = (ComponentMesh*)(childGO->CreateComponent(ComponentType::C_Mesh));
 		meshRenderer->mesh = meshVector[node->mMeshes[i]];
-
 		ComponentMaterial* materialRenderer = (ComponentMaterial*)(childGO->CreateComponent(ComponentType::C_Material));
 		materialRenderer->textureID = meshRenderer->mesh->textureID;
 
 		go->children.push_back(childGO);
 	}
+
 
 	for (size_t i = 0; i < node->mNumChildren; i++)
 	{

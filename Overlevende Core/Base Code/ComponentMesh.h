@@ -17,6 +17,7 @@ public:
 	bool Enable();
 	bool Update(float dt);
 	bool Disable();
+	void OnEditor();
 
 public:
 	Mesh* mesh = nullptr;
