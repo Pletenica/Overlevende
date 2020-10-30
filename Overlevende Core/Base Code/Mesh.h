@@ -6,6 +6,7 @@
 #include "SDL\include\SDL_opengl.h"
 #include <gl/GL.h>
 #include <gl/GLU.h>
+#include <string>
 
 enum MeshType {
 	FBXNone,
@@ -23,6 +24,8 @@ public:
 	void GenBuffers(MeshType _type);
 	void Render();
 
+	std::string name;
+
 	uint id_indices = 0; // index in VRAM
 	uint num_indices = 0;
 	uint* indices = nullptr;
@@ -39,6 +42,8 @@ public:
 	uint id_textures = 0;
 	uint num_textures = 0;
 	float* textures = nullptr;
+	int textureWidth = 0;
+	int textureHeight = 0;
 
 	GLuint textureID = 0;
 

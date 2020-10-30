@@ -400,7 +400,7 @@ void ModuleFileSystem::LoadFileFromPath(const char* _path)
 	if (path.substr(path.find_last_of(".") + 1) == "png" || path.substr(path.find_last_of(".") + 1) == "PNG" || path.substr(path.find_last_of(".") + 1) == "DDS" || path.substr(path.find_last_of(".") + 1) == "dds") {
 		char* buffer = nullptr;
 		std::string _p = path.substr(path.find_last_of("/"));
-		std::string _localpath = "Assets/FBXs" + _p;
+		std::string _localpath = "Assets/Textures" + _p;
 		int size = Load(_localpath.c_str(), &buffer);
 		ComponentMesh* c_mesh = (ComponentMesh*)App->base_motor->inspector_window->_selectedGO->GetComponent(ComponentType::C_Mesh);
 		ComponentMaterial* c_mat = (ComponentMaterial*)App->base_motor->inspector_window->_selectedGO->GetComponent(ComponentType::C_Material);

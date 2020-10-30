@@ -48,8 +48,10 @@ void ComponentMaterial::ChangeTexture(GLuint _id, ComponentMesh* _mesh)
 	}
 }
 
-void ComponentMaterial::OnEditor()
+void ComponentMaterial::OnEditor(GameObject* _go)
 {
+	ImVec4 color = ImVec4(0.5f, 0.5f, 1, 1);
+	ComponentMesh* c_mesh = (ComponentMesh *)_go->GetComponent(ComponentType::C_Mesh);
 	if (ImGui::CollapsingHeader("Material")) {
 		if (ImGui::Checkbox("Checker Material", &putCheckMaterial)) {
 			ChangeTex();
@@ -57,8 +59,16 @@ void ComponentMaterial::OnEditor()
 		ImTextureID id = (ImTextureID)textureID;
 		ImGui::Image(id, ImVec2(100, 100));
 		if (texturePath != "") {
-			ImGui::TextColored(ImVec4(0.5f, 0.5f, 1, 1), texturePath.c_str());
+			ImGui::TextColored(color, texturePath.c_str());
 		}
+
+		ImGui::TextColored(color, "Height: ");
+		ImGui::SameLine();
+		ImGui::Text("%i", c_mesh->mesh->textureHeight);
+		ImGui::TextColored(color, "Width: ");
+		ImGui::SameLine();
+		ImGui::Text("%i", c_mesh->mesh->textureWidth);
+
 		//ilGetInteger()
 	}
 }

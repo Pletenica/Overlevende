@@ -10,6 +10,7 @@
 
 class Application;
 class ComponentTransform;
+class GameObject;
 
 enum ComponentType {
 	C_Transform,
@@ -27,7 +28,7 @@ public:
 	virtual bool Enable();
 	virtual bool Update(float dt);
 	virtual bool Disable();
-	virtual void OnEditor();
+	virtual void OnEditor(GameObject* _go);
 
 public:
 	bool active = true;

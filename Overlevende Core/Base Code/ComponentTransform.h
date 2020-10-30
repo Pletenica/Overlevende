@@ -20,15 +20,24 @@ public:
 	bool Enable();
 	bool Update(float dt);
 	bool Disable();
-	void OnEditor();
+	void OnEditor(GameObject* _go);
+
+	float3 GetPosition() { return position; };
+	void SetPosition(float3 _pos) { position = _pos; };
+	float3 GetRotation() { return rotation; };
+	void SetRotation(float3 _rot) { position = _rot; };
+	float3 GetScale() { return scale; };
+	void SetScale(float3 _scale) { position = _scale; };
 
 public:
 	float4x4 local_transform;
 	float4x4 global_transform;
 	aiNode* node;
-	//aiVector3D translation;
-	//aiVector3D scaling;
-	//aiQuaternion rotation;
+
+private:
+	float3 position;
+	float3 rotation;
+	float3 scale;
 };
 
 #endif // __ComponentTransform_H__

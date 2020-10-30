@@ -147,7 +147,7 @@ bool Component::Update(float dt)
 	return true;
 }
 
-void Component::OnEditor()
+void Component::OnEditor(GameObject* _go)
 {
 
 }

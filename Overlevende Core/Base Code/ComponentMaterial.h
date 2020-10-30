@@ -19,7 +19,7 @@ public:
 	bool Enable();
 	bool Update(float dt);
 	bool Disable();
-	void OnEditor();
+	void OnEditor(GameObject* _go);
 	void ChangeTex();
 	void ChangeTexture(GLuint _id, ComponentMesh* _mesh);
 

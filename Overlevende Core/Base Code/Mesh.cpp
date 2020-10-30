@@ -54,7 +54,6 @@ void Mesh::GenBuffers(MeshType _type)
 		glBindBuffer(GL_ARRAY_BUFFER, id_normals);
 		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * num_normals * 3, normals, GL_STATIC_DRAW);
 
-
 		glGenBuffers(1, (GLuint*)&(id_textures));
 		glBindBuffer(GL_ARRAY_BUFFER, id_textures);
 		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * num_textures * 2, &textures[0], GL_STATIC_DRAW);

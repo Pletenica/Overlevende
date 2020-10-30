@@ -17,10 +17,16 @@ public:
 	bool Enable();
 	bool Update(float dt);
 	bool Disable();
-	void OnEditor();
+	void OnEditor(GameObject* _go);
+
+private:
+	void DrawVertexNormals(Mesh* _mesh);
+	void DrawFaceNormals(Mesh* _mesh);
 
 public:
 	Mesh* mesh = nullptr;
+	bool drawVertexNormals = false;
+	bool drawFaceNormals = false;
 };
 
 #endif // __ComponentMesh_H__

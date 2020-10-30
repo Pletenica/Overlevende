@@ -48,7 +48,6 @@ void FBXLoader::ImportFBX(char* _buffer, int _size, int _idTexturesTemporal, con
 		scene->mRootNode->mName = _p;
 
 		aiMesh* new_mesh = nullptr;
-
 		std::vector<Mesh*> meshVector;
 		std::vector<GLuint> texturesVector;
 		aiString texName;
@@ -57,9 +56,9 @@ void FBXLoader::ImportFBX(char* _buffer, int _size, int _idTexturesTemporal, con
 		{
 			aiMaterial* material = scene->mMaterials[0];
 			material->GetTexture(aiTextureType_DIFFUSE, 0, &texName);
-		
+
 			char* buffer = nullptr;
-			std::string _localpath = "Assets/FBXs/" + (std::string)texName.C_Str();
+			std::string _localpath = "Assets/Textures/" + (std::string)texName.C_Str();
 			int size = ExternalApp->file_system->Load(_localpath.c_str(), &buffer);
 			
 			texturesVector.push_back(FBXLoader::LoadTexture(buffer, size));
@@ -86,7 +85,10 @@ int FBXLoader::LoadTexture(char* buffer, int _size)
 	ILuint imageID;
 	ilGenImages(1, &imageID);
 	ilBindImage(imageID);
-	
+
+	//mat->textWidth = ilGetInteger(IL_IMAGE_WIDTH);
+	//mat->textWidth = ilGetInteger(IL_IMAGE_WIDTH);
+
 	if (!ilLoadL(IL_TYPE_UNKNOWN,buffer, _size))
 	{
 		LOG("Error loading texture");
@@ -110,7 +112,10 @@ void FBXLoader::aiMeshToMesh(const aiScene* scene, std::vector<Mesh*>& meshVecto
 
 		// copy vertices
 		_mesh->num_vertices = new_mesh->mNumVertices;
+		_mesh->name = (std::string)new_mesh->mName.C_Str();
 		_mesh->vertices = new float[_mesh->num_vertices * 3];
+		_mesh->textureHeight = ilGetInteger(IL_IMAGE_HEIGHT);
+		_mesh->textureWidth = ilGetInteger(IL_IMAGE_WIDTH);
 		memcpy(_mesh->vertices, new_mesh->mVertices, sizeof(float) * _mesh->num_vertices * 3);
 		LOG("New mesh with %d vertices", _mesh->num_vertices);
 
@@ -166,13 +171,12 @@ void FBXLoader::aiMeshToMesh(const aiScene* scene, std::vector<Mesh*>& meshVecto
 void FBXLoader::NodeToGameObject(const aiScene* scene, aiNode* node, GameObject* parent, std::vector<Mesh*>& meshVector, aiString _name)
 {
 	GameObject* go = new GameObject();
-	//go->transform->node = node;
 	go->name = node->mName.C_Str();
 	go->parent = parent;
 	parent->children.push_back(go);
 
 
-	for (size_t i = 0; i < node->mNumMeshes; i++)
+	for (size_t i = 0; i < node->mNumMeshes; ++i)
 	{
 		GameObject* childGO = new GameObject();
 
@@ -184,7 +188,7 @@ void FBXLoader::NodeToGameObject(const aiScene* scene, aiNode* node, GameObject*
 		meshRenderer->mesh = meshVector[node->mMeshes[i]];
 		ComponentMaterial* materialRenderer = (ComponentMaterial*)(childGO->CreateComponent(ComponentType::C_Material));
 		materialRenderer->textureID = meshRenderer->mesh->textureID;
-		std::string p = "Assets/FBXs/" + (std::string)_name.C_Str();
+		std::string p = "Assets/Textures/" + (std::string)_name.C_Str();
 		materialRenderer->texturePath = p;
 
 		go->children.push_back(childGO);

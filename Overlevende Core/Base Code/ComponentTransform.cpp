@@ -14,6 +14,9 @@
 ComponentTransform::ComponentTransform() :Component()
 {
 	type = ComponentType::C_Transform;
+	position = { 0,0,0 };
+	rotation = { 0,0,0 };
+	scale = { 0,0,0 };
 }
 
 // Destructor
@@ -47,19 +50,90 @@ bool ComponentTransform::Update(float dt)
 	return true;
 }
 
-void ComponentTransform::OnEditor()
+void ComponentTransform::OnEditor(GameObject* _go)
 {
+	ComponentTransform* transform = (ComponentTransform*)_go->GetComponent(ComponentType::C_Transform);
+	
 	if (ImGui::CollapsingHeader("Transform")) {
-		char* position = "";
-		//ImGui::Text("X:");
-		//ImGui::SameLine();
-		//ImGui::InputTextEx("Y:", "hola", position, 5,ImVec2(60,20),0);
-		//ImGui::SameLine();
-		//ImGui::InputTextEx("Z:", "hola", position, 5, ImVec2(60, 20), 0);
-		//ImGui::SameLine();
-		//ImGui::InputTextEx("Position", "hola", position, 5, ImVec2(60, 20), 0);
-		ImGui::Text("Position: %i  %i  %i", 1, 2, 3);
-		ImGui::Text("Rotation: %i  %i  %i", 1, 2, 3);
-		ImGui::Text("Scale: %i  %i  %i", 1, 2, 3);
+		///////// POSITION ///////////
+		float3 pos = transform->position;
+		bool newPos = false;
+
+		ImGui::Text("Position");
+
+		ImGui::Text("X");
+		ImGui::SameLine();
+		ImGui::PushItemWidth(70);
+		if (ImGui::InputFloat("##posx", &pos.x, 0, 0, 3, ImGuiInputTextFlags_EnterReturnsTrue)) newPos = true;
+		ImGui::PopItemWidth();
+		ImGui::SameLine();
+
+		ImGui::Text("Y");
+		ImGui::SameLine();
+		ImGui::PushItemWidth(70);
+		if (ImGui::InputFloat("##posy", &pos.y, 0, 0, 3, ImGuiInputTextFlags_EnterReturnsTrue)) newPos = true;
+		ImGui::PopItemWidth();
+		ImGui::SameLine();
+
+		ImGui::Text("Z");
+		ImGui::SameLine();
+		ImGui::PushItemWidth(70);
+		if (ImGui::InputFloat("##posz", &pos.z, 0, 0, 3, ImGuiInputTextFlags_EnterReturnsTrue)) newPos = true;
+		ImGui::PopItemWidth();
+		if (newPos) _go->transform->position = pos;
+
+		///////// ROTATION ///////////
+		float3 rot = transform->rotation;
+		bool newRot = false;
+
+		ImGui::Text("Rotation");
+
+		ImGui::Text("X");
+		ImGui::SameLine();
+		ImGui::PushItemWidth(70);
+		if (ImGui::InputFloat("##rotx", &rot.x, 0, 0, 3, ImGuiInputTextFlags_EnterReturnsTrue)) newRot = true;
+		ImGui::PopItemWidth();
+		ImGui::SameLine();
+
+		ImGui::Text("Y");
+		ImGui::SameLine();
+		ImGui::PushItemWidth(70);
+		if (ImGui::InputFloat("##roty", &rot.y, 0, 0, 3, ImGuiInputTextFlags_EnterReturnsTrue)) newRot = true;
+		ImGui::PopItemWidth();
+		ImGui::SameLine();
+
+		ImGui::Text("Z");
+		ImGui::SameLine();
+		ImGui::PushItemWidth(70);
+		if (ImGui::InputFloat("##rotz", &rot.z, 0, 0, 3, ImGuiInputTextFlags_EnterReturnsTrue)) newRot = true;
+		ImGui::PopItemWidth();
+		if (newRot) _go->transform->position = pos;
+
+		///////// SCALE ///////////
+		float3 scale = transform->scale;
+		bool newScale = false;
+
+		ImGui::Text("Scale");
+
+		ImGui::Text("X");
+		ImGui::SameLine();
+		ImGui::PushItemWidth(70);
+		if (ImGui::InputFloat("##scalex", &scale.x, 0, 0, 3, ImGuiInputTextFlags_EnterReturnsTrue)) newScale = true;
+		ImGui::PopItemWidth();
+		ImGui::SameLine();
+
+		ImGui::Text("Y");
+		ImGui::SameLine();
+		ImGui::PushItemWidth(70);
+		if (ImGui::InputFloat("##scaley", &scale.y, 0, 0, 3, ImGuiInputTextFlags_EnterReturnsTrue)) newScale = true;
+		ImGui::PopItemWidth();
+		ImGui::SameLine();
+
+		ImGui::Text("Z");
+		ImGui::SameLine();
+		ImGui::PushItemWidth(70);
+		if (ImGui::InputFloat("##scalez", &scale.z, 0, 0, 3, ImGuiInputTextFlags_EnterReturnsTrue)) newScale = true;
+		ImGui::PopItemWidth();
+		if (newScale) _go->transform->scale = scale;
 	}
 }

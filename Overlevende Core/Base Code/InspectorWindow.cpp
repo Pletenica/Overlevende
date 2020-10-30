@@ -34,7 +34,7 @@ bool InspectorWindow::Draw(float dt)
 		
 		if (_selectedGO != nullptr) {
 			for (int i = 0; i < _selectedGO->components.size(); i++) {
-				_selectedGO->components[i]->OnEditor();
+				_selectedGO->components[i]->OnEditor(_selectedGO);
 			}
 		}
 	}

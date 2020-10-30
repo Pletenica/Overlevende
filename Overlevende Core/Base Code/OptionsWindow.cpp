@@ -5,6 +5,7 @@
 
 #include "Mesh.h"
 #include "FBXManager.h"
+#include "ComponentMesh.h"
 
 OptionsWindow::OptionsWindow() :Window()
 {
@@ -47,8 +48,12 @@ bool OptionsWindow::Draw(float dt)
 	ImGui::SameLine();
 	ImGui::Checkbox("WireFrame", &wireframe_bool);
 	ImGui::SameLine();
-	ImGui::Checkbox("Normals", &normals_bool);
+	if (ImGui::Checkbox("Normals", &normals_bool)) {
+		if (normals_bool == true) RecursiveNormals(ExternalApp->scene_intro->rootGO, true);
+		else RecursiveNormals(ExternalApp->scene_intro->rootGO, false);
+	}
 	ImGui::End();
+
 	return true;
 }
 
@@ -78,4 +83,21 @@ void OptionsWindow::DoCheckers()
 	else glDisable(GL_TEXTURE_2D);
 	if (wireframe_bool == true) glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	else glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+}
+
+void OptionsWindow::RecursiveNormals(GameObject* node, bool _active)
+{
+	ComponentMesh* c_mesh = (ComponentMesh*)node->GetComponent(ComponentType::C_Mesh);
+
+	if (c_mesh != nullptr) {
+		c_mesh->drawFaceNormals = _active;
+		c_mesh->drawVertexNormals = _active;
+	}
+	if (node->active == true) {
+		for (size_t i = 0; i < node->children.size(); i++)
+		{
+			RecursiveNormals(node->children[i], _active);
+		}
+	}
+	
 }
