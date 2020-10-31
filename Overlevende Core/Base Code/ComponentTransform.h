@@ -29,7 +29,7 @@ public:
 	float4x4 global_transform;
 	aiNode* node;
 
-private:
+public:
 	float3 position;
 	float3 rotation;
 	float3 scale;
