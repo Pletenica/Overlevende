@@ -57,7 +57,7 @@ void FBXLoader::ImportFBX(char* _buffer, int _size, int _idTexturesTemporal, con
 
 		ExternalApp->renderer3D->cleanUpTextures = texturesVector;
 
-		aiMeshToMesh(scene, meshVector, texturesVector, texName, texturesVector);
+		aiMeshToMesh(scene, meshVector, texturesVector, &texName, texturesVector);
 
 		ExternalApp->renderer3D->cleanUpMeshes = meshVector;	
 
@@ -93,7 +93,7 @@ int FBXLoader::LoadTexture(char* buffer, int _size, int* _width, int* _height)
 }
 
 
-void FBXLoader::aiMeshToMesh(const aiScene* scene, std::vector<Mesh*>& meshVector, std::vector<GLuint>& textureVector, aiString texName, std::vector<GLuint> texturesVector)
+void FBXLoader::aiMeshToMesh(const aiScene* scene, std::vector<Mesh*>& meshVector, std::vector<GLuint>& textureVector, aiString* texName, std::vector<GLuint> texturesVector)
 {
 	aiMesh* new_mesh;
 	for (int i = 0; i < scene->mNumMeshes; i++)
@@ -104,10 +104,10 @@ void FBXLoader::aiMeshToMesh(const aiScene* scene, std::vector<Mesh*>& meshVecto
 		if (new_mesh->mMaterialIndex != -1)
 		{
 			aiMaterial* material = scene->mMaterials[0];
-			material->GetTexture(aiTextureType_DIFFUSE, 0, &texName);
+			material->GetTexture(aiTextureType_DIFFUSE, 0, texName);
 
 			char* buffer = nullptr;
-			std::string _localpath = "Assets/Textures/" + (std::string)texName.C_Str();
+			std::string _localpath = "Assets/Textures/" + (std::string)texName->C_Str();
 			int size = ExternalApp->file_system->Load(_localpath.c_str(), &buffer);
 
 			texturesVector.push_back(FBXLoader::LoadTexture(buffer, size, &_mesh->textureWidth, &_mesh->textureHeight));
