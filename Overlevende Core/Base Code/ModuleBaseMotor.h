@@ -42,7 +42,6 @@ public:
 	SceneWindow* scene_window;
 
 private:
-	bool wireSphere = false;
 	bool quit = false;
 	void CreateMainBar();	
 };

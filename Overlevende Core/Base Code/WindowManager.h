@@ -65,7 +65,4 @@ public:
 	std::vector<Window*> windows;
 };
 
-
-
-
 #endif // __ModuleFatherWindow_H__

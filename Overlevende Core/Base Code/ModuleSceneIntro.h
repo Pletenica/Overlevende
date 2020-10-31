@@ -21,7 +21,6 @@ public:
 	bool Start();
 	update_status Update(float dt);
 	bool CleanUp();
-	void DoCube(int size);
 
 	GameObject* CreateGameObject(std::string _name, GameObject* parent);
 	void DeleteGameObject(GameObject* _go);

@@ -25,6 +25,7 @@ bool HierarchyWindow::Draw(float dt)
 {
 	ImGui::Begin("Hierarchy", NULL);
 	if (ImGui::Button("CLEAR", ImVec2(100, 30))) {
+		ExternalApp->base_motor->inspector_window->DeleteSelectedGameObject();
 		ExternalApp->scene_intro->ClearHierarchy();
 	}
 	if(ExternalApp->scene_intro->rootGO != nullptr)

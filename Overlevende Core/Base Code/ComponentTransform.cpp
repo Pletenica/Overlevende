@@ -41,11 +41,6 @@ bool ComponentTransform::Disable()
 // Called before quitting
 bool ComponentTransform::Update(float dt)
 {
-	//node->mTransformation.Decompose(scaling, rotation, translation);
-	//
-	//float3 pos(translation.x, translation.y, translation.z);
-	//float3 scale(scaling.x, scaling.y, scaling.z);
-	//Quat rot(rotation.x, rotation.y, rotation.z, rotation.w);
 
 	return true;
 }

@@ -16,11 +16,6 @@ ModuleSceneIntro::~ModuleSceneIntro()
 
 bool ModuleSceneIntro::Init() {
 
-	//for (int i = 0; i < game_objects.size(); i++)
-	//{
-	//	if (game_objects[i] != nullptr)
-	//		game_objects[i]->Init();
-	//}
 	return true;
 }
 
@@ -37,7 +32,7 @@ bool ModuleSceneIntro::Start()
 	rootGO = CreateGameObject("Scene", nullptr);
 
 	App->file_system->LoadFileFromPath("Assets/FBXs/BakerHouse.fbx");
-	//App->base_motor->inspector_window->PutNewSelectedGameObject(rootGO);
+
 	return ret;
 }
 
@@ -72,72 +67,8 @@ update_status ModuleSceneIntro::Update(float dt)
 		p.Render();
 	}
 
-	//for (int i = 0; i < game_objects.size(); i++)
-	//{
-	//	if(game_objects[i]!=nullptr) 
-	//		game_objects[i]->Update(dt);
-	//}
-
 	return UPDATE_CONTINUE;
 }
-
-void ModuleSceneIntro::DoCube(int size) {
-	glLineWidth(2.0f);
-
-	glBegin(GL_POLYGON);
-	//PRIMERA CARA
-	glVertex3f(1.f*size, 0.f*size, 0.f*size);
-	glVertex3f(1.f*size, 1.f*size, 0.f*size);
-	glVertex3f(1.f*size, 0.f*size, 1.f*size);
-	glVertex3f(1.f*size, 1.f*size, 0.f*size);
-	glVertex3f(1.f*size, 1.f*size, 1.f*size);
-	glVertex3f(1.f*size, 0.f*size, 1.f*size);
-
-	//SEGONA CARA
-	glVertex3f(1.f*size, 1.f*size, 0.f*size);
-	glVertex3f(0.f*size, 1.f*size, 0.f*size);
-	glVertex3f(1.f*size, 1.f*size, 1.f*size);
-	glVertex3f(0.f*size, 1.f*size, 0.f*size);
-	glVertex3f(0.f*size, 1.f*size, 1.f*size);
-	glVertex3f(1.f*size, 1.f*size, 1.f*size);
-
-	//TERCERA CARA
-	glVertex3f(0.f*size, 1.f*size, 0.f*size);
-	glVertex3f(0.f*size, 0.f*size, 0.f*size);
-	glVertex3f(0.f*size, 1.f*size, 1.f*size);
-	glVertex3f(0.f*size, 0.f*size, 0.f*size);
-	glVertex3f(0.f*size, 1.f*size, 0.f*size);
-	glVertex3f(0.f*size, 1.f*size, 1.f*size);
-
-	//QUARTA CARA
-	glVertex3f(0.f*size, 0.f*size, 0.f*size);
-	glVertex3f(1.f*size, 0.f*size, 0.f*size);
-	glVertex3f(0.f*size, 0.f*size, 1.f*size);
-	glVertex3f(1.f*size, 0.f*size, 0.f*size);
-	glVertex3f(1.f*size, 0.f*size, 1.f*size);
-	glVertex3f(0.f*size, 0.f*size, 1.f*size);
-
-	//QUINTA CARA
-	glVertex3f(1.f*size, 0.f*size, 1.f*size);
-	glVertex3f(1.f*size, 1.f*size, 1.f*size);
-	glVertex3f(0.f*size, 0.f*size, 1.f*size);
-	glVertex3f(1.f*size, 1.f*size, 1.f*size);
-	glVertex3f(0.f*size, 1.f*size, 1.f*size);
-	glVertex3f(0.f*size, 0.f*size, 1.f*size);
-
-	//SEXTA CARA
-	glVertex3f(1.f*size, 1.f*size, 0.f*size);
-	glVertex3f(1.f*size, 0.f*size, 0.f*size);
-	glVertex3f(0.f*size, 1.f*size, 0.f*size);
-	glVertex3f(1.f*size, 0.f*size, 0.f*size);
-	glVertex3f(0.f*size, 1.f*size, 0.f*size);
-	glVertex3f(0.f*size, 0.f*size, 0.f*size);
-
-	glEnd();
-
-	glLineWidth(1.0f);
-}
-
 
 GameObject* ModuleSceneIntro::CreateGameObject(std::string _name, GameObject* parent) {
 	GameObject* go = nullptr;

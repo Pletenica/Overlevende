@@ -35,7 +35,6 @@ public:
 
 private:
 	void CreateInitTab();
-	char name[50];
 };
 
 #endif // __InspectorWindow_H__

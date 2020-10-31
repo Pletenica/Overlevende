@@ -39,9 +39,7 @@ io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
 ImGui_ImplSDL2_InitForOpenGL(App->window->window, App->renderer3D->context);
 ImGui_ImplOpenGL3_Init();
 
-//InitMotorTheme
-//interfacemenu.NightModeSelected();
-//interfacemenu.PutBlueColor();
+
 io.IniFilename = "WindowSaving";
 	CreateAllWindows();
 
@@ -159,7 +157,6 @@ void ModuleBaseMotor::CreateAllWindows() {
 	inspector_window=(InspectorWindow*)App->window_manager->CreateWin(WindowType::Inspector);
 	configuration_window = (ConfigurationWindow*)App->window_manager->CreateWin(WindowType::Configuration);
 	about_window = (AboutWindow*)App->window_manager->CreateWin(WindowType::About);
-	//App->window_manager->CreateWin(WindowType::Resources);
 	console_window = (ConsoleWindow*)console_window = (ConsoleWindow*)App->window_manager->CreateWin(WindowType::Console);
 	scene_window = (SceneWindow*)App->window_manager->CreateWin(WindowType::Scene);
 	options_window = (OptionsWindow*)options_window = (OptionsWindow*)App->window_manager->CreateWin(WindowType::Options);

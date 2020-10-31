@@ -81,8 +81,6 @@ void Mesh::Render()
 	glBindBuffer(GL_ARRAY_BUFFER, id_normals);
 	glNormalPointer(GL_FLOAT, 0, NULL);
 
-
-
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id_indices);
 
 	switch (_meshType) {
