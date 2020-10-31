@@ -24,7 +24,9 @@ bool HierarchyWindow::Init()
 bool HierarchyWindow::Draw(float dt)
 {
 	ImGui::Begin("Hierarchy", NULL);
-
+	if (ImGui::Button("CLEAR", ImVec2(100, 30))) {
+		ExternalApp->scene_intro->ClearHierarchy();
+	}
 	if(ExternalApp->scene_intro->rootGO != nullptr)
 		RecursiveDraw(ExternalApp->scene_intro->rootGO);
 

@@ -13,6 +13,9 @@
 #include"ComponentMesh.h"
 #include"ComponentTransform.h"
 
+#include "MathGeoLib/Math/float3.h"
+#include "MathGeoLib/Math/Quat.h"
+
 #include"Devil/include/ilu.h"
 #include"Devil/include/ilut.h"
 
@@ -52,22 +55,9 @@ void FBXLoader::ImportFBX(char* _buffer, int _size, int _idTexturesTemporal, con
 		std::vector<GLuint> texturesVector;
 		aiString texName;
 
-		if (scene->HasMaterials())
-		{
-			aiMaterial* material = scene->mMaterials[0];
-			material->GetTexture(aiTextureType_DIFFUSE, 0, &texName);
-
-			char* buffer = nullptr;
-			std::string _localpath = "Assets/Textures/" + (std::string)texName.C_Str();
-			int size = ExternalApp->file_system->Load(_localpath.c_str(), &buffer);
-			
-			texturesVector.push_back(FBXLoader::LoadTexture(buffer, size));
-			delete[] buffer;
-		}
-
 		ExternalApp->renderer3D->cleanUpTextures = texturesVector;
 
-		aiMeshToMesh(scene, meshVector, texturesVector);
+		aiMeshToMesh(scene, meshVector, texturesVector, texName, texturesVector);
 
 		ExternalApp->renderer3D->cleanUpMeshes = meshVector;	
 
@@ -80,19 +70,21 @@ void FBXLoader::ImportFBX(char* _buffer, int _size, int _idTexturesTemporal, con
 	}
 }
 
-int FBXLoader::LoadTexture(char* buffer, int _size)
+int FBXLoader::LoadTexture(char* buffer, int _size, int* _width, int* _height)
 {
 	ILuint imageID;
 	ilGenImages(1, &imageID);
 	ilBindImage(imageID);
 
-	//mat->textWidth = ilGetInteger(IL_IMAGE_WIDTH);
-	//mat->textWidth = ilGetInteger(IL_IMAGE_WIDTH);
 
 	if (!ilLoadL(IL_TYPE_UNKNOWN,buffer, _size))
 	{
 		LOG("Error loading texture");
 	}
+
+	*_height = ilGetInteger(IL_IMAGE_HEIGHT);
+	*_width = ilGetInteger(IL_IMAGE_WIDTH);
+
 	GLuint glID = ilutGLBindTexImage();
 	glBindTexture(GL_TEXTURE_2D, glID);
 	ilDeleteImages(1, &imageID);
@@ -101,21 +93,36 @@ int FBXLoader::LoadTexture(char* buffer, int _size)
 }
 
 
-void FBXLoader::aiMeshToMesh(const aiScene* scene, std::vector<Mesh*>& meshVector, std::vector<GLuint>& textureVector)
+void FBXLoader::aiMeshToMesh(const aiScene* scene, std::vector<Mesh*>& meshVector, std::vector<GLuint>& textureVector, aiString texName, std::vector<GLuint> texturesVector)
 {
 	aiMesh* new_mesh;
 	for (int i = 0; i < scene->mNumMeshes; i++)
 	{
 		Mesh* _mesh = new Mesh();
 		new_mesh = scene->mMeshes[i];
+
+		if (new_mesh->mMaterialIndex != -1)
+		{
+			aiMaterial* material = scene->mMaterials[0];
+			material->GetTexture(aiTextureType_DIFFUSE, 0, &texName);
+
+			char* buffer = nullptr;
+			std::string _localpath = "Assets/Textures/" + (std::string)texName.C_Str();
+			int size = ExternalApp->file_system->Load(_localpath.c_str(), &buffer);
+
+			texturesVector.push_back(FBXLoader::LoadTexture(buffer, size, &_mesh->textureWidth, &_mesh->textureHeight));
+			_mesh->textureID = texturesVector[texturesVector.size() - 1];
+
+			delete[] buffer;
+		}
+
+		
 		LOG("%s", scene->mMeshes[i]->mName.C_Str());
 
 		// copy vertices
 		_mesh->num_vertices = new_mesh->mNumVertices;
 		_mesh->name = (std::string)new_mesh->mName.C_Str();
 		_mesh->vertices = new float[_mesh->num_vertices * 3];
-		_mesh->textureHeight = ilGetInteger(IL_IMAGE_HEIGHT);
-		_mesh->textureWidth = ilGetInteger(IL_IMAGE_WIDTH);
 		memcpy(_mesh->vertices, new_mesh->mVertices, sizeof(float) * _mesh->num_vertices * 3);
 		LOG("New mesh with %d vertices", _mesh->num_vertices);
 
@@ -184,6 +191,20 @@ void FBXLoader::NodeToGameObject(const aiScene* scene, aiNode* node, GameObject*
 		childGO->parent = go;
 
 		//Load mesh here
+		ComponentTransform* transform = (ComponentTransform*)(childGO->GetComponent(ComponentType::C_Transform));
+		ComponentTransform* transform_parent = (ComponentTransform*)childGO->parent->GetComponent(ComponentType::C_Transform);
+		aiVector3D translation, scaling;
+		aiQuaternion rotation;
+
+		node->mTransformation.Decompose(scaling, rotation, translation);
+
+		float3 pos(translation.x, translation.y, translation.z);
+		float3 scale(scaling.x, scaling.y, scaling.z);
+		Quat rot(rotation.x, rotation.y, rotation.z, rotation.w);
+
+		transform->SetTransform(pos, rot, scale);
+		transform->global_transform = transform_parent->global_transform * transform->local_transform;
+
 		ComponentMesh* meshRenderer = (ComponentMesh*)(childGO->CreateComponent(ComponentType::C_Mesh));
 		meshRenderer->mesh = meshVector[node->mMeshes[i]];
 		ComponentMaterial* materialRenderer = (ComponentMaterial*)(childGO->CreateComponent(ComponentType::C_Material));

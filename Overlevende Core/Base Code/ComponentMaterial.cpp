@@ -61,7 +61,8 @@ void ComponentMaterial::OnEditor(GameObject* _go)
 		if (texturePath != "") {
 			ImGui::TextColored(color, texturePath.c_str());
 		}
-
+		//c_mesh->mesh->textureHeight = ilGetInteger(IL_IMAGE_HEIGHT);
+		//c_mesh->mesh->textureWidth = ilGetInteger(IL_IMAGE_WIDTH);
 		ImGui::TextColored(color, "Height: ");
 		ImGui::SameLine();
 		ImGui::Text("%i", c_mesh->mesh->textureHeight);
@@ -79,7 +80,7 @@ void ComponentMaterial::ChangeTex()
 	if (ExternalApp->base_motor->inspector_window->_selectedGO != nullptr) {
 		if (putCheckMaterial == true) {
 			if (c_mesh != nullptr) {
-				ChangeTexture((GLuint)ExternalApp->renderer3D->checkerImage, c_mesh);
+				ChangeTexture((GLuint)ExternalApp->renderer3D->imgID, c_mesh);
 			}
 		}
 		else {

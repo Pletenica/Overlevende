@@ -26,6 +26,7 @@ public:
 	GameObject* CreateGameObject(std::string _name, GameObject* parent);
 	void DeleteGameObject(GameObject* _go);
 	void RecursiveUpdate(GameObject* node);
+	void ClearHierarchy();
 
 public:
 	Primitive primitive;

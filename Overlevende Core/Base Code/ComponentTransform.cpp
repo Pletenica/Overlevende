@@ -16,7 +16,7 @@ ComponentTransform::ComponentTransform() :Component()
 	type = ComponentType::C_Transform;
 	position = { 0,0,0 };
 	rotation = { 0,0,0 };
-	scale = { 0,0,0 };
+	scale = { 1,1,1 };
 }
 
 // Destructor
@@ -107,7 +107,7 @@ void ComponentTransform::OnEditor(GameObject* _go)
 		ImGui::PushItemWidth(70);
 		if (ImGui::InputFloat("##rotz", &rot.z, 0, 0, 3, ImGuiInputTextFlags_EnterReturnsTrue)) newRot = true;
 		ImGui::PopItemWidth();
-		if (newRot) _go->transform->position = pos;
+		if (newRot) _go->transform->rotation = rot;
 
 		///////// SCALE ///////////
 		float3 scale = transform->scale;
@@ -136,4 +136,13 @@ void ComponentTransform::OnEditor(GameObject* _go)
 		ImGui::PopItemWidth();
 		if (newScale) _go->transform->scale = scale;
 	}
+}
+
+void ComponentTransform::SetTransform(float3 _pos, Quat _rot, float3 _scale)
+{
+	position = _pos;
+	rotation = _rot.ToEulerXYZ()*RADTODEG;
+	scale = _scale;
+
+	local_transform.FromTRS(position, _rot, scale);
 }

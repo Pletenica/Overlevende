@@ -405,7 +405,7 @@ void ModuleFileSystem::LoadFileFromPath(const char* _path)
 		ComponentMesh* c_mesh = (ComponentMesh*)App->base_motor->inspector_window->_selectedGO->GetComponent(ComponentType::C_Mesh);
 		ComponentMaterial* c_mat = (ComponentMaterial*)App->base_motor->inspector_window->_selectedGO->GetComponent(ComponentType::C_Material);
 		if (c_mesh != nullptr && c_mat !=nullptr) {
-			c_mesh->mesh->textureID = FBXLoader::LoadTexture(buffer, size);
+			c_mesh->mesh->textureID = FBXLoader::LoadTexture(buffer, size, &c_mesh->mesh->textureWidth, &c_mesh->mesh->textureHeight);
 			c_mat->textureID = c_mesh->mesh->textureID;
 			c_mat->texturePath = _localpath;
 		}

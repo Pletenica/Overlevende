@@ -22,12 +22,7 @@ public:
 	bool Disable();
 	void OnEditor(GameObject* _go);
 
-	float3 GetPosition() { return position; };
-	void SetPosition(float3 _pos) { position = _pos; };
-	float3 GetRotation() { return rotation; };
-	void SetRotation(float3 _rot) { position = _rot; };
-	float3 GetScale() { return scale; };
-	void SetScale(float3 _scale) { position = _scale; };
+	void SetTransform(float3 pos, Quat rot, float3 scale);
 
 public:
 	float4x4 local_transform;

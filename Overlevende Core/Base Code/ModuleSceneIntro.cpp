@@ -35,6 +35,8 @@ bool ModuleSceneIntro::Start()
 
 	showaxis = true;
 	rootGO = CreateGameObject("Scene", nullptr);
+
+	App->file_system->LoadFileFromPath("Assets/FBXs/BakerHouse.fbx");
 	//App->base_motor->inspector_window->PutNewSelectedGameObject(rootGO);
 	return ret;
 }
@@ -54,7 +56,7 @@ update_status ModuleSceneIntro::Update(float dt)
 	p.axis = true;
 
 	if (App->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN) {
-		CreateGameObject("Children", rootGO);
+		App->file_system->LoadFileFromPath("Assets/FBXs/BakerHouse.fbx");
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
@@ -169,4 +171,13 @@ void ModuleSceneIntro::RecursiveUpdate(GameObject* node)
 			RecursiveUpdate(node->children[i]);
 		}
 	}
+}
+
+void ModuleSceneIntro::ClearHierarchy()
+{
+	for (int i = 0; i < rootGO->children.size(); i++) {
+		delete rootGO->children[i];
+		rootGO->children[i] = nullptr;
+	}
+	rootGO->children.clear();
 }

@@ -99,5 +99,4 @@ void OptionsWindow::RecursiveNormals(GameObject* node, bool _active)
 			RecursiveNormals(node->children[i], _active);
 		}
 	}
-	
 }

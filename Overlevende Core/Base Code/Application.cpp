@@ -3,6 +3,7 @@
 extern Application* ExternalApp = nullptr;
 Application::Application()
 {
+
 	file_system = new ModuleFileSystem(this);
 	window = new ModuleWindow(this);
 	input = new ModuleInput(this);
@@ -48,6 +49,7 @@ Application::~Application()
 
 bool Application::Init()
 {
+
 	bool ret = true;
 
 	// Call Init() in all modules
@@ -63,6 +65,8 @@ bool Application::Init()
 	LOG("Application Start --------------");
 	item = list_modules.getFirst();
 
+	ExternalApp = this;
+
 	while(item != NULL && ret == true)
 	{
 		ret = item->data->Start();
@@ -72,7 +76,7 @@ bool Application::Init()
 	ms_timer.Start();
 
 
-	ExternalApp = this;
+
 	return ret;
 }
 
