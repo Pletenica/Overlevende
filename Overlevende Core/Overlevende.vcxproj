@@ -197,6 +197,7 @@
     <ClInclude Include="Base Code\p2Point.h" />
     <ClInclude Include="Base Code\Primitive.h" />
     <ClInclude Include="Base Code\Timer.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Base Code\AboutWindow.cpp" />
@@ -277,6 +278,12 @@
     <None Include="Base Code\lib\MathGeoLib\Geometry\TriangleMesh_IntersectRay_CPP.inl" />
     <None Include="Base Code\lib\MathGeoLib\Geometry\TriangleMesh_IntersectRay_SSE.inl" />
     <None Include="Base Code\lib\MathGeoLib\Math\Matrix.inl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Overlevende.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Game\Assets\OverlevendeLogo.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

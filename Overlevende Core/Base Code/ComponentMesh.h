@@ -11,7 +11,7 @@ class ComponentMesh : public Component
 {
 public:
 
-	ComponentMesh();
+	ComponentMesh(GameObject* _go);
 	virtual ~ComponentMesh();
 
 	bool Enable();

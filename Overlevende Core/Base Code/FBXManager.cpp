@@ -82,6 +82,21 @@ int FBXLoader::LoadTexture(char* buffer, int _size, int* _width, int* _height)
 		LOG("Error loading texture");
 	}
 
+	//ILuint size = 0;
+	//ILubyte* data = nullptr;
+	//ilSetInteger(IL_DXTC_FORMAT, IL_DXT5);
+	//size = ilSaveL(IL_DDS, nullptr, 0);
+	//if (size > 0) {
+	//	data = new ILubyte[size];
+	//	ilSaveL(IL_DDS, data, size);
+	//	ExternalApp->file_system->Save("Library/Materials/Test.dds", data, size);
+
+	//	delete[] data;
+	//	data = nullptr;
+	//}
+
+
+
 	*_height = ilGetInteger(IL_IMAGE_HEIGHT);
 	*_width = ilGetInteger(IL_IMAGE_WIDTH);
 
@@ -169,6 +184,38 @@ void FBXLoader::aiMeshToMesh(const aiScene* scene, std::vector<Mesh*>& meshVecto
 		if (new_mesh->mMaterialIndex < textureVector.size()) {
 			_mesh->textureID = textureVector[new_mesh->mMaterialIndex];
 		}
+
+
+		uint variables[4] = {_mesh->num_indices, _mesh->num_vertices, _mesh->num_normals, _mesh->num_textures};
+		uint size = sizeof(variables) + (sizeof(uint) * _mesh->num_indices) + (sizeof(float) * _mesh->num_vertices * 3) + (sizeof(float) * _mesh->num_normals * 3) + (sizeof(float) * _mesh->num_textures * 2);
+
+		char* fileBuffer = new char[size];
+		char* cursor = fileBuffer;
+
+		uint bytes = sizeof(variables);
+		memcpy(cursor, variables, bytes);
+		cursor += bytes;
+
+		bytes = sizeof(uint) * _mesh->num_indices;
+		memcpy(cursor, _mesh->indices, bytes);
+		cursor += bytes;
+
+		bytes = sizeof(float) * _mesh->num_vertices * 3;
+		memcpy(cursor, _mesh->vertices, bytes);
+		cursor += bytes;
+
+		bytes = sizeof(float) * _mesh->num_normals * 3;
+		memcpy(cursor, _mesh->normals, bytes);
+		cursor += bytes;
+
+		bytes = sizeof(float) * _mesh->num_textures * 2;
+		memcpy(cursor, _mesh->textures, bytes);
+		cursor += bytes;
+
+		ExternalApp->file_system->Save("Library/Meshes/Test.penis", fileBuffer, size);
+
+
+
 		_mesh->GenBuffers(MeshType::FBXNone);
 		meshVector.push_back(_mesh);
 	}

@@ -8,8 +8,9 @@
 #include"Devil/include/ilut.h"
 
 ///WINDOW NOW
-ComponentMaterial::ComponentMaterial() :Component()
+ComponentMaterial::ComponentMaterial(GameObject* _go) :Component(_go)
 {
+	gameobject = _go;
 	type = ComponentType::C_Material;
 }
 

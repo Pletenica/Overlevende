@@ -17,6 +17,9 @@ void log(const char file[], int line, const char* format, ...);
 #define RADTODEG 57.295779513082320876f
 #define HAVE_M_PI
 
+#define LIBRARY_PATH "Library/"
+#define MESHES_PATH "Library/Meshes/"
+#define MATERIALS_PATH "Library/Materials/"
 
 typedef unsigned int uint;
 

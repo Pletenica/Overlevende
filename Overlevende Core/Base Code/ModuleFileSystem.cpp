@@ -65,11 +65,11 @@ bool ModuleFileSystem::CleanUp()
 
 void ModuleFileSystem::CreateLibraryDirectories()
 {
-	//CreateDir(LIBRARY_PATH);
+	CreateDir(LIBRARY_PATH);
 	//CreateDir(FOLDERS_PATH);
-	//CreateDir(MESHES_PATH);
+	CreateDir(MESHES_PATH);
 	//CreateDir(TEXTURES_PATH);
-	//CreateDir(MATERIALS_PATH);
+	CreateDir(MATERIALS_PATH);
 	//CreateDir(MODELS_PATH);
 	//CreateDir(ANIMATIONS_PATH);
 	//CreateDir(PARTICLES_PATH);
@@ -333,6 +333,45 @@ std::string ModuleFileSystem::GetUniqueName(const char* path, const char* name) 
 		}
 	}
 	return finalName;
+}
+
+unsigned int ModuleFileSystem::Save(const char* file, const void* buffer, unsigned int size, bool append) const
+{
+	unsigned int ret = 0;
+
+	bool overwrite = PHYSFS_exists(file) != 0;
+	PHYSFS_file* fs_file = (append) ? PHYSFS_openAppend(file) : PHYSFS_openWrite(file);
+
+	if (fs_file != nullptr)
+	{
+		uint written = (uint)PHYSFS_write(fs_file, (const void*)buffer, 1, size);
+		if (written != size)
+		{
+			LOG("[error] File System error while writing to file %s: %s", file, PHYSFS_getLastError());
+		}
+		else
+		{
+			if (append == true) {
+				LOG("Added %u data to [%s%s]", size, GetWriteDir(), file);
+			}
+			else if (overwrite == true) {
+
+				LOG("File [%s%s] overwritten with %u bytes", GetWriteDir(), file, size);
+			}
+			else {
+				LOG("New file created [%s%s] of %u bytes", GetWriteDir(), file, size);
+			}
+
+			ret = written;
+		}
+
+		if (PHYSFS_close(fs_file) == 0)
+			LOG("[error] File System error while closing file %s: %s", file, PHYSFS_getLastError());
+	}
+	else
+		LOG("[error] File System error while opening file %s: %s", file, PHYSFS_getLastError());
+
+	return ret;
 }
 
 unsigned int ModuleFileSystem::Load(const char* path, const char* file, char** buffer) const

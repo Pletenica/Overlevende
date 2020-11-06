@@ -2,11 +2,13 @@
 #include "Application.h"
 #include "ModuleGameObject.h"
 #include "ComponentMesh.h"
+#include "ComponentTransform.h"
 #include "Mesh.h"
 
 ///WINDOW NOW
-ComponentMesh::ComponentMesh() :Component()
+ComponentMesh::ComponentMesh(GameObject* _go) :Component(_go)
 {
+	gameobject = _go;
 	type = ComponentType::C_Mesh;
 }
 
@@ -32,14 +34,18 @@ bool ComponentMesh::Disable()
 // Called before quitting
 bool ComponentMesh::Update(float dt)
 {
+	glPushMatrix();
+	glMultMatrixf(gameobject->transform->global_transform.Transposed().ptr());
 	//////// DRAW NORMALS //////////
 	if (drawFaceNormals==true) DrawFaceNormals(mesh);
 	if (drawVertexNormals == true) DrawVertexNormals(mesh);
 
 	if (active == true) {
-		if (mesh != nullptr)
+		if (mesh != nullptr) {
 			mesh->Render();
+		}
 	}
+	glPopMatrix();
 	return true;
 }
 

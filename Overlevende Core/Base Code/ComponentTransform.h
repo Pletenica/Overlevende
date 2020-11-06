@@ -14,7 +14,7 @@ class ComponentTransform : public Component
 {
 public:
 
-	ComponentTransform();
+	ComponentTransform(GameObject* _go);
 	virtual ~ComponentTransform();
 
 	bool Enable();

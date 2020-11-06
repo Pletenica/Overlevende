@@ -56,6 +56,8 @@ public:
 	//uint64 GetLastModTime(const char* filename);
 	std::string GetUniqueName(const char* path, const char* name) const;
 
+	unsigned int Save(const char* file, const void* buffer, unsigned int size, bool append = false) const;
+
 	void LoadFileFromPath(const char* _path);
 };
 

@@ -13,7 +13,7 @@ class ComponentMaterial : public Component
 {
 public:
 
-	ComponentMaterial();
+	ComponentMaterial(GameObject* _go);
 	virtual ~ComponentMaterial();
 
 	bool Enable();

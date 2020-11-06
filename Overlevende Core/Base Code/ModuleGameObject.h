@@ -22,7 +22,7 @@ class Component
 {
 public:
 
-	Component();
+	Component(GameObject* _go);
 	virtual ~Component();
 
 	virtual bool Enable();
@@ -33,6 +33,7 @@ public:
 public:
 	bool active = true;
 	ComponentType type;
+	GameObject* gameobject = nullptr;
 };
 
 class GameObject

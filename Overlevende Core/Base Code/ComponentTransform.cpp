@@ -4,19 +4,22 @@
 #include "ComponentTransform.h"
 #include "MathGeoLib/Math/float3.h"
 #include "MathGeoLib/Math/Quat.h"
-
+#include"MathGeoLib/Math/float4x4.h"
 
 #include "Assimp/include/cimport.h"
 #include "Assimp/include/scene.h"
 #include "Assimp/include/postprocess.h"
 
 ///WINDOW NOW
-ComponentTransform::ComponentTransform() :Component()
+ComponentTransform::ComponentTransform(GameObject* _go) :Component(_go)
 {
+	gameobject = _go;
 	type = ComponentType::C_Transform;
 	position = { 0,0,0 };
 	rotation = { 0,0,0 };
 	scale = { 1,1,1 };
+	local_transform.SetIdentity();
+	global_transform.SetIdentity();
 }
 
 // Destructor
@@ -139,5 +142,5 @@ void ComponentTransform::SetTransform(float3 _pos, Quat _rot, float3 _scale)
 	rotation = _rot.ToEulerXYZ()*RADTODEG;
 	scale = _scale;
 
-	local_transform.FromTRS(position, _rot, scale);
+	local_transform = float4x4::FromTRS(position, _rot, scale);
 }

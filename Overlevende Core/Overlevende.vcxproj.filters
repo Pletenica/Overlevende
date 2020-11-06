@@ -555,6 +555,7 @@
     <ClInclude Include="Base Code\lib\Devil\include\config.h">
       <Filter>Core\Tools\Devil</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -637,5 +638,11 @@
     <None Include="Base Code\lib\MathGeoLib\Math\Matrix.inl">
       <Filter>Core\Tools\MathGeoLib\Math</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Overlevende.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Game\Assets\OverlevendeLogo.ico" />
   </ItemGroup>
 </Project>

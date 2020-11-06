@@ -80,13 +80,13 @@ Component* GameObject::CreateComponent(ComponentType w_type) {
 
 	switch (w_type) {
 	case(ComponentType::C_Material):
-		comp = new ComponentMaterial();
+		comp = new ComponentMaterial(this);
 		break;
 	case(ComponentType::C_Transform):
-		comp = new ComponentTransform();
+		comp = new ComponentTransform(this);
 		break;
 	case(ComponentType::C_Mesh):
-		comp = new ComponentMesh();
+		comp = new ComponentMesh(this);
 		break;
 	}
 
@@ -115,7 +115,7 @@ void GameObject::DeleteComponent(Component* comp) {
 
 
 ///WINDOW NOW
-Component::Component()
+Component::Component(GameObject* _go)
 {
 
 }
