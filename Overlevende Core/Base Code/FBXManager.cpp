@@ -70,7 +70,7 @@ void FBXLoader::ImportFBX(char* _buffer, int _size, int _idTexturesTemporal, con
 	}
 }
 
-int FBXLoader::LoadTexture(char* buffer, int _size, int* _width, int* _height)
+int FBXLoader::LoadTexture(char* buffer, int _size, int* _width, int* _height, std::string _texname)
 {
 	ILuint imageID;
 	ilGenImages(1, &imageID);
@@ -82,20 +82,7 @@ int FBXLoader::LoadTexture(char* buffer, int _size, int* _width, int* _height)
 		LOG("Error loading texture");
 	}
 
-	//ILuint size = 0;
-	//ILubyte* data = nullptr;
-	//ilSetInteger(IL_DXTC_FORMAT, IL_DXT5);
-	//size = ilSaveL(IL_DDS, nullptr, 0);
-	//if (size > 0) {
-	//	data = new ILubyte[size];
-	//	ilSaveL(IL_DDS, data, size);
-	//	ExternalApp->file_system->Save("Library/Materials/Test.dds", data, size);
-
-	//	delete[] data;
-	//	data = nullptr;
-	//}
-
-
+	ImageToDDS(_texname);
 
 	*_height = ilGetInteger(IL_IMAGE_HEIGHT);
 	*_width = ilGetInteger(IL_IMAGE_WIDTH);
@@ -125,7 +112,9 @@ void FBXLoader::aiMeshToMesh(const aiScene* scene, std::vector<Mesh*>& meshVecto
 			std::string _localpath = "Assets/Textures/" + (std::string)texName->C_Str();
 			int size = ExternalApp->file_system->Load(_localpath.c_str(), &buffer);
 
-			texturesVector.push_back(FBXLoader::LoadTexture(buffer, size, &_mesh->textureWidth, &_mesh->textureHeight));
+			std::string _tn = (std::string)texName->C_Str();
+			_tn = _tn.substr(0, _tn.find_last_of("."));
+			texturesVector.push_back(FBXLoader::LoadTexture(buffer, size, &_mesh->textureWidth, &_mesh->textureHeight, _tn));
 			_mesh->textureID = texturesVector[texturesVector.size() - 1];
 
 			delete[] buffer;
@@ -185,35 +174,9 @@ void FBXLoader::aiMeshToMesh(const aiScene* scene, std::vector<Mesh*>& meshVecto
 			_mesh->textureID = textureVector[new_mesh->mMaterialIndex];
 		}
 
-
-		uint variables[4] = {_mesh->num_indices, _mesh->num_vertices, _mesh->num_normals, _mesh->num_textures};
-		uint size = sizeof(variables) + (sizeof(uint) * _mesh->num_indices) + (sizeof(float) * _mesh->num_vertices * 3) + (sizeof(float) * _mesh->num_normals * 3) + (sizeof(float) * _mesh->num_textures * 2);
-
-		char* fileBuffer = new char[size];
-		char* cursor = fileBuffer;
-
-		uint bytes = sizeof(variables);
-		memcpy(cursor, variables, bytes);
-		cursor += bytes;
-
-		bytes = sizeof(uint) * _mesh->num_indices;
-		memcpy(cursor, _mesh->indices, bytes);
-		cursor += bytes;
-
-		bytes = sizeof(float) * _mesh->num_vertices * 3;
-		memcpy(cursor, _mesh->vertices, bytes);
-		cursor += bytes;
-
-		bytes = sizeof(float) * _mesh->num_normals * 3;
-		memcpy(cursor, _mesh->normals, bytes);
-		cursor += bytes;
-
-		bytes = sizeof(float) * _mesh->num_textures * 2;
-		memcpy(cursor, _mesh->textures, bytes);
-		cursor += bytes;
-
-		ExternalApp->file_system->Save("Library/Meshes/Test.penis", fileBuffer, size);
-
+		SaveMeshToOwnFormat(_mesh);
+		LoadMeshFromOwnFormat(_mesh->name);
+	
 
 
 		_mesh->GenBuffers(MeshType::FBXNone);
@@ -267,4 +230,101 @@ void FBXLoader::NodeToGameObject(const aiScene* scene, aiNode* node, GameObject*
 	{
 		NodeToGameObject(scene, node->mChildren[i], go, meshVector, _name);
 	}
+}
+
+void FBXLoader::SaveMeshToOwnFormat(Mesh *_mesh)
+{
+	uint variables[4] = { _mesh->num_indices, _mesh->num_vertices, _mesh->num_normals, _mesh->num_textures };
+	uint size = sizeof(variables) + (sizeof(uint) * _mesh->num_indices) + (sizeof(float) * _mesh->num_vertices * 3) + (sizeof(float) * _mesh->num_normals * 3) + (sizeof(float) * _mesh->num_textures * 2);
+
+	char* fileBuffer = new char[size];
+	char* cursor = fileBuffer;
+
+	uint bytes = sizeof(variables);
+	memcpy(cursor, variables, bytes);
+	cursor += bytes;
+
+	bytes = sizeof(uint) * _mesh->num_indices;
+	memcpy(cursor, _mesh->indices, bytes);
+	cursor += bytes;
+
+	bytes = sizeof(float) * _mesh->num_vertices * 3;
+	memcpy(cursor, _mesh->vertices, bytes);
+	cursor += bytes;
+
+	bytes = sizeof(float) * _mesh->num_normals * 3;
+	memcpy(cursor, _mesh->normals, bytes);
+	cursor += bytes;
+
+	bytes = sizeof(float) * _mesh->num_textures * 2;
+	memcpy(cursor, _mesh->textures, bytes);
+	cursor += bytes;
+
+	std::string path = MESHES_PATH + _mesh->name + MESHES_FORMAT;
+
+	ExternalApp->file_system->Save(path.c_str(), fileBuffer, size);
+	delete[] fileBuffer;
+	fileBuffer = nullptr;
+}
+
+void FBXLoader::LoadMeshFromOwnFormat(std::string _meshname)
+{
+	Mesh* loadedMesh = new Mesh();
+	char* fileBuffer = nullptr;
+
+	std::string path = MESHES_PATH + _meshname + MESHES_FORMAT;
+	uint size = ExternalApp->file_system->Load(path.c_str(), &fileBuffer);
+
+	char* cursor = fileBuffer;
+	uint variables[4];
+
+	uint bytes = sizeof(variables);
+	memcpy(variables, cursor, bytes);
+	loadedMesh->num_indices = variables[0];
+	loadedMesh->num_vertices = variables[1];
+	loadedMesh->num_normals = variables[2];
+	loadedMesh->num_textures = variables[3];
+	cursor += bytes;
+
+
+	bytes = sizeof(uint) * loadedMesh->num_indices;
+
+	loadedMesh->indices = new uint[loadedMesh->num_indices];
+	memcpy(loadedMesh->indices, cursor, bytes);
+	cursor += bytes;
+
+	loadedMesh->vertices = new float[loadedMesh->num_vertices * 3];
+	bytes = sizeof(float) * loadedMesh->num_vertices * 3;
+	memcpy(loadedMesh->vertices, cursor, bytes);
+	cursor += bytes;
+
+	loadedMesh->normals = new float[loadedMesh->num_normals * 3];
+	bytes = sizeof(float) * loadedMesh->num_normals * 3;
+	memcpy(loadedMesh->normals, cursor, bytes);
+	cursor += bytes;
+
+	loadedMesh->textures = new float[loadedMesh->num_textures * 2];
+	bytes = sizeof(float) * loadedMesh->num_textures * 2;
+	memcpy(loadedMesh->textures, cursor, bytes);
+	cursor += bytes;
+
+	delete[] fileBuffer;
+	fileBuffer = nullptr;
+}
+
+void FBXLoader::ImageToDDS(std::string _texturename)
+{
+	ILuint size = 0;
+    ILubyte* data = nullptr;
+    ilSetInteger(IL_DXTC_FORMAT, IL_DXT5);
+    size = ilSaveL(IL_DDS, nullptr, 0);
+    if (size > 0) {
+    	data = new ILubyte[size];
+    	ilSaveL(IL_DDS, data, size);
+		std::string path = MATERIALS_PATH + _texturename + ".dds";
+    	ExternalApp->file_system->Save(path.c_str(), data, size);
+    
+    	delete[] data;
+    	data = nullptr;
+    }
 }

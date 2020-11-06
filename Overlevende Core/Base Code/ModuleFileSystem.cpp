@@ -440,11 +440,13 @@ void ModuleFileSystem::LoadFileFromPath(const char* _path)
 		char* buffer = nullptr;
 		std::string _p = path.substr(path.find_last_of("/"));
 		std::string _localpath = "Assets/Textures" + _p;
+		std::string _texname = _p.substr(0, _p.find_first_of("."));
 		int size = Load(_localpath.c_str(), &buffer);
+
 		ComponentMesh* c_mesh = (ComponentMesh*)App->base_motor->inspector_window->_selectedGO->GetComponent(ComponentType::C_Mesh);
 		ComponentMaterial* c_mat = (ComponentMaterial*)App->base_motor->inspector_window->_selectedGO->GetComponent(ComponentType::C_Material);
 		if (c_mesh != nullptr && c_mat !=nullptr) {
-			c_mesh->mesh->textureID = FBXLoader::LoadTexture(buffer, size, &c_mesh->mesh->textureWidth, &c_mesh->mesh->textureHeight);
+			c_mesh->mesh->textureID = FBXLoader::LoadTexture(buffer, size, &c_mesh->mesh->textureWidth, &c_mesh->mesh->textureHeight, _texname);
 			c_mat->textureID = c_mesh->mesh->textureID;
 			c_mat->texturePath = _localpath;
 		}

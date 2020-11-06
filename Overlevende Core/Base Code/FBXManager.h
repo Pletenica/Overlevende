@@ -2,6 +2,7 @@
 //#include "ModuleRenderer3D.h"
 
 #include<vector>
+#include<string>
 class Mesh;
 class aiMesh;
 class aiScene;
@@ -15,10 +16,14 @@ namespace FBXLoader
 	void EnableDebug();
 	void DisableDebug();
 	void ImportFBX(char* _buffer, int _size, int temporalTexID, const char* _name);
-	int LoadTexture(char* _buffer, int _size, int* _width, int* _height);
+	int LoadTexture(char* _buffer, int _size, int* _width, int* _height, std::string _texname);
 
 	void aiMeshToMesh(const aiScene* scene, std::vector<Mesh*>& meshVector, std::vector<GLuint>& textureVector, aiString* texName, std::vector<GLuint> texturesVector);
 
 	void NodeToGameObject(const aiScene* scene, aiNode* node, GameObject* parent, std::vector<Mesh*>& meshVector, aiString _name);
 
+	void SaveMeshToOwnFormat(Mesh *_mesh);
+	void LoadMeshFromOwnFormat(std::string _meshname);
+
+	void ImageToDDS(std::string _texturename);
 };
