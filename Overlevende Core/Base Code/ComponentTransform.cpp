@@ -57,6 +57,10 @@ void ComponentTransform::OnEditor(GameObject* _go)
 		float3 pos = transform->position;
 		bool newPos = false;
 
+		if(ImGui::Button("Reset Position", ImVec2(120, 20))) {
+			ResetTransform();
+		}
+
 		ImGui::Text("Position");
 
 		ImGui::Text("X");
@@ -133,6 +137,12 @@ void ComponentTransform::OnEditor(GameObject* _go)
 		if (ImGui::InputFloat("##scalez", &scale.z, 0, 0, 3, ImGuiInputTextFlags_EnterReturnsTrue)) newScale = true;
 		ImGui::PopItemWidth();
 		if (newScale) _go->transform->scale = scale;
+
+		if (newScale == true || newRot == true || newPos == true) {
+			Quat _newRotation;
+			_newRotation = _newRotation.FromEulerXYZ(_go->transform->rotation.x * DEGTORAD, _go->transform->rotation.y * DEGTORAD, _go->transform->rotation.z * DEGTORAD);
+			SetTransform(_go->transform->position, _newRotation, _go->transform->scale);
+		}
 	}
 }
 
@@ -142,11 +152,20 @@ void ComponentTransform::SetTransform(float3 _pos, Quat _rot, float3 _scale)
 	rotation = _rot.ToEulerXYZ()*RADTODEG;
 	scale = _scale;
 
-	local_transform = float4x4::FromTRS(position, _rot, scale);
+	RecursiveUpdateTransform(_pos, _rot, _scale);
 }
 
-void ComponentTransform::RecursiveUpdateTransform()
+void ComponentTransform::RecursiveUpdateTransform(float3 _pos, Quat _rot, float3 _scale)
 {
-	//local_transform = float4x4::FromTRS(position, rotation, scale);
-	//global_transform = gameobject->parent.* local_transform
+	local_transform = float4x4::FromTRS(_pos, _rot, _scale);
+	global_transform = gameobject->parent->transform->global_transform * local_transform;
+
+	for (int i = 0; i < gameobject->children.size(); i++) {
+		gameobject->children[i]->transform->RecursiveUpdateTransform(_pos, _rot, _scale);
+	}
+}
+
+void ComponentTransform::ResetTransform()
+{
+	SetTransform(float3::zero, Quat::identity, float3::one);
 }
