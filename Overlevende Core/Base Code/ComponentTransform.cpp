@@ -144,3 +144,9 @@ void ComponentTransform::SetTransform(float3 _pos, Quat _rot, float3 _scale)
 
 	local_transform = float4x4::FromTRS(position, _rot, scale);
 }
+
+void ComponentTransform::RecursiveUpdateTransform()
+{
+	//local_transform = float4x4::FromTRS(position, rotation, scale);
+	//global_transform = gameobject->parent.* local_transform
+}

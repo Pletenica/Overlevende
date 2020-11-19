@@ -23,6 +23,7 @@ public:
 	void OnEditor(GameObject* _go);
 
 	void SetTransform(float3 pos, Quat rot, float3 scale);
+	void RecursiveUpdateTransform();
 
 public:
 	float4x4 local_transform;

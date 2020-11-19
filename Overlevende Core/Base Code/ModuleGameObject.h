@@ -7,6 +7,7 @@
 #include "SDL/include/SDL.h"
 #include <vector>
 #include <string>
+#include"JsonManager.h"
 
 class Application;
 class ComponentTransform;
@@ -30,6 +31,9 @@ public:
 	virtual bool Disable();
 	virtual void OnEditor(GameObject* _go);
 
+	virtual void SaveComponent(JsonManager* _man);
+	virtual void LoadComponent(const char* _path);
+
 public:
 	bool active = true;
 	ComponentType type;
@@ -50,6 +54,9 @@ public:
 	Component* CreateComponent(ComponentType w_type);
 	Component* GetComponent(ComponentType w_type);
 	void DeleteComponent(Component* comp);
+
+	void SaveGameObject(JSON_Array* _goArray);
+	void LoadGameObject(JsonManager* _man);
 
 public:
 	bool active = true;

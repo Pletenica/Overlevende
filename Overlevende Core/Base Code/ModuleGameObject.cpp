@@ -8,6 +8,7 @@
 #include "OptionsWindow.h"
 #include "SceneWindow.h"
 #include "ModuleGameObject.h"
+#include "ModuleSceneIntro.h"
 
 #include "ComponentMesh.h"
 #include "ComponentMaterial.h"
@@ -113,6 +114,39 @@ void GameObject::DeleteComponent(Component* comp) {
 	}
 }
 
+void GameObject::SaveGameObject(JSON_Array* _goArray)
+{
+	JSON_Value* _val = json_value_init_object();
+	JsonManager _man(json_value_get_object(_val));
+
+	_man.AddString("name", name.c_str());
+
+	json_array_append_value(_goArray, _val);
+
+	JSON_Value* comp = json_value_init_array();
+	JSON_Array* _arraybro = json_value_get_array(comp);
+	for (int i = 0; i < components.size(); i++)
+	{
+		JSON_Value* _valcomponent = json_value_init_object();
+		JsonManager _manager(json_value_get_object(_valcomponent));
+
+		components[i]->SaveComponent(&_manager);
+		json_array_append_value(_arraybro,_valcomponent);
+	}
+	json_object_set_value(json_value_get_object(_val), "components", comp);
+	
+	for (int i = 0; i < children.size(); i++) {
+		children[i]->SaveGameObject(_goArray);
+	}
+}
+
+void GameObject::LoadGameObject(JsonManager* _man)
+{
+	name = _man->GetString("name");
+
+
+}
+
 
 ///WINDOW NOW
 Component::Component(GameObject* _go)
@@ -150,4 +184,13 @@ bool Component::Update(float dt)
 void Component::OnEditor(GameObject* _go)
 {
 
+}
+
+void Component::SaveComponent(JsonManager* _man)
+{
+	_man->AddInt("Type", (int)type);
+}
+
+void Component::LoadComponent(const char* _path)
+{
 }

@@ -96,6 +96,7 @@
     <ClInclude Include="Base Code\Globals.h" />
     <ClInclude Include="Base Code\HierarchyWindow.h" />
     <ClInclude Include="Base Code\InspectorWindow.h" />
+    <ClInclude Include="Base Code\JsonManager.h" />
     <ClInclude Include="Base Code\lib\Devil\include\config.h" />
     <ClInclude Include="Base Code\lib\Devil\include\devil_internal_exports.h" />
     <ClInclude Include="Base Code\lib\Devil\include\il.h" />
@@ -212,6 +213,7 @@
     <ClCompile Include="Base Code\glmath.cpp" />
     <ClCompile Include="Base Code\HierarchyWindow.cpp" />
     <ClCompile Include="Base Code\InspectorWindow.cpp" />
+    <ClCompile Include="Base Code\JsonManager.cpp" />
     <ClCompile Include="Base Code\lib\ImGui\imgui.cpp" />
     <ClCompile Include="Base Code\lib\ImGui\imgui_demo.cpp" />
     <ClCompile Include="Base Code\lib\ImGui\imgui_draw.cpp" />

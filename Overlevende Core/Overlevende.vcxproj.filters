@@ -211,6 +211,9 @@
     <ClCompile Include="Base Code\ModuleFileSystem.cpp">
       <Filter>Core\Modules</Filter>
     </ClCompile>
+    <ClCompile Include="Base Code\JsonManager.cpp">
+      <Filter>Core\Tools\Parson</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Base Code\Application.h">
@@ -556,6 +559,9 @@
       <Filter>Core\Tools\Devil</Filter>
     </ClInclude>
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Base Code\JsonManager.h">
+      <Filter>Core\Tools\Parson</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">

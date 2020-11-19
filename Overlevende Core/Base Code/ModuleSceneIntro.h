@@ -2,7 +2,6 @@
 #include "Module.h"
 #include "p2DynArray.h"
 #include "Globals.h"
-#include "Primitive.h"
 #include "ModuleGameObject.h"
 
 #define MAX_SNAKE 2
@@ -27,8 +26,11 @@ public:
 	void RecursiveUpdate(GameObject* node);
 	void ClearHierarchy();
 
+	void Save();
+	void Load(const char* fileName);
+
 public:
-	Primitive primitive;
+	/*Primitive primitive;*/
 	GameObject* rootGO = nullptr;
 private:
 	bool showaxis = true;

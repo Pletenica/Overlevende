@@ -1,0 +1,95 @@
+{
+    "Test": "This is a test",
+    "GameObjects": [
+        {
+            "name": "Scene",
+            "components": [
+                {
+                    "Type": 0
+                }
+            ]
+        },
+        {
+            "name": "BakerHouse",
+            "components": [
+                {
+                    "Type": 0
+                }
+            ]
+        },
+        {
+            "name": "Chimney",
+            "components": [
+                {
+                    "Type": 0
+                }
+            ]
+        },
+        {
+            "name": "Model",
+            "components": [
+                {
+                    "Type": 0
+                },
+                {
+                    "Type": 1
+                },
+                {
+                    "Type": 2
+                }
+            ]
+        },
+        {
+            "name": "Baker_house",
+            "components": [
+                {
+                    "Type": 0
+                }
+            ]
+        },
+        {
+            "name": "Model",
+            "components": [
+                {
+                    "Type": 0
+                },
+                {
+                    "Type": 1
+                },
+                {
+                    "Type": 2
+                }
+            ]
+        },
+        {
+            "name": "Ghost",
+            "components": [
+                {
+                    "Type": 0
+                }
+            ]
+        },
+        {
+            "name": "Ghost:Ghosti",
+            "components": [
+                {
+                    "Type": 0
+                }
+            ]
+        },
+        {
+            "name": "Model",
+            "components": [
+                {
+                    "Type": 0
+                },
+                {
+                    "Type": 1
+                },
+                {
+                    "Type": 2
+                }
+            ]
+        }
+    ]
+}
