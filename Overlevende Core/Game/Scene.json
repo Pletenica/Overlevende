@@ -3,91 +3,198 @@
     "GameObjects": [
         {
             "name": "Scene",
+            "GameObject id": 403490358,
             "components": [
                 {
-                    "Type": 0
+                    "Type": 0,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Camera",
+            "GameObject id": 413237298,
+            "Parent id": 403490358,
+            "components": [
+                {
+                    "Type": 0,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Vertical FOV": 1,
+                    "Horizontal FOV": 1,
+                    "Far Plane Distance": 100,
+                    "Near Plane Distance": 1
                 }
             ]
         },
         {
             "name": "BakerHouse",
+            "GameObject id": 2000225572,
+            "Parent id": 403490358,
             "components": [
                 {
-                    "Type": 0
+                    "Type": 0,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         },
         {
             "name": "Chimney",
+            "GameObject id": 2008719334,
+            "Parent id": 2000225572,
             "components": [
                 {
-                    "Type": 0
+                    "Type": 0,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         },
         {
             "name": "Model",
+            "GameObject id": 2014219393,
+            "Parent id": 2008719334,
             "components": [
                 {
-                    "Type": 0
+                    "Type": 0,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        -90.000007629394531,
+                        0,
+                        0
+                    ],
+                    "Scale": [
+                        100,
+                        100,
+                        100
+                    ]
                 },
                 {
-                    "Type": 1
+                    "Type": 1,
+                    "Mesh Name": "Untitled.001"
                 },
                 {
-                    "Type": 2
+                    "Type": 2,
+                    "Texture ID": 3
                 }
             ]
         },
         {
             "name": "Baker_house",
+            "GameObject id": 2080707448,
+            "Parent id": 2000225572,
             "components": [
                 {
-                    "Type": 0
+                    "Type": 0,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         },
         {
             "name": "Model",
+            "GameObject id": 2094005059,
+            "Parent id": 2080707448,
             "components": [
                 {
-                    "Type": 0
+                    "Type": 0,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        -90.000007629394531,
+                        0,
+                        0
+                    ],
+                    "Scale": [
+                        100,
+                        100,
+                        100
+                    ]
                 },
                 {
-                    "Type": 1
+                    "Type": 1,
+                    "Mesh Name": "Untitled"
                 },
                 {
-                    "Type": 2
-                }
-            ]
-        },
-        {
-            "name": "Ghost",
-            "components": [
-                {
-                    "Type": 0
-                }
-            ]
-        },
-        {
-            "name": "Ghost:Ghosti",
-            "components": [
-                {
-                    "Type": 0
-                }
-            ]
-        },
-        {
-            "name": "Model",
-            "components": [
-                {
-                    "Type": 0
-                },
-                {
-                    "Type": 1
-                },
-                {
-                    "Type": 2
+                    "Type": 2,
+                    "Texture ID": 4
                 }
             ]
         }

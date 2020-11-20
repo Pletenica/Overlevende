@@ -27,6 +27,9 @@ public:
 
 	void ResetTransform();
 
+	void SaveComponent(JsonManager* _man);
+	void LoadComponent(JsonManager* _man);
+
 public:
 	float4x4 local_transform;
 	float4x4 global_transform;

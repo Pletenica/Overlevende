@@ -86,6 +86,7 @@
     <ClInclude Include="Base Code\AboutWindow.h" />
     <ClInclude Include="Base Code\Application.h" />
     <ClInclude Include="Base Code\Color.h" />
+    <ClInclude Include="Base Code\ComponentCamera.h" />
     <ClInclude Include="Base Code\ComponentMaterial.h" />
     <ClInclude Include="Base Code\ComponentMesh.h" />
     <ClInclude Include="Base Code\ComponentTransform.h" />
@@ -105,6 +106,7 @@
     <ClInclude Include="Base Code\lib\Devil\include\ilut_config.h" />
     <ClInclude Include="Base Code\lib\Devil\include\ilu_region.h" />
     <ClInclude Include="Base Code\lib\Devil\include\il_wrap.h" />
+    <ClInclude Include="Base Code\lib\ImGuizmo\ImGuizmo.h" />
     <ClInclude Include="Base Code\lib\ImGui\imconfig.h" />
     <ClInclude Include="Base Code\lib\ImGui\imgui.h" />
     <ClInclude Include="Base Code\lib\ImGui\imgui_impl_opengl3.h" />
@@ -113,13 +115,13 @@
     <ClInclude Include="Base Code\lib\ImGui\imstb_rectpack.h" />
     <ClInclude Include="Base Code\lib\ImGui\imstb_textedit.h" />
     <ClInclude Include="Base Code\lib\ImGui\imstb_truetype.h" />
+    <ClInclude Include="Base Code\lib\MathGeoLib\Algorithm\GJK.h" />
     <ClInclude Include="Base Code\lib\MathGeoLib\Algorithm\Random\LCG.h" />
+    <ClInclude Include="Base Code\lib\MathGeoLib\Algorithm\SAT.h" />
     <ClInclude Include="Base Code\lib\MathGeoLib\Geometry\AABB.h" />
     <ClInclude Include="Base Code\lib\MathGeoLib\Geometry\AABB2D.h" />
     <ClInclude Include="Base Code\lib\MathGeoLib\Geometry\Capsule.h" />
     <ClInclude Include="Base Code\lib\MathGeoLib\Geometry\Circle.h" />
-    <ClInclude Include="Base Code\lib\MathGeoLib\Geometry\Cone.h" />
-    <ClInclude Include="Base Code\lib\MathGeoLib\Geometry\Cylinder.h" />
     <ClInclude Include="Base Code\lib\MathGeoLib\Geometry\Frustum.h" />
     <ClInclude Include="Base Code\lib\MathGeoLib\Geometry\GeometryAll.h" />
     <ClInclude Include="Base Code\lib\MathGeoLib\Geometry\GeomType.h" />
@@ -142,20 +144,22 @@
     <ClInclude Include="Base Code\lib\MathGeoLib\MathGeoLibFwd.h" />
     <ClInclude Include="Base Code\lib\MathGeoLib\Math\assume.h" />
     <ClInclude Include="Base Code\lib\MathGeoLib\Math\BitOps.h" />
-    <ClInclude Include="Base Code\lib\MathGeoLib\Math\Complex.h" />
-    <ClInclude Include="Base Code\lib\MathGeoLib\Math\CoordinateAxisConvention.h" />
+    <ClInclude Include="Base Code\lib\MathGeoLib\Math\Callstack.h" />
     <ClInclude Include="Base Code\lib\MathGeoLib\Math\FixedPoint.h" />
     <ClInclude Include="Base Code\lib\MathGeoLib\Math\float2.h" />
     <ClInclude Include="Base Code\lib\MathGeoLib\Math\float3.h" />
     <ClInclude Include="Base Code\lib\MathGeoLib\Math\float3x3.h" />
     <ClInclude Include="Base Code\lib\MathGeoLib\Math\float3x4.h" />
     <ClInclude Include="Base Code\lib\MathGeoLib\Math\float4.h" />
+    <ClInclude Include="Base Code\lib\MathGeoLib\Math\float4d.h" />
     <ClInclude Include="Base Code\lib\MathGeoLib\Math\float4x4.h" />
     <ClInclude Include="Base Code\lib\MathGeoLib\Math\float4x4_neon.h" />
     <ClInclude Include="Base Code\lib\MathGeoLib\Math\float4x4_sse.h" />
     <ClInclude Include="Base Code\lib\MathGeoLib\Math\float4_neon.h" />
     <ClInclude Include="Base Code\lib\MathGeoLib\Math\float4_sse.h" />
     <ClInclude Include="Base Code\lib\MathGeoLib\Math\FloatCmp.h" />
+    <ClInclude Include="Base Code\lib\MathGeoLib\Math\grisu3.h" />
+    <ClInclude Include="Base Code\lib\MathGeoLib\Math\InclWindows.h" />
     <ClInclude Include="Base Code\lib\MathGeoLib\Math\MathAll.h" />
     <ClInclude Include="Base Code\lib\MathGeoLib\Math\MathConstants.h" />
     <ClInclude Include="Base Code\lib\MathGeoLib\Math\MathFunc.h" />
@@ -169,6 +173,7 @@
     <ClInclude Include="Base Code\lib\MathGeoLib\Math\quat_simd.h" />
     <ClInclude Include="Base Code\lib\MathGeoLib\Math\Rect.h" />
     <ClInclude Include="Base Code\lib\MathGeoLib\Math\Reinterpret.h" />
+    <ClInclude Include="Base Code\lib\MathGeoLib\Math\simd.h" />
     <ClInclude Include="Base Code\lib\MathGeoLib\Math\SSEMath.h" />
     <ClInclude Include="Base Code\lib\MathGeoLib\Math\sse_mathfun.h" />
     <ClInclude Include="Base Code\lib\MathGeoLib\Math\TransformOps.h" />
@@ -204,6 +209,7 @@
     <ClCompile Include="Base Code\AboutWindow.cpp" />
     <ClCompile Include="Base Code\Application.cpp" />
     <ClCompile Include="Base Code\Color.cpp" />
+    <ClCompile Include="Base Code\ComponentCamera.cpp" />
     <ClCompile Include="Base Code\ComponentMaterial.cpp" />
     <ClCompile Include="Base Code\ComponentMesh.cpp" />
     <ClCompile Include="Base Code\ComponentTransform.cpp" />
@@ -214,22 +220,23 @@
     <ClCompile Include="Base Code\HierarchyWindow.cpp" />
     <ClCompile Include="Base Code\InspectorWindow.cpp" />
     <ClCompile Include="Base Code\JsonManager.cpp" />
+    <ClCompile Include="Base Code\lib\ImGuizmo\ImGuizmo.cpp" />
     <ClCompile Include="Base Code\lib\ImGui\imgui.cpp" />
     <ClCompile Include="Base Code\lib\ImGui\imgui_demo.cpp" />
     <ClCompile Include="Base Code\lib\ImGui\imgui_draw.cpp" />
     <ClCompile Include="Base Code\lib\ImGui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="Base Code\lib\ImGui\imgui_impl_sdl.cpp" />
     <ClCompile Include="Base Code\lib\ImGui\imgui_widgets.cpp" />
+    <ClCompile Include="Base Code\lib\MathGeoLib\Algorithm\GJK.cpp" />
     <ClCompile Include="Base Code\lib\MathGeoLib\Algorithm\Random\LCG.cpp" />
     <ClCompile Include="Base Code\lib\MathGeoLib\Geometry\AABB.cpp" />
     <ClCompile Include="Base Code\lib\MathGeoLib\Geometry\Capsule.cpp" />
     <ClCompile Include="Base Code\lib\MathGeoLib\Geometry\Circle.cpp" />
-    <ClCompile Include="Base Code\lib\MathGeoLib\Geometry\Cone.cpp" />
-    <ClCompile Include="Base Code\lib\MathGeoLib\Geometry\Cylinder.cpp" />
     <ClCompile Include="Base Code\lib\MathGeoLib\Geometry\Frustum.cpp" />
     <ClCompile Include="Base Code\lib\MathGeoLib\Geometry\Line.cpp" />
     <ClCompile Include="Base Code\lib\MathGeoLib\Geometry\LineSegment.cpp" />
     <ClCompile Include="Base Code\lib\MathGeoLib\Geometry\OBB.cpp" />
+    <ClCompile Include="Base Code\lib\MathGeoLib\Geometry\PBVolume.cpp" />
     <ClCompile Include="Base Code\lib\MathGeoLib\Geometry\Plane.cpp" />
     <ClCompile Include="Base Code\lib\MathGeoLib\Geometry\Polygon.cpp" />
     <ClCompile Include="Base Code\lib\MathGeoLib\Geometry\Polyhedron.cpp" />
@@ -238,12 +245,16 @@
     <ClCompile Include="Base Code\lib\MathGeoLib\Geometry\Triangle.cpp" />
     <ClCompile Include="Base Code\lib\MathGeoLib\Geometry\TriangleMesh.cpp" />
     <ClCompile Include="Base Code\lib\MathGeoLib\Math\BitOps.cpp" />
+    <ClCompile Include="Base Code\lib\MathGeoLib\Math\Callstack.cpp" />
     <ClCompile Include="Base Code\lib\MathGeoLib\Math\float2.cpp" />
     <ClCompile Include="Base Code\lib\MathGeoLib\Math\float3.cpp" />
     <ClCompile Include="Base Code\lib\MathGeoLib\Math\float3x3.cpp" />
     <ClCompile Include="Base Code\lib\MathGeoLib\Math\float3x4.cpp" />
     <ClCompile Include="Base Code\lib\MathGeoLib\Math\float4.cpp" />
+    <ClCompile Include="Base Code\lib\MathGeoLib\Math\float4d.cpp" />
     <ClCompile Include="Base Code\lib\MathGeoLib\Math\float4x4.cpp" />
+    <ClCompile Include="Base Code\lib\MathGeoLib\Math\grisu3.c" />
+    <ClCompile Include="Base Code\lib\MathGeoLib\Math\grisu3_cpp.cpp" />
     <ClCompile Include="Base Code\lib\MathGeoLib\Math\MathFunc.cpp" />
     <ClCompile Include="Base Code\lib\MathGeoLib\Math\MathLog.cpp" />
     <ClCompile Include="Base Code\lib\MathGeoLib\Math\MathOps.cpp" />
@@ -274,18 +285,19 @@
     <ClCompile Include="Base Code\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ResourceCompile Include="Overlevende.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Game\Assets\OverlevendeLogo.ico" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Base Code\lib\MathGeoLib\Geometry\KDTree.inl" />
     <None Include="Base Code\lib\MathGeoLib\Geometry\QuadTree.inl" />
     <None Include="Base Code\lib\MathGeoLib\Geometry\TriangleMesh_IntersectRay_AVX.inl" />
     <None Include="Base Code\lib\MathGeoLib\Geometry\TriangleMesh_IntersectRay_CPP.inl" />
     <None Include="Base Code\lib\MathGeoLib\Geometry\TriangleMesh_IntersectRay_SSE.inl" />
+    <None Include="Base Code\lib\MathGeoLib\Math\float2.inl" />
     <None Include="Base Code\lib\MathGeoLib\Math\Matrix.inl" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="Overlevende.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="Game\Assets\OverlevendeLogo.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

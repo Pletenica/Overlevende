@@ -28,6 +28,10 @@ bool HierarchyWindow::Draw(float dt)
 		ExternalApp->base_motor->inspector_window->DeleteSelectedGameObject();
 		ExternalApp->scene_intro->ClearHierarchy();
 	}
+	ImGui::SameLine();
+	if (ImGui::Button("CREATE EMPTY", ImVec2(130, 30))) {
+		ExternalApp->scene_intro->CreateGameObject("Empty GameObject", ExternalApp->scene_intro->rootGO);
+	}
 	if(ExternalApp->scene_intro->rootGO != nullptr)
 		RecursiveDraw(ExternalApp->scene_intro->rootGO);
 

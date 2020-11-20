@@ -35,6 +35,7 @@ public:
 
 private:
 	void CreateInitTab();
+	void AddComponentButton();
 };
 
 #endif // __InspectorWindow_H__

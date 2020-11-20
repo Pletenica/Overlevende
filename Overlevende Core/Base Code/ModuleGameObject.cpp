@@ -9,17 +9,20 @@
 #include "SceneWindow.h"
 #include "ModuleGameObject.h"
 #include "ModuleSceneIntro.h"
+#include "MathGeoLib/Algorithm/Random/LCG.h"
 
 #include "ComponentMesh.h"
 #include "ComponentMaterial.h"
 #include "ComponentTransform.h"
-
+#include "ComponentCamera.h"
 
 GameObject::GameObject()
 {
 	transform = (ComponentTransform*)CreateComponent(ComponentType::C_Transform);
 	//CreateComponent(ComponentType::C_Mesh);
 	//CreateComponent(ComponentType::C_Material);
+	LCG randomizer;
+	idGO = randomizer.Int();
 }
 
 // Destructor
@@ -89,6 +92,12 @@ Component* GameObject::CreateComponent(ComponentType w_type) {
 	case(ComponentType::C_Mesh):
 		comp = new ComponentMesh(this);
 		break;
+	case(ComponentType::C_Camera):
+		comp = new ComponentCamera(this);
+		break;
+	//case(ComponentType::C_Particle):
+	//	comp = new ComponentParticleSystem(this);
+	//	break;
 	}
 
 	components.push_back(comp);
@@ -120,6 +129,10 @@ void GameObject::SaveGameObject(JSON_Array* _goArray)
 	JsonManager _man(json_value_get_object(_val));
 
 	_man.AddString("name", name.c_str());
+	_man.AddInt("GameObject id", idGO);
+	if (parent != nullptr) {
+		_man.AddInt("Parent id", parent->idGO);
+	}
 
 	json_array_append_value(_goArray, _val);
 
@@ -143,7 +156,7 @@ void GameObject::SaveGameObject(JSON_Array* _goArray)
 void GameObject::LoadGameObject(JsonManager* _man)
 {
 	name = _man->GetString("name");
-
+	idGO = _man->GetInt("GameObject id");
 
 }
 
@@ -191,6 +204,6 @@ void Component::SaveComponent(JsonManager* _man)
 	_man->AddInt("Type", (int)type);
 }
 
-void Component::LoadComponent(const char* _path)
+void Component::LoadComponent(JsonManager* _man)
 {
 }

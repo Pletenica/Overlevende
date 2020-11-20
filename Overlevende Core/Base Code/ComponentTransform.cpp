@@ -169,3 +169,17 @@ void ComponentTransform::ResetTransform()
 {
 	SetTransform(float3::zero, Quat::identity, float3::one);
 }
+
+void ComponentTransform::SaveComponent(JsonManager* _man)
+{
+	Component::SaveComponent(_man);
+
+	_man->AddVector3("Position", position);
+	_man->AddVector3("Rotation", rotation);
+	_man->AddVector3("Scale", scale);
+}
+
+void ComponentTransform::LoadComponent(JsonManager* _man)
+{
+
+}

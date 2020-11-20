@@ -36,6 +36,7 @@ bool InspectorWindow::Draw(float dt)
 			for (int i = 0; i < _selectedGO->components.size(); i++) {
 				_selectedGO->components[i]->OnEditor(_selectedGO);
 			}
+			//AddComponentButton();
 		}
 	}
 	ImGui::End();
@@ -65,6 +66,13 @@ void InspectorWindow::CreateInitTab()
 	ImGui::Checkbox(" Name:", &_selectedGO->active);
 	ImGui::SameLine();
 	ImGui::TextColored(ImVec4(0.5f,0.5f,1,1), _selectedGO->name.c_str());
+}
+
+void InspectorWindow::AddComponentButton()
+{
+	if (ImGui::Button("Add New Component", ImVec2(140, 30))) {
+
+	}
 }
 
 void InspectorWindow::PutNewSelectedGameObject(GameObject* _go)

@@ -16,7 +16,9 @@ class GameObject;
 enum ComponentType {
 	C_Transform,
 	C_Mesh,
-	C_Material
+	C_Material,
+	C_Camera,
+	C_Particle
 };
 
 class Component
@@ -32,7 +34,7 @@ public:
 	virtual void OnEditor(GameObject* _go);
 
 	virtual void SaveComponent(JsonManager* _man);
-	virtual void LoadComponent(const char* _path);
+	virtual void LoadComponent(JsonManager* _man);
 
 public:
 	bool active = true;
@@ -59,6 +61,7 @@ public:
 	void LoadGameObject(JsonManager* _man);
 
 public:
+	int idGO;
 	bool active = true;
 	std::string name;
 	std::vector<Component*> components;

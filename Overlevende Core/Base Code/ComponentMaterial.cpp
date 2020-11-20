@@ -49,6 +49,18 @@ void ComponentMaterial::ChangeTexture(GLuint _id, ComponentMesh* _mesh)
 	}
 }
 
+void ComponentMaterial::SaveComponent(JsonManager* _man)
+{
+	Component::SaveComponent(_man);
+
+	_man->AddInt("Texture ID", textureID);
+}
+
+void ComponentMaterial::LoadComponent(JsonManager* _man)
+{
+
+}
+
 void ComponentMaterial::OnEditor(GameObject* _go)
 {
 	ImVec4 color = ImVec4(0.5f, 0.5f, 1, 1);

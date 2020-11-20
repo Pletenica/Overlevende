@@ -23,6 +23,9 @@ public:
 	void ChangeTex();
 	void ChangeTexture(GLuint _id, ComponentMesh* _mesh);
 
+	void SaveComponent(JsonManager* _man);
+	void LoadComponent(JsonManager* _man);
+
 public:
 	GLuint textureID;
 	std::string texturePath;

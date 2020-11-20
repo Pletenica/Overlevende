@@ -19,6 +19,9 @@ public:
 	bool Disable();
 	void OnEditor(GameObject* _go);
 
+	void SaveComponent(JsonManager* _man);
+	void LoadComponent(JsonManager* _man);
+
 private:
 	void DrawVertexNormals(Mesh* _mesh);
 	void DrawFaceNormals(Mesh* _mesh);

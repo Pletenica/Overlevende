@@ -84,6 +84,18 @@ void ComponentMesh::OnEditor(GameObject* _go)
 	}
 }
 
+void ComponentMesh::SaveComponent(JsonManager* _man)
+{
+	Component::SaveComponent(_man);
+	
+	_man->AddString("Mesh Name", mesh->name.c_str());
+}
+
+void ComponentMesh::LoadComponent(JsonManager* _man)
+{
+
+}
+
 void ComponentMesh::DrawVertexNormals(Mesh* _mesh)
 {
 	float length = 0.2f;

@@ -33,6 +33,9 @@ bool ModuleSceneIntro::Start()
 	showaxis = true;
 	rootGO = CreateGameObject("Scene", nullptr);
 
+	GameObject* camera = CreateGameObject("Camera", rootGO);
+	camera->CreateComponent(ComponentType::C_Camera);
+
 	App->file_system->LoadFileFromPath("Assets/FBXs/BakerHouse.fbx");
 
 	return ret;
