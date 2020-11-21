@@ -86,3 +86,8 @@ Quat JsonManager::GetQuaternion(const char* name)
 	JSON_Array* lmaoArray = json_object_get_array(bObject, name);
 	return Quat(json_array_get_number(lmaoArray, 0), json_array_get_number(lmaoArray, 1), json_array_get_number(lmaoArray, 2), json_array_get_number(lmaoArray, 3));
 }
+
+JSON_Array* JsonManager::GetArray(const char* name)
+{
+	return json_object_get_array(bObject, name);
+}

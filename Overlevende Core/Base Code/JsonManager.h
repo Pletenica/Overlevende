@@ -28,6 +28,8 @@ public:
 	void AddQuaternion(const char* name, Quat value);
 	Quat GetQuaternion(const char* name);
 
+	JSON_Array* GetArray(const char* name);
+
 	JSON_Object* GetbObject() { return bObject; }
 
 private:

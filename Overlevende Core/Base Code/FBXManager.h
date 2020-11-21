@@ -23,7 +23,7 @@ namespace FBXLoader
 	void NodeToGameObject(const aiScene* scene, aiNode* node, GameObject* parent, std::vector<Mesh*>& meshVector, aiString _name);
 
 	void SaveMeshToOwnFormat(Mesh *_mesh);
-	void LoadMeshFromOwnFormat(std::string _meshname);
+	Mesh* LoadMeshFromOwnFormat(std::string _meshname);
 
 	void ImageToDDS(std::string _texturename);
 };

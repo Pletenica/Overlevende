@@ -175,11 +175,13 @@ void ComponentTransform::SaveComponent(JsonManager* _man)
 	Component::SaveComponent(_man);
 
 	_man->AddVector3("Position", position);
-	_man->AddVector3("Rotation", rotation);
+	_man->AddQuaternion("Rotation", Quat::FromEulerXYZ(rotation.x, rotation.y, rotation.z));
 	_man->AddVector3("Scale", scale);
 }
 
 void ComponentTransform::LoadComponent(JsonManager* _man)
 {
-
+	position = _man->GetVector3("Position");
+	rotation = _man->GetQuaternion("Rotation").ToEulerXYZ();
+	scale = _man->GetVector3("Scale");
 }

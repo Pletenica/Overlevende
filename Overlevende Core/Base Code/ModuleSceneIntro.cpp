@@ -5,6 +5,7 @@
 #include <gl/GL.h>
 
 #include"JsonManager.h"
+#include"ComponentTransform.h"
 #include "MathGeoLib/MathGeoLib.h"
 
 
@@ -82,15 +83,10 @@ update_status ModuleSceneIntro::Update(float dt)
 	return UPDATE_CONTINUE;
 }
 
-GameObject* ModuleSceneIntro::CreateGameObject(std::string _name, GameObject* parent) {
+GameObject* ModuleSceneIntro::CreateGameObject(std::string _name, GameObject* parent, int id) {
 	GameObject* go = nullptr;
 
-	go = new GameObject();
-	go->name = _name;
-	go->parent = parent;
-
-	if(parent != nullptr)
-		parent->children.push_back(go);
+	go = new GameObject(_name.c_str(), parent, id);
 
 	return go;
 }
@@ -172,16 +168,24 @@ void ModuleSceneIntro::Load(const char* fileName)
 		JSON_Array* _goarray = json_object_get_array(parentObject, "GameObjects");
 
 		JsonManager jsonroot(json_array_get_object(_goarray, 0));
-		rootGO = CreateGameObject(jsonroot.GetString("name"), nullptr);
+		rootGO = CreateGameObject(jsonroot.GetString("name"), nullptr, jsonroot.GetInt("GameObject id"));
 
-		for (int i = 0; i < json_array_get_count(_goarray); i++)
+		GameObject* parent = rootGO;
+		for (int i = 1; i < json_array_get_count(_goarray); i++)
 		{
-			JsonManager _man(json_array_get_object(_goarray, i));
-			CreateGameObject(_man.GetString("name"), rootGO);
+			JsonManager jsonman(json_array_get_object(_goarray, i));
+
+			while (parent != nullptr && jsonman.GetInt("Parent id") != parent->idGO) {
+				parent = parent->parent;
+			}
+			if (parent == nullptr) {
+				parent = rootGO;
+			}
+			parent = CreateGameObject(jsonman.GetString("name"),parent, jsonman.GetInt("GameObject id"));
+			//parent->transform->SetTransform(jsonman.GetVector3("Position"), jsonman.GetQuaternion("Rotation"), jsonman.GetVector3("Scale"));
+			parent->LoadGameObject(jsonman.GetArray("components"));
 		}
 
 		json_value_free(sceneFile);
 	}
-
-
 }

@@ -9,7 +9,6 @@
 
 InspectorWindow::InspectorWindow():Window()
 {
-	_selectedGO = new GameObject;
 	_selectedGO = nullptr;
 }
 

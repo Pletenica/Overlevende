@@ -22,7 +22,7 @@ public:
 	update_status Update(float dt);
 	bool CleanUp();
 
-	GameObject* CreateGameObject(std::string _name, GameObject* parent);
+	GameObject* CreateGameObject(std::string _name, GameObject* parent, int id = -1);
 	void DeleteGameObject(GameObject* _go);
 	void RecursiveUpdate(GameObject* node);
 	void ClearHierarchy();

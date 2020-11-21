@@ -16,13 +16,23 @@
 #include "ComponentTransform.h"
 #include "ComponentCamera.h"
 
-GameObject::GameObject()
+#include "JsonManager.h"
+
+GameObject::GameObject(const char* _name, GameObject* _parent, int id)
 {
-	transform = (ComponentTransform*)CreateComponent(ComponentType::C_Transform);
-	//CreateComponent(ComponentType::C_Mesh);
-	//CreateComponent(ComponentType::C_Material);
-	LCG randomizer;
-	idGO = randomizer.Int();
+	parent = _parent;
+	name = _name;
+	idGO = id;
+
+	if (idGO == -1) {
+		LCG randomizer;
+		idGO = randomizer.Int();
+		transform = (ComponentTransform*)CreateComponent(ComponentType::C_Transform);
+	}
+
+	if (parent != nullptr) {
+		parent->children.push_back(this);
+	}
 }
 
 // Destructor
@@ -153,11 +163,17 @@ void GameObject::SaveGameObject(JSON_Array* _goArray)
 	}
 }
 
-void GameObject::LoadGameObject(JsonManager* _man)
+void GameObject::LoadGameObject(JSON_Array* _componentArray)
 {
-	name = _man->GetString("name");
-	idGO = _man->GetInt("GameObject id");
+	for (int i = 0; i < json_array_get_count(_componentArray); i++) {
+		JsonManager compMan(json_array_get_object(_componentArray, i));
+		
+		Component* comp = CreateComponent((ComponentType)compMan.GetInt("Type"));
+		comp->LoadComponent(&compMan);
+		if (comp->type == ComponentType::C_Transform)
+			transform = dynamic_cast<ComponentTransform*>(comp);
 
+	}
 }
 
 

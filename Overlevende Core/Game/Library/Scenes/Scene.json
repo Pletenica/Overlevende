@@ -3,7 +3,7 @@
     "GameObjects": [
         {
             "name": "Scene",
-            "GameObject id": 1582498332,
+            "GameObject id": 1406151515,
             "components": [
                 {
                     "Type": 0,
@@ -15,7 +15,8 @@
                     "Rotation": [
                         0,
                         0,
-                        0
+                        0,
+                        1
                     ],
                     "Scale": [
                         1,
@@ -27,8 +28,8 @@
         },
         {
             "name": "Camera",
-            "GameObject id": 1591897167,
-            "Parent id": 1582498332,
+            "GameObject id": 1442563298,
+            "Parent id": 1406151515,
             "components": [
                 {
                     "Type": 0,
@@ -40,7 +41,8 @@
                     "Rotation": [
                         0,
                         0,
-                        0
+                        0,
+                        1
                     ],
                     "Scale": [
                         1,
@@ -52,15 +54,15 @@
                     "Type": 3,
                     "Vertical FOV": 1,
                     "Horizontal FOV": 1,
-                    "Far Plane Distance": 300,
-                    "Near Plane Distance": 1
+                    "Far Plane Distance": 50,
+                    "Near Plane Distance": 0.10000000149011612
                 }
             ]
         },
         {
-            "name": "BakerHouse",
-            "GameObject id": 1645112994,
-            "Parent id": 1582498332,
+            "name": "Baker_house.png",
+            "GameObject id": 940793722,
+            "Parent id": 1406151515,
             "components": [
                 {
                     "Type": 0,
@@ -72,7 +74,8 @@
                     "Rotation": [
                         0,
                         0,
-                        0
+                        0,
+                        1
                     ],
                     "Scale": [
                         1,
@@ -84,8 +87,8 @@
         },
         {
             "name": "Chimney",
-            "GameObject id": 1661613171,
-            "Parent id": 1645112994,
+            "GameObject id": 978040957,
+            "Parent id": 940793722,
             "components": [
                 {
                     "Type": 0,
@@ -95,34 +98,10 @@
                         0
                     ],
                     "Rotation": [
+                        -0.85090553760528564,
                         0,
                         0,
-                        0
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Model",
-            "GameObject id": 1682638713,
-            "Parent id": 1661613171,
-            "components": [
-                {
-                    "Type": 0,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        -90.000007629394531,
-                        0,
-                        0
+                        0.52531874179840088
                     ],
                     "Scale": [
                         100,
@@ -132,7 +111,7 @@
                 },
                 {
                     "Type": 1,
-                    "Mesh Name": "Untitled.001"
+                    "Mesh Path": "Library\/Meshes\/Untitled.001.elpepe"
                 },
                 {
                     "Type": 2,
@@ -142,8 +121,8 @@
         },
         {
             "name": "Baker_house",
-            "GameObject id": 1821602229,
-            "Parent id": 1645112994,
+            "GameObject id": 1135245175,
+            "Parent id": 940793722,
             "components": [
                 {
                     "Type": 0,
@@ -153,34 +132,10 @@
                         0
                     ],
                     "Rotation": [
+                        -0.85090553760528564,
                         0,
                         0,
-                        0
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Model",
-            "GameObject id": 1827937740,
-            "Parent id": 1821602229,
-            "components": [
-                {
-                    "Type": 0,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        -90.000007629394531,
-                        0,
-                        0
+                        0.52531874179840088
                     ],
                     "Scale": [
                         100,
@@ -190,7 +145,7 @@
                 },
                 {
                     "Type": 1,
-                    "Mesh Name": "Untitled"
+                    "Mesh Path": "Library\/Meshes\/Untitled.elpepe"
                 },
                 {
                     "Type": 2,

@@ -46,6 +46,7 @@ public:
 	int textureHeight = 0;
 
 	GLuint textureID = 0;
+	std::string meshPath = "";
 
 private:
 

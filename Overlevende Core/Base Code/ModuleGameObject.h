@@ -46,7 +46,7 @@ class GameObject
 {
 public:
 
-	GameObject();
+	GameObject(const char* _name, GameObject* _parent, int id = -1);
 	virtual ~GameObject();
 
 	virtual bool Init();
@@ -58,7 +58,7 @@ public:
 	void DeleteComponent(Component* comp);
 
 	void SaveGameObject(JSON_Array* _goArray);
-	void LoadGameObject(JsonManager* _man);
+	void LoadGameObject(JSON_Array* _componentArray);
 
 public:
 	int idGO;

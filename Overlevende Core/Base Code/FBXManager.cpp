@@ -102,6 +102,9 @@ void FBXLoader::aiMeshToMesh(const aiScene* scene, std::vector<Mesh*>& meshVecto
 	{
 		Mesh* _mesh = new Mesh();
 		new_mesh = scene->mMeshes[i];
+		_mesh->meshPath = MESHES_PATH;
+		_mesh->meshPath += new_mesh->mName.C_Str();
+		_mesh->meshPath += MESHES_FORMAT;
 
 		if (new_mesh->mMaterialIndex != -1)
 		{
@@ -175,9 +178,8 @@ void FBXLoader::aiMeshToMesh(const aiScene* scene, std::vector<Mesh*>& meshVecto
 		}
 
 		SaveMeshToOwnFormat(_mesh);
-		LoadMeshFromOwnFormat(_mesh->name);
+		LoadMeshFromOwnFormat(_mesh->meshPath);
 	
-
 
 		_mesh->GenBuffers(MeshType::FBXNone);
 		meshVector.push_back(_mesh);
@@ -187,18 +189,11 @@ void FBXLoader::aiMeshToMesh(const aiScene* scene, std::vector<Mesh*>& meshVecto
 
 void FBXLoader::NodeToGameObject(const aiScene* scene, aiNode* node, GameObject* parent, std::vector<Mesh*>& meshVector, aiString _name)
 {
-	GameObject* go = new GameObject();
-	go->name = node->mName.C_Str();
-	go->parent = parent;
-	parent->children.push_back(go);
-
+	//GameObject* go = new GameObject(node->mName.C_Str(), parent);
 
 	for (size_t i = 0; i < node->mNumMeshes; ++i)
 	{
-		GameObject* childGO = new GameObject();
-
-		childGO->name = "Model";
-		childGO->parent = go;
+		GameObject* childGO = new GameObject(_name.C_Str() , parent);
 
 		//Load mesh here
 		ComponentTransform* transform = (ComponentTransform*)(childGO->GetComponent(ComponentType::C_Transform));
@@ -217,18 +212,21 @@ void FBXLoader::NodeToGameObject(const aiScene* scene, aiNode* node, GameObject*
 
 		ComponentMesh* meshRenderer = (ComponentMesh*)(childGO->CreateComponent(ComponentType::C_Mesh));
 		meshRenderer->mesh = meshVector[node->mMeshes[i]];
+
 		ComponentMaterial* materialRenderer = (ComponentMaterial*)(childGO->CreateComponent(ComponentType::C_Material));
 		materialRenderer->textureID = meshRenderer->mesh->textureID;
 		std::string p = "Assets/Textures/" + (std::string)_name.C_Str();
 		materialRenderer->texturePath = p;
 
-		go->children.push_back(childGO);
 	}
 
+	GameObject* check = parent;
+	if(node->mNumChildren != 0)
+		check = new GameObject(_name.C_Str(), parent);
 
 	for (size_t i = 0; i < node->mNumChildren; i++)
 	{
-		NodeToGameObject(scene, node->mChildren[i], go, meshVector, _name);
+		NodeToGameObject(scene, node->mChildren[i], check, meshVector, node->mChildren[i]->mName);
 	}
 }
 
@@ -267,13 +265,12 @@ void FBXLoader::SaveMeshToOwnFormat(Mesh *_mesh)
 	fileBuffer = nullptr;
 }
 
-void FBXLoader::LoadMeshFromOwnFormat(std::string _meshname)
+Mesh* FBXLoader::LoadMeshFromOwnFormat(std::string _meshname)
 {
 	Mesh* loadedMesh = new Mesh();
 	char* fileBuffer = nullptr;
 
-	std::string path = MESHES_PATH + _meshname + MESHES_FORMAT;
-	uint size = ExternalApp->file_system->Load(path.c_str(), &fileBuffer);
+	uint size = ExternalApp->file_system->Load(_meshname.c_str(), &fileBuffer);
 
 	char* cursor = fileBuffer;
 	uint variables[4];
@@ -310,6 +307,7 @@ void FBXLoader::LoadMeshFromOwnFormat(std::string _meshname)
 
 	delete[] fileBuffer;
 	fileBuffer = nullptr;
+	return loadedMesh;
 }
 
 void FBXLoader::ImageToDDS(std::string _texturename)

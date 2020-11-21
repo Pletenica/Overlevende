@@ -5,6 +5,8 @@
 #include "ComponentTransform.h"
 #include "Mesh.h"
 
+#include "FBXManager.h"
+
 ///WINDOW NOW
 ComponentMesh::ComponentMesh(GameObject* _go) :Component(_go)
 {
@@ -74,6 +76,7 @@ void ComponentMesh::OnEditor(GameObject* _go)
 		ImGui::TextColored(color, "Textures Count: ");
 		ImGui::SameLine();
 		ImGui::Text("%i", mesh->num_textures);
+		ImGui::Text(mesh->meshPath.c_str());
 
 		ImGui::Separator();
 
@@ -88,12 +91,14 @@ void ComponentMesh::SaveComponent(JsonManager* _man)
 {
 	Component::SaveComponent(_man);
 	
-	_man->AddString("Mesh Name", mesh->name.c_str());
+	_man->AddString("Mesh Path", mesh->meshPath.c_str());
 }
 
 void ComponentMesh::LoadComponent(JsonManager* _man)
 {
-
+	std::string mPath=_man->GetString("Mesh Path");
+	mesh = FBXLoader::LoadMeshFromOwnFormat(mPath);
+	mesh->GenBuffers(MeshType::FBXNone);
 }
 
 void ComponentMesh::DrawVertexNormals(Mesh* _mesh)

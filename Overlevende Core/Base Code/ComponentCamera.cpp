@@ -13,13 +13,17 @@ ComponentCamera::ComponentCamera(GameObject* _go) :Component(_go)
 	gameobject = _go;
 	type = ComponentType::C_Camera;
 
+	horizontalFOV = 1.0f;
+	verticalFOV = 1.0f;
+	nearPlaneDistance = 0.1f;
+	farPlaneDistance = 50;
+
 	frustum.SetKind(FrustumSpaceGL, FrustumRightHanded);
 	frustum.SetPos(float3(0, 0, 0));
 	frustum.SetFront(float3::unitZ);
 	frustum.SetUp(float3::unitY);
-	frustum.SetViewPlaneDistances(0.1f, 10.0f);
-	frustum.SetPerspective(1.0f, 1.0f);
-
+	frustum.SetViewPlaneDistances(nearPlaneDistance, farPlaneDistance);
+	frustum.SetPerspective(horizontalFOV, verticalFOV);
 }
 
 // Destructor
@@ -55,58 +59,29 @@ bool ComponentCamera::Update(float dt)
 	glBegin(GL_LINES);
 
 	glVertex3fv(&points[0].x);
-	glVertex3fv(&points[4].x);
-	glVertex3fv(&points[4].x);
-	glVertex3fv(&points[6].x);
-	glVertex3fv(&points[6].x);
-	glVertex3fv(&points[2].x);
-	glVertex3fv(&points[2].x);
-	glVertex3fv(&points[0].x);
-
-	glVertex3fv(&points[4].x);
-	glVertex3fv(&points[5].x);
-	glVertex3fv(&points[5].x);
-	glVertex3fv(&points[1].x);
-	glVertex3fv(&points[1].x);
-	glVertex3fv(&points[0].x);
-	glVertex3fv(&points[0].x);
-	glVertex3fv(&points[4].x);
-
-	glVertex3fv(&points[5].x);
-	glVertex3fv(&points[7].x);
-	glVertex3fv(&points[7].x);
-	glVertex3fv(&points[3].x);
-	glVertex3fv(&points[3].x);
-	glVertex3fv(&points[1].x);
-	glVertex3fv(&points[1].x);
-	glVertex3fv(&points[5].x);
-
-	glVertex3fv(&points[7].x);
-	glVertex3fv(&points[3].x);
-	glVertex3fv(&points[3].x);
 	glVertex3fv(&points[2].x);
 	glVertex3fv(&points[2].x);
 	glVertex3fv(&points[6].x);
 	glVertex3fv(&points[6].x);
-	glVertex3fv(&points[7].x);
-
-	glVertex3fv(&points[5].x);
-	glVertex3fv(&points[7].x);
-	glVertex3fv(&points[7].x);
-	glVertex3fv(&points[6].x);
-	glVertex3fv(&points[6].x);
 	glVertex3fv(&points[4].x);
 	glVertex3fv(&points[4].x);
-	glVertex3fv(&points[5].x);
-
-	glVertex3fv(&points[1].x);
-	glVertex3fv(&points[3].x);
-	glVertex3fv(&points[3].x);
-	glVertex3fv(&points[2].x);
-	glVertex3fv(&points[2].x);
 	glVertex3fv(&points[0].x);
 	glVertex3fv(&points[0].x);
 	glVertex3fv(&points[1].x);
+	glVertex3fv(&points[1].x);
+	glVertex3fv(&points[3].x);
+	glVertex3fv(&points[3].x);
+	glVertex3fv(&points[2].x);
+	glVertex3fv(&points[4].x);
+	glVertex3fv(&points[5].x);
+	glVertex3fv(&points[6].x);
+	glVertex3fv(&points[7].x);
+	glVertex3fv(&points[5].x);
+	glVertex3fv(&points[7].x);
+	glVertex3fv(&points[3].x);
+	glVertex3fv(&points[7].x);
+	glVertex3fv(&points[1].x);
+	glVertex3fv(&points[5].x);
 
 	glEnd();
 	glLineWidth(1);
