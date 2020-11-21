@@ -28,7 +28,6 @@ public:
 	Frustum frustum;
 	bool isCulling = false;
 	bool isMainCamera = false;
-	Plane planes[6];
 
 	float nearPlaneDistance = 1;
 	float farPlaneDistance = 100;

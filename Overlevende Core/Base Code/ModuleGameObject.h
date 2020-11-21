@@ -64,11 +64,13 @@ public:
 	int idGO;
 	bool active = true;
 	std::string name;
-	std::vector<Component*> components;
-	ComponentTransform* transform;
 
-	GameObject* parent = nullptr;
+	std::vector<Component*> components;
 	std::vector<GameObject*> children;
+
+	ComponentTransform* transform;
+	GameObject* parent = nullptr;
+
 };
 
 #endif // __ModuleGameObject_H__

@@ -99,14 +99,11 @@ update_status ModuleBaseMotor::Draw(float dt)
 void ModuleBaseMotor::CreateMainBar() {
 	if (ImGui::BeginMainMenuBar()) {
 		if (ImGui::BeginMenu("Edit", true)) {
-			if (ImGui::MenuItem("New Project")) {
-
+			if (ImGui::MenuItem("Save Project")) {
+				App->scene_intro->Save();
 			}
 			if (ImGui::MenuItem("Open Project")) {
-
-			}
-			if (ImGui::MenuItem("Save Project")) {
-
+				App->scene_intro->Load("Library/Scenes/Scene.json");
 			}
 			if (ImGui::MenuItem("Configuration")) {
 				configuration_window->active = true;

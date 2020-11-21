@@ -3,7 +3,7 @@
     "GameObjects": [
         {
             "name": "Scene",
-            "GameObject id": 403490358,
+            "GameObject id": 1582498332,
             "components": [
                 {
                     "Type": 0,
@@ -27,8 +27,8 @@
         },
         {
             "name": "Camera",
-            "GameObject id": 413237298,
-            "Parent id": 403490358,
+            "GameObject id": 1591897167,
+            "Parent id": 1582498332,
             "components": [
                 {
                     "Type": 0,
@@ -52,15 +52,15 @@
                     "Type": 3,
                     "Vertical FOV": 1,
                     "Horizontal FOV": 1,
-                    "Far Plane Distance": 100,
+                    "Far Plane Distance": 300,
                     "Near Plane Distance": 1
                 }
             ]
         },
         {
             "name": "BakerHouse",
-            "GameObject id": 2000225572,
-            "Parent id": 403490358,
+            "GameObject id": 1645112994,
+            "Parent id": 1582498332,
             "components": [
                 {
                     "Type": 0,
@@ -84,8 +84,8 @@
         },
         {
             "name": "Chimney",
-            "GameObject id": 2008719334,
-            "Parent id": 2000225572,
+            "GameObject id": 1661613171,
+            "Parent id": 1645112994,
             "components": [
                 {
                     "Type": 0,
@@ -109,8 +109,8 @@
         },
         {
             "name": "Model",
-            "GameObject id": 2014219393,
-            "Parent id": 2008719334,
+            "GameObject id": 1682638713,
+            "Parent id": 1661613171,
             "components": [
                 {
                     "Type": 0,
@@ -142,8 +142,8 @@
         },
         {
             "name": "Baker_house",
-            "GameObject id": 2080707448,
-            "Parent id": 2000225572,
+            "GameObject id": 1821602229,
+            "Parent id": 1645112994,
             "components": [
                 {
                     "Type": 0,
@@ -167,8 +167,8 @@
         },
         {
             "name": "Model",
-            "GameObject id": 2094005059,
-            "Parent id": 2080707448,
+            "GameObject id": 1827937740,
+            "Parent id": 1821602229,
             "components": [
                 {
                     "Type": 0,
