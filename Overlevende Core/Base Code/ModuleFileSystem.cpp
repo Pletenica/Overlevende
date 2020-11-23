@@ -448,7 +448,7 @@ void ModuleFileSystem::LoadFileFromPath(const char* _path)
 		if (c_mesh != nullptr && c_mat !=nullptr) {
 			c_mesh->mesh->textureID = FBXLoader::LoadTexture(buffer, size, &c_mesh->mesh->textureWidth, &c_mesh->mesh->textureHeight, _texname);
 			c_mat->textureID = c_mesh->mesh->textureID;
-			c_mat->texturePath = _localpath;
+			c_mat->textureAssetsPath = _localpath;
 		}
 		delete[] buffer;
 	}

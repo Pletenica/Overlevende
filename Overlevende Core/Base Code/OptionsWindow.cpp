@@ -39,6 +39,10 @@ bool OptionsWindow::Draw(float dt)
 	if(ImGui::Button("Add a cylinder", ImVec2(110, 40))) {
 		ExternalApp->file_system->LoadFileFromPath("Assets/FBXs/Cylinder.fbx");
 	}
+	ImGui::SameLine();
+	if (ImGui::Button("Add a plane", ImVec2(110, 40))) {
+		ExternalApp->file_system->LoadFileFromPath("Assets/FBXs/Plane.fbx");
+	}
 	ImGui::Checkbox("Depth Test", &depth_bool);
 	ImGui::SameLine();
 	ImGui::Checkbox("Cull Face", &cullface_bool);

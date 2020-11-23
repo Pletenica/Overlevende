@@ -184,4 +184,7 @@ void ComponentTransform::LoadComponent(JsonManager* _man)
 	position = _man->GetVector3("Position");
 	rotation = _man->GetQuaternion("Rotation").ToEulerXYZ();
 	scale = _man->GetVector3("Scale");
+	
+	Quat rot = Quat::FromEulerXYZ(rotation.x, rotation.y, rotation.z);
+	SetTransform(position, rot, scale);
 }

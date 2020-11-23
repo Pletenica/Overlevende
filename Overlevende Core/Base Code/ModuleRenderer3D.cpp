@@ -88,8 +88,6 @@ bool ModuleRenderer3D::Init()
 		
 		glClearColor(0.1f, 0.1f, 0.1f, 1.f);
 		
-		
-
 		//Check for error
 		error = glGetError();
 		if(error != GL_NO_ERROR)
@@ -119,6 +117,11 @@ bool ModuleRenderer3D::Init()
 		glEnable(GL_LIGHTING);
 		glEnable(GL_COLOR_MATERIAL);
 		glEnable(GL_TEXTURE_2D);
+		glEnable(GL_ALPHA_TEST);
+		glAlphaFunc(GL_GREATER, 0.1f);
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		//glBindTexture(GL_TEXTURE_2D, 1);
 
 		ilInit();
 		iluInit();

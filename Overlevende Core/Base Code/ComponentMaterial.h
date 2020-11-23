@@ -28,7 +28,8 @@ public:
 
 public:
 	GLuint textureID;
-	std::string texturePath;
+	std::string textureAssetsPath;
+	std::string textureLibraryPath;
 	bool putCheckMaterial = false;
 };
 

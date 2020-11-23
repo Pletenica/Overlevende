@@ -70,7 +70,7 @@ void FBXLoader::ImportFBX(char* _buffer, int _size, int _idTexturesTemporal, con
 	}
 }
 
-int FBXLoader::LoadTexture(char* buffer, int _size, int* _width, int* _height, std::string _texname)
+int FBXLoader::LoadTexture(char* buffer, int _size, int* _width, int* _height, std::string _texname, bool loadDDS)
 {
 	ILuint imageID;
 	ilGenImages(1, &imageID);
@@ -82,7 +82,10 @@ int FBXLoader::LoadTexture(char* buffer, int _size, int* _width, int* _height, s
 		LOG("Error loading texture");
 	}
 
-	ImageToDDS(_texname);
+	if (loadDDS == true) {
+		_texname = MATERIALS_PATH + _texname + ".dds";
+		ImageToDDS(_texname);
+	}
 
 	*_height = ilGetInteger(IL_IMAGE_HEIGHT);
 	*_width = ilGetInteger(IL_IMAGE_WIDTH);
@@ -193,7 +196,7 @@ void FBXLoader::NodeToGameObject(const aiScene* scene, aiNode* node, GameObject*
 
 	for (size_t i = 0; i < node->mNumMeshes; ++i)
 	{
-		GameObject* childGO = new GameObject(_name.C_Str() , parent);
+		GameObject* childGO = new GameObject(node->mName.C_Str() , parent);
 
 		//Load mesh here
 		ComponentTransform* transform = (ComponentTransform*)(childGO->GetComponent(ComponentType::C_Transform));
@@ -208,7 +211,7 @@ void FBXLoader::NodeToGameObject(const aiScene* scene, aiNode* node, GameObject*
 		Quat rot(rotation.x, rotation.y, rotation.z, rotation.w);
 
 		transform->SetTransform(pos, rot, scale);
-		transform->global_transform = transform_parent->global_transform * transform->local_transform;
+		
 
 		ComponentMesh* meshRenderer = (ComponentMesh*)(childGO->CreateComponent(ComponentType::C_Mesh));
 		meshRenderer->mesh = meshVector[node->mMeshes[i]];
@@ -216,17 +219,21 @@ void FBXLoader::NodeToGameObject(const aiScene* scene, aiNode* node, GameObject*
 		ComponentMaterial* materialRenderer = (ComponentMaterial*)(childGO->CreateComponent(ComponentType::C_Material));
 		materialRenderer->textureID = meshRenderer->mesh->textureID;
 		std::string p = "Assets/Textures/" + (std::string)_name.C_Str();
-		materialRenderer->texturePath = p;
-
+		std::string l = (std::string)_name.C_Str();
+		l = l.substr(0, l.find_last_of("."));
+		l += ".dds";
+		l = MATERIALS_PATH + l;
+		materialRenderer->textureAssetsPath = p;
+		materialRenderer->textureLibraryPath = l;
 	}
 
 	GameObject* check = parent;
 	if(node->mNumChildren != 0)
-		check = new GameObject(_name.C_Str(), parent);
+		check = new GameObject(node->mName.C_Str(), parent);
 
 	for (size_t i = 0; i < node->mNumChildren; i++)
 	{
-		NodeToGameObject(scene, node->mChildren[i], check, meshVector, node->mChildren[i]->mName);
+		NodeToGameObject(scene, node->mChildren[i], check, meshVector, _name);
 	}
 }
 
@@ -319,8 +326,8 @@ void FBXLoader::ImageToDDS(std::string _texturename)
     if (size > 0) {
     	data = new ILubyte[size];
     	ilSaveL(IL_DDS, data, size);
-		std::string path = MATERIALS_PATH + _texturename + ".dds";
-    	ExternalApp->file_system->Save(path.c_str(), data, size);
+		//std::string path = MATERIALS_PATH + _texturename + ".dds";
+    	ExternalApp->file_system->Save(_texturename.c_str(), data, size);
     
     	delete[] data;
     	data = nullptr;

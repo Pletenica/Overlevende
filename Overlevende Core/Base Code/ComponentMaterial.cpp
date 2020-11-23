@@ -3,6 +3,8 @@
 #include "ModuleGameObject.h"
 #include "ComponentMaterial.h"
 #include "ComponentMesh.h"
+#include "FBXManager.h"
+#include "ModuleFileSystem.h"
 
 #include"Devil/include/ilu.h"
 #include"Devil/include/ilut.h"
@@ -53,12 +55,25 @@ void ComponentMaterial::SaveComponent(JsonManager* _man)
 {
 	Component::SaveComponent(_man);
 
-	_man->AddInt("Texture ID", textureID);
+	_man->AddString("Material Path", textureLibraryPath.c_str());
 }
 
 void ComponentMaterial::LoadComponent(JsonManager* _man)
 {
+	std::string mPath = _man->GetString("Material Path");
+	
+	char* buffer = nullptr;
+	std::string _p = mPath.substr(mPath.find_last_of("/"));
+	std::string _texname = _p.substr(1, _p.find_first_of(".")-1);
+	int size = ExternalApp->file_system->Load(mPath.c_str(), &buffer);
+	
+	ComponentMesh* c_mesh = (ComponentMesh*)gameobject->GetComponent(ComponentType::C_Mesh);
+	c_mesh->mesh->textureID = FBXLoader::LoadTexture(buffer, size, &c_mesh->mesh->textureWidth, &c_mesh->mesh->textureHeight, _texname, false);
+	textureID = c_mesh->mesh->textureID;
 
+	textureLibraryPath = mPath;
+	std::string aPath = "Assets/Textures/" + _texname + ".png";
+	textureAssetsPath = aPath;
 }
 
 void ComponentMaterial::OnEditor(GameObject* _go)
@@ -71,8 +86,11 @@ void ComponentMaterial::OnEditor(GameObject* _go)
 		}
 		ImTextureID id = (ImTextureID)textureID;
 		ImGui::Image(id, ImVec2(100, 100));
-		if (texturePath != "") {
-			ImGui::TextColored(color, texturePath.c_str());
+		if (textureAssetsPath != "") {
+			ImGui::TextColored(color, textureAssetsPath.c_str());
+		}
+		if (textureLibraryPath != "") {
+			ImGui::TextColored(color, textureLibraryPath.c_str());
 		}
 		//c_mesh->mesh->textureHeight = ilGetInteger(IL_IMAGE_HEIGHT);
 		//c_mesh->mesh->textureWidth = ilGetInteger(IL_IMAGE_WIDTH);

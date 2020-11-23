@@ -16,7 +16,7 @@ namespace FBXLoader
 	void EnableDebug();
 	void DisableDebug();
 	void ImportFBX(char* _buffer, int _size, int temporalTexID, const char* _name);
-	int LoadTexture(char* _buffer, int _size, int* _width, int* _height, std::string _texname);
+	int LoadTexture(char* _buffer, int _size, int* _width, int* _height, std::string _texname, bool loadDDS = true);
 
 	void aiMeshToMesh(const aiScene* scene, std::vector<Mesh*>& meshVector, std::vector<GLuint>& textureVector, aiString* texName, std::vector<GLuint> texturesVector);
 
