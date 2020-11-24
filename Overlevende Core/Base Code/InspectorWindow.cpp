@@ -55,6 +55,10 @@ bool InspectorWindow::PreUpdate(float dt)
 	if (ExternalApp->input->GetKey(SDL_SCANCODE_0) == KEY_DOWN) {
 		DeleteSelectedGameObject();
 	}
+	if (ExternalApp->input->GetKey(SDL_SCANCODE_DELETE) == KEY_DOWN) {
+		//TODO DELETE GAMEOBJECT
+		//delete(_selectedGO);
+	}
 	return true;
 }
 

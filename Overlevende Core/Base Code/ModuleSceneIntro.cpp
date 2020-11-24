@@ -11,8 +11,6 @@
 
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
-	ImGuizmo::Enable(true);
-
 }
 
 ModuleSceneIntro::~ModuleSceneIntro()
@@ -58,8 +56,6 @@ update_status ModuleSceneIntro::Update(float dt)
 {
 	PrimitivePlane p(0, 1, 0, 0);
 	p.axis = true;
-
-	DoGuizmo();
 
 	if (App->input->GetKey(SDL_SCANCODE_F) == KEY_DOWN)
 		Save();
@@ -119,20 +115,6 @@ void ModuleSceneIntro::ClearHierarchy()
 		rootGO->children[i] = nullptr;
 	}
 	rootGO->children.clear();
-}
-
-void ModuleSceneIntro::DoGuizmo()
-{
-	if (App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN) {
-		gOperation = ImGuizmo::TRANSLATE;
-	}
-	if (App->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN) {
-		gOperation = ImGuizmo::ROTATE;
-	}
-	if (App->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN) {
-		gOperation = ImGuizmo::SCALE;
-	}
-
 }
 
 void ModuleSceneIntro::Save()

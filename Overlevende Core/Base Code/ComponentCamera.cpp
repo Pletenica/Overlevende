@@ -54,8 +54,17 @@ bool ComponentCamera::Update(float dt)
 
 	frustum.GetCornerPoints(points);
 
-	glColor3f(1, 0, 0);
-	glLineWidth(3);
+	if (ExternalApp->base_motor->configuration_window->isBlueColor) {
+		glColor3f(0, 0, 1);
+	}
+	if (ExternalApp->base_motor->configuration_window->isOrangeColor) {
+		glColor3f(1, 0, 0);
+	}
+	if (ExternalApp->base_motor->configuration_window->isGreenColor) {
+		glColor3f(0, 1, 0);
+	}
+
+	glLineWidth(5);
 	glBegin(GL_LINES);
 
 	glVertex3fv(&points[0].x);

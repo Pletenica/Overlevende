@@ -186,5 +186,5 @@ void ComponentTransform::LoadComponent(JsonManager* _man)
 	scale = _man->GetVector3("Scale");
 	
 	Quat rot = Quat::FromEulerXYZ(rotation.x, rotation.y, rotation.z);
-	SetTransform(position, rot, scale);
+	//SetTransform(position, rot, scale);
 }

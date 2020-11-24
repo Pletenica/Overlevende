@@ -23,14 +23,19 @@ public:
 
 	void AddToVector(std::vector<float>& vec, float value);
 
-private:
-	ImTextureID iconprovingtex;
-	std::vector<float> fps;
-	std::vector<float> ms;
+public:
+	bool isBlueColor = true;
+	bool isGreenColor = false;
+	bool isOrangeColor = false;
 
 	bool isNightModeSelected = true;
 	bool isDayModeSelected = false;
 	bool isLightModeSelected = false;
+
+private:
+	ImTextureID iconprovingtex;
+	std::vector<float> fps;
+	std::vector<float> ms;
 
 	void LightModeSelected();
 	void NightModeSelected();
@@ -39,13 +44,6 @@ private:
 	void CreateMainBar();
 	void CreateTestWindow();
 	void CreateEditInterfaceMenu();
-
-	bool isBlueColor = true;
-	bool isGreenColor = false;
-	bool isOrangeColor = false;
-	bool isPurpleColor = false;
-	bool isPinkColor = false;
-	bool isYellowColor = false;
 
 	void PutBlueColor();
 	void PutGreenColor();

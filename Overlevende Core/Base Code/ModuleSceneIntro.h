@@ -3,7 +3,6 @@
 #include "p2DynArray.h"
 #include "Globals.h"
 #include "ModuleGameObject.h"
-#include "ImGuizmo/ImGuizmo.h"
 
 #define MAX_SNAKE 2
 
@@ -26,7 +25,6 @@ public:
 	void DeleteGameObject(GameObject* _go);
 	void RecursiveUpdate(GameObject* node);
 	void ClearHierarchy();
-	void DoGuizmo();
 
 	void Save();
 	void Load(const char* fileName);
@@ -37,5 +35,4 @@ public:
 private:
 	bool showaxis = true;
 	bool wireSphere = true;
-	ImGuizmo::OPERATION gOperation = ImGuizmo::TRANSLATE;
 };

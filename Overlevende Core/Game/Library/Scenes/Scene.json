@@ -3,7 +3,7 @@
     "GameObjects": [
         {
             "name": "Scene",
-            "GameObject id": 1860262319,
+            "GameObject id": 1394067495,
             "components": [
                 {
                     "Type": 0,
@@ -28,8 +28,8 @@
         },
         {
             "name": "Camera",
-            "GameObject id": 1873977656,
-            "Parent id": 1860262319,
+            "GameObject id": 1444055373,
+            "Parent id": 1394067495,
             "components": [
                 {
                     "Type": 0,
@@ -61,8 +61,8 @@
         },
         {
             "name": "BakerHouse",
-            "GameObject id": 1570771493,
-            "Parent id": 1860262319,
+            "GameObject id": 1317915659,
+            "Parent id": 1394067495,
             "components": [
                 {
                     "Type": 0,
@@ -87,8 +87,8 @@
         },
         {
             "name": "Chimney",
-            "GameObject id": 1580309570,
-            "Parent id": 1570771493,
+            "GameObject id": 1344371639,
+            "Parent id": 1317915659,
             "components": [
                 {
                     "Type": 0,
@@ -121,8 +121,8 @@
         },
         {
             "name": "Baker_house",
-            "GameObject id": 1648190045,
-            "Parent id": 1570771493,
+            "GameObject id": 1648058441,
+            "Parent id": 1317915659,
             "components": [
                 {
                     "Type": 0,
@@ -154,9 +154,9 @@
             ]
         },
         {
-            "name": "Ghost",
-            "GameObject id": 347005013,
-            "Parent id": 1860262319,
+            "name": "Plane",
+            "GameObject id": 470246009,
+            "Parent id": 1394067495,
             "components": [
                 {
                     "Type": 0,
@@ -180,9 +180,9 @@
             ]
         },
         {
-            "name": "Ghost:Ghosti",
-            "GameObject id": 356403848,
-            "Parent id": 347005013,
+            "name": "pPlane1",
+            "GameObject id": 504499541,
+            "Parent id": 470246009,
             "components": [
                 {
                     "Type": 0,
@@ -209,7 +209,7 @@
                 },
                 {
                     "Type": 2,
-                    "Material Path": "Library\/Materials\/GhostCube_albedo.dds"
+                    "Material Path": "Library\/Materials\/.dds"
                 }
             ]
         }

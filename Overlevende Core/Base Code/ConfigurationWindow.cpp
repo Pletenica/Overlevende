@@ -204,9 +204,6 @@ void ConfigurationWindow::PutGreenColor() {
 	isBlueColor = false;
 	isGreenColor = true;
 	isOrangeColor = false;
-	isPurpleColor = false;
-	isPinkColor = false;
-	isYellowColor = false;
 
 	ImGuiStyle& style = ImGui::GetStyle();
 	style.Colors[ImGuiCol_TitleBgActive] = ImVec4(0.321f, 0.698f, 0.345f, 1.0f);
@@ -226,9 +223,6 @@ void ConfigurationWindow::PutBlueColor() {
 	isBlueColor = true;
 	isGreenColor = false;
 	isOrangeColor = false;
-	isPurpleColor = false;
-	isPinkColor = false;
-	isYellowColor = false;
 
 	ImGuiStyle& style = ImGui::GetStyle();
 	style.Colors[ImGuiCol_TitleBgActive] = ImVec4(0.1f, 0.502f, 0.808f, 1.0f);
@@ -247,9 +241,6 @@ void ConfigurationWindow::PutOrangeColor() {
 	isBlueColor = false;
 	isGreenColor = false;
 	isOrangeColor = true;
-	isPurpleColor = false;
-	isPinkColor = false;
-	isYellowColor = false;
 
 	ImGuiStyle& style = ImGui::GetStyle();
 	style.Colors[ImGuiCol_TitleBgActive] = ImVec4(0.925f, 0.533f, 0.356f, 1.0f);
@@ -267,8 +258,6 @@ void ConfigurationWindow::DayModeSelected() {
 	isDayModeSelected = true;
 	isNightModeSelected = false;
 	isLightModeSelected = false;
-
-
 
 	ImGuiStyle& style = ImGui::GetStyle();
 	style.WindowRounding = 6.0f;
