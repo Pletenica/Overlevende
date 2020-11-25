@@ -8,7 +8,7 @@
 class aiNode;
 #include "lib/Assimp/include/vector3.h"
 #include "lib/Assimp/include/quaternion.h"
-#include "lib/MathGeoLib/Math/float4x4.h"
+#include "lib/MathGeoLib/src/Math/float4x4.h"
 
 class ComponentTransform : public Component
 {

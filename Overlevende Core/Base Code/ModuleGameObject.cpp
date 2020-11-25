@@ -9,7 +9,7 @@
 #include "SceneWindow.h"
 #include "ModuleGameObject.h"
 #include "ModuleSceneIntro.h"
-#include "MathGeoLib/Algorithm/Random/LCG.h"
+#include "MathGeoLib/src/Algorithm/Random/LCG.h"
 
 #include "ComponentMesh.h"
 #include "ComponentMaterial.h"
@@ -33,6 +33,8 @@ GameObject::GameObject(const char* _name, GameObject* _parent, int id)
 	if (parent != nullptr) {
 		parent->children.push_back(this);
 	}
+	aabb.SetNegativeInfinity();
+	UpdateAABB();
 }
 
 // Destructor
@@ -57,6 +59,10 @@ bool GameObject::Init()
 
 update_status GameObject::Update(float dt)
 {
+	if (ExternalApp->base_motor->options_window->GetDrawAABB() == true &&active==true) {
+		RenderAABB(aabb);
+	}
+
 	for (int i = 0; i < components.size(); i++)
 	{
 		if (components[i] != nullptr)
@@ -172,10 +178,103 @@ void GameObject::LoadGameObject(JSON_Array* _componentArray)
 		comp->LoadComponent(&compMan);
 		if (comp->type == ComponentType::C_Transform)
 			transform = dynamic_cast<ComponentTransform*>(comp);
-
 	}
 }
 
+void GameObject::RenderAABB(AABB _aabb)
+{
+	float3 points[8];
+	_aabb.GetCornerPoints(points);
+
+	glColor3f(0, 1, 0);
+	glLineWidth(1.5f);
+	glDisable(GL_LIGHTING);
+	glBegin(GL_LINES);
+
+	glVertex3fv(&points[0].x);
+	glVertex3fv(&points[2].x);
+	glVertex3fv(&points[2].x);
+	glVertex3fv(&points[6].x);
+
+	glVertex3fv(&points[6].x);
+	glVertex3fv(&points[4].x);
+	glVertex3fv(&points[4].x);
+	glVertex3fv(&points[0].x);
+
+	glVertex3fv(&points[0].x);
+	glVertex3fv(&points[1].x);
+	glVertex3fv(&points[1].x);
+	glVertex3fv(&points[3].x);
+
+	glVertex3fv(&points[3].x);
+	glVertex3fv(&points[2].x);
+	glVertex3fv(&points[4].x);
+	glVertex3fv(&points[5].x);
+
+	glVertex3fv(&points[6].x);
+	glVertex3fv(&points[7].x);
+	glVertex3fv(&points[5].x);
+	glVertex3fv(&points[7].x);
+
+	glVertex3fv(&points[3].x);
+	glVertex3fv(&points[7].x);
+	glVertex3fv(&points[1].x);
+	glVertex3fv(&points[5].x);
+
+	glVertex3fv(&points[1].x);
+	glVertex3fv(&points[2].x);
+	glVertex3fv(&points[2].x);
+	glVertex3fv(&points[4].x);
+	glVertex3fv(&points[4].x);
+	glVertex3fv(&points[7].x);
+	glVertex3fv(&points[7].x);
+	glVertex3fv(&points[1].x);
+	glVertex3fv(&points[2].x);
+	glVertex3fv(&points[7].x);
+	glVertex3fv(&points[4].x);
+	glVertex3fv(&points[1].x);
+
+	glEnd();
+	glLineWidth(1);
+	glColor3f(1, 1, 1);
+	glEnable(GL_LIGHTING);
+}
+
+void GameObject::UpdateAABB()
+{
+	ComponentMesh* c_mesh = (ComponentMesh*)GetComponent(ComponentType::C_Mesh);
+	ComponentCamera* c_cam = (ComponentCamera*)GetComponent(ComponentType::C_Camera);
+
+	//Check if parent != nullptr to do not rootnode
+	if (parent != nullptr) {
+		if (c_mesh != nullptr) {
+			obb = c_mesh->mesh->LocalAABB;
+			obb.Transform(transform->global_transform);
+
+			aabb.SetNegativeInfinity();
+			aabb.Enclose(obb);
+		}
+		if (c_cam != nullptr) {
+			float3 aabbpoints[8];
+
+			aabbpoints[0] = { -0.5f,-0.5f,-0.5f };
+			aabbpoints[1] = { -0.5f,-0.5f,0.5f };
+			aabbpoints[2] = { -0.5f,0.5f,-0.5f };
+			aabbpoints[3] = { -0.5f,0.5f,0.5f };
+			aabbpoints[4] = { 0.5f,-0.5f,-0.5f };
+			aabbpoints[5] = { 0.5f,-0.5f,0.5f };
+			aabbpoints[6] = { 0.5f,0.5f,-0.5f };
+			aabbpoints[7] = { 0.5f,0.5f,0.5f };
+
+			aabb.SetNegativeInfinity();
+			aabb.Enclose(aabbpoints, 8);
+			obb = aabb;
+			obb.Transform(transform->global_transform);
+			aabb.SetNegativeInfinity();
+			aabb.Enclose(obb);
+		}
+	}
+}
 
 ///WINDOW NOW
 Component::Component(GameObject* _go)

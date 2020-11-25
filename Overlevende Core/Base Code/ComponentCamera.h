@@ -4,7 +4,7 @@
 #include "glmath.h"
 #include "ModuleGameObject.h"
 #include "SDL/include/SDL.h"
-#include "MathGeoLib/Geometry/Frustum.h"
+#include "MathGeoLib/src/Geometry/Frustum.h"
 #include <string>
 
 class JSONManager;
@@ -14,6 +14,7 @@ class ComponentCamera : public Component
 public:
 
 	ComponentCamera(GameObject* _go);
+	ComponentCamera(float3 pos);
 	virtual ~ComponentCamera();
 
 	bool Enable();
@@ -24,15 +25,15 @@ public:
 	void SaveComponent(JsonManager* _man);
 	void LoadComponent(JsonManager* _man);
 
+	void UpdateCamera(const float4x4 &global);
+	void SetAspectRatio(float wi, float he);
+
 public:
 	Frustum frustum;
 	bool isCulling = false;
 	bool isMainCamera = false;
 
-	float nearPlaneDistance = 1;
-	float farPlaneDistance = 100;
-	float horizontalFOV = 1;
-	float verticalFOV = 1;
+	float degFov = 0;
 };
 
 #endif // __ComponentCamera_H__

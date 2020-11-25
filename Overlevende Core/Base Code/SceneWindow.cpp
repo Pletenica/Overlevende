@@ -26,21 +26,22 @@ bool SceneWindow::Init()
 bool SceneWindow::Draw(float dt)
 {
 	DoGuizmo();
-	ImGui::Begin("Scene");
-	ImGui::Image((ImTextureID)ExternalApp->renderer3D->renderTexture, ImGui::GetWindowSize(), ImVec2(0, 1), ImVec2(1, 0));
-	
-	ImVec2 size = ImGui::GetWindowSize();
-	ImVec2 pos = ImGui::GetWindowPos();
-	ImGuizmo::SetRect(pos.x, pos.y, size.x, size.y);
-	ImGuizmo::SetDrawlist();
-	if (ExternalApp->base_motor->inspector_window->_selectedGO != nullptr) {
-		ImGuizmo::Enable(true);
-		ImGuizmo::Manipulate(ExternalApp->camera->GetViewMatrix(),
-			&ExternalApp->renderer3D->ProjectionMatrix,
-			gOperation,
-			ImGuizmo::MODE::LOCAL,
-			ExternalApp->base_motor->inspector_window->_selectedGO->transform->global_transform.ptr());
-	}
+	ImGui::Begin("Scene", NULL, ImGuiWindowFlags_NoScrollbar);
+	ImGui::Image((ImTextureID)ExternalApp->renderer3D->renderTexture, ImGui::GetContentRegionAvail(), ImVec2(0, 1), ImVec2(1, 0));
+	ExternalApp->camera->_cam.SetAspectRatio(ImGui::GetWindowSize().x, ImGui::GetWindowSize().y);
+
+
+	//ImVec2 size = ImGui::GetWindowSize();
+	//ImVec2 pos = ImGui::GetWindowPos();
+	//ImGuizmo::SetRect(pos.x, pos.y, size.x, size.y);
+	//ImGuizmo::SetDrawlist();
+	//if (ExternalApp->base_motor->inspector_window->_selectedGO != nullptr) {
+	//	ImGuizmo::Manipulate(ExternalApp->camera->_cam.frustum.ViewMatrix().ptr(),
+	//		ExternalApp->camera->_cam.frustum.ProjectionMatrix().ptr(),
+	//		gOperation,
+	//		ImGuizmo::MODE::WORLD,
+	//		ExternalApp->base_motor->inspector_window->_selectedGO->transform->global_transform.ptr());
+	//}
 
 	ImGui::End();
 

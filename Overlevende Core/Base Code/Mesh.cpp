@@ -32,6 +32,9 @@ void Mesh::GenBuffers(MeshType _type)
 {
 	_meshType = _type;
 
+	LocalAABB.SetNegativeInfinity();
+	LocalAABB.Enclose((float3*)vertices, num_vertices);
+
 	switch (_type) {
 	case(MeshType::Pyramid):
 		glBufferData(GL_ARRAY_BUFFER, sizeof(PyramidVertices), PyramidVertices, GL_STATIC_DRAW);

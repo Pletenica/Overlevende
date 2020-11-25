@@ -1,8 +1,8 @@
 #pragma once
 
 #include"Parson/parson.h"
-#include"MathGeoLib/Math/float3.h"
-#include"MathGeoLib/Math/Quat.h"
+#include"MathGeoLib/src/Math/float3.h"
+#include"MathGeoLib/src/Math/Quat.h"
 
 class JsonManager
 {

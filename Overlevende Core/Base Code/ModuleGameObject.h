@@ -9,6 +9,9 @@
 #include <string>
 #include"JsonManager.h"
 
+#include "MathGeoLib/src/Geometry/OBB.h"
+#include "MathGeoLib/src/Geometry/AABB.h"
+
 class Application;
 class ComponentTransform;
 class GameObject;
@@ -60,6 +63,9 @@ public:
 	void SaveGameObject(JSON_Array* _goArray);
 	void LoadGameObject(JSON_Array* _componentArray);
 
+	void RenderAABB(AABB _aabb);
+	void UpdateAABB();
+
 public:
 	int idGO;
 	bool active = true;
@@ -71,6 +77,8 @@ public:
 	ComponentTransform* transform;
 	GameObject* parent = nullptr;
 
+	AABB aabb;
+	OBB obb;
 };
 
 #endif // __ModuleGameObject_H__

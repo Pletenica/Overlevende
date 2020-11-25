@@ -2,9 +2,9 @@
 #include "Application.h"
 #include "ModuleGameObject.h"
 #include "ComponentTransform.h"
-#include "MathGeoLib/Math/float3.h"
-#include "MathGeoLib/Math/Quat.h"
-#include"MathGeoLib/Math/float4x4.h"
+#include "MathGeoLib/src/Math/float3.h"
+#include "MathGeoLib/src/Math/Quat.h"
+#include"MathGeoLib/src/Math/float4x4.h"
 
 #include "Assimp/include/cimport.h"
 #include "Assimp/include/scene.h"
@@ -66,21 +66,21 @@ void ComponentTransform::OnEditor(GameObject* _go)
 		ImGui::Text("X");
 		ImGui::SameLine();
 		ImGui::PushItemWidth(70);
-		if (ImGui::InputFloat("##posx", &pos.x, 0, 0, 3, ImGuiInputTextFlags_EnterReturnsTrue)) newPos = true;
+		if (ImGui::DragFloat("##posx", &pos.x, 0.5f, -500000, 500000)) newPos = true;
 		ImGui::PopItemWidth();
 		ImGui::SameLine();
 
 		ImGui::Text("Y");
 		ImGui::SameLine();
 		ImGui::PushItemWidth(70);
-		if (ImGui::InputFloat("##posy", &pos.y, 0, 0, 3, ImGuiInputTextFlags_EnterReturnsTrue)) newPos = true;
+		if (ImGui::DragFloat("##posy", &pos.y, 0.5f, -500000, 500000)) newPos = true;
 		ImGui::PopItemWidth();
 		ImGui::SameLine();
 
 		ImGui::Text("Z");
 		ImGui::SameLine();
 		ImGui::PushItemWidth(70);
-		if (ImGui::InputFloat("##posz", &pos.z, 0, 0, 3, ImGuiInputTextFlags_EnterReturnsTrue)) newPos = true;
+		if (ImGui::DragFloat("##posz", &pos.z, 0.5f, -500000, 500000)) newPos = true;
 		ImGui::PopItemWidth();
 		if (newPos) _go->transform->position = pos;
 
@@ -93,21 +93,21 @@ void ComponentTransform::OnEditor(GameObject* _go)
 		ImGui::Text("X");
 		ImGui::SameLine();
 		ImGui::PushItemWidth(70);
-		if (ImGui::InputFloat("##rotx", &rot.x, 0, 0, 3, ImGuiInputTextFlags_EnterReturnsTrue)) newRot = true;
+		if (ImGui::DragFloat("##rotx", &rot.x, 0.5f, -360, 360)) newRot = true;
 		ImGui::PopItemWidth();
 		ImGui::SameLine();
 
 		ImGui::Text("Y");
 		ImGui::SameLine();
 		ImGui::PushItemWidth(70);
-		if (ImGui::InputFloat("##roty", &rot.y, 0, 0, 3, ImGuiInputTextFlags_EnterReturnsTrue)) newRot = true;
+		if (ImGui::DragFloat("##roty", &rot.y, 0.5f, -360, 360)) newRot = true;
 		ImGui::PopItemWidth();
 		ImGui::SameLine();
 
 		ImGui::Text("Z");
 		ImGui::SameLine();
 		ImGui::PushItemWidth(70);
-		if (ImGui::InputFloat("##rotz", &rot.z, 0, 0, 3, ImGuiInputTextFlags_EnterReturnsTrue)) newRot = true;
+		if (ImGui::DragFloat("##rotz", &rot.z, 0.5f, -360, 360)) newRot = true;
 		ImGui::PopItemWidth();
 		if (newRot) _go->transform->rotation = rot;
 
@@ -120,28 +120,29 @@ void ComponentTransform::OnEditor(GameObject* _go)
 		ImGui::Text("X");
 		ImGui::SameLine();
 		ImGui::PushItemWidth(70);
-		if (ImGui::InputFloat("##scalex", &scale.x, 0, 0, 3, ImGuiInputTextFlags_EnterReturnsTrue)) newScale = true;
+		if (ImGui::DragFloat("##scalex", &scale.x, 0.5f, -500000, 500000)) newScale = true;
 		ImGui::PopItemWidth();
 		ImGui::SameLine();
 
 		ImGui::Text("Y");
 		ImGui::SameLine();
 		ImGui::PushItemWidth(70);
-		if (ImGui::InputFloat("##scaley", &scale.y, 0, 0, 3, ImGuiInputTextFlags_EnterReturnsTrue)) newScale = true;
+		if (ImGui::DragFloat("##scaley", &scale.y, 0.5f, -500000, 500000)) newScale = true;
 		ImGui::PopItemWidth();
 		ImGui::SameLine();
 
 		ImGui::Text("Z");
 		ImGui::SameLine();
 		ImGui::PushItemWidth(70);
-		if (ImGui::InputFloat("##scalez", &scale.z, 0, 0, 3, ImGuiInputTextFlags_EnterReturnsTrue)) newScale = true;
+		if (ImGui::DragFloat("##scalez", &scale.z, 0.5f, -500000, 500000)) newScale = true;
 		ImGui::PopItemWidth();
 		if (newScale) _go->transform->scale = scale;
 
 		if (newScale == true || newRot == true || newPos == true) {
 			Quat _newRotation;
-			_newRotation = _newRotation.FromEulerXYZ(_go->transform->rotation.x * DEGTORAD, _go->transform->rotation.y * DEGTORAD, _go->transform->rotation.z * DEGTORAD);
-			SetTransform(_go->transform->position, _newRotation, _go->transform->scale);
+			_newRotation = _newRotation.FromEulerXYZ(rotation.x * DEGTORAD, rotation.y * DEGTORAD, rotation.z * DEGTORAD);
+			SetTransform(position, _newRotation, scale);
+			gameobject->UpdateAABB();
 		}
 	}
 }
@@ -158,7 +159,12 @@ void ComponentTransform::SetTransform(float3 _pos, Quat _rot, float3 _scale)
 void ComponentTransform::RecursiveUpdateTransform(float3 _pos, Quat _rot, float3 _scale)
 {
 	local_transform = float4x4::FromTRS(_pos, _rot, _scale);
-	global_transform = gameobject->parent->transform->global_transform * local_transform;
+	if (gameobject->parent != nullptr) {
+		global_transform = gameobject->parent->transform->global_transform * local_transform;
+	}
+	if (gameobject->parent == nullptr) {
+		global_transform = local_transform;
+	}
 
 	for (int i = 0; i < gameobject->children.size(); i++) {
 		gameobject->children[i]->transform->RecursiveUpdateTransform(_pos, _rot, _scale);
@@ -184,7 +190,11 @@ void ComponentTransform::LoadComponent(JsonManager* _man)
 	position = _man->GetVector3("Position");
 	rotation = _man->GetQuaternion("Rotation").ToEulerXYZ();
 	scale = _man->GetVector3("Scale");
-	
+
+	local_transform.SetIdentity();
+	global_transform.SetIdentity();
+
 	Quat rot = Quat::FromEulerXYZ(rotation.x, rotation.y, rotation.z);
 	//SetTransform(position, rot, scale);
+	gameobject->UpdateAABB();
 }

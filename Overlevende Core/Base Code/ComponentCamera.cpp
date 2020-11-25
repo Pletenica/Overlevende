@@ -2,8 +2,9 @@
 #include "Application.h"
 #include "ModuleGameObject.h"
 #include "ComponentCamera.h"
-#include "MathGeoLib/Geometry/Frustum.h"
-#include "MathGeoLib/MathGeoLib.h"
+#include "ComponentTransform.h"
+#include "MathGeoLib/src/Geometry/Frustum.h"
+#include "MathGeoLib/src/MathGeoLib.h"
 
 #include "JSONManager.h"
 
@@ -13,17 +14,38 @@ ComponentCamera::ComponentCamera(GameObject* _go) :Component(_go)
 	gameobject = _go;
 	type = ComponentType::C_Camera;
 
-	horizontalFOV = 1.0f;
-	verticalFOV = 1.0f;
-	nearPlaneDistance = 0.1f;
-	farPlaneDistance = 50;
+	frustum.type = FrustumType::PerspectiveFrustum;
 
-	frustum.SetKind(FrustumSpaceGL, FrustumRightHanded);
-	frustum.SetPos(float3(0, 0, 0));
-	frustum.SetFront(float3::unitZ);
-	frustum.SetUp(float3::unitY);
-	frustum.SetViewPlaneDistances(nearPlaneDistance, farPlaneDistance);
-	frustum.SetPerspective(horizontalFOV, verticalFOV);
+	frustum.verticalFov = 40.f;
+	frustum.horizontalFov = 2.f * atanf(tanf(frustum.verticalFov / 2) * (16 / 9));
+
+	frustum.nearPlaneDistance = 0.1f;
+	frustum.farPlaneDistance = 300.f;
+
+	frustum.pos = (float3(0, 0, 0));
+	frustum.front = (float3::unitZ);
+	frustum.up = (float3::unitY);
+	//frustum.SetPerspective(horizontalFOV, verticalFOV);
+
+	gameobject->UpdateAABB();
+}
+
+ComponentCamera::ComponentCamera(float3 pos) :Component(nullptr)
+{
+	gameobject = nullptr;
+	type = ComponentType::C_Camera;
+
+	frustum.type = FrustumType::PerspectiveFrustum;
+
+	frustum.verticalFov = 40.f * DEGTORAD;
+	frustum.horizontalFov = 2.f * atanf(tanf(frustum.verticalFov / 2) * (16 / 9));
+
+	frustum.nearPlaneDistance = 0.1f;
+	frustum.farPlaneDistance = 300.f;
+
+	frustum.pos = pos;
+	frustum.front = (float3::unitZ);
+	frustum.up = (float3::unitY);
 }
 
 // Destructor
@@ -45,40 +67,35 @@ bool ComponentCamera::Disable()
 	return true;
 }
 
-
-
 // Called before quitting
 bool ComponentCamera::Update(float dt)
 {
+	UpdateCamera(gameobject->transform->global_transform);
+
 	float3 points[8];
 
 	frustum.GetCornerPoints(points);
 
-	if (ExternalApp->base_motor->configuration_window->isBlueColor) {
-		glColor3f(0, 0, 1);
-	}
-	if (ExternalApp->base_motor->configuration_window->isOrangeColor) {
-		glColor3f(1, 0, 0);
-	}
-	if (ExternalApp->base_motor->configuration_window->isGreenColor) {
-		glColor3f(0, 1, 0);
-	}
-
-	glLineWidth(5);
+	glColor3f(1, 0, 0);
+	glLineWidth(3);
+	glDisable(GL_LIGHTING);
 	glBegin(GL_LINES);
 
 	glVertex3fv(&points[0].x);
 	glVertex3fv(&points[2].x);
 	glVertex3fv(&points[2].x);
 	glVertex3fv(&points[6].x);
+
 	glVertex3fv(&points[6].x);
 	glVertex3fv(&points[4].x);
 	glVertex3fv(&points[4].x);
 	glVertex3fv(&points[0].x);
+
 	glVertex3fv(&points[0].x);
 	glVertex3fv(&points[1].x);
 	glVertex3fv(&points[1].x);
 	glVertex3fv(&points[3].x);
+
 	glVertex3fv(&points[3].x);
 	glVertex3fv(&points[2].x);
 	glVertex3fv(&points[4].x);
@@ -95,6 +112,7 @@ bool ComponentCamera::Update(float dt)
 	glEnd();
 	glLineWidth(1);
 	glColor3f(1, 1, 1);
+	glEnable(GL_LIGHTING);
 
 	return true;
 }
@@ -110,35 +128,21 @@ void ComponentCamera::OnEditor(GameObject* _go)
 		ImGui::Text("Culling");
 
 		ImGui::PushItemWidth(90);
-		if (ImGui::InputFloat("##NearPlaneInput", &nearPlaneDistance, 0, 0, 3, ImGuiInputTextFlags_EnterReturnsTrue)) {
-			//Update Near Plane Distance
-			frustum.SetViewPlaneDistances(nearPlaneDistance, farPlaneDistance);
-		}
+		ImGui::DragFloat("##NearPlaneInput", &frustum.nearPlaneDistance, 0.1f, 1.0f, frustum.farPlaneDistance);
 		ImGui::PopItemWidth();
 		ImGui::SameLine();
 		ImGui::Text("Near Plane Distance");
 
 		ImGui::PushItemWidth(90);
-		if (ImGui::InputFloat("##FarPlaneInput", &farPlaneDistance, 0, 0, 3, ImGuiInputTextFlags_EnterReturnsTrue)) {
-			frustum.SetViewPlaneDistances(nearPlaneDistance, farPlaneDistance);
-		}
+		ImGui::DragFloat("##FarPlaneInput", &frustum.farPlaneDistance, 0.1f, frustum.nearPlaneDistance, 3000.f);
 		ImGui::PopItemWidth();
 		ImGui::SameLine();
 		ImGui::Text("Far Plane Distance");
 
 		ImGui::PushItemWidth(90);
-		if (ImGui::InputFloat("##HorizontalFOVInput", &horizontalFOV, 0, 0, 3, ImGuiInputTextFlags_EnterReturnsTrue)) {
+		if (ImGui::DragFloat("##General FOV", &degFov, 0.1f, 1.0f, 180.f)) {
 			//Update Horizontal FOV
-			frustum.SetPerspective(horizontalFOV, verticalFOV);
-		}
-		ImGui::PopItemWidth();
-		ImGui::SameLine();
-		ImGui::Text("Horizontal FOV");
-
-		ImGui::PushItemWidth(90);
-		if (ImGui::InputFloat("##VerticalFOVInput", &verticalFOV, 0, 0, 3, ImGuiInputTextFlags_EnterReturnsTrue)) {
-			//Update Horizontal FOV
-			frustum.SetPerspective(horizontalFOV, verticalFOV);
+			frustum.verticalFov = degFov * DEGTORAD;
 		}
 		ImGui::PopItemWidth();
 		ImGui::SameLine();
@@ -150,16 +154,33 @@ void ComponentCamera::SaveComponent(JsonManager* _man)
 {
 	Component::SaveComponent(_man);
 
-	_man->AddFloat("Vertical FOV", verticalFOV);
-	_man->AddFloat("Horizontal FOV", horizontalFOV);
-	_man->AddFloat("Far Plane Distance", farPlaneDistance);
-	_man->AddFloat("Near Plane Distance", nearPlaneDistance);
+	_man->AddFloat("Vertical FOV", frustum.verticalFov);
+	_man->AddFloat("Horizontal FOV", frustum.horizontalFov);
+	_man->AddFloat("Far Plane Distance", frustum.farPlaneDistance);
+	_man->AddFloat("Near Plane Distance", frustum.nearPlaneDistance);
 }
 
 void ComponentCamera::LoadComponent(JsonManager* _man)
 {
-	verticalFOV = _man->GetFloat("Vertical FOV");
-	horizontalFOV = _man->GetFloat("Horizontal FOV");
-	farPlaneDistance = _man->GetFloat("Far Plane Distance");
-	nearPlaneDistance = _man->GetFloat("Near Plane Distance");
+	frustum.verticalFov = _man->GetFloat("Vertical FOV");
+	frustum.horizontalFov = _man->GetFloat("Horizontal FOV");
+	frustum.farPlaneDistance = _man->GetFloat("Far Plane Distance");
+	frustum.nearPlaneDistance = _man->GetFloat("Near Plane Distance");
+}
+
+void ComponentCamera::UpdateCamera(const float4x4& global)
+{
+	float3 pos, scale;
+	Quat rot;
+
+	global.Decompose(pos, rot, scale);
+
+	frustum.pos = pos;
+	frustum.front = global.WorldZ();
+	frustum.up = global.WorldY();
+}
+
+void ComponentCamera::SetAspectRatio(float wi, float he)
+{
+	frustum.horizontalFov = 2.f * atanf(tanf(frustum.verticalFov / 2) * (wi / he));
 }

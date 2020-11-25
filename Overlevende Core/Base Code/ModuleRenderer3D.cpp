@@ -7,6 +7,8 @@
 #include <gl/GLU.h>
 #include"FBXManager.h"
 
+#include"MathGeoLib/src/Math/float4x4.h"
+
 #pragma comment (lib, "glu32.lib")    /* link OpenGL Utility lib     */
 #pragma comment (lib, "opengl32.lib") /* link Microsoft OpenGL lib   */
 #pragma comment (lib, "Glew/libx86/glew32.lib") /* link Microsoft OpenGL lib   */
@@ -21,6 +23,7 @@
 
 ModuleRenderer3D::ModuleRenderer3D(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
+
 }
 
 // Destructor
@@ -167,14 +170,21 @@ bool ModuleRenderer3D::Init()
 update_status ModuleRenderer3D::PreUpdate(float dt)
 {
 
+
+	glLoadIdentity();
+	glMatrixMode(GL_PROJECTION);
+	glLoadMatrixf((GLfloat*)App->camera->_cam.frustum.ProjectionMatrix().Transposed().v);
+
+	glMatrixMode(GL_MODELVIEW);
+	math::float4x4 m = App->camera->_cam.frustum.ViewMatrix();
+	glLoadMatrixf((GLfloat*)m.Transposed().v);
+
 	glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
+
 	Color c = App->camera->background;
 	glClearColor(c.r, c.g, c.b, c.a);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glLoadIdentity();
 
-	glMatrixMode(GL_MODELVIEW);
-	glLoadMatrixf(App->camera->GetViewMatrix());
 
 	// light 0 on cam pos
 	lights[0].SetPos(App->camera->Position.x, App->camera->Position.y, App->camera->Position.z);

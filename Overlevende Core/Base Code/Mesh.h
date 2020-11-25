@@ -8,6 +8,8 @@
 #include <gl/GLU.h>
 #include <string>
 
+#include "MathGeoLib/src/Geometry/AABB.h"
+
 enum MeshType {
 	FBXNone,
 	Sphere,
@@ -47,6 +49,7 @@ public:
 
 	GLuint textureID = 0;
 	std::string meshPath = "";
+	AABB LocalAABB;
 
 private:
 

@@ -3,7 +3,7 @@
     "GameObjects": [
         {
             "name": "Scene",
-            "GameObject id": 1394067495,
+            "GameObject id": 1532181300,
             "components": [
                 {
                     "Type": 0,
@@ -28,8 +28,8 @@
         },
         {
             "name": "Camera",
-            "GameObject id": 1444055373,
-            "Parent id": 1394067495,
+            "GameObject id": 1548333372,
+            "Parent id": 1532181300,
             "components": [
                 {
                     "Type": 0,
@@ -52,17 +52,17 @@
                 },
                 {
                     "Type": 3,
-                    "Vertical FOV": 1,
-                    "Horizontal FOV": 1,
-                    "Far Plane Distance": 50,
+                    "Vertical FOV": 40,
+                    "Horizontal FOV": 2.3008880615234375,
+                    "Far Plane Distance": 300,
                     "Near Plane Distance": 0.10000000149011612
                 }
             ]
         },
         {
             "name": "BakerHouse",
-            "GameObject id": 1317915659,
-            "Parent id": 1394067495,
+            "GameObject id": 718142684,
+            "Parent id": 1532181300,
             "components": [
                 {
                     "Type": 0,
@@ -87,8 +87,8 @@
         },
         {
             "name": "Chimney",
-            "GameObject id": 1344371639,
-            "Parent id": 1317915659,
+            "GameObject id": 744598664,
+            "Parent id": 718142684,
             "components": [
                 {
                     "Type": 0,
@@ -98,15 +98,15 @@
                         0
                     ],
                     "Rotation": [
-                        -0.85090553760528564,
                         0,
                         0,
-                        0.52531874179840088
+                        0,
+                        1
                     ],
                     "Scale": [
-                        100,
-                        100,
-                        100
+                        0.99999934434890747,
+                        0.99999934434890747,
+                        0.99999934434890747
                     ]
                 },
                 {
@@ -121,8 +121,8 @@
         },
         {
             "name": "Baker_house",
-            "GameObject id": 1648058441,
-            "Parent id": 1317915659,
+            "GameObject id": 960563006,
+            "Parent id": 718142684,
             "components": [
                 {
                     "Type": 0,
@@ -132,15 +132,15 @@
                         0
                     ],
                     "Rotation": [
-                        -0.85090553760528564,
                         0,
                         0,
-                        0.52531874179840088
+                        0,
+                        1
                     ],
                     "Scale": [
-                        100,
-                        100,
-                        100
+                        0.99999934434890747,
+                        0.99999934434890747,
+                        0.99999934434890747
                     ]
                 },
                 {
@@ -150,66 +150,6 @@
                 {
                     "Type": 2,
                     "Material Path": "Library\/Materials\/Baker_house.dds"
-                }
-            ]
-        },
-        {
-            "name": "Plane",
-            "GameObject id": 470246009,
-            "Parent id": 1394067495,
-            "components": [
-                {
-                    "Type": 0,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "pPlane1",
-            "GameObject id": 504499541,
-            "Parent id": 470246009,
-            "components": [
-                {
-                    "Type": 0,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
-                },
-                {
-                    "Type": 1,
-                    "Mesh Path": "Library\/Meshes\/.elpepe"
-                },
-                {
-                    "Type": 2,
-                    "Material Path": "Library\/Materials\/.dds"
                 }
             ]
         }

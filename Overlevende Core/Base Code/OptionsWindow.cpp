@@ -50,7 +50,9 @@ bool OptionsWindow::Draw(float dt)
 	ImGui::Checkbox("Light", &light_bool);
 	ImGui::Checkbox("Texture", &texture_bool);
 	ImGui::SameLine();
-	ImGui::Checkbox("WireFrame", &wireframe_bool);
+	ImGui::Checkbox("AABB Draw", &drawaabb_bool);
+	ImGui::SameLine();
+	ImGui::Checkbox("Wireframe", &wireframe_bool);
 	ImGui::SameLine();
 	if (ImGui::Checkbox("Normals", &normals_bool)) {
 		if (normals_bool == true) RecursiveNormals(ExternalApp->scene_intro->rootGO, true);

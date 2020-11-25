@@ -13,8 +13,8 @@
 #include"ComponentMesh.h"
 #include"ComponentTransform.h"
 
-#include "MathGeoLib/Math/float3.h"
-#include "MathGeoLib/Math/Quat.h"
+#include "MathGeoLib/src/Math/float3.h"
+#include "MathGeoLib/src/Math/Quat.h"
 
 #include"Devil/include/ilu.h"
 #include"Devil/include/ilut.h"
@@ -212,9 +212,9 @@ void FBXLoader::NodeToGameObject(const aiScene* scene, aiNode* node, GameObject*
 
 		transform->SetTransform(pos, rot, scale);
 		
-
 		ComponentMesh* meshRenderer = (ComponentMesh*)(childGO->CreateComponent(ComponentType::C_Mesh));
 		meshRenderer->mesh = meshVector[node->mMeshes[i]];
+		childGO->UpdateAABB();
 
 		ComponentMaterial* materialRenderer = (ComponentMaterial*)(childGO->CreateComponent(ComponentType::C_Material));
 		materialRenderer->textureID = meshRenderer->mesh->textureID;

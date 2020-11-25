@@ -25,9 +25,12 @@ public:
 	void DoCheckers();
 	void RecursiveNormals(GameObject* _root, bool _active);
 
+	bool GetDrawAABB() { return drawaabb_bool; };
+
 private:
 	bool depth_bool = false;
 	bool wireframe_bool = false;
+	bool drawaabb_bool = false;
 	bool cullface_bool = false;
 	bool light_bool = false;
 	bool texture_bool = true;

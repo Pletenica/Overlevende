@@ -6,7 +6,7 @@
 
 #include"JsonManager.h"
 #include"ComponentTransform.h"
-#include "MathGeoLib/MathGeoLib.h"
+#include "MathGeoLib/src/MathGeoLib.h"
 
 
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
