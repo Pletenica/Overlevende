@@ -139,10 +139,7 @@ void ComponentTransform::OnEditor(GameObject* _go)
 		if (newScale) _go->transform->scale = scale;
 
 		if (newScale == true || newRot == true || newPos == true) {
-			Quat _newRotation;
-			_newRotation = _newRotation.FromEulerXYZ(rotation.x * DEGTORAD, rotation.y * DEGTORAD, rotation.z * DEGTORAD);
-			SetTransform(position, _newRotation, scale);
-			gameobject->UpdateAABB();
+			UpdateTransform();
 		}
 	}
 }
@@ -153,12 +150,26 @@ void ComponentTransform::SetTransform(float3 _pos, Quat _rot, float3 _scale)
 	rotation = _rot.ToEulerXYZ()*RADTODEG;
 	scale = _scale;
 
-	RecursiveUpdateTransform(_pos, _rot, _scale);
+	RecursiveUpdateTransform();
 }
 
-void ComponentTransform::RecursiveUpdateTransform(float3 _pos, Quat _rot, float3 _scale)
+void ComponentTransform::SetTransformWithGlobal(float4x4 _global)
 {
-	local_transform = float4x4::FromTRS(_pos, _rot, _scale);
+	global_transform = _global;
+	local_transform = gameobject->parent->transform->global_transform.Inverted() * global_transform;
+
+	Quat rot;
+	local_transform.Decompose(position, rot, scale);
+
+	rotation = rot.ToEulerXYZ() * RADTODEG;
+
+	UpdateTransform();
+}
+
+void ComponentTransform::RecursiveUpdateTransform()
+{
+	local_transform = float4x4::FromTRS(position, Quat::FromEulerXYZ(rotation.x * DEGTORAD, rotation.y * DEGTORAD, rotation.z * DEGTORAD), scale);
+
 	if (gameobject->parent->transform != nullptr) {
 		global_transform = gameobject->parent->transform->global_transform * local_transform;
 	}
@@ -167,8 +178,16 @@ void ComponentTransform::RecursiveUpdateTransform(float3 _pos, Quat _rot, float3
 	}
 
 	for (int i = 0; i < gameobject->children.size(); i++) {
-		gameobject->children[i]->transform->RecursiveUpdateTransform(_pos, _rot, _scale);
+		gameobject->children[i]->transform->RecursiveUpdateTransform();
 	}
+}
+
+void ComponentTransform::UpdateTransform()
+{
+	Quat _newRotation;
+	_newRotation = _newRotation.FromEulerXYZ(rotation.x * DEGTORAD, rotation.y * DEGTORAD, rotation.z * DEGTORAD);
+	SetTransform(position, _newRotation, scale);
+	gameobject->UpdateAABB();
 }
 
 void ComponentTransform::ResetTransform()

@@ -31,17 +31,29 @@ bool SceneWindow::Draw(float dt)
 	ExternalApp->camera->_cam.SetAspectRatio(ImGui::GetWindowSize().x, ImGui::GetWindowSize().y);
 
 
-	//ImVec2 size = ImGui::GetWindowSize();
-	//ImVec2 pos = ImGui::GetWindowPos();
-	//ImGuizmo::SetRect(pos.x, pos.y, size.x, size.y);
-	//ImGuizmo::SetDrawlist();
-	//if (ExternalApp->base_motor->inspector_window->_selectedGO != nullptr) {
-	//	ImGuizmo::Manipulate(ExternalApp->camera->_cam.frustum.ViewMatrix().ptr(),
-	//		ExternalApp->camera->_cam.frustum.ProjectionMatrix().ptr(),
-	//		gOperation,
-	//		ImGuizmo::MODE::WORLD,
-	//		ExternalApp->base_motor->inspector_window->_selectedGO->transform->global_transform.ptr());
-	//}
+	ImVec2 size = ImGui::GetContentRegionMax();
+	ImVec2 pos = ImGui::GetWindowPos();
+
+	ImGuizmo::SetRect(pos.x, pos.y, size.x, size.y);
+	ImGuizmo::SetDrawlist();
+
+	if (ExternalApp->base_motor->inspector_window->_selectedGO != nullptr)
+	{
+		float4x4 test = ExternalApp->camera->_cam.frustum.ViewMatrix();
+		test.Transpose();
+
+		float4x4 globMat= ExternalApp->base_motor->inspector_window->_selectedGO->transform->global_transform.Transposed();
+
+		if (ImGuizmo::Manipulate(test.v[0],
+			ExternalApp->camera->_cam.frustum.ProjectionMatrix().Transposed().v[0],
+			gOperation,
+			ImGuizmo::MODE::LOCAL,
+			globMat.ptr())) {
+			globMat.Transpose();
+
+			ExternalApp->base_motor->inspector_window->_selectedGO->transform->SetTransformWithGlobal(globMat);
+		}
+	}
 
 	ImGui::End();
 

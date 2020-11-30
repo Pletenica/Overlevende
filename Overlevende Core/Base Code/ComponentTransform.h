@@ -23,7 +23,9 @@ public:
 	void OnEditor(GameObject* _go);
 
 	void SetTransform(float3 pos, Quat rot, float3 scale);
-	void RecursiveUpdateTransform(float3 _pos, Quat _rot, float3 _scale);
+	void SetTransformWithGlobal(float4x4 _global);
+	void RecursiveUpdateTransform();
+	void UpdateTransform();
 
 	void ResetTransform();
 
