@@ -35,41 +35,60 @@ void Mesh::GenBuffers(MeshType _type)
 	LocalAABB.SetNegativeInfinity();
 	LocalAABB.Enclose((float3*)vertices, num_vertices);
 
-	switch (_type) {
-	case(MeshType::Pyramid):
-		glBufferData(GL_ARRAY_BUFFER, sizeof(PyramidVertices), PyramidVertices, GL_STATIC_DRAW);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(PyramidIndices), PyramidIndices, GL_STATIC_DRAW);
-		break;
-	case(MeshType::Cube):
-		glBufferData(GL_ARRAY_BUFFER, sizeof(CubeVertices)*24*3, PyramidVertices, GL_STATIC_DRAW);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(CubeIndices)*36, CubeIndices, GL_STATIC_DRAW);
-		break;
-	case(MeshType::FBXNone):
-		glGenBuffers(1, (GLuint*)&(id_vertices));
-		glBindBuffer(GL_ARRAY_BUFFER, id_vertices);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * num_vertices * 3, vertices, GL_STATIC_DRAW);
+	glGenBuffers(1, (GLuint*)&(id_vertices));
+	glBindBuffer(GL_ARRAY_BUFFER, id_vertices);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * num_vertices * 3, vertices, GL_STATIC_DRAW);
 
-		glGenBuffers(1, (GLuint*)&(id_indices));
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id_indices);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int) * num_indices, indices, GL_STATIC_DRAW);
+	glGenBuffers(1, (GLuint*)&(id_indices));
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id_indices);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int) * num_indices, indices, GL_STATIC_DRAW);
 
-		glGenBuffers(1, (GLuint*)&(id_normals));
-		glBindBuffer(GL_ARRAY_BUFFER, id_normals);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * num_normals * 3, normals, GL_STATIC_DRAW);
+	glGenBuffers(1, (GLuint*)&(id_normals));
+	glBindBuffer(GL_ARRAY_BUFFER, id_normals);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * num_normals * 3, normals, GL_STATIC_DRAW);
 
-		glGenBuffers(1, (GLuint*)&(id_textures));
-		glBindBuffer(GL_ARRAY_BUFFER, id_textures);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * num_textures * 2, &textures[0], GL_STATIC_DRAW);
-		break;
-	default:
-		glBufferData(GL_ARRAY_BUFFER, sizeof(PyramidVertices), PyramidVertices, GL_STATIC_DRAW);
-		break;
-	}
+	glGenBuffers(1, (GLuint*)&(id_textures));
+	glBindBuffer(GL_ARRAY_BUFFER, id_textures);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * num_textures * 2, &textures[0], GL_STATIC_DRAW);
+
+	//switch (_type) {
+	//case(MeshType::Pyramid):
+	//	glBufferData(GL_ARRAY_BUFFER, sizeof(PyramidVertices), PyramidVertices, GL_STATIC_DRAW);
+	//	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(PyramidIndices), PyramidIndices, GL_STATIC_DRAW);
+	//	break;
+	//case(MeshType::Cube):
+	//	glBufferData(GL_ARRAY_BUFFER, sizeof(CubeVertices)*24*3, PyramidVertices, GL_STATIC_DRAW);
+	//	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(CubeIndices)*36, CubeIndices, GL_STATIC_DRAW);
+	//	break;
+	//case(MeshType::FBXNone):
+	//	glGenBuffers(1, (GLuint*)&(id_vertices));
+	//	glBindBuffer(GL_ARRAY_BUFFER, id_vertices);
+	//	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * num_vertices * 3, vertices, GL_STATIC_DRAW);
+
+	//	glGenBuffers(1, (GLuint*)&(id_indices));
+	//	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id_indices);
+	//	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int) * num_indices, indices, GL_STATIC_DRAW);
+
+	//	glGenBuffers(1, (GLuint*)&(id_normals));
+	//	glBindBuffer(GL_ARRAY_BUFFER, id_normals);
+	//	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * num_normals * 3, normals, GL_STATIC_DRAW);
+
+	//	glGenBuffers(1, (GLuint*)&(id_textures));
+	//	glBindBuffer(GL_ARRAY_BUFFER, id_textures);
+	//	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * num_textures * 2, &textures[0], GL_STATIC_DRAW);
+	//	break;
+	//default:
+	//	glBufferData(GL_ARRAY_BUFFER, sizeof(PyramidVertices), PyramidVertices, GL_STATIC_DRAW);
+	//	break;
+	//}
 }
 
 void Mesh::Render()
 {
-	glBindTexture(GL_TEXTURE_2D, textureID);
+
+	if (textureID != 0)
+		glBindTexture(GL_TEXTURE_2D, textureID);
+	
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glBindBuffer(GL_ARRAY_BUFFER, id_vertices);
 	glVertexPointer(3, GL_FLOAT, 0, NULL);
@@ -85,18 +104,11 @@ void Mesh::Render()
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id_indices);
 
-	switch (_meshType) {
-	case(MeshType::FBXNone):
-		glDrawElements(GL_TRIANGLES, num_indices, GL_UNSIGNED_INT, NULL);
-	case(MeshType::Pyramid):
-		glDrawElements(GL_TRIANGLES, sizeof(PyramidIndices) / sizeof(int), GL_UNSIGNED_INT, NULL);
-		break;
-	case(MeshType::Cube):
-		glDrawElements(GL_TRIANGLES, sizeof(CubeIndices) / sizeof(int), GL_UNSIGNED_INT, NULL);
-		break;
-	}
+	glDrawElements(GL_TRIANGLES, num_indices, GL_UNSIGNED_INT, NULL);
 	
-	glBindTexture(GL_TEXTURE_2D, 0);
+	if (textureID != 0)
+		glBindTexture(GL_TEXTURE_2D, 0);
+
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glDisableClientState(GL_VERTEX_ARRAY);

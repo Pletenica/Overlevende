@@ -105,41 +105,24 @@ update_status ModuleCamera3D::Update(float dt)
 		int dx = -App->input->GetMouseXMotion();
 		int dy = -App->input->GetMouseYMotion();
 
-		float3 point = float3(0,0,0);
-		if (App->base_motor->inspector_window->_selectedGO != nullptr) {
-			point = App->base_motor->inspector_window->_selectedGO->transform->position;
-		}
-		
-		float dist = _cam.frustum.pos.Distance(point);
-
-		Quat dir = Quat::identity;
+		Quat dir;
 		_cam.frustum.WorldMatrix().Decompose(float3(), dir, float3());
 
-		if (dy != 0)
-		{
-			float DeltaY = (float)dy * sensitivity * dt;
+		Quat Y;
+		Y.SetFromAxisAngle(float3(1, 0, 0), dy * DEGTORAD);
+		dir = dir * Y;
 
-			Quat y;
-			y.SetFromAxisAngle(float3(1, 0, 0), DeltaY * DEGTORAD);
-			dir = dir * y;
-		}
+		Quat X;
+		X.SetFromAxisAngle(float3(0, 1, 0), dx * DEGTORAD);
+		dir = X * dir;
 
-		if (dx != 0)
-		{
-			float DeltaX = (float)dx * sensitivity * dt;
+		float4x4 changedMatrix = _cam.frustum.WorldMatrix();
+		changedMatrix.SetRotatePart(dir.Normalized());
+		_cam.frustum.SetWorldMatrix(changedMatrix.Float3x4Part());
 
-			Quat x;
-			x.SetFromAxisAngle(float3(0,1, 0), DeltaX *DEGTORAD);
-			dir = x * dir;
-		}
 
-		float4x4 changeMatrix = _cam.frustum.WorldMatrix();
-		changeMatrix.SetRotatePart(dir.Normalized());
-		_cam.frustum.SetWorldMatrix(changeMatrix.Float3x4Part());
-
-		_cam.frustum.pos = point + (_cam.frustum.front * -dist);
-		LookAt(point);
 	}
+
 
 	/////////// ALT CAMERAS OPTIONS ////////////
 	if (App->input->GetKey(SDL_SCANCODE_LALT) == KEY_REPEAT)
@@ -156,22 +139,40 @@ update_status ModuleCamera3D::Update(float dt)
 			int dx = -App->input->GetMouseXMotion();
 			int dy = -App->input->GetMouseYMotion();
 
-			Quat dir;
+			float3 point = float3(0, 0, 0);
+			if (App->base_motor->inspector_window->_selectedGO != nullptr) {
+				point = App->base_motor->inspector_window->_selectedGO->transform->position;
+			}
+
+			float dist = _cam.frustum.pos.Distance(point);
+
+			Quat dir = Quat::identity;
 			_cam.frustum.WorldMatrix().Decompose(float3(), dir, float3());
 
-			Quat Y;
-			Y.SetFromAxisAngle(float3(1, 0, 0), dy * DEGTORAD);
-			dir = dir * Y;
+			if (dy != 0)
+			{
+				float DeltaY = (float)dy * sensitivity * dt;
 
-			Quat X;
-			X.SetFromAxisAngle(float3(0, 1, 0), dx * DEGTORAD);
-			dir = X * dir;
+				Quat y;
+				y.SetFromAxisAngle(float3(1, 0, 0), DeltaY * DEGTORAD);
+				dir = dir * y;
+			}
 
-			float4x4 changedMatrix = _cam.frustum.WorldMatrix();
-			changedMatrix.SetRotatePart(dir.Normalized());
-			_cam.frustum.SetWorldMatrix(changedMatrix.Float3x4Part());
+			if (dx != 0)
+			{
+				float DeltaX = (float)dx * sensitivity * dt;
 
+				Quat x;
+				x.SetFromAxisAngle(float3(0, 1, 0), DeltaX * DEGTORAD);
+				dir = x * dir;
+			}
 
+			float4x4 changeMatrix = _cam.frustum.WorldMatrix();
+			changeMatrix.SetRotatePart(dir.Normalized());
+			_cam.frustum.SetWorldMatrix(changeMatrix.Float3x4Part());
+
+			_cam.frustum.pos = point + (_cam.frustum.front * -dist);
+			LookAt(point);
 		}
 	}
 

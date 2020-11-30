@@ -182,7 +182,7 @@ void ModuleSceneIntro::Load(const char* fileName)
 				parent = rootGO;
 			}
 			parent = CreateGameObject(jsonman.GetString("name"),parent, jsonman.GetInt("GameObject id"));
-			//parent->transform->SetTransform(jsonman.GetVector3("Position"), jsonman.GetQuaternion("Rotation"), jsonman.GetVector3("Scale"));
+
 			parent->LoadGameObject(jsonman.GetArray("components"));
 			parent->UpdateAABB();
 		}

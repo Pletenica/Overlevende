@@ -53,7 +53,38 @@ void FBXLoader::ImportFBX(char* _buffer, int _size, int _idTexturesTemporal, con
 		aiMesh* new_mesh = nullptr;
 		std::vector<Mesh*> meshVector;
 		std::vector<GLuint> texturesVector;
+
 		aiString texName;
+		if (scene->HasMaterials()) 
+		{
+
+			for (int i = 0; i < scene->mNumMaterials; i++)
+			{
+				aiMaterial* material = scene->mMaterials[i];
+				uint numTextures = material->GetTextureCount(aiTextureType_DIFFUSE);
+
+				if (numTextures > 0) 
+				{
+					material->GetTexture(aiTextureType_DIFFUSE, 0, &texName);
+
+					char* buffer = nullptr;
+					std::string _localpath = "Assets/Textures/" + (std::string)texName.C_Str();
+					int size = ExternalApp->file_system->Load(_localpath.c_str(), &buffer);
+
+					std::string _tn = (std::string)texName.C_Str();
+					_tn = _tn.substr(0, _tn.find_last_of("."));
+					//texturesVector.push_back(FBXLoader::LoadTexture(buffer, size, &_mesh->textureWidth, &_mesh->textureHeight, _tn));
+					texturesVector.push_back(FBXLoader::LoadTexture(buffer, size, nullptr, nullptr, _tn));
+
+					/*_mesh->textureID = texturesVector[texturesVector.size() - 1];*/
+					delete[] buffer;
+				}
+				else {
+					texturesVector.push_back(0);
+				}
+
+			}
+		}
 
 		ExternalApp->renderer3D->cleanUpTextures = texturesVector;
 
@@ -87,8 +118,11 @@ int FBXLoader::LoadTexture(char* buffer, int _size, int* _width, int* _height, s
 		ImageToDDS(_texname);
 	}
 
-	*_height = ilGetInteger(IL_IMAGE_HEIGHT);
-	*_width = ilGetInteger(IL_IMAGE_WIDTH);
+	if(_height != nullptr)
+		*_height = ilGetInteger(IL_IMAGE_HEIGHT);
+
+	if (_width != nullptr)
+		*_width = ilGetInteger(IL_IMAGE_WIDTH);
 
 	GLuint glID = ilutGLBindTexImage();
 	glBindTexture(GL_TEXTURE_2D, glID);
@@ -105,27 +139,12 @@ void FBXLoader::aiMeshToMesh(const aiScene* scene, std::vector<Mesh*>& meshVecto
 	{
 		Mesh* _mesh = new Mesh();
 		new_mesh = scene->mMeshes[i];
+
 		_mesh->meshPath = MESHES_PATH;
 		_mesh->meshPath += new_mesh->mName.C_Str();
 		_mesh->meshPath += MESHES_FORMAT;
 
-		if (new_mesh->mMaterialIndex != -1)
-		{
-			aiMaterial* material = scene->mMaterials[0];
-			material->GetTexture(aiTextureType_DIFFUSE, 0, texName);
-
-			char* buffer = nullptr;
-			std::string _localpath = "Assets/Textures/" + (std::string)texName->C_Str();
-			int size = ExternalApp->file_system->Load(_localpath.c_str(), &buffer);
-
-			std::string _tn = (std::string)texName->C_Str();
-			_tn = _tn.substr(0, _tn.find_last_of("."));
-			texturesVector.push_back(FBXLoader::LoadTexture(buffer, size, &_mesh->textureWidth, &_mesh->textureHeight, _tn));
-			_mesh->textureID = texturesVector[texturesVector.size() - 1];
-
-			delete[] buffer;
-		}
-
+		_mesh->name = new_mesh->mName.C_Str();
 		
 		LOG("%s", scene->mMeshes[i]->mName.C_Str());
 
@@ -176,7 +195,8 @@ void FBXLoader::aiMeshToMesh(const aiScene* scene, std::vector<Mesh*>& meshVecto
 			}
 		}
 
-		if (new_mesh->mMaterialIndex < textureVector.size()) {
+		if (new_mesh->mMaterialIndex < textureVector.size()) 
+		{
 			_mesh->textureID = textureVector[new_mesh->mMaterialIndex];
 		}
 

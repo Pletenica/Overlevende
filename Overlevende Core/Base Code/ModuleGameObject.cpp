@@ -27,8 +27,8 @@ GameObject::GameObject(const char* _name, GameObject* _parent, int id)
 	if (idGO == -1) {
 		LCG randomizer;
 		idGO = randomizer.Int();
-		transform = (ComponentTransform*)CreateComponent(ComponentType::C_Transform);
 	}
+	transform = (ComponentTransform*)CreateComponent(ComponentType::C_Transform);
 
 	if (parent != nullptr) {
 		parent->children.push_back(this);
@@ -176,9 +176,11 @@ void GameObject::LoadGameObject(JSON_Array* _componentArray)
 		JsonManager compMan(json_array_get_object(_componentArray, i));
 		
 		Component* comp = CreateComponent((ComponentType)compMan.GetInt("Type"));
-		comp->LoadComponent(&compMan);
+
 		if (comp->type == ComponentType::C_Transform)
 			transform = dynamic_cast<ComponentTransform*>(comp);
+
+		comp->LoadComponent(&compMan);
 	}
 }
 

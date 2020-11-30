@@ -424,7 +424,7 @@ void ModuleFileSystem::LoadFileFromPath(const char* _path)
 	path = NormalizePath(path.c_str());
 
 	////////////// IF IS FBX ////////////////////
-	if (path.substr(path.find_last_of(".") + 1) == "fbx" || path.substr(path.find_last_of(".") + 1) == "FBX") {
+	if (path.substr(path.find_last_of(".") + 1) == "fbx" || path.substr(path.find_last_of(".") + 1) == "FBX" || path.substr(path.find_last_of(".") + 1) == "DAE") {
 		char* buffer = nullptr;
 		std::string _p = path.substr(path.find_last_of("/")+1);
 		std::string _localpath = "Assets/FBXs/" + _p;
