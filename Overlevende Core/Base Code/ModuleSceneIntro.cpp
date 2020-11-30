@@ -43,6 +43,24 @@ bool ModuleSceneIntro::Start()
 	return ret;
 }
 
+update_status ModuleSceneIntro::PreUpdate(float dt)
+{
+	if (_toDeleteGO != nullptr) 
+	{
+		for (std::vector<GameObject*>::iterator i = _toDeleteGO->parent->children.begin(); i != _toDeleteGO->parent->children.end(); ++i) 
+		{
+			if (*i._Ptr == _toDeleteGO) 
+			{
+				_toDeleteGO->parent->children.erase(i);
+				break;
+			}
+		}
+		delete _toDeleteGO;
+		_toDeleteGO = nullptr;
+	}
+	return UPDATE_CONTINUE;
+}
+
 // Load assets
 bool ModuleSceneIntro::CleanUp()
 {
@@ -100,7 +118,7 @@ void ModuleSceneIntro::RecursiveUpdate(GameObject* node)
 {
 	node->Update(0.f);
 
-	if (node->active == true) {
+	if (node != nullptr && node->active == true) {
 		for (size_t i = 0; i < node->children.size(); i++)
 		{
 			RecursiveUpdate(node->children[i]);
@@ -166,6 +184,7 @@ void ModuleSceneIntro::Load(const char* fileName)
 			parent = CreateGameObject(jsonman.GetString("name"),parent, jsonman.GetInt("GameObject id"));
 			//parent->transform->SetTransform(jsonman.GetVector3("Position"), jsonman.GetQuaternion("Rotation"), jsonman.GetVector3("Scale"));
 			parent->LoadGameObject(jsonman.GetArray("components"));
+			parent->UpdateAABB();
 		}
 
 		json_value_free(sceneFile);

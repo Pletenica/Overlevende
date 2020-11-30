@@ -61,6 +61,7 @@ update_status GameObject::Update(float dt)
 {
 	if (ExternalApp->base_motor->options_window->GetDrawAABB() == true &&active==true) {
 		RenderAABB(aabb);
+		RenderOBB(obb);
 	}
 
 	for (int i = 0; i < components.size(); i++)
@@ -181,6 +182,12 @@ void GameObject::LoadGameObject(JSON_Array* _componentArray)
 	}
 }
 
+void GameObject::ToDelete()
+{
+	toDelete = true;
+	ExternalApp->scene_intro->_toDeleteGO = this;
+}
+
 void GameObject::RenderAABB(AABB _aabb)
 {
 	float3 points[8];
@@ -221,22 +228,53 @@ void GameObject::RenderAABB(AABB _aabb)
 	glVertex3fv(&points[1].x);
 	glVertex3fv(&points[5].x);
 
-	glVertex3fv(&points[1].x);
-	glVertex3fv(&points[2].x);
-	glVertex3fv(&points[2].x);
-	glVertex3fv(&points[4].x);
-	glVertex3fv(&points[4].x);
-	glVertex3fv(&points[7].x);
-	glVertex3fv(&points[7].x);
-	glVertex3fv(&points[1].x);
-	glVertex3fv(&points[2].x);
-	glVertex3fv(&points[7].x);
-	glVertex3fv(&points[4].x);
-	glVertex3fv(&points[1].x);
-
 	glEnd();
 	glLineWidth(1);
 	glColor3f(1, 1, 1);
+	glEnable(GL_LIGHTING);
+}
+
+void GameObject::RenderOBB(OBB _obb)
+{
+	float3 points[8];
+	_obb.GetCornerPoints(points);
+
+	glLineWidth(1.5f);
+	glDisable(GL_LIGHTING);
+	glBegin(GL_LINES);
+
+	glVertex3fv(&points[0].x);
+	glVertex3fv(&points[2].x);
+	glVertex3fv(&points[2].x);
+	glVertex3fv(&points[6].x);
+
+	glVertex3fv(&points[6].x);
+	glVertex3fv(&points[4].x);
+	glVertex3fv(&points[4].x);
+	glVertex3fv(&points[0].x);
+
+	glVertex3fv(&points[0].x);
+	glVertex3fv(&points[1].x);
+	glVertex3fv(&points[1].x);
+	glVertex3fv(&points[3].x);
+
+	glVertex3fv(&points[3].x);
+	glVertex3fv(&points[2].x);
+	glVertex3fv(&points[4].x);
+	glVertex3fv(&points[5].x);
+
+	glVertex3fv(&points[6].x);
+	glVertex3fv(&points[7].x);
+	glVertex3fv(&points[5].x);
+	glVertex3fv(&points[7].x);
+
+	glVertex3fv(&points[3].x);
+	glVertex3fv(&points[7].x);
+	glVertex3fv(&points[1].x);
+	glVertex3fv(&points[5].x);
+
+	glEnd();
+	glLineWidth(1);
 	glEnable(GL_LIGHTING);
 }
 
@@ -272,7 +310,12 @@ void GameObject::UpdateAABB()
 			obb.Transform(transform->global_transform);
 			aabb.SetNegativeInfinity();
 			aabb.Enclose(obb);
+
 		}
+	}
+	for (size_t i = 0; i < children.size(); i++)
+	{
+		children[i]->UpdateAABB();
 	}
 }
 

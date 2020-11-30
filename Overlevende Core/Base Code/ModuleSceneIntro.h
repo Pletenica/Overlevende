@@ -18,6 +18,7 @@ public:
 
 	bool Init();
 	bool Start();
+	update_status PreUpdate(float dt);
 	update_status Update(float dt);
 	bool CleanUp();
 
@@ -32,6 +33,7 @@ public:
 public:
 	/*Primitive primitive;*/
 	GameObject* rootGO = nullptr;
+	GameObject* _toDeleteGO = nullptr;
 private:
 	bool showaxis = true;
 	bool wireSphere = true;

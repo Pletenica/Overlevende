@@ -62,8 +62,10 @@ public:
 
 	void SaveGameObject(JSON_Array* _goArray);
 	void LoadGameObject(JSON_Array* _componentArray);
+	void ToDelete();
 
 	void RenderAABB(AABB _aabb);
+	void RenderOBB(OBB _obb);
 	void UpdateAABB();
 
 public:
@@ -79,6 +81,7 @@ public:
 
 	AABB aabb;
 	OBB obb;
+	bool toDelete = false;
 };
 
 #endif // __ModuleGameObject_H__

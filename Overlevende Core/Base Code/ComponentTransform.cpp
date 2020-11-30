@@ -159,10 +159,10 @@ void ComponentTransform::SetTransform(float3 _pos, Quat _rot, float3 _scale)
 void ComponentTransform::RecursiveUpdateTransform(float3 _pos, Quat _rot, float3 _scale)
 {
 	local_transform = float4x4::FromTRS(_pos, _rot, _scale);
-	if (gameobject->parent != nullptr) {
+	if (gameobject->parent->transform != nullptr) {
 		global_transform = gameobject->parent->transform->global_transform * local_transform;
 	}
-	if (gameobject->parent == nullptr) {
+	if (gameobject->parent->transform == nullptr) {
 		global_transform = local_transform;
 	}
 
@@ -195,6 +195,5 @@ void ComponentTransform::LoadComponent(JsonManager* _man)
 	global_transform.SetIdentity();
 
 	Quat rot = Quat::FromEulerXYZ(rotation.x, rotation.y, rotation.z);
-	//SetTransform(position, rot, scale);
-	gameobject->UpdateAABB();
+	SetTransform(position, rot, scale);
 }
