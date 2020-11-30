@@ -4,14 +4,12 @@
 #include "ComponentTransform.h"
 #include "ModuleGameObject.h"
 
+#include"MathGeoLib/src/Math/Quat.h"
+
 ModuleCamera3D::ModuleCamera3D(Application* app, bool start_enabled) : Module(app, start_enabled), _cam(float3::zero)
 {
-	X = vec3(1.0f, 0.0f, 0.0f);
-	Y = vec3(0.0f, 1.0f, 0.0f);
-	Z = vec3(0.0f, 0.0f, 1.0f);
-
-	Position = vec3(0.0f, 0.0f, 5.0f);
-	Reference = vec3(0.0f, 0.0f, 0.0f);
+	Position = float3(0.0f, 0.0f, 0.0f);
+	Reference = float3(0.0f, 0.0f, 0.0f);
 
 	background = { 0.1f, 0.1f, 0.1f, 1.0f };
 }
@@ -59,7 +57,7 @@ update_status ModuleCamera3D::Update(float dt)
 	// Implement a debug camera with keys and mouse
 		// Now we can make this movememnt frame rate independant!
 
-	vec3 newPos(0, 0, 0);
+	float3 newPos(0, 0, 0);
 	int speed_multiplier = 1;
 
 	if (App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
@@ -72,7 +70,7 @@ update_status ModuleCamera3D::Update(float dt)
 		{
 			ComponentTransform* c_trans = (ComponentTransform*)App->base_motor->inspector_window->_selectedGO->GetComponent(ComponentType::C_Transform);
 			if (c_trans != nullptr) {
-				vec3 center(c_trans->position.x, c_trans->position.y, c_trans->position.z);
+				float3 center(c_trans->position.x, c_trans->position.y, c_trans->position.z);
 				LookAt(center);
 			}
 		}
@@ -80,66 +78,76 @@ update_status ModuleCamera3D::Update(float dt)
 
 	/////////// CAMERA MOVEMENT ////////////
 	if ((App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) || (App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT))
-		newPos += Z * move_speed * speed_multiplier * dt;
+		newPos += _cam.frustum.front * move_speed * speed_multiplier * dt;
 	if ((App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT) || (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT))
-		newPos -= Z * move_speed * speed_multiplier * dt;
+		newPos -= _cam.frustum.front * move_speed * speed_multiplier * dt;
 	if ((App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) || (App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT))
-		newPos -= X * move_speed * speed_multiplier * dt;
+		newPos += _cam.frustum.WorldRight() * move_speed * speed_multiplier * dt;
 	if ((App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) || (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT))
-		newPos += X * move_speed * speed_multiplier * dt;
+		newPos -= _cam.frustum.WorldRight() * move_speed * speed_multiplier * dt;
 
 	/////////// DRAG ////////////
 	if ((App->input->GetMouseButton(SDL_BUTTON_MIDDLE) == KEY_REPEAT))
 	{
-		newPos += X * App->input->GetMouseXMotion() * speed_multiplier * drag_speed * dt;
-		newPos += Y * App->input->GetMouseYMotion() * speed_multiplier * drag_speed * dt;
+		newPos -= _cam.frustum.WorldRight() * App->input->GetMouseXMotion() * speed_multiplier * drag_speed * dt;
+		newPos += _cam.frustum.up * App->input->GetMouseYMotion() * speed_multiplier * drag_speed * dt;
 	}
 
 	/////////// ZOOOOM ////////////
 	if (App->input->GetMouseZ() > 0)
-		newPos -= Z * zoom_speed * dt;
+		newPos += _cam.frustum.front * zoom_speed * dt;
 	else if (App->input->GetMouseZ() < 0)
-		newPos += Z * zoom_speed * dt;
+		newPos -= _cam.frustum.front * zoom_speed * dt;
 
-	Position += newPos;
-	Reference += newPos;
-
-	/////////// CAMERAS NORMAL ROTATION ////////////
+	///////// CAMERAS NORMAL ROTATION ////////////
 	if (App->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_REPEAT)
 	{
 		int dx = -App->input->GetMouseXMotion();
 		int dy = -App->input->GetMouseYMotion();
 
-		if (dx != 0)
-		{
-			float DeltaX = (float)dx * sensitivity * dt;
-
-			X = rotate(X, DeltaX, vec3(0.0f, 1.0f, 0.0f));
-			Y = rotate(Y, DeltaX, vec3(0.0f, 1.0f, 0.0f));
-			Z = rotate(Z, DeltaX, vec3(0.0f, 1.0f, 0.0f));
+		float3 point = float3(0,0,0);
+		if (App->base_motor->inspector_window->_selectedGO != nullptr) {
+			point = App->base_motor->inspector_window->_selectedGO->transform->position;
 		}
+		
+		float dist = _cam.frustum.pos.Distance(point);
+
+		Quat dir = Quat::identity;
+		_cam.frustum.WorldMatrix().Decompose(float3(), dir, float3());
 
 		if (dy != 0)
 		{
 			float DeltaY = (float)dy * sensitivity * dt;
 
-			Y = rotate(Y, DeltaY, X);
-			Z = rotate(Z, DeltaY, X);
-
-			if (Y.y < 0.0f)
-			{
-				Z = vec3(0.0f, Z.y > 0.0f ? 1.0f : -1.0f, 0.0f);
-				Y = cross(Z, X);
-			}
+			Quat y;
+			y.SetFromAxisAngle(float3(1, 0, 0), DeltaY * DEGTORAD);
+			dir = dir * y;
 		}
+
+		if (dx != 0)
+		{
+			float DeltaX = (float)dx * sensitivity * dt;
+
+			Quat x;
+			x.SetFromAxisAngle(float3(0,1, 0), DeltaX *DEGTORAD);
+			dir = x * dir;
+		}
+
+		float4x4 changeMatrix = _cam.frustum.WorldMatrix();
+		changeMatrix.SetRotatePart(dir.Normalized());
+		_cam.frustum.SetWorldMatrix(changeMatrix.Float3x4Part());
+
+		_cam.frustum.pos = point + (_cam.frustum.front * -dist);
+		LookAt(point);
 	}
 
 	/////////// ALT CAMERAS OPTIONS ////////////
 	if (App->input->GetKey(SDL_SCANCODE_LALT) == KEY_REPEAT)
 	{
 		//Reset View to 0,0,0
-		if (App->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_DOWN) {
-			LookAt(vec3(0, 0, 0));
+		if (App->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_DOWN) 
+		{
+			LookAt(float3(0, 0, 0));
 		}
 
 		//Orbit around the geometry
@@ -148,73 +156,62 @@ update_status ModuleCamera3D::Update(float dt)
 			int dx = -App->input->GetMouseXMotion();
 			int dy = -App->input->GetMouseYMotion();
 
-			Position -= Reference;
+			Quat dir;
+			_cam.frustum.WorldMatrix().Decompose(float3(), dir, float3());
 
-			if (dx != 0)
-			{
-				float DeltaX = (float)dx * sensitivity * dt;
+			Quat Y;
+			Y.SetFromAxisAngle(float3(1, 0, 0), dy * DEGTORAD);
+			dir = dir * Y;
 
-				X = rotate(X, DeltaX, vec3(0.0f, 1.0f, 0.0f));
-				Y = rotate(Y, DeltaX, vec3(0.0f, 1.0f, 0.0f));
-				Z = rotate(Z, DeltaX, vec3(0.0f, 1.0f, 0.0f));
-			}
+			Quat X;
+			X.SetFromAxisAngle(float3(0, 1, 0), dx * DEGTORAD);
+			dir = X * dir;
 
-			if (dy != 0)
-			{
-				float DeltaY = (float)dy * sensitivity * dt;
+			float4x4 changedMatrix = _cam.frustum.WorldMatrix();
+			changedMatrix.SetRotatePart(dir.Normalized());
+			_cam.frustum.SetWorldMatrix(changedMatrix.Float3x4Part());
 
-				Y = rotate(Y, DeltaY, X);
-				Z = rotate(Z, DeltaY, X);
 
-				if (Y.y < 0.0f)
-				{
-					Z = vec3(0.0f, Z.y > 0.0f ? 1.0f : -1.0f, 0.0f);
-					Y = cross(Z, X);
-				}
-			}
-
-			Position = Reference + Z * length(Position);
 		}
 	}
 
-	_cam.frustum.pos = float3(Position.x, Position.y, Position.z);
+	_cam.frustum.pos += newPos;
+	Reference += newPos;
 
 	return UPDATE_CONTINUE;
 }
 
+//// -----------------------------------------------------------------
+//void ModuleCamera3D::Look(const vec3 &Position, const vec3 &Reference, bool RotateAroundReference)
+//{
+//	this->Position = Position;
+//	this->Reference = Reference;
+//
+//	Z = normalize(Position - Reference);
+//	X = normalize(cross(vec3(0.0f, 1.0f, 0.0f), Z));
+//	Y = cross(Z, X);
+//
+//	if(!RotateAroundReference)
+//	{
+//		this->Reference = this->Position;
+//		this->Position += Z * 0.05f;
+//	}
+//
+//}
+
 // -----------------------------------------------------------------
-void ModuleCamera3D::Look(const vec3 &Position, const vec3 &Reference, bool RotateAroundReference)
+void ModuleCamera3D::LookAt( const float3 &Spot)
 {
-	this->Position = Position;
-	this->Reference = Reference;
-
-	Z = normalize(Position - Reference);
-	X = normalize(cross(vec3(0.0f, 1.0f, 0.0f), Z));
-	Y = cross(Z, X);
-
-	if(!RotateAroundReference)
-	{
-		this->Reference = this->Position;
-		this->Position += Z * 0.05f;
-	}
-
-}
-
-// -----------------------------------------------------------------
-void ModuleCamera3D::LookAt( const vec3 &Spot)
-{
+	_cam.frustum.front = (Spot - _cam.frustum.pos).Normalized();
+	float3 X = float3(0, 1, 0).Cross(_cam.frustum.front).Normalized();
+	_cam.frustum.up = _cam.frustum.front.Cross(X);
 	Reference = Spot;
-
-	Z = normalize(Position - Reference);
-	X = normalize(cross(vec3(0.0f, 1.0f, 0.0f), Z));
-	Y = cross(Z, X);
-
 }
 
 // -----------------------------------------------------------------
-void ModuleCamera3D::Move(const vec3 &Movement)
+void ModuleCamera3D::Move(const float3 &Movement)
 {
-	Position += Movement;
+	_cam.frustum.pos += Movement;
 	Reference += Movement;
 }
 

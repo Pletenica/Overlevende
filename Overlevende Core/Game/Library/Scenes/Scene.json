@@ -3,7 +3,7 @@
     "GameObjects": [
         {
             "name": "Scene",
-            "GameObject id": 1869177169,
+            "GameObject id": 1285893272,
             "components": [
                 {
                     "Type": 0,
@@ -28,8 +28,8 @@
         },
         {
             "name": "Camera",
-            "GameObject id": 1908234550,
-            "Parent id": 1869177169,
+            "GameObject id": 1356976313,
+            "Parent id": 1285893272,
             "components": [
                 {
                     "Type": 0,
@@ -61,8 +61,8 @@
         },
         {
             "name": "BakerHouse",
-            "GameObject id": 1379889908,
-            "Parent id": 1869177169,
+            "GameObject id": 1021389828,
+            "Parent id": 1285893272,
             "components": [
                 {
                     "Type": 0,
@@ -72,10 +72,10 @@
                         0
                     ],
                     "Rotation": [
-                        -0.38383650779724121,
-                        -0.38554060459136963,
-                        -0.59199213981628418,
-                        -0.59462028741836548
+                        0,
+                        0,
+                        0,
+                        1
                     ],
                     "Scale": [
                         1,
@@ -87,8 +87,8 @@
         },
         {
             "name": "Chimney",
-            "GameObject id": 1472346596,
-            "Parent id": 1379889908,
+            "GameObject id": 1045478694,
+            "Parent id": 1021389828,
             "components": [
                 {
                     "Type": 0,
@@ -121,8 +121,8 @@
         },
         {
             "name": "Baker_house",
-            "GameObject id": 1857350726,
-            "Parent id": 1379889908,
+            "GameObject id": 1584623718,
+            "Parent id": 1021389828,
             "components": [
                 {
                     "Type": 0,
