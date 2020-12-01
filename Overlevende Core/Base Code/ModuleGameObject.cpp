@@ -61,6 +61,8 @@ update_status GameObject::Update(float dt)
 {
 	if (ExternalApp->base_motor->options_window->GetDrawAABB() == true &&active==true) {
 		RenderAABB(aabb);
+	}
+	if (ExternalApp->base_motor->options_window->GetDrawOBB() == true && active == true) {
 		RenderOBB(obb);
 	}
 
@@ -320,6 +322,8 @@ void GameObject::UpdateAABB()
 		children[i]->UpdateAABB();
 	}
 }
+
+
 
 ///WINDOW NOW
 Component::Component(GameObject* _go)

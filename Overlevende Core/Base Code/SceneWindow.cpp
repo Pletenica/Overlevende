@@ -47,7 +47,7 @@ bool SceneWindow::Draw(float dt)
 		if (ImGuizmo::Manipulate(test.v[0],
 			ExternalApp->camera->_cam.frustum.ProjectionMatrix().Transposed().v[0],
 			gOperation,
-			ImGuizmo::MODE::LOCAL,
+			mode,
 			globMat.ptr())) {
 			globMat.Transpose();
 
@@ -73,6 +73,18 @@ void SceneWindow::DoGuizmo()
 	}
 
 
+}
+
+void SceneWindow::ToogleModeGuizmo()
+{
+	if (mode == ImGuizmo::MODE::WORLD) {
+		mode = ImGuizmo::MODE::LOCAL;
+	}
+	else {
+		if (mode == ImGuizmo::MODE::LOCAL) {
+			mode = ImGuizmo::MODE::WORLD;
+		}
+	}
 }
 
 // Called before quitting

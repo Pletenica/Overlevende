@@ -128,10 +128,10 @@ update_status ModuleCamera3D::Update(float dt)
 	if (App->input->GetKey(SDL_SCANCODE_LALT) == KEY_REPEAT)
 	{
 		//Reset View to 0,0,0
-		if (App->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_DOWN) 
-		{
-			LookAt(float3(0, 0, 0));
-		}
+		//if (App->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_DOWN) 
+		//{
+		//	LookAt(float3(0, 0, 0));
+		//}
 
 		//Orbit around the geometry
 		if (App->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_REPEAT)

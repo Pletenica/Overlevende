@@ -26,15 +26,18 @@ public:
 	void RecursiveNormals(GameObject* _root, bool _active);
 
 	bool GetDrawAABB() { return drawaabb_bool; };
+	bool GetDrawOBB() { return drawobb_bool; };
 
 private:
 	bool depth_bool = false;
 	bool wireframe_bool = false;
 	bool drawaabb_bool = false;
+	bool drawobb_bool = false;
 	bool cullface_bool = false;
 	bool light_bool = false;
 	bool texture_bool = true;
 	bool normals_bool = false;
+	std::string worldorlocalguizmo = "WORLD";
 };
 
 #endif // __OptionsWindow_H__

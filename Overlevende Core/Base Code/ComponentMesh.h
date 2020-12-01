@@ -18,6 +18,8 @@ public:
 	bool Update(float dt);
 	bool Disable();
 	void OnEditor(GameObject* _go);
+	bool isInsideFrustrum(Frustum *_frustrum);
+	bool isInsideFrustrumOptimized(const Plane* planes);
 
 	void SaveComponent(JsonManager* _man);
 	void LoadComponent(JsonManager* _man);

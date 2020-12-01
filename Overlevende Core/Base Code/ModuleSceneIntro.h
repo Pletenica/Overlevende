@@ -29,6 +29,7 @@ public:
 
 	void Save();
 	void Load(const char* fileName);
+	Frustum* GetActualCameraToCull(GameObject* _go);
 
 public:
 	/*Primitive primitive;*/

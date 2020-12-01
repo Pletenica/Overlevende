@@ -5,7 +5,9 @@
 #include "ComponentTransform.h"
 #include "Mesh.h"
 
+#include <vector>
 #include "FBXManager.h"
+#include "MathGeoLib/src/Geometry/Plane.h"
 
 ///WINDOW NOW
 ComponentMesh::ComponentMesh(GameObject* _go) :Component(_go)
@@ -44,7 +46,18 @@ bool ComponentMesh::Update(float dt)
 
 	if (active == true) {
 		if (mesh != nullptr) {
-			mesh->Render();
+			if (ExternalApp->scene_intro->GetActualCameraToCull(ExternalApp->scene_intro->rootGO) == nullptr) {
+				mesh->Render();
+			}
+			else {
+				Frustum* _frustum = ExternalApp->scene_intro->GetActualCameraToCull(ExternalApp->scene_intro->rootGO);
+				Plane planes[8];
+				_frustum->GetPlanes(planes);
+
+				if (isInsideFrustrumOptimized(planes)) {
+					mesh->Render();
+				}
+			}
 		}
 	}
 	glPopMatrix();
@@ -85,6 +98,31 @@ void ComponentMesh::OnEditor(GameObject* _go)
 		ImGui::SameLine();
 		ImGui::Checkbox("Face Normals", &drawFaceNormals);
 	}
+}
+
+bool ComponentMesh::isInsideFrustrum(Frustum *_frustrum)
+{
+	if (_frustrum->Intersects(gameobject->aabb)) return true;
+	else return false;
+}
+
+bool ComponentMesh::isInsideFrustrumOptimized(const Plane* planes)
+{
+	AABB* _aabbToUse = &gameobject->aabb;
+	for (uint i = 0; i < 6; i++)
+	{
+		float3 farPoint = float3::zero;
+		float3 normal = planes[i].normal;
+		farPoint.x = -normal.x >= 0 ? _aabbToUse->maxPoint.x : _aabbToUse->minPoint.x;
+		farPoint.y = -normal.y >= 0 ? _aabbToUse->maxPoint.y : _aabbToUse->minPoint.y;
+		farPoint.z = -normal.z >= 0 ? _aabbToUse->maxPoint.z : _aabbToUse->minPoint.z;
+
+		if (planes[i].normal.Dot(farPoint) - planes[i].d >= 0.f)
+		{
+			return false;
+		}
+	}
+	return true;
 }
 
 void ComponentMesh::SaveComponent(JsonManager* _man)

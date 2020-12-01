@@ -38,8 +38,8 @@ bool ModuleSceneIntro::Start()
 	GameObject* camera = CreateGameObject("Camera", rootGO);
 	camera->CreateComponent(ComponentType::C_Camera);
 
-	App->file_system->LoadFileFromPath("Assets/FBXs/BakerHouse.fbx");
-
+	App->file_system->LoadFileFromPath("Assets/FBXs/scene.DAE");
+	//App->file_system->LoadFileFromPath("Assets/FBXs/BakerHouse.fbx");
 	return ret;
 }
 
@@ -189,4 +189,24 @@ void ModuleSceneIntro::Load(const char* fileName)
 
 		json_value_free(sceneFile);
 	}
+}
+
+
+Frustum* ModuleSceneIntro::GetActualCameraToCull(GameObject* _go)
+{
+	Frustum *_frustum = nullptr;
+
+	if (_go->GetComponent(ComponentType::C_Camera) != nullptr) {
+		ComponentCamera* _ccam = (ComponentCamera*)_go->GetComponent(ComponentType::C_Camera);
+		if (_ccam->isCulling == true) {
+			return &_ccam->frustum;
+		}
+	}
+
+	for (size_t i = 0; i < _go->children.size(); i++) {
+		_frustum= GetActualCameraToCull(_go->children[i]);
+		if (_frustum != nullptr)break;
+	}
+
+	return _frustum;
 }

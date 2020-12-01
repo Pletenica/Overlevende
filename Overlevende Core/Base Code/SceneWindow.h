@@ -23,9 +23,11 @@ public:
 	bool CleanUp();
 
 	void DoGuizmo();
+	void ToogleModeGuizmo();
 
 private:
 	ImGuizmo::OPERATION gOperation = ImGuizmo::TRANSLATE;
+	ImGuizmo::MODE mode = ImGuizmo::MODE::WORLD;
 };
 
 #endif // __SceneWindow_H__

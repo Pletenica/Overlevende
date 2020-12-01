@@ -43,14 +43,29 @@ bool OptionsWindow::Draw(float dt)
 	if (ImGui::Button("Add a plane", ImVec2(110, 40))) {
 		ExternalApp->file_system->LoadFileFromPath("Assets/FBXs/Plane.fbx");
 	}
+	ImGui::SameLine(ImGui::GetWindowWidth() - 210);
+	if (ImGui::Button("Play", ImVec2(60, 40))) {
+		//Do the play configuration
+	}
+	ImGui::SameLine();
+	if (ImGui::Button("Pause", ImVec2(60, 40))) {
+		//Do the pause configuration
+	}
+	ImGui::SameLine();
+	if (ImGui::Button("Stop", ImVec2(60, 40))) {
+		//Do the stop configuration
+	}
+
 	ImGui::Checkbox("Depth Test", &depth_bool);
 	ImGui::SameLine();
 	ImGui::Checkbox("Cull Face", &cullface_bool);
 	ImGui::SameLine();
 	ImGui::Checkbox("Light", &light_bool);
-	ImGui::Checkbox("Texture", &texture_bool);
 	ImGui::SameLine();
+	ImGui::Checkbox("Texture", &texture_bool);
 	ImGui::Checkbox("AABB Draw", &drawaabb_bool);
+	ImGui::SameLine();
+	ImGui::Checkbox("OBB Draw", &drawobb_bool);
 	ImGui::SameLine();
 	ImGui::Checkbox("Wireframe", &wireframe_bool);
 	ImGui::SameLine();
@@ -58,6 +73,18 @@ bool OptionsWindow::Draw(float dt)
 		if (normals_bool == true) RecursiveNormals(ExternalApp->scene_intro->rootGO, true);
 		else RecursiveNormals(ExternalApp->scene_intro->rootGO, false);
 	}
+	ImGui::SameLine(ImGui::GetWindowWidth() - 65);
+	if (ImGui::Button(worldorlocalguizmo.c_str(), ImVec2(50, 20))) {
+		if (worldorlocalguizmo == "WORLD") {
+			worldorlocalguizmo = "LOCAL";
+
+		}
+		else if (worldorlocalguizmo == "LOCAL") {
+			worldorlocalguizmo = "WORLD";
+		}
+		ExternalApp->base_motor->scene_window->ToogleModeGuizmo();
+	}
+
 	ImGui::End();
 
 	return true;
