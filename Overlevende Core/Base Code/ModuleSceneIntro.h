@@ -27,7 +27,7 @@ public:
 	void RecursiveUpdate(GameObject* node);
 	void ClearHierarchy();
 
-	void Save();
+	void Save(const char* _s);
 	void Load(const char* fileName);
 	Frustum* GetActualCameraToCull(GameObject* _go);
 

@@ -1,4 +1,5 @@
 #include "Application.h"
+#include "Time.h"
 
 extern Application* ExternalApp = nullptr;
 Application::Application()
@@ -75,8 +76,6 @@ bool Application::Init()
 	
 	ms_timer.Start();
 
-
-
 	return ret;
 }
 
@@ -84,6 +83,11 @@ bool Application::Init()
 void Application::PrepareUpdate()
 {
 	dt = (float)ms_timer.Read() / 1000.0f;
+
+	Time::realTimeDeltaTime = dt;
+	Time::realTimeSinceStartup += dt;
+
+	Time::Update(dt);
 	ms_timer.Start();
 }
 
@@ -95,6 +99,7 @@ void Application::FinishUpdate()
 // Call PreUpdate, Update and PostUpdate on all modules
 update_status Application::Update()
 {
+	
 	update_status ret = UPDATE_CONTINUE;
 	PrepareUpdate();
 	

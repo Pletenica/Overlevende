@@ -190,6 +190,7 @@
     <ClInclude Include="Base Code\OptionsWindow.h" />
     <ClInclude Include="Base Code\ResourcesWindow.h" />
     <ClInclude Include="Base Code\SceneWindow.h" />
+    <ClInclude Include="Base Code\Time.h" />
     <ClInclude Include="Base Code\WindowManager.h" />
     <ClInclude Include="Base Code\ModuleInput.h" />
     <ClInclude Include="Base Code\ModuleRenderer3D.h" />
@@ -269,6 +270,7 @@
     <ClCompile Include="Base Code\OptionsWindow.cpp" />
     <ClCompile Include="Base Code\ResourcesWindow.cpp" />
     <ClCompile Include="Base Code\SceneWindow.cpp" />
+    <ClCompile Include="Base Code\Time.cpp" />
     <ClCompile Include="Base Code\WindowManager.cpp" />
     <ClCompile Include="Base Code\ModuleInput.cpp" />
     <ClCompile Include="Base Code\ModuleRenderer3D.cpp" />

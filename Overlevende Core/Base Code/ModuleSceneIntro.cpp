@@ -38,8 +38,8 @@ bool ModuleSceneIntro::Start()
 	GameObject* camera = CreateGameObject("Camera", rootGO);
 	camera->CreateComponent(ComponentType::C_Camera);
 
-	App->file_system->LoadFileFromPath("Assets/FBXs/scene.DAE");
-	//App->file_system->LoadFileFromPath("Assets/FBXs/BakerHouse.fbx");
+	//App->file_system->LoadFileFromPath("Assets/FBXs/scene.DAE");
+	App->file_system->LoadFileFromPath("Assets/FBXs/BakerHouse.fbx");
 	return ret;
 }
 
@@ -76,7 +76,7 @@ update_status ModuleSceneIntro::Update(float dt)
 	p.axis = true;
 
 	if (App->input->GetKey(SDL_SCANCODE_F) == KEY_DOWN)
-		Save();
+		Save("Library/Scenes/Scene.json");
 
 	if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN)
 		Load("Library/Scenes/Scene.json");
@@ -135,7 +135,7 @@ void ModuleSceneIntro::ClearHierarchy()
 	rootGO->children.clear();
 }
 
-void ModuleSceneIntro::Save()
+void ModuleSceneIntro::Save(const char* _s)
 {
 	JSON_Value* sceneFile = json_value_init_object();
 	JSON_Object* parentObject = json_value_get_object(sceneFile);
@@ -147,7 +147,7 @@ void ModuleSceneIntro::Save()
 	rootGO->SaveGameObject(json_value_get_array(gArray));
 	json_object_set_value(parentObject, "GameObjects", gArray);
 
-	json_serialize_to_file_pretty(sceneFile, "Library/Scenes/Scene.json");
+	json_serialize_to_file_pretty(sceneFile, _s);
 
 	json_value_free(sceneFile);
 }

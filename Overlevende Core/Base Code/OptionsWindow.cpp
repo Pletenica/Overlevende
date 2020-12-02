@@ -6,6 +6,7 @@
 #include "Mesh.h"
 #include "FBXManager.h"
 #include "ComponentMesh.h"
+#include "Time.h"
 
 OptionsWindow::OptionsWindow() :Window()
 {
@@ -46,14 +47,19 @@ bool OptionsWindow::Draw(float dt)
 	ImGui::SameLine(ImGui::GetWindowWidth() - 210);
 	if (ImGui::Button("Play", ImVec2(60, 40))) {
 		//Do the play configuration
+		Time::Start();
+		ExternalApp->scene_intro->Save("Library/Scenes/temp_Scene.json");
 	}
 	ImGui::SameLine();
 	if (ImGui::Button("Pause", ImVec2(60, 40))) {
 		//Do the pause configuration
+		Time::Pause();
 	}
 	ImGui::SameLine();
 	if (ImGui::Button("Stop", ImVec2(60, 40))) {
 		//Do the stop configuration
+		Time::Stop();
+		ExternalApp->scene_intro->Load("Library/Scenes/temp_Scene.json");
 	}
 
 	ImGui::Checkbox("Depth Test", &depth_bool);

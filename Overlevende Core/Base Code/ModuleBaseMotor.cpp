@@ -100,7 +100,7 @@ void ModuleBaseMotor::CreateMainBar() {
 	if (ImGui::BeginMainMenuBar()) {
 		if (ImGui::BeginMenu("Edit", true)) {
 			if (ImGui::MenuItem("Save Project")) {
-				App->scene_intro->Save();
+				App->scene_intro->Save("Library/Scenes/Scene.json");
 			}
 			if (ImGui::MenuItem("Open Project")) {
 				App->scene_intro->Load("Library/Scenes/Scene.json");

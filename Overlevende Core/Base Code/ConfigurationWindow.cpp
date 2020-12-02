@@ -2,10 +2,11 @@
 #include "Application.h"
 #include "ConfigurationWindow.h"
 #include "Glew/include/glew.h"
+#include "Time.h"
 
 ConfigurationWindow::ConfigurationWindow() :Window()
 {
-	active = false;
+	active = true;
 	ms.reserve(50);
 	fps.reserve(50);
 	NightModeSelected();
@@ -95,6 +96,14 @@ bool ConfigurationWindow::Draw(float dt)
 		ImGui::Text("You can use 0 to deselect the gameobject from the inspector.");
 		ImGui::Text("You can use 2 to create empty objects children of the general scene.");
 
+	}
+	if (ImGui::CollapsingHeader("Time Configuration")) {
+
+		ImGui::Text("Time: %f", Time::time);
+		ImGui::Text("DeltaTime: %f", Time::deltaTime);
+		ImGui::Text("Real time DeltaTime: %f", Time::realTimeDeltaTime);
+		ImGui::Text("Real time since StartUp: %f", Time::realTimeSinceStartup);
+		ImGui::Text("Time scale: %f", Time::timeScale);
 	}
 	if (ImGui::CollapsingHeader("Choose Theme")) {
 		///////////////// MODES ///////////////////////

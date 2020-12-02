@@ -220,6 +220,9 @@
     <ClCompile Include="Base Code\lib\MathGeoLib\src\Algorithm\Random\LCG.cpp">
       <Filter>Core\Tools\MathGeoLib\Algorithm\Random</Filter>
     </ClCompile>
+    <ClCompile Include="Base Code\Time.cpp">
+      <Filter>Core\Tools\Time</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Base Code\Application.h">
@@ -574,6 +577,9 @@
     <ClInclude Include="Base Code\lib\MathGeoLib\src\Algorithm\Random\LCG.h">
       <Filter>Core\Tools\MathGeoLib\Algorithm\Random</Filter>
     </ClInclude>
+    <ClInclude Include="Base Code\Time.h">
+      <Filter>Core\Tools\Time</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -638,6 +644,9 @@
     </Filter>
     <Filter Include="Core\Tools\ImGuizmo">
       <UniqueIdentifier>{9d923859-95df-4dc7-abc7-36bc7d1a6e14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Tools\Time">
+      <UniqueIdentifier>{56ac3f16-8184-4abd-953f-e50a6a2d1757}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
