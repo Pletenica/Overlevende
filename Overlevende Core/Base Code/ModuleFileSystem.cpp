@@ -247,6 +247,8 @@ bool ModuleFileSystem::HasExtension(const char* path, std::vector<std::string> e
 	return false;
 }
 
+
+
 std::string ModuleFileSystem::NormalizePath(const char * full_path) const
 {
 	std::string newPath(full_path);
@@ -423,33 +425,64 @@ void ModuleFileSystem::LoadFileFromPath(const char* _path)
 	std::string path = _path;
 	path = NormalizePath(path.c_str());
 
-	////////////// IF IS FBX ////////////////////
-	if (path.substr(path.find_last_of(".") + 1) == "fbx" || path.substr(path.find_last_of(".") + 1) == "FBX" || path.substr(path.find_last_of(".") + 1) == "DAE") {
-		char* buffer = nullptr;
-		std::string _p = path.substr(path.find_last_of("/")+1);
-		std::string _localpath = "Assets/FBXs/" + _p;
+	ResourceType _type = ResourceType::R_NONE;
+	_type = GetResourceTypeFromPath(path);
+
+	char* buffer = nullptr;
+	std::string _p = path.substr(path.find_last_of("/"));
+
+	if (_type == ResourceType::R_MESH) {
+		std::string _localpath = "Assets/FBXs" + _p;
 		int size = Load(_localpath.c_str(), &buffer);
+
 		if (buffer != nullptr) {
 			FBXLoader::ImportFBX(buffer, size, App->renderer3D->imgID, _p.c_str());
 		}
-		delete[] buffer;
 	}
 
-	////////////// IF IS PNG ////////////////////
-	if (path.substr(path.find_last_of(".") + 1) == "png" || path.substr(path.find_last_of(".") + 1) == "PNG" || path.substr(path.find_last_of(".") + 1) == "DDS" || path.substr(path.find_last_of(".") + 1) == "dds") {
-		char* buffer = nullptr;
-		std::string _p = path.substr(path.find_last_of("/"));
-		std::string _localpath = "Assets/Textures" + _p;
+	if (_type == ResourceType::R_TEXTURE) {
+		std::string _lpath = "Assets/Textures" + _p;
 		std::string _texname = _p.substr(0, _p.find_first_of("."));
-		int size = Load(_localpath.c_str(), &buffer);
+		int size = Load(_lpath.c_str(), &buffer);
 
 		ComponentMesh* c_mesh = (ComponentMesh*)App->base_motor->inspector_window->_selectedGO->GetComponent(ComponentType::C_Mesh);
 		ComponentMaterial* c_mat = (ComponentMaterial*)App->base_motor->inspector_window->_selectedGO->GetComponent(ComponentType::C_Material);
-		if (c_mesh != nullptr && c_mat !=nullptr) {
+
+		if (c_mesh != nullptr && c_mat != nullptr) {
 			c_mesh->mesh->textureID = FBXLoader::LoadTexture(buffer, size, &c_mesh->mesh->textureWidth, &c_mesh->mesh->textureHeight, _texname);
 			c_mat->textureID = c_mesh->mesh->textureID;
-			c_mat->textureAssetsPath = _localpath;
+			c_mat->textureAssetsPath = _lpath;
 		}
-		delete[] buffer;
 	}
+
+	delete[] buffer;
+}
+
+ResourceType ModuleFileSystem::GetResourceTypeFromPath(std::string _path)
+{
+	ResourceType _type = ResourceType::R_NONE;
+	std::string extension = _path.substr(_path.find_last_of(".") + 1);
+
+	if (extension == "fbx" ||
+		extension == "FBX" ||
+		extension == "DAE" ||
+		extension == "dae" ||
+		extension == "obj" ||
+		extension == "OBJ") {
+		
+		_type = ResourceType::R_MESH;
+	}
+	if (extension == "png" ||
+		extension == "PNG" ||
+		extension == "DDS" ||
+		extension == "dds" ||
+		extension == "jpeg" ||
+		extension == "JPEG" ||
+		extension == "tga" ||
+		extension == "TGA") {
+
+		_type = ResourceType::R_TEXTURE;
+	}
+
+	return _type;
 }

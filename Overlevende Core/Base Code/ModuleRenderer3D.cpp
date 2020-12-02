@@ -251,6 +251,8 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 	update_status up = App->base_motor->Draw(dt);
 	SDL_GL_SwapWindow(App->window->window);
 
+	allGameobjects.clear();
+
 	return up;
 }
 

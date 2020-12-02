@@ -12,7 +12,7 @@
 #include "ImGui/imgui_impl_sdl.h"
 #include "ImGui/imgui_impl_opengl3.h"
 
-
+#include <vector>
 #define MAX_LIGHTS 8
 
 #define SQUARE_TEXTURE_W 128
@@ -43,6 +43,7 @@ public:
 	uint frameBuffer = 0;
 	uint depthBuffer = 0;
 	uint renderTexture = 0;
+	std::vector<GameObject*> allGameobjects;
 
 	GLubyte checkerImage[SQUARE_TEXTURE_W][SQUARE_TEXTURE_H][4];
 	uint imgID;

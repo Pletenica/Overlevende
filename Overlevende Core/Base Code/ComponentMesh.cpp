@@ -38,6 +38,8 @@ bool ComponentMesh::Disable()
 // Called before quitting
 bool ComponentMesh::Update(float dt)
 {
+	ExternalApp->renderer3D->allGameobjects.push_back(this->gameobject);
+
 	glPushMatrix();
 	glMultMatrixf(gameobject->transform->global_transform.Transposed().ptr());
 	//////// DRAW NORMALS //////////

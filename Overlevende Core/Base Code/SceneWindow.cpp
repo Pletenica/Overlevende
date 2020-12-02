@@ -4,6 +4,8 @@
 #include "Glew/include/glew.h"
 
 #include "ComponentTransform.h"
+#include "ComponentMesh.h"
+#include "MathGeoLib/src/Geometry/Triangle.h"
 
 SceneWindow::SceneWindow() :Window()
 {
@@ -55,6 +57,23 @@ bool SceneWindow::Draw(float dt)
 		}
 	}
 
+	if (ImGui::IsMouseClicked(0)) {
+		ImVec2 pos = ImGui::GetMousePos();
+		ImVec2 normalized = GlobalToWindow(ImRect(ImGui::GetWindowPos().x,
+			ImGui::GetWindowPos().y + ImGui::GetFrameHeight(),
+			ImGui::GetWindowSize().x,
+			ImGui::GetWindowSize().y - ImGui::GetFrameHeight())
+			, pos);
+
+		if ((normalized.x >= -1 && normalized.x <= 1) && (normalized.y >= -1 && normalized.y <= 1)) {
+			LineSegment pick = ExternalApp->camera->_cam.frustum.UnProjectLineSegment(normalized.x, normalized.y);
+			
+			GameObject* go = nullptr;
+			go = MeshIntersection(pick);
+			ExternalApp->base_motor->inspector_window->PutNewSelectedGameObject(go);
+		}
+	}
+
 	ImGui::End();
 
 	return true;
@@ -85,6 +104,55 @@ void SceneWindow::ToogleModeGuizmo()
 			mode = ImGuizmo::MODE::WORLD;
 		}
 	}
+}
+
+ImVec2 SceneWindow::GlobalToWindow(ImRect _rect, ImVec2 _point)
+{
+	ImVec2 nPoint;
+
+	ImVec4 _vectemp = _rect.ToVec4();
+
+	nPoint.x = (_point.x - _vectemp.x) / ((_vectemp.x + _vectemp.z) - _vectemp.x);
+	nPoint.y = (_point.y - _vectemp.y) / ((_vectemp.y + _vectemp.w) - _vectemp.y);
+
+	nPoint.x = (nPoint.x - 0.5f) * 2;
+	nPoint.y = -((nPoint.y - 0.5f) * 2);
+
+	return nPoint;
+}
+
+GameObject* SceneWindow::MeshIntersection(LineSegment _line)
+{
+	GameObject* _go = nullptr;
+	float closestDistance = INT_MAX;
+
+	for (auto i = ExternalApp->renderer3D->allGameobjects.begin(); i != ExternalApp->renderer3D->allGameobjects.end(); i++) {
+		if (_line.Intersects((*i)->aabb)) {
+			ComponentMesh* c_mesh = (ComponentMesh*)(*i)->GetComponent(ComponentType::C_Mesh);
+			if (c_mesh != nullptr) {
+				LineSegment localLine = _line;
+				localLine.Transform((*i)->transform->global_transform.Inverted());
+				for (uint j = 0; j < c_mesh->mesh->num_indices; j+=3)
+				{
+					float3 pointA(&c_mesh->mesh->vertices[c_mesh->mesh->indices[j] * 3]);
+					float3 pointB(&c_mesh->mesh->vertices[c_mesh->mesh->indices[j+1] * 3]);
+					float3 pointC(&c_mesh->mesh->vertices[c_mesh->mesh->indices[j+2] * 3]);
+
+					Triangle triangle(pointA, pointB, pointC);
+					float cDist = 0;
+					if (localLine.Intersects(triangle, &cDist, nullptr)) 
+					{
+						if (cDist < closestDistance) {
+							closestDistance = cDist;
+							_go = (*i);
+						}
+					}
+				}
+			}
+		}
+	}
+
+	return _go;
 }
 
 // Called before quitting

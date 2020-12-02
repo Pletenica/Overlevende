@@ -13,6 +13,12 @@ struct aiFileIO;
 class Config;
 struct PathNode;
 
+enum ResourceType {
+	R_NONE,
+	R_MESH,
+	R_TEXTURE
+};
+
 class ModuleFileSystem : public Module
 {
 public:
@@ -45,6 +51,7 @@ public:
 	bool HasExtension(const char* path) const;
 	bool HasExtension(const char* path, std::string extension) const;
 	bool HasExtension(const char* path, std::vector<std::string> extensions) const;
+	ResourceType GetResourceTypeFromPath(std::string _path);
 
 	std::string NormalizePath(const char* path) const;
 	void SplitFilePath(const char* full_path, std::string* path, std::string* file = nullptr, std::string* extension = nullptr) const;
