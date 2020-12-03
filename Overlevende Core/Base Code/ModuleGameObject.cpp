@@ -323,7 +323,44 @@ void GameObject::UpdateAABB()
 	}
 }
 
+void GameObject::ChangeParent(GameObject* _parent)
+{
+	if (isChild(_parent)) {
+		return;
+	}
 
+	parent->RemoveChild(this);
+	parent = _parent;
+	parent->children.push_back(this);
+
+	transform->local_transform = parent->transform->global_transform.Inverted() * transform->global_transform;
+
+	Quat rot;
+	float3 pos, scale;
+	transform->local_transform.RotatePart().Decompose(rot, scale);
+
+	transform->SetTransform(transform->local_transform.TranslatePart(), rot, scale);
+	transform->UpdateTransform();
+}
+
+void GameObject::RemoveChild(GameObject* _go)
+{
+	children.erase(std::find(children.begin(), children.end(), _go));
+}
+
+bool GameObject::isChild(GameObject* _parent)
+{
+	if (_parent == nullptr) {
+		return false;
+	}
+	
+	if (_parent == parent) {
+		return true;
+	}
+	else if (_parent != parent) {
+		isChild(_parent->parent);
+	}
+}
 
 ///WINDOW NOW
 Component::Component(GameObject* _go)

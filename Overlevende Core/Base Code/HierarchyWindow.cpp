@@ -24,17 +24,22 @@ bool HierarchyWindow::Init()
 bool HierarchyWindow::Draw(float dt)
 {
 	ImGui::Begin("Hierarchy", NULL);
-	if (ImGui::Button("CLEAR", ImVec2(100, 30))) {
+	if (ImGui::Button("CREATE EMPTY ROOT", ImVec2(130, 20))) {
+		ExternalApp->scene_intro->CreateGameObject("Empty GameObject", ExternalApp->scene_intro->rootGO);
+	}
+	ImGui::SameLine();
+	if (ImGui::Button("CREATE EMPTY SELECTED", ImVec2(170, 20))) {
+		if (ExternalApp->base_motor->inspector_window->_selectedGO != nullptr) {
+			ExternalApp->scene_intro->CreateGameObject("Empty GameObject", ExternalApp->base_motor->inspector_window->_selectedGO);
+		}
+	}
+	if (ImGui::Button("CLEAR", ImVec2(70, 20))) {
 		ExternalApp->base_motor->inspector_window->DeleteSelectedGameObject();
 		ExternalApp->scene_intro->ClearHierarchy();
 	}
-	ImGui::SameLine();
-	if (ImGui::Button("CREATE EMPTY", ImVec2(130, 30))) {
-		ExternalApp->scene_intro->CreateGameObject("Empty GameObject", ExternalApp->scene_intro->rootGO);
-	}
 	if(ExternalApp->scene_intro->rootGO != nullptr)
 		RecursiveDraw(ExternalApp->scene_intro->rootGO);
-
+	
 	ImGui::End();
 
 	return true;
@@ -61,7 +66,25 @@ void HierarchyWindow::RecursiveDraw(GameObject* node)
 		ExternalApp->base_motor->inspector_window->PutNewSelectedGameObject(node);
 	}
 
+	if (ImGui::BeginDragDropSource()) {
+		ImGui::SetDragDropPayload("_go", node, sizeof(GameObject*));
+		dropGO = node;
+		ImGui::Text("Changing parent...");
+		ImGui::EndDragDropSource();
+	}
 	bool showChildren = (node->children.size() == 0) ? false : nodeIsOpened;
+
+	if (ImGui::BeginDragDropTarget()) {
+		if (const ImGuiPayload* payLoad = ImGui::AcceptDragDropPayload("_go")) {
+			//Reparent
+			dropGO->ChangeParent(node);
+
+			//Tornem a posar a null el drop (fuera memory leaks)
+			dropGO = nullptr;
+		}
+		ImGui::EndDragDropTarget();
+	}
+
 
 	if (showChildren == true)
 	{

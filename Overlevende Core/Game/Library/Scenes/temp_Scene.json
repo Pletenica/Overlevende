@@ -3,7 +3,7 @@
     "GameObjects": [
         {
             "name": "Scene",
-            "GameObject id": 2002143153,
+            "GameObject id": 71140966,
             "components": [
                 {
                     "Type": 0,
@@ -28,8 +28,8 @@
         },
         {
             "name": "Camera",
-            "GameObject id": 2030061174,
-            "Parent id": 2002143153,
+            "GameObject id": 137072053,
+            "Parent id": 71140966,
             "components": [
                 {
                     "Type": 0,
@@ -60,69 +60,9 @@
             ]
         },
         {
-            "name": "\/BakerHouse",
-            "GameObject id": 529354079,
-            "Parent id": 2002143153,
-            "components": [
-                {
-                    "Type": 0,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        1,
-                        1,
-                        1
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Chimney",
-            "GameObject id": 559499972,
-            "Parent id": 529354079,
-            "components": [
-                {
-                    "Type": 0,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Scale": [
-                        0.99999934434890747,
-                        0.99999934434890747,
-                        0.99999934434890747
-                    ]
-                },
-                {
-                    "Type": 1,
-                    "Mesh Path": "Library\/Meshes\/Untitled.001.elpepe"
-                },
-                {
-                    "Type": 2,
-                    "Material Path": "Library\/Materials\/Baker_house.dds"
-                }
-            ]
-        },
-        {
             "name": "Baker_house",
-            "GameObject id": 737451248,
-            "Parent id": 529354079,
+            "GameObject id": 437775275,
+            "Parent id": 137072053,
             "components": [
                 {
                     "Type": 0,
@@ -150,6 +90,66 @@
                 {
                     "Type": 2,
                     "Material Path": "Library\/Materials\/Baker_house.dds"
+                }
+            ]
+        },
+        {
+            "name": "Chimney",
+            "GameObject id": 350470541,
+            "Parent id": 437775275,
+            "components": [
+                {
+                    "Type": 0,
+                    "Position": [
+                        2.9663348197937012,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 1,
+                    "Mesh Path": "Library\/Meshes\/Untitled.001.elpepe"
+                },
+                {
+                    "Type": 2,
+                    "Material Path": "Library\/Materials\/Baker_house.dds"
+                }
+            ]
+        },
+        {
+            "name": "\/BakerHouse",
+            "GameObject id": 338913455,
+            "Parent id": 71140966,
+            "components": [
+                {
+                    "Type": 0,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
                 }
             ]
         }

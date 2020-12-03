@@ -67,6 +67,10 @@ public:
 	void RenderAABB(AABB _aabb);
 	void RenderOBB(OBB _obb);
 	void UpdateAABB();
+	void ChangeParent(GameObject* _parent);
+
+	void RemoveChild(GameObject* _go);
+	bool isChild(GameObject* _parent);
 
 public:
 	int idGO;

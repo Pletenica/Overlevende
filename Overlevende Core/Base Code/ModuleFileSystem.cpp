@@ -429,10 +429,10 @@ void ModuleFileSystem::LoadFileFromPath(const char* _path)
 	_type = GetResourceTypeFromPath(path);
 
 	char* buffer = nullptr;
-	std::string _p = path.substr(path.find_last_of("/"));
+	std::string _p = path.substr(path.find_last_of("/")+1);
 
 	if (_type == ResourceType::R_MESH) {
-		std::string _localpath = "Assets/FBXs" + _p;
+		std::string _localpath = "Assets/FBXs/" + _p;
 		int size = Load(_localpath.c_str(), &buffer);
 
 		if (buffer != nullptr) {
@@ -441,7 +441,7 @@ void ModuleFileSystem::LoadFileFromPath(const char* _path)
 	}
 
 	if (_type == ResourceType::R_TEXTURE) {
-		std::string _lpath = "Assets/Textures" + _p;
+		std::string _lpath = "Assets/Textures/" + _p;
 		std::string _texname = _p.substr(0, _p.find_first_of("."));
 		int size = Load(_lpath.c_str(), &buffer);
 

@@ -22,6 +22,9 @@ public:
 	bool CleanUp();
 
 	void RecursiveDraw(GameObject* node);
+
+private:
+	GameObject* dropGO = nullptr;
 };
 
 #endif // __HierarchyWindow_H__
