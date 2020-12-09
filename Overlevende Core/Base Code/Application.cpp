@@ -29,12 +29,10 @@ Application::Application()
 	AddModule(scene_intro);
 	AddModule(camera);
 
-	AddModule(base_motor);
 	AddModule(window_manager);
-
-	// Renderer last!
 	AddModule(renderer3D);
 
+	AddModule(base_motor);
 }
 
 Application::~Application()

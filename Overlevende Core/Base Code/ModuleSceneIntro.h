@@ -9,6 +9,7 @@
 struct PhysBody3D;
 struct PhysMotor3D;
 class GameObject;
+class ComponentCamera;
 
 class ModuleSceneIntro : public Module
 {
@@ -29,13 +30,21 @@ public:
 
 	void Save(const char* _s);
 	void Load(const char* fileName);
+
+	void SaveModel(const char* _s);
+	void LoadModel(const char* _s);
+
 	Frustum* GetActualCameraToCull(GameObject* _go);
+
+	std::vector<ComponentCamera*> allcameras;
+	ComponentCamera* actualcullingcam = nullptr;
 
 public:
 	/*Primitive primitive;*/
 	GameObject* rootGO = nullptr;
 	GameObject* _toDeleteGO = nullptr;
 private:
+	bool CompareCameraPriorities(ComponentCamera* i1, ComponentCamera* i2);
 	bool showaxis = true;
 	bool wireSphere = true;
 };

@@ -48,11 +48,11 @@ bool ComponentMesh::Update(float dt)
 
 	if (active == true) {
 		if (mesh != nullptr) {
-			if (ExternalApp->scene_intro->GetActualCameraToCull(ExternalApp->scene_intro->rootGO) == nullptr) {
+			if (ExternalApp->scene_intro->actualcullingcam == nullptr || ExternalApp->scene_intro->actualcullingcam->isCulling==false) {
 				mesh->Render();
 			}
 			else {
-				Frustum* _frustum = ExternalApp->scene_intro->GetActualCameraToCull(ExternalApp->scene_intro->rootGO);
+				Frustum* _frustum = &ExternalApp->scene_intro->actualcullingcam->frustum;
 				Plane planes[8];
 				_frustum->GetPlanes(planes);
 

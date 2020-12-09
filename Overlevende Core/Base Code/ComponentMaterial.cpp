@@ -71,7 +71,7 @@ void ComponentMaterial::LoadComponent(JsonManager* _man)
 	c_mesh->mesh->textureID = FBXLoader::LoadTexture(buffer, size, &c_mesh->mesh->textureWidth, &c_mesh->mesh->textureHeight, _texname, false);
 	textureID = c_mesh->mesh->textureID;
 
-	textureLibraryPath = mPath;
+	textureLibraryPath = mPath.c_str();
 	std::string aPath = "Assets/Textures/" + _texname + ".png";
 	textureAssetsPath = aPath;
 }
@@ -100,7 +100,7 @@ void ComponentMaterial::OnEditor(GameObject* _go)
 		ImGui::TextColored(color, "Width: ");
 		ImGui::SameLine();
 		ImGui::Text("%i", c_mesh->mesh->textureWidth);
-
+		ImGui::Text("Texture ID: %i", c_mesh->mesh->textureID);
 		//ilGetInteger()
 	}
 }

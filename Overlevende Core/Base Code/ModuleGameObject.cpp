@@ -107,6 +107,7 @@ Component* GameObject::CreateComponent(ComponentType w_type) {
 		break;
 	case(ComponentType::C_Transform):
 		comp = new ComponentTransform(this);
+		transform = (ComponentTransform*)comp;
 		break;
 	case(ComponentType::C_Mesh):
 		comp = new ComponentMesh(this);
@@ -176,12 +177,14 @@ void GameObject::LoadGameObject(JSON_Array* _componentArray)
 {
 	for (int i = 0; i < json_array_get_count(_componentArray); i++) {
 		JsonManager compMan(json_array_get_object(_componentArray, i));
-		
-		Component* comp = CreateComponent((ComponentType)compMan.GetInt("Type"));
+		Component* comp=nullptr;
 
-		if (comp->type == ComponentType::C_Transform)
-			transform = dynamic_cast<ComponentTransform*>(comp);
-
+		if ((ComponentType)compMan.GetInt("Type") == ComponentType::C_Transform) {
+			comp = transform;
+		}
+		else {
+			comp = CreateComponent((ComponentType)compMan.GetInt("Type"));
+		}
 		comp->LoadComponent(&compMan);
 	}
 }

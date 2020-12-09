@@ -93,14 +93,19 @@ void Mesh::Render()
 	glBindBuffer(GL_ARRAY_BUFFER, id_vertices);
 	glVertexPointer(3, GL_FLOAT, 0, NULL);
 
-	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-	glBindBuffer(GL_ARRAY_BUFFER, id_textures);
-	glTexCoordPointer(2, GL_FLOAT, 0, NULL);
+	if (num_textures != 0) 
+	{
+		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+		glBindBuffer(GL_ARRAY_BUFFER, id_textures);
+		glTexCoordPointer(2, GL_FLOAT, 0, NULL);
+	}
 
-
-	glEnableClientState(GL_NORMAL_ARRAY);
-	glBindBuffer(GL_ARRAY_BUFFER, id_normals);
-	glNormalPointer(GL_FLOAT, 0, NULL);
+	if (num_normals != 0) 
+	{
+		glEnableClientState(GL_NORMAL_ARRAY);
+		glBindBuffer(GL_ARRAY_BUFFER, id_normals);
+		glNormalPointer(GL_FLOAT, 0, NULL);
+	}
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id_indices);
 

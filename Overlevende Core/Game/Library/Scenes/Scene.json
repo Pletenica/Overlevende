@@ -1,9 +1,8 @@
 {
-    "Test": "This is a test",
     "GameObjects": [
         {
             "name": "Scene",
-            "GameObject id": 763176868,
+            "GameObject id": 1877416199,
             "components": [
                 {
                     "Type": 0,
@@ -27,42 +26,35 @@
             ]
         },
         {
-            "name": "Camera",
-            "GameObject id": 779259319,
-            "Parent id": 763176868,
+            "name": "scene",
+            "GameObject id": 511124744,
+            "Parent id": 1877416199,
             "components": [
                 {
                     "Type": 0,
                     "Position": [
                         0,
                         0,
-                        3.5
+                        0
                     ],
                     "Rotation": [
+                        -0.7071068286895752,
                         0,
                         0,
-                        0,
-                        1
+                        0.70710670948028564
                     ],
                     "Scale": [
                         1,
                         1,
                         1
                     ]
-                },
-                {
-                    "Type": 3,
-                    "Vertical FOV": 40,
-                    "Horizontal FOV": 2.3008880615234375,
-                    "Far Plane Distance": 300,
-                    "Near Plane Distance": 0.10000000149011612
                 }
             ]
         },
         {
-            "name": "BakerHouse",
-            "GameObject id": 859749233,
-            "Parent id": 763176868,
+            "name": "Dummy001",
+            "GameObject id": 682183541,
+            "Parent id": 511124744,
             "components": [
                 {
                     "Type": 0,
@@ -86,15 +78,15 @@
             ]
         },
         {
-            "name": "Chimney",
-            "GameObject id": 871445561,
-            "Parent id": 859749233,
+            "name": "City_building_004",
+            "GameObject id": 758140052,
+            "Parent id": 682183541,
             "components": [
                 {
                     "Type": 0,
                     "Position": [
-                        0,
-                        0,
+                        -41.47589111328125,
+                        21.01409912109375,
                         0
                     ],
                     "Rotation": [
@@ -104,31 +96,31 @@
                         1
                     ],
                     "Scale": [
-                        0.99999934434890747,
-                        0.99999934434890747,
-                        0.99999934434890747
+                        1,
+                        1,
+                        1
                     ]
                 },
                 {
                     "Type": 1,
-                    "Mesh Path": "Library\/Meshes\/Untitled.001.elpepe"
+                    "Mesh Path": "Library\/Meshes\/City_building_004Mesh.elpepe"
                 },
                 {
                     "Type": 2,
-                    "Material Path": "Library\/Materials\/Baker_house.dds"
+                    "Material Path": "Library\/Materials\/building03_c.dds"
                 }
             ]
         },
         {
-            "name": "Baker_house",
-            "GameObject id": 953667962,
-            "Parent id": 859749233,
+            "name": "City_building_001",
+            "GameObject id": 1071713036,
+            "Parent id": 682183541,
             "components": [
                 {
                     "Type": 0,
                     "Position": [
-                        0,
-                        0,
+                        17.707164764404297,
+                        20.053276062011719,
                         0
                     ],
                     "Rotation": [
@@ -138,18 +130,1072 @@
                         1
                     ],
                     "Scale": [
-                        0.99999934434890747,
-                        0.99999934434890747,
-                        0.99999934434890747
+                        1,
+                        1,
+                        1
                     ]
                 },
                 {
                     "Type": 1,
-                    "Mesh Path": "Library\/Meshes\/Untitled.elpepe"
+                    "Mesh Path": "Library\/Meshes\/City_building_001Mesh.elpepe"
                 },
                 {
                     "Type": 2,
-                    "Material Path": "Library\/Materials\/Baker_house.dds"
+                    "Material Path": "Library\/Materials\/Building_V02_C.dds"
+                }
+            ]
+        },
+        {
+            "name": "City_building_007",
+            "GameObject id": 1238733815,
+            "Parent id": 682183541,
+            "components": [
+                {
+                    "Type": 0,
+                    "Position": [
+                        16.010492324829102,
+                        37.4932861328125,
+                        -1.9999999949504854e-06
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 1,
+                    "Mesh Path": "Library\/Meshes\/City_building_007Mesh.elpepe"
+                },
+                {
+                    "Type": 2,
+                    "Material Path": "Library\/Materials\/building_016_c.dds"
+                }
+            ]
+        },
+        {
+            "name": "City_building_008",
+            "GameObject id": 1412298968,
+            "Parent id": 682183541,
+            "components": [
+                {
+                    "Type": 0,
+                    "Position": [
+                        40.979995727539062,
+                        18.270824432373047,
+                        -1.9999999949504854e-06
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0.7071068286895752,
+                        0.7071068286895752
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 1,
+                    "Mesh Path": "Library\/Meshes\/City_building_008Mesh.elpepe"
+                },
+                {
+                    "Type": 2,
+                    "Material Path": "Library\/Materials\/building_025_c.dds"
+                }
+            ]
+        },
+        {
+            "name": "Line002",
+            "GameObject id": 1569085460,
+            "Parent id": 682183541,
+            "components": [
+                {
+                    "Type": 0,
+                    "Position": [
+                        -2.1597719192504883,
+                        1.8538379669189453,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        -0.7071068286895752,
+                        0.7071068286895752
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 1,
+                    "Mesh Path": "Library\/Meshes\/Line002Mesh.elpepe"
+                },
+                {
+                    "Type": 2,
+                    "Material Path": "Library\/Materials\/Hola.dds"
+                }
+            ]
+        },
+        {
+            "name": "Plane001",
+            "GameObject id": 1690017137,
+            "Parent id": 682183541,
+            "components": [
+                {
+                    "Type": 0,
+                    "Position": [
+                        -0.028603000566363335,
+                        0.026032000780105591,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        0.99663501977920532,
+                        0.97061598300933838,
+                        0.99663501977920532
+                    ]
+                },
+                {
+                    "Type": 1,
+                    "Mesh Path": "Library\/Meshes\/Plane001Mesh.elpepe"
+                },
+                {
+                    "Type": 2,
+                    "Material Path": "Library\/Materials\/Hola.dds"
+                }
+            ]
+        },
+        {
+            "name": "City_building_010",
+            "GameObject id": 1837474415,
+            "Parent id": 682183541,
+            "components": [
+                {
+                    "Type": 0,
+                    "Position": [
+                        25.154010772705078,
+                        -39.153720855712891,
+                        9.9999999747524271e-07
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0.7071068286895752,
+                        0.7071068286895752
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 1,
+                    "Mesh Path": "Library\/Meshes\/City_building_010Mesh.elpepe"
+                },
+                {
+                    "Type": 2,
+                    "Material Path": "Library\/Materials\/building 01_c.dds"
+                }
+            ]
+        },
+        {
+            "name": "City_building_010",
+            "GameObject id": 1951583234,
+            "Parent id": 682183541,
+            "components": [
+                {
+                    "Type": 0,
+                    "Position": [
+                        25.154010772705078,
+                        -39.153720855712891,
+                        9.9999999747524271e-07
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0.7071068286895752,
+                        0.7071068286895752
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 1,
+                    "Mesh Path": "Library\/Meshes\/City_building_010Mesh.elpepe"
+                },
+                {
+                    "Type": 2,
+                    "Material Path": "Library\/Materials\/building 01_c.dds"
+                }
+            ]
+        },
+        {
+            "name": "City_building_011",
+            "GameObject id": 2093679695,
+            "Parent id": 682183541,
+            "components": [
+                {
+                    "Type": 0,
+                    "Position": [
+                        30.134540557861328,
+                        37.4932861328125,
+                        -1.9999999949504854e-06
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 1,
+                    "Mesh Path": "Library\/Meshes\/City_building_007Mesh.elpepe"
+                },
+                {
+                    "Type": 2,
+                    "Material Path": "Library\/Materials\/building_016_c.dds"
+                }
+            ]
+        },
+        {
+            "name": "City_building_013",
+            "GameObject id": 72558163,
+            "Parent id": 682183541,
+            "components": [
+                {
+                    "Type": 0,
+                    "Position": [
+                        -42.288055419921875,
+                        33.201576232910156,
+                        9.9999999747524271e-07
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0.7071068286895752,
+                        0.7071068286895752
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 1,
+                    "Mesh Path": "Library\/Meshes\/City_building_013Mesh.elpepe"
+                },
+                {
+                    "Type": 2,
+                    "Material Path": "Library\/Materials\/building 06_ c.dds"
+                }
+            ]
+        },
+        {
+            "name": "City_building_014",
+            "GameObject id": 167242723,
+            "Parent id": 682183541,
+            "components": [
+                {
+                    "Type": 0,
+                    "Position": [
+                        -19.439706802368164,
+                        32.061729431152344,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        -1,
+                        -4.3711388286737929e-08
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 1,
+                    "Mesh Path": "Library\/Meshes\/City_building_014Mesh.elpepe"
+                },
+                {
+                    "Type": 2,
+                    "Material Path": "Library\/Materials\/building03_c.dds"
+                }
+            ]
+        },
+        {
+            "name": "City_building_016",
+            "GameObject id": 256914571,
+            "Parent id": 682183541,
+            "components": [
+                {
+                    "Type": 0,
+                    "Position": [
+                        34.270423889160156,
+                        -41.972747802734375,
+                        9.9999999747524271e-07
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        -1,
+                        -4.3711388286737929e-08
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 1,
+                    "Mesh Path": "Library\/Meshes\/City_building_010Mesh.elpepe"
+                },
+                {
+                    "Type": 2,
+                    "Material Path": "Library\/Materials\/building 01_c.dds"
+                }
+            ]
+        },
+        {
+            "name": "City_building_016",
+            "GameObject id": 313725307,
+            "Parent id": 682183541,
+            "components": [
+                {
+                    "Type": 0,
+                    "Position": [
+                        34.270423889160156,
+                        -41.972747802734375,
+                        9.9999999747524271e-07
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        -1,
+                        -4.3711388286737929e-08
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 1,
+                    "Mesh Path": "Library\/Meshes\/City_building_010Mesh.elpepe"
+                },
+                {
+                    "Type": 2,
+                    "Material Path": "Library\/Materials\/building 01_c.dds"
+                }
+            ]
+        },
+        {
+            "name": "City_building_017",
+            "GameObject id": 401447767,
+            "Parent id": 682183541,
+            "components": [
+                {
+                    "Type": 0,
+                    "Position": [
+                        44.260082244873047,
+                        -39.153720855712891,
+                        9.9999999747524271e-07
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0.7071068286895752,
+                        0.7071068286895752
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 1,
+                    "Mesh Path": "Library\/Meshes\/City_building_010Mesh.elpepe"
+                },
+                {
+                    "Type": 2,
+                    "Material Path": "Library\/Materials\/building 01_c.dds"
+                }
+            ]
+        },
+        {
+            "name": "City_building_017",
+            "GameObject id": 453872380,
+            "Parent id": 682183541,
+            "components": [
+                {
+                    "Type": 0,
+                    "Position": [
+                        44.260082244873047,
+                        -39.153720855712891,
+                        9.9999999747524271e-07
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0.7071068286895752,
+                        0.7071068286895752
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 1,
+                    "Mesh Path": "Library\/Meshes\/City_building_010Mesh.elpepe"
+                },
+                {
+                    "Type": 2,
+                    "Material Path": "Library\/Materials\/building 01_c.dds"
+                }
+            ]
+        },
+        {
+            "name": "City_building_022",
+            "GameObject id": 549601255,
+            "Parent id": 682183541,
+            "components": [
+                {
+                    "Type": 0,
+                    "Position": [
+                        -20.831323623657226,
+                        -27.426488876342773,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        -1,
+                        -4.3711388286737929e-08
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 1,
+                    "Mesh Path": "Library\/Meshes\/City_building_022Mesh.elpepe"
+                },
+                {
+                    "Type": 2,
+                    "Material Path": "Library\/Materials\/building05 _c.dds"
+                }
+            ]
+        },
+        {
+            "name": "City_building_023",
+            "GameObject id": 634330012,
+            "Parent id": 682183541,
+            "components": [
+                {
+                    "Type": 0,
+                    "Position": [
+                        42.130641937255859,
+                        37.4932861328125,
+                        -1.9999999949504854e-06
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 1,
+                    "Mesh Path": "Library\/Meshes\/City_building_007Mesh.elpepe"
+                },
+                {
+                    "Type": 2,
+                    "Material Path": "Library\/Materials\/building_016_c.dds"
+                }
+            ]
+        },
+        {
+            "name": "City_building_024",
+            "GameObject id": 720172705,
+            "Parent id": 682183541,
+            "components": [
+                {
+                    "Type": 0,
+                    "Position": [
+                        -20.572771072387695,
+                        43.060829162597656,
+                        -0.069193996489048004
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        -1,
+                        -4.3711388286737929e-08
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 1,
+                    "Mesh Path": "Library\/Meshes\/City_building_008Mesh.elpepe"
+                },
+                {
+                    "Type": 2,
+                    "Material Path": "Library\/Materials\/building_025_c.dds"
+                }
+            ]
+        },
+        {
+            "name": "City_building_026",
+            "GameObject id": 811236973,
+            "Parent id": 682183541,
+            "components": [
+                {
+                    "Type": 0,
+                    "Position": [
+                        31.51188850402832,
+                        -16.446016311645508,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        -1,
+                        -4.3711388286737929e-08
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 1,
+                    "Mesh Path": "Library\/Meshes\/City_building_026Mesh.elpepe"
+                },
+                {
+                    "Type": 2,
+                    "Material Path": "Library\/Materials\/building05 _c.dds"
+                }
+            ]
+        },
+        {
+            "name": "City_building_028",
+            "GameObject id": 907870921,
+            "Parent id": 682183541,
+            "components": [
+                {
+                    "Type": 0,
+                    "Position": [
+                        13.38798999786377,
+                        -33.755039215087891,
+                        -9.9999999747524271e-07
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 1,
+                    "Mesh Path": "Library\/Meshes\/City_building_028Mesh.elpepe"
+                },
+                {
+                    "Type": 2,
+                    "Material Path": "Library\/Materials\/Building_V01_C.dds"
+                }
+            ]
+        },
+        {
+            "name": "Object010",
+            "GameObject id": 1012093558,
+            "Parent id": 682183541,
+            "components": [
+                {
+                    "Type": 0,
+                    "Position": [
+                        -20.604873657226562,
+                        4.066741943359375,
+                        -0.47595998644828796
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 1,
+                    "Mesh Path": "Library\/Meshes\/Object010Mesh.elpepe"
+                },
+                {
+                    "Type": 2,
+                    "Material Path": "Library\/Materials\/Hola.dds"
+                }
+            ]
+        },
+        {
+            "name": "City_building_030",
+            "GameObject id": 1096822315,
+            "Parent id": 682183541,
+            "components": [
+                {
+                    "Type": 0,
+                    "Position": [
+                        -42.807239532470703,
+                        -41.835563659667969,
+                        -9.9999999747524271e-07
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        -0.7071068286895752,
+                        0.7071068286895752
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 1,
+                    "Mesh Path": "Library\/Meshes\/City_building_028Mesh.elpepe"
+                },
+                {
+                    "Type": 2,
+                    "Material Path": "Library\/Materials\/Building_V01_C.dds"
+                }
+            ]
+        },
+        {
+            "name": "City_building_031",
+            "GameObject id": 1180158652,
+            "Parent id": 682183541,
+            "components": [
+                {
+                    "Type": 0,
+                    "Position": [
+                        -34.679481506347656,
+                        -41.835563659667969,
+                        -9.9999999747524271e-07
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        -0.7071068286895752,
+                        0.7071068286895752
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 1,
+                    "Mesh Path": "Library\/Meshes\/City_building_028Mesh.elpepe"
+                },
+                {
+                    "Type": 2,
+                    "Material Path": "Library\/Materials\/Building_V01_C.dds"
+                }
+            ]
+        },
+        {
+            "name": "City_building_032",
+            "GameObject id": 1260849391,
+            "Parent id": 682183541,
+            "components": [
+                {
+                    "Type": 0,
+                    "Position": [
+                        -29.478403091430664,
+                        21.01409912109375,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 1,
+                    "Mesh Path": "Library\/Meshes\/City_building_004Mesh.elpepe"
+                },
+                {
+                    "Type": 2,
+                    "Material Path": "Library\/Materials\/building03_c.dds"
+                }
+            ]
+        },
+        {
+            "name": "City_building_033",
+            "GameObject id": 1356021298,
+            "Parent id": 682183541,
+            "components": [
+                {
+                    "Type": 0,
+                    "Position": [
+                        -32.361495971679688,
+                        42.37042236328125,
+                        9.9999999747524271e-07
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 1,
+                    "Mesh Path": "Library\/Meshes\/City_building_033Mesh.elpepe"
+                },
+                {
+                    "Type": 2,
+                    "Material Path": "Library\/Materials\/building 06_ c.dds"
+                }
+            ]
+        },
+        {
+            "name": "City_building_034",
+            "GameObject id": 1485864463,
+            "Parent id": 682183541,
+            "components": [
+                {
+                    "Type": 0,
+                    "Position": [
+                        16.049516677856445,
+                        -16.696884155273438,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        -0.7071068286895752,
+                        0.7071068286895752
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 1,
+                    "Mesh Path": "Library\/Meshes\/City_building_034Mesh.elpepe"
+                },
+                {
+                    "Type": 2,
+                    "Material Path": "Library\/Materials\/building05 _c.dds"
+                }
+            ]
+        },
+        {
+            "name": "City_building_035",
+            "GameObject id": 1615916491,
+            "Parent id": 682183541,
+            "components": [
+                {
+                    "Type": 0,
+                    "Position": [
+                        13.38798999786377,
+                        -40.802516937255859,
+                        -9.9999999747524271e-07
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 1,
+                    "Mesh Path": "Library\/Meshes\/City_building_028Mesh.elpepe"
+                },
+                {
+                    "Type": 2,
+                    "Material Path": "Library\/Materials\/Building_V01_C.dds"
+                }
+            ]
+        },
+        {
+            "name": "City_building_036",
+            "GameObject id": 1848589873,
+            "Parent id": 682183541,
+            "components": [
+                {
+                    "Type": 0,
+                    "Position": [
+                        -31.216331481933594,
+                        33.201576232910156,
+                        9.9999999747524271e-07
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        -0.7071068286895752,
+                        0.7071068286895752
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 1,
+                    "Mesh Path": "Library\/Meshes\/City_building_013Mesh.elpepe"
+                },
+                {
+                    "Type": 2,
+                    "Material Path": "Library\/Materials\/building 06_ c.dds"
+                }
+            ]
+        },
+        {
+            "name": "City_building_037",
+            "GameObject id": 2017838524,
+            "Parent id": 682183541,
+            "components": [
+                {
+                    "Type": 0,
+                    "Position": [
+                        -20.317693710327148,
+                        -16.163608551025391,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        -1,
+                        -4.3711388286737929e-08
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 1,
+                    "Mesh Path": "Library\/Meshes\/City_building_037Mesh.elpepe"
+                },
+                {
+                    "Type": 2,
+                    "Material Path": "Library\/Materials\/building05 _c.dds"
+                }
+            ]
+        },
+        {
+            "name": "City_building_038",
+            "GameObject id": 24147666,
+            "Parent id": 682183541,
+            "components": [
+                {
+                    "Type": 0,
+                    "Position": [
+                        -41.649002075195312,
+                        -16.495393753051758,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        -0.7071068286895752,
+                        0.7071068286895752
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 1,
+                    "Mesh Path": "Library\/Meshes\/City_building_038Mesh.elpepe"
+                },
+                {
+                    "Type": 2,
+                    "Material Path": "Library\/Materials\/building05 _c.dds"
+                }
+            ]
+        },
+        {
+            "name": "City_building_039",
+            "GameObject id": 124889253,
+            "Parent id": 682183541,
+            "components": [
+                {
+                    "Type": 0,
+                    "Position": [
+                        -42.807239532470703,
+                        -30.643888473510742,
+                        -9.9999999747524271e-07
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        -0.7071068286895752,
+                        0.7071068286895752
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 1,
+                    "Mesh Path": "Library\/Meshes\/City_building_028Mesh.elpepe"
+                },
+                {
+                    "Type": 2,
+                    "Material Path": "Library\/Materials\/Building_V01_C.dds"
+                }
+            ]
+        },
+        {
+            "name": "City_building_040",
+            "GameObject id": 245960172,
+            "Parent id": 682183541,
+            "components": [
+                {
+                    "Type": 0,
+                    "Position": [
+                        -34.679481506347656,
+                        -30.643888473510742,
+                        -9.9999999747524271e-07
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        -0.7071068286895752,
+                        0.7071068286895752
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 1,
+                    "Mesh Path": "Library\/Meshes\/City_building_028Mesh.elpepe"
+                },
+                {
+                    "Type": 2,
+                    "Material Path": "Library\/Materials\/Building_V01_C.dds"
+                }
+            ]
+        },
+        {
+            "name": "City_building_041",
+            "GameObject id": 416253138,
+            "Parent id": 682183541,
+            "components": [
+                {
+                    "Type": 0,
+                    "Position": [
+                        30.695278167724609,
+                        21.612646102905273,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0.7071068286895752,
+                        0.7071068286895752
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 1,
+                    "Mesh Path": "Library\/Meshes\/City_building_001Mesh.elpepe"
+                },
+                {
+                    "Type": 2,
+                    "Material Path": "Library\/Materials\/Building_V02_C.dds"
                 }
             ]
         }

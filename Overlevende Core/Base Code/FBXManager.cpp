@@ -20,6 +20,7 @@
 #include"Devil/include/ilut.h"
 
 #pragma comment (lib, "Assimp/libx86/assimp.lib")
+#include<map>
 #include<string>
 
 void myFunction(const char* message, char* user)
@@ -53,6 +54,7 @@ void FBXLoader::ImportFBX(char* _buffer, int _size, int _idTexturesTemporal, con
 		aiMesh* new_mesh = nullptr;
 		std::vector<Mesh*> meshVector;
 		std::vector<GLuint> texturesVector;
+		std::map<uint, std::string> textureNames;
 
 		aiString texName;
 		if (scene->HasMaterials()) 
@@ -74,13 +76,16 @@ void FBXLoader::ImportFBX(char* _buffer, int _size, int _idTexturesTemporal, con
 					std::string _tn = (std::string)texName.C_Str();
 					_tn = _tn.substr(0, _tn.find_last_of("."));
 					//texturesVector.push_back(FBXLoader::LoadTexture(buffer, size, &_mesh->textureWidth, &_mesh->textureHeight, _tn));
-					texturesVector.push_back(FBXLoader::LoadTexture(buffer, size, nullptr, nullptr, _tn));
+					int id = FBXLoader::LoadTexture(buffer, size, nullptr, nullptr, _tn);
+					texturesVector.push_back(id);
+					textureNames[id] = texName.C_Str();
 
 					/*_mesh->textureID = texturesVector[texturesVector.size() - 1];*/
 					delete[] buffer;
 				}
 				else {
 					texturesVector.push_back(0);
+					textureNames[0] = "Hola.dds";
 				}
 
 			}
@@ -88,11 +93,11 @@ void FBXLoader::ImportFBX(char* _buffer, int _size, int _idTexturesTemporal, con
 
 		ExternalApp->renderer3D->cleanUpTextures = texturesVector;
 
-		aiMeshToMesh(scene, meshVector, texturesVector, &texName, texturesVector);
+		aiMeshToMesh(scene, meshVector, texturesVector);
 
 		ExternalApp->renderer3D->cleanUpMeshes = meshVector;	
 
-		NodeToGameObject(scene, scene->mRootNode, ExternalApp->scene_intro->rootGO, meshVector, texName);
+		NodeToGameObject(scene, scene->mRootNode, ExternalApp->scene_intro->rootGO, meshVector, textureNames);
 
 		aiReleaseImport(scene);
 	}
@@ -106,7 +111,6 @@ int FBXLoader::LoadTexture(char* buffer, int _size, int* _width, int* _height, s
 	ILuint imageID;
 	ilGenImages(1, &imageID);
 	ilBindImage(imageID);
-
 
 	if (!ilLoadL(IL_TYPE_UNKNOWN,buffer, _size))
 	{
@@ -125,14 +129,16 @@ int FBXLoader::LoadTexture(char* buffer, int _size, int* _width, int* _height, s
 		*_width = ilGetInteger(IL_IMAGE_WIDTH);
 
 	GLuint glID = ilutGLBindTexImage();
-	glBindTexture(GL_TEXTURE_2D, glID);
+	
 	ilDeleteImages(1, &imageID);
+	glBindTexture(GL_TEXTURE_2D, 0);
+	ilBindImage(0);
 
 	return glID;
 }
 
 
-void FBXLoader::aiMeshToMesh(const aiScene* scene, std::vector<Mesh*>& meshVector, std::vector<GLuint>& textureVector, aiString* texName, std::vector<GLuint> texturesVector)
+void FBXLoader::aiMeshToMesh(const aiScene* scene, std::vector<Mesh*>& meshVector, std::vector<GLuint>& textureVector)
 {
 	aiMesh* new_mesh;
 	for (int i = 0; i < scene->mNumMeshes; i++)
@@ -210,7 +216,7 @@ void FBXLoader::aiMeshToMesh(const aiScene* scene, std::vector<Mesh*>& meshVecto
 
 }
 
-void FBXLoader::NodeToGameObject(const aiScene* scene, aiNode* node, GameObject* parent, std::vector<Mesh*>& meshVector, aiString _name)
+void FBXLoader::NodeToGameObject(const aiScene* scene, aiNode* node, GameObject* parent, std::vector<Mesh*>& meshVector, std::map<uint, std::string> textureMap)
 {
 	//GameObject* go = new GameObject(node->mName.C_Str(), parent);
 
@@ -238,8 +244,11 @@ void FBXLoader::NodeToGameObject(const aiScene* scene, aiNode* node, GameObject*
 
 		ComponentMaterial* materialRenderer = (ComponentMaterial*)(childGO->CreateComponent(ComponentType::C_Material));
 		materialRenderer->textureID = meshRenderer->mesh->textureID;
-		std::string p = "Assets/Textures/" + (std::string)_name.C_Str();
-		std::string l = (std::string)_name.C_Str();
+
+		std::string name = textureMap[materialRenderer->textureID];
+
+		std::string p = "Assets/Textures/" + (std::string)name.c_str();
+		std::string l = (std::string)name.c_str();
 		l = l.substr(0, l.find_last_of("."));
 		l += ".dds";
 		l = MATERIALS_PATH + l;
@@ -253,7 +262,7 @@ void FBXLoader::NodeToGameObject(const aiScene* scene, aiNode* node, GameObject*
 
 	for (size_t i = 0; i < node->mNumChildren; i++)
 	{
-		NodeToGameObject(scene, node->mChildren[i], check, meshVector, _name);
+		NodeToGameObject(scene, node->mChildren[i], check, meshVector, textureMap);
 	}
 }
 
@@ -308,6 +317,7 @@ Mesh* FBXLoader::LoadMeshFromOwnFormat(std::string _meshname)
 	loadedMesh->num_vertices = variables[1];
 	loadedMesh->num_normals = variables[2];
 	loadedMesh->num_textures = variables[3];
+	loadedMesh->meshPath = _meshname.c_str();
 	cursor += bytes;
 
 

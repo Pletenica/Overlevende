@@ -35,13 +35,12 @@ bool ModuleSceneIntro::Start()
 	showaxis = true;
 	rootGO = CreateGameObject("Scene", nullptr);
 
+	Load("Library/Scenes/Scene.json");
+
 	//GameObject* camera = CreateGameObject("Camera", rootGO);
 	//camera->CreateComponent(ComponentType::C_Camera);
-	//
-	////App->file_system->LoadFileFromPath("Assets/FBXs/scene.DAE");
+	//App->file_system->LoadFileFromPath("Assets/FBXs/scene.DAE");
 	//App->file_system->LoadFileFromPath("Assets/FBXs/BakerHouse.fbx");
-
-	Load("Library/Scenes/Scene.json");
 	return ret;
 }
 
@@ -143,7 +142,6 @@ void ModuleSceneIntro::Save(const char* _s)
 	JSON_Object* parentObject = json_value_get_object(sceneFile);
 
 	JsonManager manager(parentObject);
-	manager.AddString("Test", "This is a test");
 
 	JSON_Value* gArray = json_value_init_array();
 	rootGO->SaveGameObject(json_value_get_array(gArray));
@@ -193,22 +191,48 @@ void ModuleSceneIntro::Load(const char* fileName)
 	}
 }
 
+void ModuleSceneIntro::SaveModel(const char* _s)
+{
+
+}
+
+void ModuleSceneIntro::LoadModel(const char* _s)
+{
+
+}
 
 Frustum* ModuleSceneIntro::GetActualCameraToCull(GameObject* _go)
 {
-	Frustum *_frustum = nullptr;
+	if (_go->parent == nullptr) {
+		allcameras.clear();
+		actualcullingcam = nullptr;
+	}
 
-	if (_go->GetComponent(ComponentType::C_Camera) != nullptr) {
-		ComponentCamera* _ccam = (ComponentCamera*)_go->GetComponent(ComponentType::C_Camera);
-		if (_ccam->isCulling == true) {
-			return &_ccam->frustum;
-		}
+	//Frustum *_frustum = nullptr;
+
+	ComponentCamera* c_cam = (ComponentCamera*)_go->GetComponent(ComponentType::C_Camera);
+
+	if (c_cam != nullptr) {
+		ComponentCamera* _ccam = c_cam;
+		allcameras.push_back(_ccam);
+
+		//std::sort(allcameras.begin(), allcameras.end(), CompareCameraPriorities);
+		actualcullingcam = allcameras[0];
+		//if (_ccam->isCulling == true) {
+		//	return &_ccam->frustum;
+		//}
 	}
 
 	for (size_t i = 0; i < _go->children.size(); i++) {
-		_frustum= GetActualCameraToCull(_go->children[i]);
-		if (_frustum != nullptr)break;
+		GetActualCameraToCull(_go->children[i]);
+		//_frustum= GetActualCameraToCull(_go->children[i]);
+		//if (_frustum != nullptr)break;
 	}
 
-	return _frustum;
+	return &actualcullingcam->frustum;
+}
+
+bool ModuleSceneIntro::CompareCameraPriorities(ComponentCamera* i1, ComponentCamera* i2)
+{
+	return (i1->priority < i2->priority);
 }

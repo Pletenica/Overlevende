@@ -156,7 +156,9 @@ void ComponentTransform::SetTransform(float3 _pos, Quat _rot, float3 _scale)
 void ComponentTransform::SetTransformWithGlobal(float4x4 _global)
 {
 	global_transform = _global;
-	local_transform = gameobject->parent->transform->global_transform.Inverted() * global_transform;
+	if (gameobject->parent != nullptr) {
+		local_transform = gameobject->parent->transform->global_transform.Inverted() * global_transform;
+	}
 
 	Quat rot;
 	local_transform.Decompose(position, rot, scale);
@@ -200,7 +202,7 @@ void ComponentTransform::SaveComponent(JsonManager* _man)
 	Component::SaveComponent(_man);
 
 	_man->AddVector3("Position", position);
-	_man->AddQuaternion("Rotation", Quat::FromEulerXYZ(rotation.x, rotation.y, rotation.z));
+	_man->AddQuaternion("Rotation", Quat::FromEulerXYZ(rotation.x*DEGTORAD, rotation.y * DEGTORAD, rotation.z * DEGTORAD));
 	_man->AddVector3("Scale", scale);
 }
 

@@ -58,6 +58,7 @@ bool ModuleBaseMotor::CleanUp()
 update_status ModuleBaseMotor::Draw(float dt)
 {
 	quit = false;
+	SDL_GLContext* test = &App->renderer3D->context;
 	ImGui_ImplOpenGL3_NewFrame();
 	ImGui_ImplSDL2_NewFrame(App->window->window);
 	ImGui::NewFrame();

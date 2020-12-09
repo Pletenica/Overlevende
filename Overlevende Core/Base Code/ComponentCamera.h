@@ -29,6 +29,7 @@ public:
 	void SetAspectRatio(float wi, float he);
 
 public:
+	float priority = 1.f;
 	Frustum frustum;
 	bool isCulling = false;
 	bool isMainCamera = false;

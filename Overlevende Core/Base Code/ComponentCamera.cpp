@@ -123,6 +123,14 @@ void ComponentCamera::OnEditor(GameObject* _go)
 
 	if (ImGui::CollapsingHeader("Camera")) {
 
+		ImGui::PushItemWidth(150);
+		if (ImGui::DragFloat("##PriorityInput", &priority, 0.1f, 0, 100)) {
+			ExternalApp->scene_intro->GetActualCameraToCull(ExternalApp->scene_intro->rootGO);
+		}
+		ImGui::PopItemWidth();
+		ImGui::SameLine();
+		ImGui::Text("Priority");
+
 		ImGui::Checkbox("##isCulling", &isCulling);
 		ImGui::SameLine();
 		ImGui::Text("Culling");
@@ -154,6 +162,7 @@ void ComponentCamera::SaveComponent(JsonManager* _man)
 {
 	Component::SaveComponent(_man);
 
+	_man->AddFloat("Prority", priority);
 	_man->AddFloat("Vertical FOV", frustum.verticalFov);
 	_man->AddFloat("Horizontal FOV", frustum.horizontalFov);
 	_man->AddFloat("Far Plane Distance", frustum.farPlaneDistance);
@@ -162,6 +171,7 @@ void ComponentCamera::SaveComponent(JsonManager* _man)
 
 void ComponentCamera::LoadComponent(JsonManager* _man)
 {
+	priority = _man->GetFloat("Prority");
 	frustum.verticalFov = _man->GetFloat("Vertical FOV");
 	frustum.horizontalFov = _man->GetFloat("Horizontal FOV");
 	frustum.farPlaneDistance = _man->GetFloat("Far Plane Distance");
