@@ -1,0 +1,90 @@
+{
+    "Model": [
+        {
+            "name": "ModelRoot",
+            "GameObject id": 1000736348,
+            "Parent id": 1877416199,
+            "components": [
+                {
+                    "Type": 0,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Ghost",
+            "GameObject id": 1040489939,
+            "Parent id": 1000736348,
+            "components": [
+                {
+                    "Type": 0,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Ghost:Ghosti",
+            "GameObject id": 1063047143,
+            "Parent id": 1040489939,
+            "components": [
+                {
+                    "Type": 0,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 1,
+                    "Mesh Path": "Library\/Meshes\/.elpepe"
+                },
+                {
+                    "Type": 2,
+                    "Material Path": "Library\/Materials\/GhostCube_albedo.dds"
+                }
+            ]
+        }
+    ]
+}

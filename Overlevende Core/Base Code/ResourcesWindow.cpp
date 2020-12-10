@@ -24,11 +24,7 @@ bool ResourcesWindow::Init()
 bool ResourcesWindow::Draw(float dt)
 {
 	ImGui::Begin("Resources", NULL);
-	ImGui::Text("This is the resources.");
-	ImGui::End();
-
-	ImGui::Begin("Explorator", NULL);
-	ImGui::Text("This is an explorator.");
+	ImGui::Text("This is the resources window.");
 	ImGui::End();
 
 	return true;

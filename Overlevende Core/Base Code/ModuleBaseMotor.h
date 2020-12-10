@@ -11,6 +11,7 @@
 #include "ConfigurationWindow.h"
 #include "HierarchyWindow.h"
 #include "SceneWindow.h"
+#include "ResourcesWindow.h"
 
 //Include ImGui
 #include "ImGui/imgui.h"
@@ -40,6 +41,7 @@ public:
 	ConfigurationWindow* configuration_window;
 	HierarchyWindow* hierarchy_window;
 	SceneWindow* scene_window;
+	ResourcesWindow* resources_window;
 
 private:
 	bool quit = false;

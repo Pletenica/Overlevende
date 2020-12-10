@@ -3,6 +3,7 @@
 #include "Globals.h"
 #include "glmath.h"
 
+#include"JsonManager.h"
 #include "ComponentCamera.h"
 #include "MathGeoLib/src/Math/float3.h"
 
@@ -22,6 +23,8 @@ public:
 	void LookAt(const float3 &Spot);
 	void Move(const float3& Movement);
 	void SetBackgroundColor(float r, float g, float b, float w);
+	void SaveCamera(JSON_Array* _goArray);
+	void LoadCamera(JsonManager* _man);
 
 public:
 	ComponentCamera _cam;

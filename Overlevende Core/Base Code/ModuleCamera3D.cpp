@@ -4,6 +4,7 @@
 #include "ComponentTransform.h"
 #include "ModuleGameObject.h"
 
+#include"JsonManager.h"
 #include"MathGeoLib/src/Math/Quat.h"
 
 ModuleCamera3D::ModuleCamera3D(Application* app, bool start_enabled) : Module(app, start_enabled), _cam(float3::zero)
@@ -221,4 +222,30 @@ void ModuleCamera3D::Move(const float3 &Movement)
 void ModuleCamera3D::SetBackgroundColor(float r, float g, float b, float w)
 {
 	background = { r,g,b,w };
+}
+
+void ModuleCamera3D::SaveCamera(JSON_Array* _goArray)
+{
+	JSON_Value* _val = json_value_init_object();
+	JsonManager _man(json_value_get_object(_val));
+
+	json_array_append_value(_goArray, _val);
+
+	_man.AddVector3("Camera Position", _cam.frustum.pos);
+
+	Quat rot = Quat::identity;
+	_cam.frustum.WorldMatrix().Decompose(float3(), rot, float3());
+	_man.AddQuaternion("Camera Rotation", rot);
+}
+
+void ModuleCamera3D::LoadCamera(JsonManager* _man)
+{
+	_cam.frustum.pos = _man->GetVector3("Camera Position");
+
+	Quat rot = Quat::identity;
+	rot = _man->GetQuaternion("Camera Rotation");
+
+	float4x4 changeMatrix = _cam.frustum.WorldMatrix();
+	changeMatrix.SetRotatePart(rot.Normalized());
+	_cam.frustum.SetWorldMatrix(changeMatrix.Float3x4Part());
 }

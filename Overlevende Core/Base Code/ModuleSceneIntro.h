@@ -31,7 +31,7 @@ public:
 	void Save(const char* _s);
 	void Load(const char* fileName);
 
-	void SaveModel(const char* _s);
+	void SaveModel(GameObject* _go, const char* _s);
 	void LoadModel(const char* _s);
 
 	Frustum* GetActualCameraToCull(GameObject* _go);

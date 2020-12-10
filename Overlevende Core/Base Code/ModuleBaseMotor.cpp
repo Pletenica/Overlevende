@@ -159,4 +159,5 @@ void ModuleBaseMotor::CreateAllWindows() {
 	scene_window = (SceneWindow*)App->window_manager->CreateWin(WindowType::Scene);
 	options_window = (OptionsWindow*)options_window = (OptionsWindow*)App->window_manager->CreateWin(WindowType::Options);
 	hierarchy_window = (HierarchyWindow*)App->window_manager->CreateWin(WindowType::Hierarchy);
+	resources_window = (ResourcesWindow*)App->window_manager->CreateWin(WindowType::Resources);
 }

@@ -97,7 +97,14 @@ void FBXLoader::ImportFBX(char* _buffer, int _size, int _idTexturesTemporal, con
 
 		ExternalApp->renderer3D->cleanUpMeshes = meshVector;	
 
-		NodeToGameObject(scene, scene->mRootNode, ExternalApp->scene_intro->rootGO, meshVector, textureNames);
+
+		GameObject* _go = ExternalApp->scene_intro->CreateGameObject("ModelRoot", ExternalApp->scene_intro->rootGO);
+
+		NodeToGameObject(scene, scene->mRootNode, _go, meshVector, textureNames);
+
+		std::string _path = MODELS_PATH + _go->children[0]->name + MODELS_FORMAT;
+		ExternalApp->scene_intro->SaveModel(_go, _path.c_str());
+
 
 		aiReleaseImport(scene);
 	}

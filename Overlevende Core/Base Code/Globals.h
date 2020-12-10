@@ -20,8 +20,10 @@ void log(const char file[], int line, const char* format, ...);
 #define LIBRARY_PATH "Library/"
 #define MESHES_PATH "Library/Meshes/"
 #define MATERIALS_PATH "Library/Materials/"
+#define MODELS_PATH "Library/Models/"
 
 #define MESHES_FORMAT ".elpepe"
+#define MODELS_FORMAT ".etesech"
 
 typedef unsigned int uint;
 

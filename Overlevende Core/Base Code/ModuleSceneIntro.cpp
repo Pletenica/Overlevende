@@ -82,6 +82,9 @@ update_status ModuleSceneIntro::Update(float dt)
 	if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN)
 		Load("Library/Scenes/Scene.json");
 
+	//if (App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
+	//	LoadModel("Library/Models/Ghost.etesech");
+
 	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
 		if (showaxis == true) {
 			showaxis = false;
@@ -143,9 +146,15 @@ void ModuleSceneIntro::Save(const char* _s)
 
 	JsonManager manager(parentObject);
 
+	JSON_Value* camArray = json_value_init_array();
+	App->camera->SaveCamera(json_value_get_array(camArray));
+	json_object_set_value(parentObject, "Editor Camera Settings", camArray);
+
 	JSON_Value* gArray = json_value_init_array();
 	rootGO->SaveGameObject(json_value_get_array(gArray));
 	json_object_set_value(parentObject, "GameObjects", gArray);
+
+	
 
 	json_serialize_to_file_pretty(sceneFile, _s);
 
@@ -165,6 +174,12 @@ void ModuleSceneIntro::Load(const char* fileName)
 
 		JSON_Object* parentObject = json_value_get_object(sceneFile);
 
+		//Load Editor Camera Settings
+		JSON_Array* _camarray = json_object_get_array(parentObject, "Editor Camera Settings");
+		JsonManager jsoncamroot(json_array_get_object(_camarray, 0));
+		App->camera->LoadCamera(&jsoncamroot);
+
+		//Load GameObjects
 		JSON_Array* _goarray = json_object_get_array(parentObject, "GameObjects");
 
 		JsonManager jsonroot(json_array_get_object(_goarray, 0));
@@ -191,14 +206,56 @@ void ModuleSceneIntro::Load(const char* fileName)
 	}
 }
 
-void ModuleSceneIntro::SaveModel(const char* _s)
+void ModuleSceneIntro::SaveModel(GameObject* _go, const char* _s)
 {
+	JSON_Value* sceneFile = json_value_init_object();
+	JSON_Object* parentObject = json_value_get_object(sceneFile);
 
+	JsonManager manager(parentObject);
+
+	JSON_Value* gArray = json_value_init_array();
+	_go->SaveGameObject(json_value_get_array(gArray));
+	json_object_set_value(parentObject, "Model", gArray);
+
+	json_serialize_to_file_pretty(sceneFile, _s);
+
+	json_value_free(sceneFile);
 }
 
-void ModuleSceneIntro::LoadModel(const char* _s)
+void ModuleSceneIntro::LoadModel(const char* fileName)
 {
+	JSON_Value* sceneFile = json_parse_file(fileName);
 
+	if (sceneFile != nullptr)
+	{
+		App->base_motor->inspector_window->_selectedGO = nullptr;
+
+		JSON_Object* parentObject = json_value_get_object(sceneFile);
+
+		JSON_Array* _goarray = json_object_get_array(parentObject, "Model");
+
+		JsonManager jsonroot(json_array_get_object(_goarray, 0));
+
+		GameObject* parent = CreateGameObject(jsonroot.GetString("name"), rootGO, jsonroot.GetInt("GameObject id"));
+
+		for (int i = 1; i < json_array_get_count(_goarray); i++)
+		{
+			JsonManager jsonman(json_array_get_object(_goarray, i));
+
+			while (parent != nullptr && jsonman.GetInt("Parent id") != parent->idGO) {
+				parent = parent->parent;
+			}
+			if (parent == nullptr) {
+				parent = rootGO;
+			}
+			parent = CreateGameObject(jsonman.GetString("name"), parent, jsonman.GetInt("GameObject id"));
+
+			parent->LoadGameObject(jsonman.GetArray("components"));
+			parent->UpdateAABB();
+		}
+
+		json_value_free(sceneFile);
+	}
 }
 
 Frustum* ModuleSceneIntro::GetActualCameraToCull(GameObject* _go)
