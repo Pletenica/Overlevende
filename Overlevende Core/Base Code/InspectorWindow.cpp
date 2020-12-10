@@ -1,4 +1,5 @@
 #include "Globals.h"
+#include "WindowManager.h"
 #include "InspectorWindow.h"
 #include "Application.h"
 #include "ModuleInput.h"

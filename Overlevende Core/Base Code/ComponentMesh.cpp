@@ -1,13 +1,24 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleGameObject.h"
+#include "ModuleSceneIntro.h"
+#include "ModuleRenderer3D.h"
 #include "ComponentMesh.h"
 #include "ComponentTransform.h"
+#include "ComponentCamera.h"
 #include "Mesh.h"
 
-#include <vector>
 #include "FBXManager.h"
 #include "MathGeoLib/src/Geometry/Plane.h"
+#include "MathGeoLib/src/Math/float3.h"
+#include <vector>
+
+//Include ImGui
+#include "Glew/include/glew.h"
+#include "ImGui/imgui.h"
+#include "ImGui/imgui_internal.h"
+#include "ImGui/imgui_impl_sdl.h"
+#include "ImGui/imgui_impl_opengl3.h"
 
 ///WINDOW NOW
 ComponentMesh::ComponentMesh(GameObject* _go) :Component(_go)

@@ -3,9 +3,17 @@
 #include "ModuleCamera3D.h"
 #include "ComponentTransform.h"
 #include "ModuleGameObject.h"
+#include "ModuleInput.h"
+#include "ModuleBaseMotor.h"
+#include "InspectorWindow.h"
 
 #include"JsonManager.h"
 #include"MathGeoLib/src/Math/Quat.h"
+#include "MathGeoLib/src/Math/float3.h"
+#include "MathGeoLib/src/Geometry/Frustum.h"
+#include "MathGeoLib/src/Math/float4x4.h"
+#include "glmath.h"
+
 
 ModuleCamera3D::ModuleCamera3D(Application* app, bool start_enabled) : Module(app, start_enabled), _cam(float3::zero)
 {

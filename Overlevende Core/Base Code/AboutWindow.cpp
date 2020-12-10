@@ -1,5 +1,6 @@
 #include "Globals.h"
 #include "Application.h"
+#include "WindowManager.h"
 #include "AboutWindow.h"
 #include "Glew/include/glew.h"
 

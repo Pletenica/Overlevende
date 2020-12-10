@@ -7,9 +7,14 @@
 #include "ConsoleWindow.h"
 #include "OptionsWindow.h"
 #include "SceneWindow.h"
+#include "ModuleBaseMotor.h"
 #include "ModuleGameObject.h"
 #include "ModuleSceneIntro.h"
+
 #include "MathGeoLib/src/Algorithm/Random/LCG.h"
+#include "MathGeoLib/src/Math/float3.h"
+#include "MathGeoLib/src/Geometry/OBB.h"
+#include "MathGeoLib/src/Geometry/AABB.h"
 
 #include "ComponentMesh.h"
 #include "ComponentMaterial.h"
@@ -17,6 +22,7 @@
 #include "ComponentCamera.h"
 
 #include "JsonManager.h"
+#include "Mesh.h"
 
 GameObject::GameObject(const char* _name, GameObject* _parent, int id)
 {

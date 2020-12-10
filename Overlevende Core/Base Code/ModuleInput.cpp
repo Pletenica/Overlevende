@@ -4,6 +4,8 @@
 #include "FBXManager.h"
 
 #include "ComponentMesh.h"
+#include "ModuleRenderer3D.h"
+#include "ModuleFileSystem.h"
 
 #define MAX_KEYS 300
 

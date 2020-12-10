@@ -1,6 +1,8 @@
 #include "Globals.h"
 #include "Application.h"
+#include "WindowManager.h"
 #include "ConfigurationWindow.h"
+#include "ModuleCamera3D.h"
 #include "Glew/include/glew.h"
 #include "Time.h"
 

@@ -1,6 +1,8 @@
 #pragma once
 #include "Globals.h"
 #include "Application.h"
+#include "ConsoleWindow.h"
+#include "ModuleBaseMotor.h"
 
 void log(const char file[], int line, const char* format, ...)
 {

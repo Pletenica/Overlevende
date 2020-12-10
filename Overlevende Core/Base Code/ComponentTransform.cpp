@@ -2,13 +2,21 @@
 #include "Application.h"
 #include "ModuleGameObject.h"
 #include "ComponentTransform.h"
-#include "MathGeoLib/src/Math/float3.h"
+
+#include "lib/Assimp/include/vector3.h"
 #include "MathGeoLib/src/Math/Quat.h"
 #include"MathGeoLib/src/Math/float4x4.h"
 
 #include "Assimp/include/cimport.h"
 #include "Assimp/include/scene.h"
 #include "Assimp/include/postprocess.h"
+
+//Include ImGui
+#include "Glew/include/glew.h"
+#include "ImGui/imgui.h"
+#include "ImGui/imgui_internal.h"
+#include "ImGui/imgui_impl_sdl.h"
+#include "ImGui/imgui_impl_opengl3.h"
 
 ///WINDOW NOW
 ComponentTransform::ComponentTransform(GameObject* _go) :Component(_go)

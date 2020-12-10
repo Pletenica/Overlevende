@@ -1,12 +1,21 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleGameObject.h"
+#include "ModuleSceneIntro.h"
 #include "ComponentCamera.h"
 #include "ComponentTransform.h"
 #include "MathGeoLib/src/Geometry/Frustum.h"
 #include "MathGeoLib/src/MathGeoLib.h"
 
 #include "JSONManager.h"
+#include "glmath.h"
+
+//Include ImGui
+#include "Glew/include/glew.h"
+#include "ImGui/imgui.h"
+#include "ImGui/imgui_internal.h"
+#include "ImGui/imgui_impl_sdl.h"
+#include "ImGui/imgui_impl_opengl3.h"
 
 ///WINDOW NOW
 ComponentCamera::ComponentCamera(GameObject* _go) :Component(_go)

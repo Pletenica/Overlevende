@@ -2,8 +2,12 @@
 #include "Application.h"
 #include "ModuleFileSystem.h"
 #include "FBXManager.h"
+#include "ModuleRenderer3D.h"
+#include "ModuleBaseMotor.h"
+#include "InspectorWindow.h"
 #include "ComponentMesh.h"
 #include "ComponentMaterial.h"
+#include "Mesh.h"
 //#include "PathNode.h"
 
 #include "PhysFS/include/physfs.h"

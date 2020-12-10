@@ -1,7 +1,13 @@
 #include "Globals.h"
 #include "Application.h"
+#include "WindowManager.h"
 #include "HierarchyWindow.h"
 #include "Glew/include/glew.h"
+
+#include "ModuleBaseMotor.h"
+#include "ModuleSceneIntro.h"
+#include "ModuleGameObject.h"
+#include "InspectorWindow.h"
 
 HierarchyWindow::HierarchyWindow() :Window()
 {

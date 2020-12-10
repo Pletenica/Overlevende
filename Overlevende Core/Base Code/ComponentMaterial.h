@@ -8,6 +8,9 @@
 #include <string>
 
 class ComponentMesh;
+class Component;
+class GameObject;
+class JsonManager;
 
 class ComponentMaterial : public Component
 {

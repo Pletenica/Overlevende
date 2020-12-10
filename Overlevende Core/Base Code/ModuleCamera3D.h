@@ -1,11 +1,16 @@
-#pragma once
+#ifndef __ModuleCamera3D_H__
+#define __ModuleCamera3D_H__
+
 #include "Module.h"
 #include "Globals.h"
-#include "glmath.h"
 
-#include"JsonManager.h"
 #include "ComponentCamera.h"
 #include "MathGeoLib/src/Math/float3.h"
+
+class vec3;
+typedef struct json_array_t  JSON_Array;
+class JsonManager;
+#include "Color.h"
 
 class ModuleCamera3D : public Module
 {
@@ -37,3 +42,5 @@ public:
 
 	Color background;
 };
+
+#endif // __ModuleCamera3D_H__

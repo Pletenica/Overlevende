@@ -18,6 +18,8 @@
 #define SQUARE_TEXTURE_W 128
 #define SQUARE_TEXTURE_H 128
 
+class GameObject;
+
 class ModuleRenderer3D : public Module
 {
 public:

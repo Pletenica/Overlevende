@@ -1,7 +1,12 @@
 #include "Globals.h"
 #include "Application.h"
+#include "WindowManager.h"
 #include "OptionsWindow.h"
 #include "Glew/include/glew.h"
+#include "ModuleSceneIntro.h"
+#include "ModuleBaseMotor.h"
+#include "SceneWindow.h"
+#include "ModuleFileSystem.h"
 
 #include "Mesh.h"
 #include "FBXManager.h"

@@ -7,7 +7,9 @@
 #include "MathGeoLib/src/Geometry/Frustum.h"
 #include <string>
 
-class JSONManager;
+class Component;
+class GameObject;
+class JsonManager;
 
 class ComponentCamera : public Component
 {

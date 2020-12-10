@@ -4,14 +4,14 @@
 #include "glmath.h"
 #include "Light.h"
 
-#include "ConsoleWindow.h"
-#include "InspectorWindow.h"
-#include "OptionsWindow.h"
-#include "AboutWindow.h"
-#include "ConfigurationWindow.h"
-#include "HierarchyWindow.h"
-#include "SceneWindow.h"
-#include "ResourcesWindow.h"
+class ConsoleWindow;
+class InspectorWindow;
+class OptionsWindow;
+class AboutWindow;
+class ConfigurationWindow;
+class HierarchyWindow;
+class SceneWindow;
+class ResourcesWindow;
 
 //Include ImGui
 #include "ImGui/imgui.h"

@@ -1,11 +1,9 @@
 #ifndef __ConfigurationWindow_H__
 #define __ConfigurationWindow_H__
 
-#include "Module.h"
 #include "Globals.h"
-#include "glmath.h"
-#include "WindowManager.h"
-#include "SDL/include/SDL.h"
+
+class WindowManager;
 
 class ConfigurationWindow : public Window
 {

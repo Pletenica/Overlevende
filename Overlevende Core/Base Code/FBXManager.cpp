@@ -8,6 +8,8 @@
 
 #include"ModuleRenderer3D.h"
 #include"ModuleGameObject.h"
+#include "ModuleSceneIntro.h"
+#include "ModuleFileSystem.h"
 
 #include"ComponentMaterial.h"
 #include"ComponentMesh.h"

@@ -1,6 +1,17 @@
 #include "Application.h"
 #include "Time.h"
 
+#include "Timer.h"
+#include "Module.h"
+#include "ModuleWindow.h"
+#include "WindowManager.h"
+#include "ModuleInput.h"
+#include "ModuleSceneIntro.h"
+#include "ModuleRenderer3D.h"
+#include "ModuleCamera3D.h"
+#include "ModuleBaseMotor.h"
+#include "ModuleFileSystem.h"
+
 extern Application* ExternalApp = nullptr;
 Application::Application()
 {

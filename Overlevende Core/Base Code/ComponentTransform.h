@@ -6,9 +6,12 @@
 #include "SDL/include/SDL.h"
 
 class aiNode;
-#include "lib/Assimp/include/vector3.h"
-#include "lib/Assimp/include/quaternion.h"
-#include "lib/MathGeoLib/src/Math/float4x4.h"
+class Component;
+class GameObject;
+class JsonManager;
+
+#include "MathGeoLib/src/Math/float3.h"
+#include "MathGeoLib/src/Math/float4x4.h"
 
 class ComponentTransform : public Component
 {

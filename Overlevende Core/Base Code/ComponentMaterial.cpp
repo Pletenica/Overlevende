@@ -1,13 +1,24 @@
 #include "Globals.h"
 #include "Application.h"
+
+#include "ModuleBaseMotor.h"
+#include "ModuleRenderer3D.h"
 #include "ModuleGameObject.h"
 #include "ComponentMaterial.h"
 #include "ComponentMesh.h"
 #include "FBXManager.h"
 #include "ModuleFileSystem.h"
+#include "InspectorWindow.h"
 
 #include"Devil/include/ilu.h"
 #include"Devil/include/ilut.h"
+
+//Include ImGui
+#include "Glew/include/glew.h"
+#include "ImGui/imgui.h"
+#include "ImGui/imgui_internal.h"
+#include "ImGui/imgui_impl_sdl.h"
+#include "ImGui/imgui_impl_opengl3.h"
 
 ///WINDOW NOW
 ComponentMaterial::ComponentMaterial(GameObject* _go) :Component(_go)

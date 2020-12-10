@@ -1,14 +1,9 @@
 #ifndef __ConsoleWindow_H__
 #define __ConsoleWindow_H__
 
-#include "Module.h"
 #include "Globals.h"
-#include "glmath.h"
-#include "WindowManager.h"
-#include "SDL/include/SDL.h"
 
-#include <string>
-#include <vector>
+#include "WindowManager.h"
 
 class ConsoleWindow : public Window
 {

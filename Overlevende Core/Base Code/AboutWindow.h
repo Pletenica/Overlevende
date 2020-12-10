@@ -1,11 +1,10 @@
 #ifndef __AboutWindow_H__
 #define __AboutWindow_H__
 
-#include "Module.h"
 #include "Globals.h"
-#include "glmath.h"
-#include "WindowManager.h"
-#include "SDL/include/SDL.h"
+
+class Window;
+class WindowManager;
 
 class AboutWindow : public Window
 {

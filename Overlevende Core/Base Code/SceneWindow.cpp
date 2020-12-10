@@ -1,11 +1,21 @@
 #include "Globals.h"
 #include "Application.h"
+#include "ModuleBaseMotor.h"
+#include "ModuleRenderer3D.h"
+#include "ModuleCamera3D.h"
+#include "ModuleInput.h"
+
+#include "WindowManager.h"
 #include "SceneWindow.h"
 #include "Glew/include/glew.h"
+#include "InspectorWindow.h"
 
 #include "ComponentTransform.h"
 #include "ComponentMesh.h"
+
 #include "MathGeoLib/src/Geometry/Triangle.h"
+#include "MathGeoLib/src/Geometry/Frustum.h"
+#include "MathGeoLib/src/Math/float4x4.h"
 
 SceneWindow::SceneWindow() :Window()
 {
@@ -90,8 +100,6 @@ void SceneWindow::DoGuizmo()
 	if (ExternalApp->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN) {
 		gOperation = ImGuizmo::SCALE;
 	}
-
-
 }
 
 void SceneWindow::ToogleModeGuizmo()

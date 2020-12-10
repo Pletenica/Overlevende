@@ -3,16 +3,20 @@
 
 #include "p2List.h"
 #include "Globals.h"
+
+class ModuleFileSystem;
+class ModuleBaseMotor;
+class ModuleCamera3D;
+class ModuleRenderer3D;
+class ModuleSceneIntro;
+class ModuleInput;
+class WindowManager;
+class ModuleWindow;
+class Module;
+
 #include "Timer.h"
-#include "Module.h"
-#include "ModuleWindow.h"
-#include "WindowManager.h"
-#include "ModuleInput.h"
-#include "ModuleSceneIntro.h"
-#include "ModuleRenderer3D.h"
-#include "ModuleCamera3D.h"
-#include "ModuleBaseMotor.h"
-#include "ModuleFileSystem.h"
+#include <string>
+#include <vector>
 
 struct HardwareInfo
 {

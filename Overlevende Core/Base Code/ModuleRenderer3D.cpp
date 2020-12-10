@@ -6,6 +6,11 @@
 #include <gl/GL.h>
 #include <gl/GLU.h>
 #include"FBXManager.h"
+#include "ModuleCamera3D.h"
+#include "ModuleWindow.h"
+#include "ModuleSceneIntro.h"
+#include "OptionsWindow.h"
+#include "ModuleBaseMotor.h"
 
 #include"MathGeoLib/src/Math/float4x4.h"
 

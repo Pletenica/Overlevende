@@ -10,8 +10,19 @@
 #pragma comment (lib, "opengl32.lib") /* link Microsoft OpenGL lib   */
 #pragma comment (lib, "Glew/libx86/glew32.lib") /* link Microsoft OpenGL lib   */
 
+#include "ModuleBaseMotor.h"
+#include "ModuleSceneIntro.h"
+#include "ModuleWindow.h"
+#include "ModuleRenderer3D.h"
+
 #include "ConsoleWindow.h"
 #include "InspectorWindow.h"
+#include "OptionsWindow.h"
+#include "AboutWindow.h"
+#include "ConfigurationWindow.h"
+#include "HierarchyWindow.h"
+#include "SceneWindow.h"
+#include "ResourcesWindow.h"
 
 ModuleBaseMotor::ModuleBaseMotor(Application* app, bool start_enabled) : Module(app, start_enabled)
 {

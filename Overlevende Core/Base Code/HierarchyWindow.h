@@ -1,11 +1,10 @@
 #ifndef __hierarchyWindow_H__
 #define __hierarchyWindow_H__
 
-#include "Module.h"
 #include "Globals.h"
-#include "glmath.h"
-#include "WindowManager.h"
-#include "SDL/include/SDL.h"
+
+class WindowManager;
+class GameObject;
 
 class HierarchyWindow : public Window
 {

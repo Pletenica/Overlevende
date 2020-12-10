@@ -6,6 +6,9 @@
 #include "SDL/include/SDL.h"
 
 class Mesh;
+class Component;
+class GameObject;
+class JsonManager;
 
 class ComponentMesh : public Component
 {
