@@ -71,7 +71,12 @@ void InspectorWindow::CreateInitTab()
 	ImGui::Text("Options");
 	ImGui::Checkbox(" Name:", &_selectedGO->active);
 	ImGui::SameLine();
-	ImGui::TextColored(ImVec4(0.5f,0.5f,1,1), _selectedGO->name.c_str());
+
+	char selGOchar[50];
+	strcpy_s(selGOchar, 50, _selectedGO->name.c_str());
+	ImGuiInputTextFlags input_name_flags = ImGuiInputTextFlags_AutoSelectAll | ImGuiInputTextFlags_EnterReturnsTrue;
+	if (ImGui::InputText("###", selGOchar, 50, input_name_flags))
+		_selectedGO->name = selGOchar;
 }
 
 void InspectorWindow::AddComponentButton()

@@ -44,7 +44,8 @@ public:
 	GameObject* rootGO = nullptr;
 	GameObject* _toDeleteGO = nullptr;
 private:
-	bool CompareCameraPriorities(ComponentCamera* i1, ComponentCamera* i2);
 	bool showaxis = true;
 	bool wireSphere = true;
 };
+
+bool CompareCameraPriorities(ComponentCamera* i1, ComponentCamera* i2);

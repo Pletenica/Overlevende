@@ -580,6 +580,9 @@
     <ClInclude Include="Base Code\Time.h">
       <Filter>Core\Tools\Time</Filter>
     </ClInclude>
+    <ClInclude Include="Base Code\Resource.h">
+      <Filter>Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">

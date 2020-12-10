@@ -4,6 +4,7 @@
 #include"Primitive.h"
 #include <gl/GL.h>
 
+#include <algorithm>
 #include"JsonManager.h"
 #include"ComponentTransform.h"
 #include "MathGeoLib/src/MathGeoLib.h"
@@ -37,7 +38,7 @@ bool ModuleSceneIntro::Start()
 
 	Load("Library/Scenes/Scene.json");
 
-	//GameObject* camera = CreateGameObject("Camera", rootGO);
+	//GameObject* camera = CreateGameObject("Camera 2", rootGO);
 	//camera->CreateComponent(ComponentType::C_Camera);
 	//App->file_system->LoadFileFromPath("Assets/FBXs/scene.DAE");
 	//App->file_system->LoadFileFromPath("Assets/FBXs/BakerHouse.fbx");
@@ -76,11 +77,11 @@ update_status ModuleSceneIntro::Update(float dt)
 	PrimitivePlane p(0, 1, 0, 0);
 	p.axis = true;
 
-	if (App->input->GetKey(SDL_SCANCODE_F) == KEY_DOWN)
-		Save("Library/Scenes/Scene.json");
-
-	if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN)
-		Load("Library/Scenes/Scene.json");
+	//if (App->input->GetKey(SDL_SCANCODE_F) == KEY_DOWN)
+	//	Save("Library/Scenes/Scene.json");
+	//
+	//if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN)
+	//	Load("Library/Scenes/Scene.json");
 
 	//if (App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
 	//	LoadModel("Library/Models/Ghost.etesech");
@@ -204,6 +205,7 @@ void ModuleSceneIntro::Load(const char* fileName)
 
 		json_value_free(sceneFile);
 	}
+	GetActualCameraToCull(rootGO);
 }
 
 void ModuleSceneIntro::SaveModel(GameObject* _go, const char* _s)
@@ -273,7 +275,7 @@ Frustum* ModuleSceneIntro::GetActualCameraToCull(GameObject* _go)
 		ComponentCamera* _ccam = c_cam;
 		allcameras.push_back(_ccam);
 
-		//std::sort(allcameras.begin(), allcameras.end(), CompareCameraPriorities);
+		std::sort(allcameras.begin(), allcameras.end(), CompareCameraPriorities);
 		actualcullingcam = allcameras[0];
 		//if (_ccam->isCulling == true) {
 		//	return &_ccam->frustum;
@@ -289,7 +291,7 @@ Frustum* ModuleSceneIntro::GetActualCameraToCull(GameObject* _go)
 	return &actualcullingcam->frustum;
 }
 
-bool ModuleSceneIntro::CompareCameraPriorities(ComponentCamera* i1, ComponentCamera* i2)
+bool CompareCameraPriorities(ComponentCamera* i1, ComponentCamera* i2)
 {
-	return (i1->priority < i2->priority);
+	return (i1->priority > i2->priority);
 }

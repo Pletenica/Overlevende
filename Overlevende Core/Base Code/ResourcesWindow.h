@@ -7,6 +7,8 @@
 #include "WindowManager.h"
 #include "SDL/include/SDL.h"
 
+class Resource;
+
 class ResourcesWindow : public Window
 {
 public:
@@ -20,6 +22,10 @@ public:
 	bool Draw(float dt);
 	bool PreUpdate(float dt);
 	bool CleanUp();
+
+	void RecursiveResourcesDraw(Resource *_resource);
+
+	Resource* principalAsset = nullptr;
 };
 
 #endif // __ResourcesWindow_H__
