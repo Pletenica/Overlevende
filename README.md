@@ -70,9 +70,10 @@ button to minimize the entire window.
 
 	* Transformations functionalities:
 	In the new version you can work with the gameobjects by editing them, you can control this by using the following controls:
-	1 to enable the position gizmo, drag it to move the gameobject at your disered position.
-	2 to enable the rotation gizmo, drag it to rotate the gameobject at your disered position.
-	3 to enable the escale gizmo, drag it to escale the gameobject at your disered size.
+		* 1 to enable the position gizmo, drag it to move the gameobject at your disered position.
+		* 2 to enable the rotation gizmo, drag it to rotate the gameobject at your disered position.
+		* 3 to enable the escale gizmo, drag it to escale the gameobject at your disered size.
+		
 	Note that you can modify any of these features in the inspector window too.
 	
 
