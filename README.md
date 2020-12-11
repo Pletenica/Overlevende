@@ -47,7 +47,7 @@ button to minimize the entire window.
 	this is running and other features. Some of this features will start from the time you start working in Overlevende but some of thesewssee are linked to the options
 	window(see below).
 
-![Configuration](https://github.com/Pletenica/Overlevende/blob/master/Readme%20images/ConfigurationW.PNG?raw=true)
+![Configuration](https://raw.githubusercontent.com/Pletenica/Overlevende/master/Readme%20images/Configuration.PNG)
 
 - The scene window:
 	
