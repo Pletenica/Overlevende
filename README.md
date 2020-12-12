@@ -114,6 +114,9 @@ button to minimize the entire window.
 	change it or just introduce the desired value. For the camera's options note the you can change the priority, enable or disable de culling and edit some more options 
 	for the Frustum Culling feature.
 
+- Resource Windows:
+	This window will display all the resources used in the scene.
+
 ![Inspector](https://github.com/Pletenica/Overlevende/blob/master/Readme%20images/inspector.PNG?raw=true)
 
 - Console:

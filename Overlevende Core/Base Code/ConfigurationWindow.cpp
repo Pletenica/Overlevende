@@ -101,7 +101,9 @@ bool ConfigurationWindow::Draw(float dt)
 		ImGui::Text("While Right clicking, “WASD” fps-like movement and free look around is enabled.");
 		ImGui::Text("Shift will double the speed of movement.");
 		ImGui::Text("You can use 0 to deselect the gameobject from the inspector.");
-		ImGui::Text("You can use 2 to create empty objects children of the general scene.");
+		ImGui::Text("1 to enable the position gizmo, drag it to move the gameobject at your disered position.");
+		ImGui::Text("2 to enable the rotation gizmo, drag it to rotate the gameobject at your disered position.");
+		ImGui::Text("3 to enable the escale gizmo, drag it to escale the gameobject at your disered size.");
 
 	}
 	if (ImGui::CollapsingHeader("Time Configuration")) {
