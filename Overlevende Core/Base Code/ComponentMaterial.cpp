@@ -85,6 +85,8 @@ void ComponentMaterial::LoadComponent(JsonManager* _man)
 	textureLibraryPath = mPath.c_str();
 	std::string aPath = "Assets/Textures/" + _texname + ".png";
 	textureAssetsPath = aPath;
+
+	ExternalApp->renderer3D->cleanUpTextures.push_back(c_mesh->mesh->textureID);
 }
 
 void ComponentMaterial::OnEditor(GameObject* _go)

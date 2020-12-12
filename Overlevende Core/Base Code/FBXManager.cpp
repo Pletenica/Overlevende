@@ -93,12 +93,17 @@ void FBXLoader::ImportFBX(char* _buffer, int _size, int _idTexturesTemporal, con
 			}
 		}
 
-		ExternalApp->renderer3D->cleanUpTextures = texturesVector;
+		for (size_t i = 0; i < texturesVector.size(); i++)
+		{
+			ExternalApp->renderer3D->cleanUpTextures.push_back(texturesVector[i]);
+		}
 
 		aiMeshToMesh(scene, meshVector, texturesVector);
 
-		ExternalApp->renderer3D->cleanUpMeshes = meshVector;	
-
+		for (size_t i = 0; i < meshVector.size(); i++)
+		{
+			ExternalApp->renderer3D->cleanUpMeshes.push_back(meshVector[i]);
+		}
 
 		GameObject* _go = ExternalApp->scene_intro->CreateGameObject("ModelRoot", ExternalApp->scene_intro->rootGO);
 

@@ -1,0 +1,124 @@
+{
+    "Model": [
+        {
+            "name": "ModelRoot",
+            "GameObject id": 1833447936,
+            "Parent id": 697600268,
+            "components": [
+                {
+                    "Type": 0,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "BakerHouse",
+            "GameObject id": 1853220300,
+            "Parent id": 1833447936,
+            "components": [
+                {
+                    "Type": 0,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Chimney",
+            "GameObject id": 1864220418,
+            "Parent id": 1853220300,
+            "components": [
+                {
+                    "Type": 0,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        0.99999934434890747,
+                        0.99999934434890747,
+                        0.99999934434890747
+                    ]
+                },
+                {
+                    "Type": 1,
+                    "Mesh Path": "Library\/Meshes\/Untitled.001.elpepe"
+                },
+                {
+                    "Type": 2,
+                    "Material Path": "Library\/Materials\/Baker_house.dds"
+                }
+            ]
+        },
+        {
+            "name": "Baker_house",
+            "GameObject id": 1923119784,
+            "Parent id": 1853220300,
+            "components": [
+                {
+                    "Type": 0,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        0.99999934434890747,
+                        0.99999934434890747,
+                        0.99999934434890747
+                    ]
+                },
+                {
+                    "Type": 1,
+                    "Mesh Path": "Library\/Meshes\/Untitled.elpepe"
+                },
+                {
+                    "Type": 2,
+                    "Material Path": "Library\/Materials\/Baker_house.dds"
+                }
+            ]
+        }
+    ]
+}

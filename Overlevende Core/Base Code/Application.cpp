@@ -128,10 +128,9 @@ bool Application::CleanUp()
 	ExternalApp = nullptr;
 	bool ret = true;
 
-	for (int i = 0; i > list_modules.size(); i++) {
-		if (list_modules[i] != nullptr) {
-			ret = list_modules[i]->CleanUp();
-		}
+	for (int i = list_modules.size() - 1; i >= 0 && ret == true; --i)
+	{
+		ret = list_modules[i]->CleanUp();
 	}
 
 	return ret;

@@ -150,6 +150,7 @@ void ComponentMesh::LoadComponent(JsonManager* _man)
 	std::string mPath=_man->GetString("Mesh Path");
 	mesh = FBXLoader::LoadMeshFromOwnFormat(mPath);
 	mesh->GenBuffers(MeshType::FBXNone);
+	ExternalApp->renderer3D->cleanUpMeshes.push_back(mesh);
 }
 
 void ComponentMesh::DrawVertexNormals(Mesh* _mesh)

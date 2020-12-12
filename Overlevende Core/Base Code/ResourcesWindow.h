@@ -26,6 +26,7 @@ public:
 	void RecursiveResourcesDraw(Resource *_resource);
 
 	Resource principalAsset;
+	float currenttime = 0.f;
 };
 
 #endif // __ResourcesWindow_H__

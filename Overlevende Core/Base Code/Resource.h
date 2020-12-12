@@ -9,6 +9,7 @@ class Resource {
 public:
 	Resource();
 	Resource(const char* _name, bool _isDirectory);
+	~Resource();
 
 	std::string name = "";
 	bool isDirectory = false;

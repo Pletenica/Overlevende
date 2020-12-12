@@ -30,6 +30,15 @@ bool ResourcesWindow::Init()
 
 bool ResourcesWindow::Draw(float dt)
 {
+	currenttime += dt;
+
+	if (currenttime >= 2) {
+		currenttime = 0;
+		//principalAsset.~Resource();
+		principalAsset.children.clear();
+		ExternalApp->file_system->GetFilesRecursive(&principalAsset);
+	}
+
 	ImGui::Begin("Resources", NULL);
 	ImGui::Text("This is the resources window.");
 
