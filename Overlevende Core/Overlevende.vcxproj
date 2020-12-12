@@ -269,6 +269,7 @@
     <ClCompile Include="Base Code\ModuleFileSystem.cpp" />
     <ClCompile Include="Base Code\ModuleGameObject.cpp" />
     <ClCompile Include="Base Code\OptionsWindow.cpp" />
+    <ClCompile Include="Base Code\Resource.cpp" />
     <ClCompile Include="Base Code\ResourcesWindow.cpp" />
     <ClCompile Include="Base Code\SceneWindow.cpp" />
     <ClCompile Include="Base Code\Time.cpp" />

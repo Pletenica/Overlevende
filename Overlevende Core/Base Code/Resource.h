@@ -3,12 +3,17 @@
 
 #include "Globals.h"
 #include <string>
-
+#include <vector>
 
 class Resource {
 public:
+	Resource();
+	Resource(const char* _name, bool _isDirectory);
+
 	std::string name = "";
-	std::vector<Resource*> children;
+	bool isDirectory = false;
+	std::vector<Resource> children;
+	Resource* parent;
 };
 
 #endif // __Resource_H__

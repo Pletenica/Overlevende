@@ -9,7 +9,7 @@
 #include "OptionsWindow.h"
 #include "SceneWindow.h"
 #include "WindowManager.h"
-
+#include "ModuleBaseMotor.h"
 
 WindowManager::WindowManager(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
@@ -21,7 +21,7 @@ WindowManager::~WindowManager()
 }
 
 // Called before render is available
-bool WindowManager::Init()
+bool WindowManager::Start()
 {
 	bool ret = true;
 

@@ -11,6 +11,9 @@ ConfigurationWindow::ConfigurationWindow() :Window()
 	active = true;
 	ms.reserve(50);
 	fps.reserve(50);
+
+
+
 	NightModeSelected();
 	PutBlueColor();
 }
@@ -24,6 +27,8 @@ ConfigurationWindow::~ConfigurationWindow()
 bool ConfigurationWindow::Init()
 {
 	bool ret = true;
+
+	
 
 	return ret;
 }

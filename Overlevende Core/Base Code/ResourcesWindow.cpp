@@ -1,6 +1,7 @@
 #include "Globals.h"
 #include "Application.h"
 #include "WindowManager.h"
+#include "ModuleFileSystem.h"
 #include "ResourcesWindow.h"
 #include "Glew/include/glew.h"
 
@@ -21,6 +22,9 @@ bool ResourcesWindow::Init()
 {
 	bool ret = true;
 
+	principalAsset = Resource("Assets/", true);
+	ExternalApp->file_system->GetFilesRecursive(&principalAsset);
+
 	return ret;
 }
 
@@ -29,8 +33,7 @@ bool ResourcesWindow::Draw(float dt)
 	ImGui::Begin("Resources", NULL);
 	ImGui::Text("This is the resources window.");
 
-	if (principalAsset != nullptr)
-		RecursiveResourcesDraw(principalAsset);
+	RecursiveResourcesDraw(&principalAsset);
 
 	ImGui::End();
 
@@ -67,7 +70,7 @@ void ResourcesWindow::RecursiveResourcesDraw(Resource* _resource)
 	{
 		for (size_t i = 0; i < _resource->children.size(); ++i)
 		{
-			RecursiveResourcesDraw(_resource->children[i]);
+			RecursiveResourcesDraw(&_resource->children[i]);
 		}
 		ImGui::TreePop();
 	}

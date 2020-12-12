@@ -223,6 +223,9 @@
     <ClCompile Include="Base Code\Time.cpp">
       <Filter>Core\Tools\Time</Filter>
     </ClCompile>
+    <ClCompile Include="Base Code\Resource.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Base Code\Application.h">

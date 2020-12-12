@@ -7,7 +7,7 @@
 #include "WindowManager.h"
 #include "SDL/include/SDL.h"
 
-class Resource;
+#include "Resource.h"
 
 class ResourcesWindow : public Window
 {
@@ -25,7 +25,7 @@ public:
 
 	void RecursiveResourcesDraw(Resource *_resource);
 
-	Resource* principalAsset = nullptr;
+	Resource principalAsset;
 };
 
 #endif // __ResourcesWindow_H__

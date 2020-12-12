@@ -2,9 +2,9 @@
     "Editor Camera Settings": [
         {
             "Camera Position": [
-                46.732051849365234,
-                36.150417327880859,
-                12.138631820678711
+                45.992443084716797,
+                36.185367584228516,
+                14.417231559753418
             ],
             "Camera Rotation": [
                 -0.24351273477077484,
@@ -292,7 +292,7 @@
                 },
                 {
                     "Type": 2,
-                    "Material Path": "Library\/Materials\/Hola.dds"
+                    "Material Path": "Library\/Materials\/ErrorTex.dds"
                 }
             ]
         },
@@ -326,7 +326,7 @@
                 },
                 {
                     "Type": 2,
-                    "Material Path": "Library\/Materials\/Hola.dds"
+                    "Material Path": "Library\/Materials\/ErrorTex.dds"
                 }
             ]
         },
@@ -481,7 +481,7 @@
                     "Rotation": [
                         0,
                         0,
-                        -1,
+                        1,
                         -4.3711388286737929e-08
                     ],
                     "Scale": [
@@ -515,7 +515,7 @@
                     "Rotation": [
                         0,
                         0,
-                        -1,
+                        1,
                         -4.3711388286737929e-08
                     ],
                     "Scale": [
@@ -549,7 +549,7 @@
                     "Rotation": [
                         0,
                         0,
-                        -1,
+                        1,
                         -4.3711388286737929e-08
                     ],
                     "Scale": [
@@ -651,7 +651,7 @@
                     "Rotation": [
                         0,
                         0,
-                        -1,
+                        1,
                         -4.3711388286737929e-08
                     ],
                     "Scale": [
@@ -719,7 +719,7 @@
                     "Rotation": [
                         0,
                         0,
-                        -1,
+                        1,
                         -4.3711388286737929e-08
                     ],
                     "Scale": [
@@ -753,7 +753,7 @@
                     "Rotation": [
                         0,
                         0,
-                        -1,
+                        1,
                         -4.3711388286737929e-08
                     ],
                     "Scale": [
@@ -836,7 +836,7 @@
                 },
                 {
                     "Type": 2,
-                    "Material Path": "Library\/Materials\/Hola.dds"
+                    "Material Path": "Library\/Materials\/ErrorTex.dds"
                 }
             ]
         },
@@ -1093,7 +1093,7 @@
                     "Rotation": [
                         0,
                         0,
-                        -1,
+                        1,
                         -4.3711388286737929e-08
                     ],
                     "Scale": [
@@ -1261,7 +1261,7 @@
                         -3
                     ],
                     "Rotation": [
-                        -1,
+                        1,
                         0,
                         0,
                         -4.3711388286737929e-08

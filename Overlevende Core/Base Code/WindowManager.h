@@ -54,7 +54,7 @@ public:
 	// Destructor
 	virtual ~WindowManager();
 
-	bool Init();
+	bool Start() override;
 	update_status PreUpdate(float dt);
 	update_status PostUpdate(float dt);
 	bool CleanUp();

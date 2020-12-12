@@ -15,6 +15,7 @@
 extern Application* ExternalApp = nullptr;
 Application::Application()
 {
+	list_modules.clear();
 
 	file_system = new ModuleFileSystem(this);
 	window = new ModuleWindow(this);
@@ -48,39 +49,29 @@ Application::Application()
 
 Application::~Application()
 {
-	p2List_item<Module*>* item = list_modules.getLast();
-
-	while(item != NULL)
-	{
-		delete item->data;
-		item = item->prev;
+	for (int i = 0;i< list_modules.size(); i++) {
+		delete list_modules[i];
 	}
+
+	list_modules.clear();
 }
 
 bool Application::Init()
 {
-
 	bool ret = true;
 
-	// Call Init() in all modules
-	p2List_item<Module*>* item = list_modules.getFirst();
-
-	while(item != NULL && ret == true)
-	{
-		ret = item->data->Init();
-		item = item->next;
+	for (int i = 0; i < list_modules.size(); ++i) {
+		ret = list_modules[i]->Init();
 	}
 
 	// After all Init calls we call Start() in all modules
 	LOG("Application Start --------------");
-	item = list_modules.getFirst();
 
 	ExternalApp = this;
 
-	while(item != NULL && ret == true)
-	{
-		ret = item->data->Start();
-		item = item->next;
+	for (int i = 0; i < list_modules.size(); ++i) {
+		ret = list_modules[i]->Start();
+		if (ret == false) return false;
 	}
 	
 	ms_timer.Start();
@@ -112,28 +103,19 @@ update_status Application::Update()
 	update_status ret = UPDATE_CONTINUE;
 	PrepareUpdate();
 	
-	p2List_item<Module*>* item = list_modules.getFirst();
-	
-	while(item != NULL && ret == UPDATE_CONTINUE)
-	{
-		ret = item->data->PreUpdate(dt);
-		item = item->next;
+	for (int i = 0; i < list_modules.size(); i++) {
+		ret = list_modules[i]->PreUpdate(dt);
+		if (ret == UPDATE_STOP) return ret;
 	}
 
-	item = list_modules.getFirst();
-
-	while(item != NULL && ret == UPDATE_CONTINUE)
-	{
-		ret = item->data->Update(dt);
-		item = item->next;
+	for (int i = 0; i < list_modules.size(); i++) {
+		ret = list_modules[i]->Update(dt);
+		if (ret == UPDATE_STOP) return ret;
 	}
 
-	item = list_modules.getFirst();
-
-	while(item != NULL && ret == UPDATE_CONTINUE)
-	{
-		ret = item->data->PostUpdate(dt);
-		item = item->next;
+	for (int i = 0; i < list_modules.size(); i++) {
+		ret = list_modules[i]->PostUpdate(dt);
+		if (ret == UPDATE_STOP) return ret;
 	}
 
 	FinishUpdate();
@@ -145,12 +127,11 @@ bool Application::CleanUp()
 
 	ExternalApp = nullptr;
 	bool ret = true;
-	p2List_item<Module*>* item = list_modules.getLast();
 
-	while(item != NULL && ret == true)
-	{
-		ret = item->data->CleanUp();
-		item = item->prev;
+	for (int i = 0; i > list_modules.size(); i++) {
+		if (list_modules[i] != nullptr) {
+			ret = list_modules[i]->CleanUp();
+		}
 	}
 
 	return ret;
@@ -158,7 +139,7 @@ bool Application::CleanUp()
 
 void Application::AddModule(Module* mod)
 {
-	list_modules.add(mod);
+	list_modules.push_back(mod);
 }
 
 HardwareInfo Application::GetHardware()

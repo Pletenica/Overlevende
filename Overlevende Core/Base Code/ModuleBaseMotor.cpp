@@ -52,7 +52,7 @@ ImGui_ImplOpenGL3_Init();
 
 
 io.IniFilename = "WindowSaving";
-	CreateAllWindows();
+CreateAllWindows();
 
 return ret;
 }

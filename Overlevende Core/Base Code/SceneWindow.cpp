@@ -67,7 +67,7 @@ bool SceneWindow::Draw(float dt)
 		}
 	}
 
-	if (ImGui::IsMouseClicked(0)) {
+	if (ImGui::IsMouseClicked(0) && ImGuizmo::IsUsing() == false) {
 		ImVec2 pos = ImGui::GetMousePos();
 		ImVec2 normalized = GlobalToWindow(ImRect(ImGui::GetWindowPos().x,
 			ImGui::GetWindowPos().y + ImGui::GetFrameHeight(),
@@ -156,6 +156,10 @@ GameObject* SceneWindow::MeshIntersection(LineSegment _line)
 						}
 					}
 				}
+			}
+			else {
+				_go = (*i);
+				break;
 			}
 		}
 	}

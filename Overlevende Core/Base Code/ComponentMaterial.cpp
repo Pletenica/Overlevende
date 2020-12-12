@@ -111,7 +111,9 @@ void ComponentMaterial::OnEditor(GameObject* _go)
 		ImGui::TextColored(color, "Width: ");
 		ImGui::SameLine();
 		ImGui::Text("%i", c_mesh->mesh->textureWidth);
-		ImGui::Text("Texture ID: %i", c_mesh->mesh->textureID);
+		ImGui::TextColored(color, "Texture ID: ");
+		ImGui::SameLine();
+		ImGui::Text("%i", c_mesh->mesh->textureID);
 		//ilGetInteger()
 	}
 }

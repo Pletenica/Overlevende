@@ -3,7 +3,6 @@
 
 #include "glmath.h"
 #include "ModuleGameObject.h"
-#include "SDL/include/SDL.h"
 #include "MathGeoLib/src/Geometry/Frustum.h"
 #include <string>
 

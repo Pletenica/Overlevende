@@ -10,6 +10,7 @@
 #include "Mesh.h"
 //#include "PathNode.h"
 
+#include "Resource.h"
 #include "PhysFS/include/physfs.h"
 #include <fstream>
 #include <filesystem>
@@ -124,7 +125,7 @@ const char * ModuleFileSystem::GetWriteDir() const
 	return PHYSFS_getWriteDir();
 }
 
-void ModuleFileSystem::DiscoverFiles(const char* directory, std::vector<std::string> & file_list, std::vector<std::string> & dir_list) const
+void ModuleFileSystem::DiscoverFiles(const char* directory, std::vector<Resource> &file_list) const
 {
 	char **rc = PHYSFS_enumerateFiles(directory);
 	char **i;
@@ -133,75 +134,26 @@ void ModuleFileSystem::DiscoverFiles(const char* directory, std::vector<std::str
 	{
 		std::string str = std::string(directory) + std::string("/") + std::string(*i);
 		if (IsDirectory(str.c_str()))
-			dir_list.push_back(*i);
+			file_list.push_back(Resource((*i), true));
 		else
-			file_list.push_back(*i);
+			file_list.push_back(Resource((*i),false));
 	}
 
 	PHYSFS_freeList(rc);
 }
 
-void ModuleFileSystem::GetAllFilesWithExtension(const char* directory, const char* extension, std::vector<std::string>& file_list) const
+void ModuleFileSystem::GetFilesRecursive(Resource* _resourceroot)
 {
-	std::vector<std::string> files;
-	std::vector<std::string> dirs;
-	DiscoverFiles(directory, files, dirs);
+	DiscoverFiles(_resourceroot->name.c_str(), _resourceroot->children);
 
-	for (uint i = 0; i < files.size(); i++)
-	{
-		std::string ext;
-		SplitFilePath(files[i].c_str(), nullptr, nullptr, &ext);
-
-		if (ext == extension)
-			file_list.push_back(files[i]);
+	if (_resourceroot->children.size() != 0) {
+		for (int i = 0; i < _resourceroot->children.size(); i++) {
+			if (_resourceroot->children[i].isDirectory == true) {
+				GetFilesRecursive(&_resourceroot->children[i]);
+			}
+		}
 	}
 }
-
-//PathNode M_FileSystem::GetAllFiles(const char* directory, std::vector<std::string>* filter_ext, std::vector<std::string>* ignore_ext) const
-//{
-//	PathNode root;
-//	if (Exists(directory))
-//	{
-//		root.path = directory;
-//		Engine->fileSystem->SplitFilePath(directory, nullptr, &root.localPath);
-//		if (root.localPath == "")
-//			root.localPath = directory;
-//
-//		std::vector<std::string> file_list, dir_list;
-//		DiscoverFiles(directory, file_list, dir_list);	
-//		
-//		//Adding all child directories
-//		for (uint i = 0; i < dir_list.size(); i++)
-//		{
-//			std::string str = directory;
-//			str.append("/").append(dir_list[i]);
-//			root.children.push_back(GetAllFiles(str.c_str(), filter_ext, ignore_ext));
-//		}
-//		//Adding all child files
-//		for (uint i = 0; i < file_list.size(); i++)
-//		{
-//			//Filtering extensions
-//			bool filter = true, discard = false;
-//			if (filter_ext != nullptr)
-//			{
-//				filter = HasExtension(file_list[i].c_str(), *filter_ext);
-//			}
-//			if (ignore_ext != nullptr)
-//			{
-//				discard = HasExtension(file_list[i].c_str(), *ignore_ext);
-//			}
-//			if (filter == true && discard == false)
-//			{
-//				std::string str = directory;
-//				str.append("/").append(file_list[i]);
-//				root.children.push_back(GetAllFiles(str.c_str(), filter_ext, ignore_ext));
-//			}
-//		}
-//		root.isFile = HasExtension(root.path.c_str());
-//		root.isLeaf = root.children.empty() == true;
-//	}
-//	return root;
-//}
 
 void ModuleFileSystem::GetRealDir(const char* path, std::string& output) const
 {
@@ -304,41 +256,6 @@ int close_sdl_rwops(SDL_RWops *rw)
 	//RELEASE_ARRAY(rw->hidden.mem.base);
 	SDL_FreeRW(rw);
 	return 0;
-}
-
-std::string ModuleFileSystem::GetUniqueName(const char* path, const char* name) const
-{
-	//TODO: modify to distinguix files and dirs?
-	std::vector<std::string> files, dirs;
-	DiscoverFiles(path, files, dirs);
-
-	std::string finalName(name);
-	bool unique = false;
-
-	for (uint i = 0; i < 50 && unique == false; ++i)
-	{
-		unique = true;
-
-		//Build the compare name (name_i)
-		if (i > 0)
-		{
-			finalName = std::string(name).append("_");
-			if (i < 10)
-				finalName.append("0");
-			finalName.append(std::to_string(i));
-		}
-
-		//Iterate through all the files to find a matching name
-		for (uint f = 0; f < files.size(); ++f)
-		{
-			if (finalName == files[f])
-			{
-				unique = false;
-				break;
-			}
-		}
-	}
-	return finalName;
 }
 
 unsigned int ModuleFileSystem::Save(const char* file, const void* buffer, unsigned int size, bool append) const

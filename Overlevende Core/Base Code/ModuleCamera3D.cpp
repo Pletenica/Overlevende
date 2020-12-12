@@ -79,7 +79,10 @@ update_status ModuleCamera3D::Update(float dt)
 		{
 			ComponentTransform* c_trans = (ComponentTransform*)App->base_motor->inspector_window->_selectedGO->GetComponent(ComponentType::C_Transform);
 			if (c_trans != nullptr) {
-				float3 center(c_trans->position.x, c_trans->position.y, c_trans->position.z);
+				float3 pos, scale;
+				Quat rot;
+				c_trans->global_transform.Decompose(pos, rot, scale);
+				float3 center(pos.x, pos.y, pos.z);
 				LookAt(center);
 			}
 		}
@@ -111,8 +114,8 @@ update_status ModuleCamera3D::Update(float dt)
 	///////// CAMERAS NORMAL ROTATION ////////////
 	if (App->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_REPEAT)
 	{
-		int dx = -App->input->GetMouseXMotion();
-		int dy = -App->input->GetMouseYMotion();
+		int dx = -App->input->GetMouseXMotion() / sensitivity;
+		int dy = -App->input->GetMouseYMotion() / sensitivity;
 
 		Quat dir;
 		_cam.frustum.WorldMatrix().Decompose(float3(), dir, float3());

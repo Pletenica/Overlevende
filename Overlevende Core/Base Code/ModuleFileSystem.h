@@ -11,6 +11,7 @@ struct aiFileIO;
 
 //struct BASS_FILEPROCS;
 class Config;
+class Resource;
 struct PathNode;
 
 enum ResourceType {
@@ -42,7 +43,8 @@ public:
 	bool CreateDir(const char* dir);
 	bool IsDirectory(const char* file) const;
 	const char* GetWriteDir() const;
-	void DiscoverFiles(const char* directory, std::vector<std::string>& file_list, std::vector<std::string>& dir_list) const;
+	void DiscoverFiles(const char* directory, std::vector<Resource> &file_list) const;
+	void GetFilesRecursive(Resource* _resourceroot);
 	void GetAllFilesWithExtension(const char* directory, const char* extension, std::vector<std::string>& file_list) const;
 	PathNode GetAllFiles(const char* directory, std::vector<std::string>* filter_ext = nullptr, std::vector<std::string>* ignore_ext = nullptr) const;
 	void GetRealDir(const char* path, std::string& output) const;

@@ -7,6 +7,7 @@
 #include "MathGeoLib/src/Geometry/Frustum.h"
 #include "MathGeoLib/src/MathGeoLib.h"
 
+#include "ModuleRenderer3D.h"
 #include "JSONManager.h"
 #include "glmath.h"
 
@@ -80,7 +81,7 @@ bool ComponentCamera::Disable()
 bool ComponentCamera::Update(float dt)
 {
 	UpdateCamera(gameobject->transform->global_transform);
-
+	ExternalApp->renderer3D->allGameobjects.push_back(gameobject);
 	float3 points[8];
 
 	frustum.GetCornerPoints(points);

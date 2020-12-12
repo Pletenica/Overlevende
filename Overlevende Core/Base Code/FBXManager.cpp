@@ -87,7 +87,7 @@ void FBXLoader::ImportFBX(char* _buffer, int _size, int _idTexturesTemporal, con
 				}
 				else {
 					texturesVector.push_back(0);
-					textureNames[0] = "Hola.dds";
+					textureNames[0] = "ErrorTex.dds";
 				}
 
 			}

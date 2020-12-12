@@ -2,15 +2,15 @@
     "Editor Camera Settings": [
         {
             "Camera Position": [
-                27.149641036987305,
-                39.682201385498047,
-                -21.026430130004883
+                45.992443084716797,
+                36.185367584228516,
+                14.417231559753418
             ],
             "Camera Rotation": [
-                -0.17197155952453613,
-                0.82803112268447876,
-                0.37735462188720703,
-                0.37735089659690857
+                -0.24351273477077484,
+                0.56438314914703369,
+                0.1788974404335022,
+                0.76822453737258911
             ]
         }
     ],
@@ -41,7 +41,7 @@
             ]
         },
         {
-            "name": "Camera",
+            "name": "Camera 1",
             "GameObject id": 714309308,
             "Parent id": 697600268,
             "components": [
@@ -50,7 +50,7 @@
                     "Position": [
                         0,
                         3,
-                        0
+                        3
                     ],
                     "Rotation": [
                         0,
@@ -75,7 +75,7 @@
             ]
         },
         {
-            "name": "scene",
+            "name": "Street",
             "GameObject id": 1557767996,
             "Parent id": 697600268,
             "components": [
@@ -292,7 +292,7 @@
                 },
                 {
                     "Type": 2,
-                    "Material Path": "Library\/Materials\/Hola.dds"
+                    "Material Path": "Library\/Materials\/ErrorTex.dds"
                 }
             ]
         },
@@ -326,7 +326,7 @@
                 },
                 {
                     "Type": 2,
-                    "Material Path": "Library\/Materials\/Hola.dds"
+                    "Material Path": "Library\/Materials\/ErrorTex.dds"
                 }
             ]
         },
@@ -836,7 +836,7 @@
                 },
                 {
                     "Type": 2,
-                    "Material Path": "Library\/Materials\/Hola.dds"
+                    "Material Path": "Library\/Materials\/ErrorTex.dds"
                 }
             ]
         },
@@ -1245,6 +1245,40 @@
                 {
                     "Type": 2,
                     "Material Path": "Library\/Materials\/Building_V02_C.dds"
+                }
+            ]
+        },
+        {
+            "name": "Camera 2",
+            "GameObject id": 954204868,
+            "Parent id": 697600268,
+            "components": [
+                {
+                    "Type": 0,
+                    "Position": [
+                        0,
+                        3,
+                        -3
+                    ],
+                    "Rotation": [
+                        1,
+                        0,
+                        0,
+                        -4.3711388286737929e-08
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 3,
+                    "Prority": 1,
+                    "Vertical FOV": 40,
+                    "Horizontal FOV": 2.3008880615234375,
+                    "Far Plane Distance": 300,
+                    "Near Plane Distance": 0.10000000149011612
                 }
             ]
         }
